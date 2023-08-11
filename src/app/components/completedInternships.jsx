@@ -1,6 +1,7 @@
 "use client"
 import axios from "axios";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 export const CompletedInternships = () => {
   const url = "http://localhost:8000/completedInternships";
@@ -49,6 +50,9 @@ export const CompletedInternships = () => {
             ))}
           </tbody>
         </table>
+        <div className={"flex justify-center items-center m-4"}>
+          <Link href={"/completedInternship"} className={"bg-yellow px-4 py-2 rounded"}>Show more</Link>
+        </div>
       </main>
     </>
   );

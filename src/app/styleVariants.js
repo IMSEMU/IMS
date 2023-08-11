@@ -35,3 +35,12 @@ export const bounce = {
         }
     }
 }
+
+export  const buttonAnimations = {
+    initial:{
+        scale: 1
+    },
+    animate:{
+        scale:1.5
+    }
+}

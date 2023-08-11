@@ -4,6 +4,9 @@ import {Jumbotron} from "@/app/components/jumbotron";
 import {Announcement} from "@/app/components/announcement";
 import {CompletedInternships} from "@/app/components/completedInternships";
 
+export const metadata = {
+  title: 'Home | I.M.S.',
+}
 export default function Home() {
   return (
     <main className={"mx-"}>
