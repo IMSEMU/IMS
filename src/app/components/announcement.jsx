@@ -2,7 +2,7 @@
 import {useEffect, useState} from "react";
 import {FaExclamationTriangle} from "react-icons/fa";
 import {TfiAnnouncement} from "react-icons/tfi";
-import {Loading} from "@/app/components/loading";
+import {AnnouncementSkeleton} from "@/app/skeletonLoader";
 
 
 export const Announcement = () => {
@@ -36,7 +36,7 @@ export const Announcement = () => {
 
   return(
       <>
-          <main className={"mt-6 w-full max-w-[83.75rem] mx-auto"}>
+          <main className={"mt-6 w-full max-w-[70.75rem] mx-auto"}>
 
               {/*section name*/}
               <div className={"flex justify-center"}>
@@ -44,15 +44,15 @@ export const Announcement = () => {
               </div>
 
               {/*announcement section*/}
-              <div className={"items-center mt-4 bg-background_shade rounded gap-2 flex w-full max-w-[70.75rem] mx-auto"}>
+              <div className={" items-center justify-center mt-4 bg-background_shade_2 rounded gap-0 flex w-full"}>
 
                   {/*announcements*/}
-                  <div className={"cursor-pointer mt-2"}>
-                      { loading ? <Loading /> :
+                  <div className={"h-[32rem] overflow-y-auto w-fit cursor-pointer my-2"}>
+                      {
                           cards && cards.map((message) => {
 
                               return(
-                                 <div key={message.id} className={"m w-fit flex items-start justify-center"}>
+                                 <div key={message.id} className={" w-[23rem] md:w-fit flex items-start justify-center"}>
 
                                       <div  onClick={() => handleCardClick(message)} className={"w-[25rem] flex justify-between items-center rounded my-2 mx-4 bg-white"}>
 
@@ -74,12 +74,13 @@ export const Announcement = () => {
                               )
                           })
                       }
+                      {!cards && [1,2,3,4,5].map((n) => <AnnouncementSkeleton key={n}/>)}
                   </div>
 
 
 
                   {/*Announcement Display*/}
-                  <div className={"relative bg-white md:w-full m-4 rounded h-[30rem]"}>
+                  <div className={"relative hidden sm:block bg-white w-[40rem] m-4 rounded h-[30rem]"}>
 
                       {/* Display the contents of selected card */}
                       <div className={"w-full py-4 px-6 "}>
@@ -88,7 +89,7 @@ export const Announcement = () => {
                               // checking if a card is selected or not and rendering content for each situation
 
                               selectedCard === null ?
-                                  <div className={"text-3xl  text-background_shade text-center font-semibold  "}> <TfiAnnouncement className={"inline-flex mb-2 "} /> <strong>Select an announcement</strong> </div>  :
+                                  <div className={"text-3xl  text-background_shade_2 text-center font-semibold  "}> <TfiAnnouncement className={"inline-flex mb-2 "} /> <strong>Select an announcement</strong> </div>  :
 
                                   selectedCard && (
 

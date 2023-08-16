@@ -4,7 +4,6 @@ import { BsFillCaretDownFill } from "react-icons/bs";
 import { BiLogIn } from "react-icons/bi";
 import {LanguageToogle} from "@/app/components/languageToogle";
 import Link from "next/link";
-// import {DarkToogleBtn} from "@/app/components/darkToogle";
 
 export const HomeNav = () => {
   return (
@@ -19,8 +18,8 @@ export const HomeNav = () => {
                     <Image
                         src={"/logo.svg"}
                         alt={"emu logo"}
-                        width={80}
-                        height={80}
+                        width={70}
+                        height={70}
                         priority
                     />
                 </Link>
