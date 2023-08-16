@@ -2,21 +2,20 @@
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {HiOutlineArrowNarrowLeft} from "react-icons/hi";
-import {Loading} from "@/app/components/loading";
 import Link from "next/link";
 
 export const Table = () => {
 
   const url = "http://localhost:8000/completedInternships";
   const [tableContent, setTableContent] = useState([]);
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
 
   // Fetching table data
   useEffect(() => {
     axios.get(url)
       .then((response) => {
         setTableContent(response.data);
-        setLoading(false);
+        // setLoading(false);
       })
       .catch((error) => {
         console.error("Error fetching card data:", error);

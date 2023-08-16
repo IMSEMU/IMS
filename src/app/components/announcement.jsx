@@ -8,7 +8,6 @@ import {AnnouncementSkeleton} from "@/app/skeletonLoader";
 export const Announcement = () => {
 
     const url = 'http://localhost:8000/announcement';
-    const [loading, setLoading] = useState(true);
     const [cards, setCards] = useState(null);
     const [selectedCard, setSelectedCard] = useState(null);
 
@@ -19,7 +18,6 @@ export const Announcement = () => {
     axios.get(url)
       .then(response => {
         setCards(response.data);
-        setLoading(false);
 
       })
       .catch(error => {
@@ -40,7 +38,7 @@ export const Announcement = () => {
 
               {/*section name*/}
               <div className={"flex justify-center"}>
-                  <p className={"text-2xl inline-flex  text-center border-yellow border-x-8 px-2"}>News & Announcement</p>
+                  <p className={"text-[1rem]  md:text-2xl inline-flex  text-center border-yellow border-x-4 md:border-x-8 px-2"}>News & Announcement</p>
               </div>
 
               {/*announcement section*/}

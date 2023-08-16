@@ -2,20 +2,20 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Image from "next/image";
 import { FaRegClock } from "react-icons/fa";
-import { Loading } from "@/app/components/loading";
+
 
 export const InternshipCards = ({ searchQuery }) => {
   const url = "http://localhost:8000/availableInternships";
   const [card, setCard] = useState([]);
   const [filteredCard, setFilteredCard] = useState([]);
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
 
   // Fetching table data
   useEffect(() => {
     axios.get(url)
       .then((response) => {
         setCard(response.data);
-        setLoading(false);
+        // setLoading(false);
       })
       .catch((error) => {
         console.error("Error fetching card data:", error);
@@ -42,15 +42,13 @@ export const InternshipCards = ({ searchQuery }) => {
 
         <div className="max-w-[70.75rem] mx-auto bg-background_shade_2 rounded">
           <div className="h-[fit] min-h-[20rem] mt-6 py-3 rounded w-full flex gap-2 flex-wrap justify-center relative">
-            {loading ? (
-              <Loading />
-            ) : filteredCard.length === 0 ? (
+            { filteredCard.length === 0 ? (
               <div>
                 <p>No data found</p>
               </div>
             ) : (
               filteredCard.map((cards, index) => (
-                <div key={index} href="/" className="bg-white w-[22rem] mx-1 my-1 rounded h-fit">
+                <div key={index}  className="bg-white w-[22rem] mx-1 my-1 rounded h-fit">
                   <div className="w-full place-content-start my-3 px-3">
                     {/*image*/}
                     <div className="rounded w-fit my-1">
