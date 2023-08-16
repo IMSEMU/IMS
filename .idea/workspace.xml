@@ -5,10 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0846fc33-ef0f-4a72-b288-fb80a069d449" name="Changes" comment="deployment error fix">
+      <change afterPath="$PROJECT_DIR$/ims-clone" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/completedInternship/components/table.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/completedInternship/components/table.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/announcement.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/announcement.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/internshipPositions/component/internships.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/internshipPositions/component/internships.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,7 +93,7 @@
       <workItem from="1691485908789" duration="73228000" />
       <workItem from="1691763427818" duration="23133000" />
       <workItem from="1691878227930" duration="12474000" />
-      <workItem from="1691940494348" duration="55633000" />
+      <workItem from="1691940494348" duration="57212000" />
     </task>
     <task id="LOCAL-00001" summary="progress">
       <option name="closed" value="true" />
@@ -128,7 +127,23 @@
       <option name="project" value="LOCAL" />
       <updated>1692198654382</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="deployment error fix">
+      <option name="closed" value="true" />
+      <created>1692201359775</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1692201359775</updated>
+    </task>
+    <task id="LOCAL-00006" summary="deployment error fix">
+      <option name="closed" value="true" />
+      <created>1692201583530</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1692201583531</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -139,7 +154,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="main" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>

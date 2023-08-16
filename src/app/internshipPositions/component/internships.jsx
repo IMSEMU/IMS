@@ -48,7 +48,7 @@ export const InternshipCards = ({ searchQuery }) => {
               </div>
             ) : (
               filteredCard.map((cards, index) => (
-                <div key={index}  className="bg-white w-[22rem] mx-1 my-1 rounded h-fit">
+                <div key={index}  className=" bg-white w-[22rem] mx-1 my-1 rounded h-fit">
                   <div className="w-full place-content-start my-3 px-3">
                     {/*image*/}
                     <div className="rounded w-fit my-1">
