@@ -3,13 +3,13 @@ import Image from "next/image";
 export const Jumbotron = () => {
     return(
         <>
-            <main className={"h-full m-2"}>
+            <main className={"m-1"}>
                 <Image
-                    className={"w-full object-contain"}
-                    src={"/school of computing and technology 1.svg"}
+                    className={"w-full h-[15rem] sm:h-[20rem] md:h-[25rem] xl:h-[32rem] object-cover"}
+                    src={"/school of computing and technology.jpg"}
                     alt={"pic"}
-                    width={100}
-                    height={50}
+                    width={2000}
+                    height={2000}
                     priority
                 />
             </main>

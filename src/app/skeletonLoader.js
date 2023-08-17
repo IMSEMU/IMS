@@ -3,8 +3,8 @@ export const AnnouncementSkeleton = () => {
   return (
     <>
       <main className="">
-        <div className="mt-1  w-[23rem] md:w-fit flex items-center justify-center">
-          <div className="w-[25rem] bg-white h-20 flex justify-between items-center rounded my-2 mx-4 border border-white">
+        <div className="mt-1  w-[100vw] md:w-fit flex items-center justify-center">
+          <div className="w-[21rem] bg-white h-20 flex justify-between items-center rounded my-2 mx-4 border border-white">
             <div className="p-4">
               <em className="skeleton-loader rounded block bg-background_shade_2 h-6 w-20 text-black m-1 px-1.5 py-1"></em>
               <h1 className="skeleton-loader block rounded bg-background_shade_2 h-3 w-48 font-semibold text-lg py-2 mt-4 m-1"></h1>
