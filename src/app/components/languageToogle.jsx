@@ -15,7 +15,7 @@ export const LanguageToogle = () => {
     }
 
   return(
-      <main className={"text-sm md:text-md lg:text-lg xl:text-xl flex items-end ml-2 relative cursor-pointer"}>
+      <main className={"remove-highlight text-sm md:text-md lg:text-lg xl:text-xl flex items-end ml-2 relative cursor-pointer"}>
 
           <div onClick={showOptions} className={"flex"}>
             EN

@@ -3,24 +3,21 @@ import React, { useEffect, useState } from "react";
 import { FaExclamationTriangle } from "react-icons/fa";
 import { TfiAnnouncement } from "react-icons/tfi";
 import { AnnouncementSkeleton } from "@/app/skeletonLoader";
+import {HomeNav} from "@/app/components/homeNav";
+import {getAnnouncements} from "../../../utils/dataFetching";
 
 export const Announcement = () => {
-  const url = 'http://localhost:8000/announcement';
   const [cards, setCards] = useState(null);
   const [selectedCard, setSelectedCard] = useState(null);
 
   // Fetch card data
   useEffect(() => {
-    const axios = require('axios');
-
-    axios.get(url)
-      .then(response => {
-        setCards(response.data);
-      })
-      .catch(error => {
-        console.error('Error fetching card data:', error);
-      });
-  }, [url]);
+    const fetchData = async () => {
+      const data = await getAnnouncements();
+      setCards(data);
+    }
+    fetchData();
+  }, []);
 
   // Click handler for opening announcements
   const handleCardClick = (card) => {
@@ -29,7 +26,7 @@ export const Announcement = () => {
 
   return (
     <>
-      <main className={"mt-6 w-full max-w-[70.75rem] mx-auto"}>
+      <main className={"remove-highlight mt-6 w-full max-w-[70.75rem] mx-auto"}>
         {/* Section name */}
         <div className={"flex justify-center"}>
           <p className={"text-sm md:text-md xl:text-xl 2xl:text-2xl inline-flex text-center border-yellow border-x-[0.4rem] md:border-x-8 px-2"}>
@@ -60,6 +57,7 @@ export const Announcement = () => {
             {!cards && [1, 2, 3, 4, 5].map((n) => <AnnouncementSkeleton key={n} />)}
           </div>
 
+
           {/* Announcement Display */}
           <div className={"text-xs sm:text-sm md:text-md xl:text-xl overflow-y-scroll relative hidden sm:block bg-white md:w-[40rem] m-2 rounded sm:h-[31.5rem]"}>
             {/* Display the contents of selected card */}
@@ -86,6 +84,31 @@ export const Announcement = () => {
                 )}
             </div>
           </div>
+                                {/*open in mobile view */}
+            <div className={"z-[99]  top-0 hidden bg-white fixed h-[100%] w-[100vw]"}>
+                <HomeNav className={"mt-2"} />
+                <div className={"flex items-center"}>
+                <div className={"w-full h-[20rem] mx-auto py-4 px-6 border"}>
+                  <div className={""}>XX</div>
+              {
+                selectedCard && (
+                  <div className={"relative"}>
+                    <div className={"sticky top-0 p-3 bg-white"}>
+                      <div className={"font-bold text-center"}>
+                        <h2>{selectedCard.subject}</h2>
+                      </div>
+                      <div className={"absolute top-0 right-0"}>
+                        {selectedCard.important ?
+                          <FaExclamationTriangle className={"text-md xl:text-xl 2xl:text-2xl mr-3 mt-4 text-yellow cursor-pointer"}/> : ""}
+                      </div>
+                    </div>
+                    <p className={"p-3"}>{selectedCard.body}</p>
+                  </div>
+                )}
+            </div>
+              </div>
+            </div>
+
         </div>
       </main>
     </>

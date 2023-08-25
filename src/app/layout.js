@@ -1,6 +1,7 @@
 // "use client"
 import './globals.css'
 import { Inter } from 'next/font/google'
+import {DarkModeProvider} from "@/app/contexts/darkModeContext";
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -15,7 +16,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <link rel={"icon"} href={"/logo.svg"}/>
-      <body className={inter.className}>{children}</body>
+      <DarkModeProvider>
+         <body className={inter.className}>{children}</body>
+      </DarkModeProvider>
     </html>
   )
 }

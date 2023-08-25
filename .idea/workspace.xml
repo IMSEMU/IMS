@@ -4,9 +4,32 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0846fc33-ef0f-4a72-b288-fb80a069d449" name="Changes" comment="responsive homepage">
+    <list default="true" id="0846fc33-ef0f-4a72-b288-fb80a069d449" name="Changes" comment="little update">
+      <change afterPath="$PROJECT_DIR$/src/app/components/darkModeButton.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/contexts/darkModeContext.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/login/components/imageSection.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/login/components/loginBody.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/login/components/loginNav.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/login/components/loginSection.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/login/components/signupSection.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/login/page.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/dataFetching.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/db.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/db.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/next.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/next.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/completedInternship/components/table.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/completedInternship/components/table.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/completedInternship/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/completedInternship/page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/announcement.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/announcement.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/completedInternships.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/completedInternships.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/homeFooter.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/homeFooter.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/components/homeNav.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/homeNav.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/internshipPositions.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/internshipPositions.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/languageToogle.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/languageToogle.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/globals.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/internshipPositions/component/internships.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/internshipPositions/component/internships.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/internshipPositions/component/jumbotron.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/internshipPositions/component/jumbotron.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/layout.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/styleVariants.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/styleVariants.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,6 +46,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="ROOT_SYNC" value="SYNC" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -53,24 +77,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "/home/joelikenga/Desktop/internship-management-system/src/app/components",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "ts.external.directory.path": "/snap/webstorm/329/plugins/javascript-impl/jsLanguageServicesImpl/external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/joelikenga/Desktop/internship-management-system/src/app/components&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/snap/webstorm/329/plugins/javascript-impl/jsLanguageServicesImpl/external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/app/components" />
@@ -92,7 +116,11 @@
       <workItem from="1691485908789" duration="73228000" />
       <workItem from="1691763427818" duration="23133000" />
       <workItem from="1691878227930" duration="12474000" />
-      <workItem from="1691940494348" duration="88694000" />
+      <workItem from="1691940494348" duration="109215000" />
+      <workItem from="1692366897398" duration="20957000" />
+      <workItem from="1692800890003" duration="6800000" />
+      <workItem from="1692829921208" duration="17415000" />
+      <workItem from="1692922212315" duration="4692000" />
     </task>
     <task id="LOCAL-00001" summary="progress">
       <option name="closed" value="true" />
@@ -166,7 +194,15 @@
       <option name="project" value="LOCAL" />
       <updated>1692255127026</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="little update">
+      <option name="closed" value="true" />
+      <created>1692269017130</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1692269017130</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -204,6 +240,7 @@
     <MESSAGE value="commit test" />
     <MESSAGE value="commit test 2" />
     <MESSAGE value="responsive homepage" />
-    <option name="LAST_COMMIT_MESSAGE" value="responsive homepage" />
+    <MESSAGE value="little update" />
+    <option name="LAST_COMMIT_MESSAGE" value="little update" />
   </component>
 </project>

@@ -3,13 +3,12 @@ import {FaExclamationTriangle} from "react-icons/fa";
 export const show = {
     initial: {
         opacity: 0,
-        x:20,
-        y:60,
+
     },
     animate: {
         opacity:1,
         y:80,
-        x:20,
+        x:0,
         transition: {
             duration:0.5,
             type:"spring",
@@ -18,8 +17,8 @@ export const show = {
     },
     exit:{
         opacity: 0,
-        x:20,
-        y:60,
+        x:0,
+        y:40,
     }
 }
 

@@ -3,27 +3,23 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { CompletedInternshipSkeleton } from "@/app/skeletonLoader";
+import {getCompletedInternship} from "../../../utils/dataFetching";
 
 export const CompletedInternships = () => {
-  const url = "http://localhost:8000/completedInternships";
   const [tableContent, setTableContent] = useState([]);
 
   // Fetching table data
   useEffect(() => {
-    axios.get(url)
-      .then((response) => {
-        setTableContent(response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching card data:", error);
-      });
+    const fetchData = async () => {
+      const data = await getCompletedInternship();
+      setTableContent(data);
+    }
+    fetchData();
   }, []);
-
-  console.log(tableContent);
 
   return (
     <>
-      <main className={"mt-6 w-full max-w-[70.75rem] mx-auto"}>
+      <main className={" remove-highlight mt-6 w-full max-w-[70.75rem] mx-auto"}>
         {/* Section name */}
         <div className={"flex justify-center"}>
           <p className={"text-sm md:text-md xl:text-xl 2xl:text-2xl inline-flex text-center border-yellow border-x-[0.4rem] md:border-x-8 px-2"}>
@@ -42,7 +38,7 @@ export const CompletedInternships = () => {
             </tr>
           </thead>
           <tbody id={tableContent.length === 0 ? "" : "tbody"} className={"relative"}>
-            {tableContent &&
+            {Array.isArray(tableContent) &&
               tableContent.slice(0, 4).map((table, index) => (
                 <tr key={index}>
                   <td className={"text-center p-[0.875rem] truncate"}>{table.companyName}</td>
@@ -58,7 +54,7 @@ export const CompletedInternships = () => {
         </table>
         <div className={"flex justify-center items-center m-4"}>
           {tableContent.length !== 0 ? (
-            <Link href={"/completedInternship"} className={"text-sm md:text-md lg:text-lg  bg-yellow px-4 py-2 rounded"}>
+            <Link href={"/completedInternship"} className={"text-sm md:text-md lg:text-lg  bg-blue text-white px-4 py-2 rounded"}>
               Show more
             </Link>
           ) : (

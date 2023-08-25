@@ -9,14 +9,15 @@ export const HomeFooter = () => {
         {"name" : "Available Internship Positions", "link": "/internshipPositions"},
     ]
     const usefulLinks = [
-        {"name" : "School Website", "link": "https://www.emu.edu.tr/"},
+        {"name" : "Official University Website", "link": "https://www.emu.edu.tr/"},
+        {"name" : "Official Departmental Website", "link": "https://www.emu.edu.tr/en/academics/schools/computing-and-technology/646"},
         {"name" : "Student Portal", "link": "https://students.emu.edu.tr/"},
         {"name" : "L.M.S.", "link": "https://lms22-23spring.emu.edu.tr/login/index.php"},
         {"name" : "Staff Portal", "link": "https://staff.emu.edu.tr/"},
     ]
   return(
       <>
-        <main className={"text-xs sm:text-sm md:text-md  w-full bg-background_shade_2 "}>
+        <main className={"remove-highlight text-xs sm:text-sm md:text-md  w-full bg-background_shade_2 "}>
             <div className={"px-3 py-6 w-full max-w-[70.75rem] mx-auto flex-col md:flex-row flex justify-evenly gap-6"}>
                 {/*sitemap*/}
                 <div className={"flex-col flex text-center"}>
@@ -26,7 +27,7 @@ export const HomeFooter = () => {
                         sitemap.map((sitemap,index) => {
                             return(
                                 <>
-                                <Link href={sitemap.link} target="_blank" rel="noopener noreferrer" key={index} className={"my-2 hover:text-yellow"}>{sitemap.name}</Link>
+                                <Link href={sitemap.link} key={index} className={"my-2 hover:text-yellow"}>{sitemap.name}</Link>
                                 </>
                             )
                         })

@@ -5,25 +5,23 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { InternshipCardsSkeleton } from "@/app/skeletonLoader";
+import {getAvailableInternship} from "../../../utils/dataFetching";
 
 export const InternshipPositions = () => {
-  const url = "http://localhost:8000/availableInternships";
   const [card, setCard] = useState([]);
 
-  // Fetching table data
+  // Fetching card data
   useEffect(() => {
-    axios.get(url)
-      .then((response) => {
-        setCard(response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching card data:", error);
-      });
+    const fetchData = async () => {
+      const data = await getAvailableInternship();
+      setCard(data);
+    }
+    fetchData();
   }, []);
 
   return (
     <>
-      <main className={"mt-6 w-full max-w-[70.75rem] mx-auto"}>
+      <main className={"remove-highlight mt-6 w-full max-w-[70.75rem] mx-auto"}>
         {/* Section name */}
         <div className={"flex justify-center"}>
           <p className={"text-sm md:text-md xl:text-xl 2xl:text-2xl inline-flex text-center border-yellow border-x-[0.4rem] md:border-x-8 px-2"}>
@@ -68,7 +66,7 @@ export const InternshipPositions = () => {
         </div>
         <div className={"flex justify-center items-center m-4"}>
           {card.length !== 0 ? (
-            <Link href={"/internshipPositions"} className={"text-sm md:text-md lg:text-lg bg-yellow px-4 py-2 rounded"}>
+            <Link href={"/internshipPositions"} className={"text-sm md:text-md lg:text-lg bg-blue text-white px-4 py-2 rounded"}>
               Show more
             </Link>
           ) : (
@@ -79,3 +77,4 @@ export const InternshipPositions = () => {
     </>
   );
 };
+

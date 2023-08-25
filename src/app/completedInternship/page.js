@@ -8,7 +8,7 @@ export default function CompletedInternship () {
 return(
     <>
         <HomeNav />
-      <Table />
+        <Table />
     </>
 )
 }
