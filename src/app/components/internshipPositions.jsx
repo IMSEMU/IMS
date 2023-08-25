@@ -3,7 +3,6 @@ import Image from "next/image";
 import { FaRegClock } from "react-icons/fa";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { InternshipCardsSkeleton } from "@/app/skeletonLoader";
 import {getAvailableInternship} from "../../../utils/dataFetching";
 

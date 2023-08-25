@@ -1,5 +1,4 @@
 "use client"
-import axios from "axios";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { CompletedInternshipSkeleton } from "@/app/skeletonLoader";

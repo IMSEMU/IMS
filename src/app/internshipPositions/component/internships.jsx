@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import Image from "next/image";
 import { FaRegClock } from "react-icons/fa";
 import {getAvailableInternship} from "../../../../utils/dataFetching";
@@ -7,7 +6,6 @@ import {InternshipCardsSkeleton} from "@/app/skeletonLoader";
 
 
 export const InternshipCards = ({ searchQuery }) => {
-  const url = "http://localhost:8000/availableInternships";
   const [card, setCard] = useState([]);
   const [filteredCard, setFilteredCard] = useState([]);
 

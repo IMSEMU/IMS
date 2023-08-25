@@ -1,4 +1,3 @@
-import {FaExclamationTriangle} from "react-icons/fa";
 
 export const show = {
     initial: {
