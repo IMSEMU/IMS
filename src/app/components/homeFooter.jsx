@@ -9,8 +9,7 @@ export const HomeFooter = () => {
         {"name" : "Available Internship Positions", "link": "/internshipPositions"},
     ]
     const usefulLinks = [
-        {"name" : "Official University Website", "link": "https://www.emu.edu.tr/"},
-        {"name" : "Official Departmental Website", "link": "https://www.emu.edu.tr/en/academics/schools/computing-and-technology/646"},
+        {"name" : "E.M.U. Official Website", "link": "https://www.emu.edu.tr/"},
         {"name" : "Student Portal", "link": "https://students.emu.edu.tr/"},
         {"name" : "L.M.S.", "link": "https://lms22-23spring.emu.edu.tr/login/index.php"},
         {"name" : "Staff Portal", "link": "https://staff.emu.edu.tr/"},

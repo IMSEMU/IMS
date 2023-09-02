@@ -4,32 +4,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0846fc33-ef0f-4a72-b288-fb80a069d449" name="Changes" comment="little update">
-      <change afterPath="$PROJECT_DIR$/src/app/components/darkModeButton.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/contexts/darkModeContext.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/login/components/imageSection.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/login/components/loginBody.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/login/components/loginNav.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/login/components/loginSection.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/login/components/signupSection.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/login/page.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/dataFetching.js" afterDir="false" />
+    <list default="true" id="0846fc33-ef0f-4a72-b288-fb80a069d449" name="Changes" comment="darkmode">
+      <change afterPath="$PROJECT_DIR$/public/microsoft-icon.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/signup.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/globalComponents/darkModeButton.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/db.json" beforeDir="false" afterPath="$PROJECT_DIR$/data/db.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/next.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/completedInternship/components/table.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/completedInternship/components/table.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/completedInternship/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/completedInternship/page.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/components/announcement.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/announcement.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/components/completedInternships.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/completedInternships.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/darkModeButton.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/components/homeFooter.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/homeFooter.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/components/homeNav.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/homeNav.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/components/internshipPositions.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/internshipPositions.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/languageToogle.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/languageToogle.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/languageToogle.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/globalComponents/languageToogle.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/globals.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/internshipPositions/component/internships.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/internshipPositions/component/internships.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/internshipPositions/component/jumbotron.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/internshipPositions/component/jumbotron.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/layout.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/styleVariants.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/styleVariants.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/login/components/imageSection.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/login/components/loginBody.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/login/components/loginNav.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/login/components/loginSection.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/login/components/loginSection.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/login/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/login/page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/skeletonLoader.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/skeletonLoader.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/tailwind.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,6 +96,7 @@
       <recent name="$PROJECT_DIR$/src/app/components" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/app/globalComponents" />
       <recent name="$PROJECT_DIR$/src/app/completedInternship" />
       <recent name="$PROJECT_DIR$/src/app" />
     </key>
@@ -120,7 +117,9 @@
       <workItem from="1692366897398" duration="20957000" />
       <workItem from="1692800890003" duration="6800000" />
       <workItem from="1692829921208" duration="17415000" />
-      <workItem from="1692922212315" duration="4692000" />
+      <workItem from="1692922212315" duration="23257000" />
+      <workItem from="1692985102861" duration="3896000" />
+      <workItem from="1693419168883" duration="32999000" />
     </task>
     <task id="LOCAL-00001" summary="progress">
       <option name="closed" value="true" />
@@ -202,7 +201,23 @@
       <option name="project" value="LOCAL" />
       <updated>1692269017130</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="darkmode">
+      <option name="closed" value="true" />
+      <created>1692927789602</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1692927789602</updated>
+    </task>
+    <task id="LOCAL-00012" summary="darkmode">
+      <option name="closed" value="true" />
+      <created>1692927992387</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1692927992387</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -241,6 +256,7 @@
     <MESSAGE value="commit test 2" />
     <MESSAGE value="responsive homepage" />
     <MESSAGE value="little update" />
-    <option name="LAST_COMMIT_MESSAGE" value="little update" />
+    <MESSAGE value="darkmode" />
+    <option name="LAST_COMMIT_MESSAGE" value="darkmode" />
   </component>
 </project>

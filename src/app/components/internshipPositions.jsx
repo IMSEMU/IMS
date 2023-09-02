@@ -20,20 +20,20 @@ export const InternshipPositions = () => {
 
   return (
     <>
-      <main className={"remove-highlight mt-6 w-full max-w-[70.75rem] mx-auto"}>
+      <main className={" mt-6 w-full max-w-[70.75rem] mx-auto"}>
         {/* Section name */}
-        <div className={"flex justify-center"}>
+        <div className={"flex text-black dark:text-white justify-center"}>
           <p className={"text-sm md:text-md xl:text-xl 2xl:text-2xl inline-flex text-center border-yellow border-x-[0.4rem] md:border-x-8 px-2"}>
             Available Internship Positions
           </p>
         </div>
 
         {/* Card section */}
-        <div className={"bg-background_shade_2"}>
+        <div className={"bg-background_shade_2 dark:bg-dark_3 rounded"}>
           <div className={"h-[fit] mt-6 py-3 rounded w-full flex gap-2 flex-wrap justify-center relative"}>
             {/* Cards */}
             {card.slice(0, 6).map((cards, index) => (
-              <div key={index} className={"text-xs sm:text-sm md:text-md lg:text-lg bg-white w-[22rem] mx-1.5 my-1 rounded h-fit"}>
+              <div key={index} className={"text-xs sm:text-sm md:text-md lg:text-lg bg-white dark:bg-background_shade_2 w-[22rem] mx-1.5 my-1 rounded h-fit"}>
                 <div className={"w-full place-content-start my-3 px-3"}>
                   {/* Image */}
                   <div className={"w-fit my-1"}>

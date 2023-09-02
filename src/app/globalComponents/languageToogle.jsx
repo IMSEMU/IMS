@@ -15,7 +15,7 @@ export const LanguageToogle = () => {
     }
 
   return(
-      <main className={"remove-highlight text-sm md:text-md lg:text-lg xl:text-xl flex items-end ml-2 relative cursor-pointer"}>
+      <main className={"text-black dark:text-white text-sm md:text-md lg:text-lg xl:text-xl flex items-end ml-2 relative cursor-pointer"}>
 
           <div onClick={showOptions} className={"flex"}>
             EN
@@ -31,11 +31,11 @@ export const LanguageToogle = () => {
                   initial={"initial"}
                   animate={"animate"}
                   exit={"exit"}
-                  className={"absolute  text-center rounded bg-white border-background_shade border"}>
+                  className={"absolute  text-center rounded bg-white dark:bg-dark_2 border-background_shade border text-black dark:text-white"}>
 
                   <ul className={"list-none"}>
-                    <li className={"cursor-pointer m-1 px-2.5 py-0.5 sm:px-3 sm:py-1 hover:bg-yellow_2 rounded"}>EN</li>
-                    <li className={"cursor-pointer m-1 px-2.5 py-0.5 sm:px-3 sm:py-1 hover:bg-yellow_2 rounded"}>TR</li>
+                    <li className={"cursor-pointer m-1 px-2.5 py-0.5 sm:px-3 sm:py-1 hover:bg-yellow_2 dark:hover:bg-dark_4 dark:hover:text-black rounded"}>EN</li>
+                    <li className={"cursor-pointer m-1 px-2.5 py-0.5 sm:px-3 sm:py-1 hover:bg-yellow_2 dark:hover:bg-dark_4 dark:hover:text-black rounded"}>TR</li>
                   </ul>
 
               </motion.div>

@@ -10,7 +10,7 @@ export const metadata = {
 }
 export default function Home() {
   return (
-    <main className={"mx-"}>
+    <main className={"bg-white dark:bg-dark_2"}>
         <HomeNav />
         <Jumbotron />
         <Announcement />

@@ -1,6 +1,4 @@
-
-import {LoginBody} from "@/app/login/components/loginBody";
-import {LoginNav} from "@/app/login/components/loginNav";
+import LoginSection from "@/app/login/components/loginSection";
 
 export const metadata = {
   title: 'Login | I.M.S.',
@@ -8,9 +6,8 @@ export const metadata = {
 export default function Login() {
 
   return (
-        <>
-            <LoginNav />
-            <LoginBody />
-        </>
+        <div className={' bg-white dark:bg-dark_2'}>
+            <LoginSection />
+        </div>
   )
 }

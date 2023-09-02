@@ -4,7 +4,7 @@ export const AnnouncementSkeleton = () => {
     <>
       <main className="">
         <div className="mt-1  w-[100vw] md:w-fit flex items-center justify-center">
-          <div className="w-[21rem] bg-white h-20 flex justify-between items-center rounded my-2 mx-4 border border-white">
+          <div className="w-[21rem] bg-white dark:bg-dark_2 h-20 flex justify-between items-center rounded my-2 mx-4 ">
             <div className="p-4">
               <em className="skeleton-loader rounded block bg-background_shade_2 h-6 w-20 text-black m-1 px-1.5 py-1"></em>
               <h1 className="skeleton-loader block rounded bg-background_shade_2 h-3 w-48 font-semibold text-lg py-2 mt-4 m-1"></h1>
@@ -44,7 +44,7 @@ export const InternshipCardsSkeleton = () => {
   return (
     <>
       <main className="">
-        <div className="bg-white w-[22rem] mx-1 my-1 rounded h-[12rem]">
+        <div className="bg-white  dark:bg-dark_2 w-[22rem] mx-1 my-1 rounded h-[12rem]">
           <div className="w-full place-content-start my-3 p-3">
             {/* Image */}
             <div className="rounded-full w-[5rem] skeleton-loader bg-background_shade_2 h-[5rem] "></div>

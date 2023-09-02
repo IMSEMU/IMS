@@ -17,7 +17,11 @@ module.exports = {
         black : "#000000",
         white : "#fff",
         background_shade_2 : "rgba(219, 219, 219, 1)",
-        background_shade: "rgba(220, 220, 220, 0.3)"
+        background_shade: "rgba(220, 220, 220, 0.3)",
+        dark_1 : '#121212',
+        dark_2 : '#212121',
+        dark_3 :'#535353',
+        dark_4 : '#b3b3b3'
       },
   },
   plugins: [],
