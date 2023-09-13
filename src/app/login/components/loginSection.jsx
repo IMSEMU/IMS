@@ -9,7 +9,7 @@ import {useState} from "react";
 import {DarkModeButton} from "@/app/globalComponents/darkModeButton";
 import {SignupSection} from "@/app/login/components/signupSection";
 import {motion,AnimatePresence} from 'framer-motion'
-import {loginToogleAnimation, show} from "@/app/styleVariants";
+import {loginToogleAnimation, } from "@/app/styleVariants";
 
 export default function LoginSection() {
 

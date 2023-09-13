@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import {AnimatePresence,motion} from "framer-motion";
 import {loginToogleAnimation} from "@/app/styleVariants";
 import {MdVerifiedUser} from "react-icons/md";

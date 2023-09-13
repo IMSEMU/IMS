@@ -5,7 +5,7 @@ import {CompletedInternshipSkeleton} from "@/app/skeletonLoader";
 import {getCompletedInternship} from "../../../../utils/dataFetching";
 import {FaHome} from "react-icons/fa";
 
-export const Table = ({completedInternships}) => {
+export const Table = () => {
 
   const [tableContent, setTableContent] = useState([]);
   const [inputData, setInputData] = useState("");
