@@ -14,9 +14,10 @@ export const HomeNav = () => {
 
             {/*logo*/}
             <div className={"flex cursor-pointer"}>
+
                 <Link href={"/"}>
                     <Image
-                        className={"w-[3rem] sm:w-[3.5rem] md:w-[4rem] lg:w-[4.5rem] "}
+                        className={"w-[2.5rem] sm:w-[3rem] md:w-[3.5rem] lg:w-[4rem] "}
                         src={"/logo.svg"}
                         alt={"emu logo"}
                         width={70}
@@ -30,12 +31,17 @@ export const HomeNav = () => {
 
             </div>
 
+            {/*navs*/}
+            <div className={''}>
+
+            </div>
+
             {/*login button*/}
             <div className={"flex items-center"}>
 
                 <DarkModeButton/>
 
-                <Link href={"/login"} className={"text-sm md:text-md lg:text-lg flex items-center bg-blue rounded py-1 px-2 sm:py-2 sm:px-4 text-white"}>
+                <Link href={"/login"} className={"text-sm md:text-md font-semibold flex items-center bg-blue rounded py-1 px-2 sm:py-2 sm:px-4 text-white"}>
                     <BiLogIn className={"mr-1"}/>
                     Login
                 </Link>

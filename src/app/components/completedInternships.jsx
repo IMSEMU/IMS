@@ -26,8 +26,9 @@ export const CompletedInternships = () => {
           </p>
         </div>
 
-
+        {/*tables*/}
         <table className={" p-2 text-xs sm:text-sm md:text-md xl:text-xl w-full mt-4 z-0 table-fixed"}>
+
           <thead>
             <tr>
               <th className={"bg-blue text-white p-[1rem] border border-white"}>Company Name</th>
@@ -37,6 +38,7 @@ export const CompletedInternships = () => {
               <th className={"bg-blue text-white p-[1rem] border border-white"}>Year</th>
             </tr>
           </thead>
+
           <tbody id={tableContent.length === 0 ? "" : "tbody"} className={"relative"}>
             {Array.isArray(tableContent) &&
               tableContent.slice(0, 4).map((table, index) => (
@@ -51,7 +53,9 @@ export const CompletedInternships = () => {
             {tableContent.length === 0 &&
               [1, 2, 3, 4].map((n) => <CompletedInternshipSkeleton key={n} />)}
           </tbody>
+
         </table>
+
         <div className={"flex justify-center items-center m-4"}>
           {tableContent.length !== 0 ? (
             <Link href={"/completedInternship"} className={"text-sm md:text-md lg:text-lg  bg-blue text-white px-4 py-2 rounded"}>
@@ -61,6 +65,7 @@ export const CompletedInternships = () => {
             <div className={"bg-background_shade_2 h-10 w-28 skeleton-loader px-4 py-2 rounded"}></div>
           )}
         </div>
+
       </main>
     </>
   );

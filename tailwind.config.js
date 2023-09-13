@@ -9,6 +9,9 @@ module.exports = {
 
   theme: {
     extend: {
+        grayscale: {
+        10: '10%',
+      }
     },
     colors:{
         yellow : "#FFB81C",

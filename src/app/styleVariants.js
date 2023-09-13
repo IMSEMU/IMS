@@ -20,6 +20,25 @@ export const show = {
         y:40,
     }
 }
+export const loginToogleAnimation = {
+    initial: {
+        opacity: 0,
+        x:40
+    },
+    animate: {
+        opacity:1,
+        x:0,
+        transition: {
+            duration:0.5,
+            type:"spring",
+            bounce:0.15
+        }
+    },
+        exit:{
+        opacity: 0,
+        x:-70,
+    }
+}
 
 export const bounce = {
     initial:{

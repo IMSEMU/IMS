@@ -30,11 +30,15 @@ export const InternshipPositions = () => {
 
         {/* Card section */}
         <div className={"bg-background_shade_2 dark:bg-dark_3 rounded"}>
+
           <div className={"h-[fit] mt-6 py-3 rounded w-full flex gap-2 flex-wrap justify-center relative"}>
+
             {/* Cards */}
             {card.slice(0, 6).map((cards, index) => (
+
               <div key={index} className={"text-xs sm:text-sm md:text-md lg:text-lg bg-white dark:bg-background_shade_2 w-[22rem] mx-1.5 my-1 rounded h-fit"}>
                 <div className={"w-full place-content-start my-3 px-3"}>
+
                   {/* Image */}
                   <div className={"w-fit my-1"}>
                     <Image
@@ -46,24 +50,36 @@ export const InternshipPositions = () => {
                       priority
                     />
                   </div>
+
                   <div className={"  "}>
                     <p className={"text-sm md:text-md lg:text-lg w-[18rem] md:w-full font-semibold truncate"}>{cards.position}</p>
                     <p>{cards.companyName}</p>
                     <p>{cards.location}</p>
                   </div>
+
                 </div>
+
                 <div className={"flex justify-end px-2 pb-3 items-center"}>
+
                   <div className={"bg-yellow p-1 gap-2 rounded inline-flex items-center"}>
                     <FaRegClock />
                     <p className={"text-xs sm:text-sm md:text-md"}>{cards.postTime}</p>
                   </div>
+
                 </div>
+
               </div>
+
             ))}
+
             {card.length === 0 && [1, 2, 3, 4, 5, 6].map((n) => <InternshipCardsSkeleton key={n} />)}
+
           </div>
+
         </div>
+
         <div className={"flex justify-center items-center m-4"}>
+
           {card.length !== 0 ? (
             <Link href={"/internshipPositions"} className={"text-sm md:text-md lg:text-lg bg-blue text-white px-4 py-2 rounded"}>
               Show more
@@ -71,7 +87,9 @@ export const InternshipPositions = () => {
           ) : (
             <div className={"bg-background_shade_2 h-10 w-28 skeleton-loader px-4 py-2 rounded"}></div>
           )}
+
         </div>
+
       </main>
     </>
   );

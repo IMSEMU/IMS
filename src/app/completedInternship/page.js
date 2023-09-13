@@ -6,9 +6,11 @@ export const metadata = {
 }
 export default function CompletedInternship () {
 return(
-    <>
-        <HomeNav />
-        <Table />
-    </>
+    <div className={'min-h-screen dark:bg-dark_2 bg-white'}>
+        <div className={''}>
+            <HomeNav />
+            <Table />
+        </div>
+    </div>
 )
 }

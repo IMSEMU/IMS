@@ -2,11 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --input-color: #FFB81C;
-  --border-color: rgba(219, 219, 219, 1);
-}
-
 body {
 margin: 0;
   padding: 0;
@@ -32,15 +27,4 @@ margin: 0;
   100% {opacity: 0.3}
 }
 
-.label{
-    position: absolute;
-    bottom: 0.7rem;
-    margin-left: 1rem;
-    transition: top 300ms, border-bottom-color 300ms, color 300ms;
-}
 
-.input:focus~.label,
-.input:not(:placeholder-shown)~.label
-{
-    font-size: 200px;
-}
