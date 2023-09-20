@@ -55,9 +55,10 @@ export const bounce = {
 
 export  const buttonAnimations = {
     initial:{
-        scale: 1
+        scale: 0,
     },
     animate:{
         scale:1.5
     }
 }
+

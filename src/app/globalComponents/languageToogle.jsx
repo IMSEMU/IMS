@@ -15,7 +15,7 @@ export const LanguageToogle = () => {
     }
 
   return(
-      <main className={"text-black dark:text-white text-sm md:text-md lg:text-lg xl:text-xl flex items-end ml-2 relative cursor-pointer"}>
+      <main className={"text-black dark:text-white text-sm md:text-md  flex items-end ml-2 relative cursor-pointer"}>
 
           <div onClick={showOptions} className={"flex"}>
             EN

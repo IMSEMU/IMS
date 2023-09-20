@@ -1,4 +1,4 @@
-import {HomeNav} from "@/app/components/homeNav";
+import {Navbar} from "@/app/globalComponents/Navbar";
 import {AvailableInternship} from "@/app/internshipPositions/component/availableInternship";
 import {HomeFooter} from "@/app/components/homeFooter";
 
@@ -10,7 +10,7 @@ export default function InternshipPositions() {
   return (
     <main className={"bg-white dark:bg-dark_2 min-h-full"}>
         <div className={''}>
-            <HomeNav />
+            <Navbar />
             <AvailableInternship />
             <HomeFooter />
         </div>

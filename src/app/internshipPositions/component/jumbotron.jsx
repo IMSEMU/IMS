@@ -25,10 +25,10 @@ export const Jumbotron = ( { onSearch } ) => {
 
                     <div className={"items-center justify-center -mt-[8rem] md:-mt-[14rem] z-30 flex"}>
 
-                        <form onSubmit={(e)=>{e.preventDefault()}} className={"text-sm md:text-md lg:text-lg dark:bg-dark_1 bg-white rounded "}>
+                        <form onSubmit={(e)=>{e.preventDefault()}} className={"text-sm md:text-md lg:text-lg dark:bg-dark_2 bg-white rounded "}>
                             <input
                                 autoFocus
-                                className={"my-2 md:my-4 mx-3 px-2 w-[55vw] md:w-[40vw] outline-0 dark:bg-dark_1 bg-white dark:text-white text-black placeholder:text-black dark:placeholder:text-white"}
+                                className={"my-2 md:my-4 mx-3 px-2 w-[55vw] md:w-[40vw] outline-0 dark:bg-dark_2 bg-white dark:text-white text-black placeholder:text-black dark:placeholder:text-white"}
                                 placeholder={"Search for Internships positions ..."}
                                 onChange={(e) => {setSearchQuery(e.target.value)}}
                             />

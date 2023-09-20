@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { FaExclamationTriangle } from "react-icons/fa";
 import { TfiAnnouncement } from "react-icons/tfi";
 import { AnnouncementSkeleton } from "@/app/skeletonLoader";
-import {HomeNav} from "@/app/components/homeNav";
+import {Navbar} from "@/app/globalComponents/Navbar";
 import {getAnnouncements} from "../../../utils/dataFetching";
 
 export const Announcement = () => {
@@ -45,7 +45,7 @@ export const Announcement = () => {
                 return (
                   <div key={message.id} className={"text-[0.9rem] sm:text-sm w-[100vw] sm:w-full flex items-start justify-center"}>
 
-                    <div onClick={() => handleCardClick(message)} className={"w-[23rem] flex justify-between items-center rounded my-1.5 mx-1.5 bg-white dark:bg-dark_2"}>
+                    <div onClick={() => handleCardClick(message)} className={"w-full md:w-[23rem] flex justify-between items-center rounded my-1.5 mx-1.5 bg-white dark:bg-dark_2"}>
 
                       <div className={"text-xs sm:text-sm md:text-md p-3"}>
 
@@ -98,7 +98,7 @@ export const Announcement = () => {
             </div>
                                   {/*open in mobile view */}
               <div className={"z-[99]  top-0 hidden bg-white fixed h-[100%] w-[100vw]"}>
-                  <HomeNav className={"mt-2"} />
+                  <Navbar className={"mt-2"} />
                   <div className={"flex items-center"}>
                   <div className={"w-full h-[20rem] mx-auto py-4 px-6 border"}>
                     <div className={""}>XX</div>

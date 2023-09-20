@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { InternshipCardsSkeleton } from "@/app/skeletonLoader";
 import {getAvailableInternship} from "../../../utils/dataFetching";
+import {AnimatedButton} from "@/app/globalComponents/animatedButton";
 
 export const InternshipPositions = () => {
   const [card, setCard] = useState([]);
@@ -81,8 +82,8 @@ export const InternshipPositions = () => {
         <div className={"flex justify-center items-center m-4"}>
 
           {card.length !== 0 ? (
-            <Link href={"/internshipPositions"} className={"text-sm md:text-md lg:text-lg bg-blue text-white px-4 py-2 rounded"}>
-              Show more
+            <Link href={"/internshipPositions"} className={""}>
+              <AnimatedButton />
             </Link>
           ) : (
             <div className={"bg-background_shade_2 h-10 w-28 skeleton-loader px-4 py-2 rounded"}></div>

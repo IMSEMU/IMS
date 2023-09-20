@@ -1,4 +1,4 @@
-import {HomeNav} from "@/app/components/homeNav";
+import {Navbar} from "@/app/globalComponents/Navbar";
 import {Jumbotron} from "@/app/components/jumbotron";
 import {Announcement} from "@/app/components/announcement";
 import {CompletedInternships} from "@/app/components/completedInternships";
@@ -11,7 +11,7 @@ export const metadata = {
 export default function Home() {
   return (
     <main className={"bg-white dark:bg-dark_2"}>
-        <HomeNav />
+        <Navbar />
         <Jumbotron />
         <Announcement />
         <CompletedInternships />

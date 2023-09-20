@@ -34,7 +34,7 @@ export const InternshipCards = ({ searchQuery }) => {
 
         {/* Section name */}
         <div className={"flex justify-center"}>
-          <p className={"text-sm md:text-md xl:text-xl 2xl:text-2xl inline-flex text-center border-yellow border-x-[0.4rem] md:border-x-8 px-2"}>
+          <p className={"text-black dark:text-white text-sm md:text-md xl:text-xl 2xl:text-2xl inline-flex text-center border-yellow border-x-[0.4rem] md:border-x-8 px-2"}>
             Available Internship Positions
           </p>
         </div>

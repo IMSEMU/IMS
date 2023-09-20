@@ -17,7 +17,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <link rel={"icon"} href={"/logo.svg"}/>
       <DarkModeProvider>
-         <body className={inter.className}>{children}</body>
+         <body className={inter.className }>{children}</body>
       </DarkModeProvider>
     </html>
   )

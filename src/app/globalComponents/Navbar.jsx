@@ -5,7 +5,7 @@ import {LanguageToogle} from "@/app/globalComponents/languageToogle";
 import Link from "next/link";
 import {DarkModeButton} from "@/app/globalComponents/darkModeButton";
 
-export const HomeNav = () => {
+export const Navbar = () => {
   return (
     <>
         {/*homepage navbar*/}
@@ -17,7 +17,7 @@ export const HomeNav = () => {
 
                 <Link href={"/"}>
                     <Image
-                        className={"w-[2.5rem] sm:w-[3rem] md:w-[3.5rem] lg:w-[4rem] "}
+                        className={"w-[2rem] sm:w-[2.5rem] md:w-[3rem] lg:w-[3.5rem] "}
                         src={"/logo.svg"}
                         alt={"emu logo"}
                         width={70}

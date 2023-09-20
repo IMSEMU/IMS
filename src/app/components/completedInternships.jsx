@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { CompletedInternshipSkeleton } from "@/app/skeletonLoader";
 import {getCompletedInternship} from "../../../utils/dataFetching";
+import {AnimatedButton} from "@/app/globalComponents/animatedButton";
 
 export const CompletedInternships = () => {
   const [tableContent, setTableContent] = useState([]);
@@ -58,8 +59,8 @@ export const CompletedInternships = () => {
 
         <div className={"flex justify-center items-center m-4"}>
           {tableContent.length !== 0 ? (
-            <Link href={"/completedInternship"} className={"text-sm md:text-md lg:text-lg  bg-blue text-white px-4 py-2 rounded"}>
-              Show more
+            <Link href={"/completedInternship"} className={""}>
+              <AnimatedButton />
             </Link>
           ) : (
             <div className={"bg-background_shade_2 h-10 w-28 skeleton-loader px-4 py-2 rounded"}></div>

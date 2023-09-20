@@ -39,15 +39,11 @@ useEffect(() => {
           <main className={" mt-0 w-full max-w-[70.75rem] mx-auto "}>
 
             {/* section name */}
-            <div className={"flex flex-col md:flex-row w-full py-0.5 md:py-4 items-center  min-h-full dark:bg-dark_3  bg-white sticky top-[2.8rem] md:top-[4.5rem] z-40"}>
-              <div className={"flex items-center  w-full "}>
+            <div className={"flex flex-col md:flex-row w-full py-0.5 md:py-4 items-center  min-h-full dark:bg-dark_3  bg-white sticky top-[2.5rem] sm:top-[3rem] md:top-[3.5rem] lg:top-[4rem] z-40"}>
+              <div className={"flex items-center  w-full"}>
 
-                {/*back to home button*/}
-                <Link href={"/"} title={"Home page"} className={"cursor-pointer text-md md:text-xl xl:text-2xl mr-4 pl-2 dark:text-white text-blue"}>
-                  <FaHome />
-                </Link>
 
-                <p className={"sticky top-[3rem] my-2 text-black dark:text-white text-sm md:text-md lg:text-lg xl:text-xl inline-flex text-center  border-yellow border-x-[0.4rem] md:border-x-8 px-2"}>
+                <p className={"mx-3 sticky top-[3rem] my-2 text-black dark:text-white text-sm md:text-md lg:text-lg xl:text-xl inline-flex text-center  border-yellow border-x-[0.4rem] md:border-x-8 px-2"}>
                   Completed Internships
                 </p>
 
