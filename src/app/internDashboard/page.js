@@ -1,6 +1,5 @@
 import {PcSideNav} from "@/app/internDashboard/components/pcSideNav";
 import {Body} from "@/app/internDashboard/components/body";
-import {TabletSideNav} from "@/app/internDashboard/components/tabletSideNav";
 import {MobileNav} from "@/app/internDashboard/components/mobileNav";
 
 export const metadata = {

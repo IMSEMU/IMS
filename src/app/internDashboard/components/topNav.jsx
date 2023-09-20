@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Image from "next/image";
-import {AiFillCaretDown} from "react-icons/ai";
 
 
 export const TopNav = () => {

@@ -1,7 +1,6 @@
 'use client'
 import Link from "next/link";
 import {usePathname} from "next/navigation";
-import Image from "next/image";
 import {HomeIcon,DashboardIcon,NotificationIcon,ChatIcon,LogbookIcon} from "@/app/svg_Icons";
 
 export  const MobileNav = () => {

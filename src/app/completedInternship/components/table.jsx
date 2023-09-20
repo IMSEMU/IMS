@@ -1,9 +1,7 @@
 "use client"
 import {useEffect, useState} from "react";
-import Link from "next/link";
 import {CompletedInternshipSkeleton} from "@/app/skeletonLoader";
 import {getCompletedInternship} from "../../../../utils/dataFetching";
-import {FaHome} from "react-icons/fa";
 
 export const Table = () => {
 
