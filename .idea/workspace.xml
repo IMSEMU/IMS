@@ -4,10 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0846fc33-ef0f-4a72-b288-fb80a069d449" name="Changes" comment="Dashboard nav_2">
+    <list default="true" id="0846fc33-ef0f-4a72-b288-fb80a069d449" name="Changes" comment="Dashboard grid">
+      <change afterPath="$PROJECT_DIR$/public/envelope.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/wpf_message-outline.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/internDashboard/components/calendar.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/logbook/components/logbookAdd.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/logbook/page.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/notification/page.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/globalComponents/Navbar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/globalComponents/Navbar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/globals.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/internDashboard/components/dashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/internDashboard/components/dashboard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/internDashboard/components/mobileNav.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/internDashboard/components/mobileNav.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/internDashboard/components/pcSideNav.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/internDashboard/components/pcSideNav.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/internDashboard/components/tabletSideNav.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/internDashboard/components/topNav.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/internDashboard/components/topNav.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/login/components/signupSection.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/login/components/signupSection.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/svg_Icons.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/svg_Icons.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/dataFetching.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/dataFetching.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +86,7 @@
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;swagger&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/snap/webstorm/329/plugins/javascript-impl/jsLanguageServicesImpl/external&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/snap/webstorm/332/plugins/javascript-impl/jsLanguageServicesImpl/external&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -105,7 +121,10 @@
       <workItem from="1693419168883" duration="33095000" />
       <workItem from="1694266084984" duration="1309000" />
       <workItem from="1694432447563" duration="12993000" />
-      <workItem from="1694550677903" duration="172231000" />
+      <workItem from="1694550677903" duration="174269000" />
+      <workItem from="1695398449046" duration="40502000" />
+      <workItem from="1695596718085" duration="33279000" />
+      <workItem from="1696174976218" duration="2732000" />
     </task>
     <task id="LOCAL-00001" summary="progress">
       <option name="closed" value="true" />
@@ -243,7 +262,15 @@
       <option name="project" value="LOCAL" />
       <updated>1695226681235</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Dashboard grid">
+      <option name="closed" value="true" />
+      <created>1695396113037</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1695396113037</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -288,6 +315,7 @@
     <MESSAGE value="signup_page" />
     <MESSAGE value="Dashboard nav" />
     <MESSAGE value="Dashboard nav_2" />
-    <option name="LAST_COMMIT_MESSAGE" value="Dashboard nav_2" />
+    <MESSAGE value="Dashboard grid" />
+    <option name="LAST_COMMIT_MESSAGE" value="Dashboard grid" />
   </component>
 </project>

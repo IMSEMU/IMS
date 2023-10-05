@@ -1,6 +1,7 @@
 import axios from "axios";
 
 const url = "http://localhost:8000";
+// const url = "https://enjoy-nissan-volt-inclusion.trycloudflare.com";
 
 // getting news and announcements
 export const getAnnouncements = async () => {

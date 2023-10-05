@@ -17,7 +17,7 @@ export const Navbar = () => {
 
                 <Link href={"/"}>
                     <Image
-                        className={"w-[2rem] sm:w-[2.5rem] md:w-[3rem] lg:w-[3.5rem] "}
+                        className={"w-[2.8rem] md:w[3rem] lg:w-[3.5rem] "}
                         src={"/logo.svg"}
                         alt={"emu logo"}
                         width={70}
