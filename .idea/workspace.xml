@@ -4,26 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0846fc33-ef0f-4a72-b288-fb80a069d449" name="Changes" comment="Dashboard grid">
-      <change afterPath="$PROJECT_DIR$/public/envelope.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/wpf_message-outline.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/internDashboard/components/calendar.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/logbook/components/logbookAdd.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/logbook/page.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/notification/page.js" afterDir="false" />
+    <list default="true" id="0846fc33-ef0f-4a72-b288-fb80a069d449" name="Changes" comment="update">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/globalComponents/Navbar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/globalComponents/Navbar.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/globals.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/internDashboard/components/dashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/internDashboard/components/dashboard.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/internDashboard/components/mobileNav.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/internDashboard/components/mobileNav.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/internDashboard/components/pcSideNav.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/internDashboard/components/pcSideNav.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/internDashboard/components/tabletSideNav.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/internDashboard/components/topNav.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/internDashboard/components/topNav.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/login/components/signupSection.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/login/components/signupSection.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/svg_Icons.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/svg_Icons.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/dataFetching.js" beforeDir="false" afterPath="$PROJECT_DIR$/utils/dataFetching.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,7 +106,7 @@
       <workItem from="1694550677903" duration="174269000" />
       <workItem from="1695398449046" duration="40502000" />
       <workItem from="1695596718085" duration="33279000" />
-      <workItem from="1696174976218" duration="2732000" />
+      <workItem from="1696174976218" duration="3191000" />
     </task>
     <task id="LOCAL-00001" summary="progress">
       <option name="closed" value="true" />
@@ -270,7 +252,15 @@
       <option name="project" value="LOCAL" />
       <updated>1695396113037</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="update">
+      <option name="closed" value="true" />
+      <created>1696537944173</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1696537944173</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -316,6 +306,7 @@
     <MESSAGE value="Dashboard nav" />
     <MESSAGE value="Dashboard nav_2" />
     <MESSAGE value="Dashboard grid" />
-    <option name="LAST_COMMIT_MESSAGE" value="Dashboard grid" />
+    <MESSAGE value="update" />
+    <option name="LAST_COMMIT_MESSAGE" value="update" />
   </component>
 </project>
