@@ -113,7 +113,6 @@ const processUser = async (user) => {
   return {
     refreshToken,
     accessToken,
-    // refreshToken, 
     user: {
       userid,
       firstname,
