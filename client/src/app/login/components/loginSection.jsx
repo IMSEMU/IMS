@@ -10,11 +10,21 @@ import {DarkModeButton} from "@/app/globalComponents/darkModeButton";
 import {SignupSection} from "@/app/login/components/signupSection";
 import {motion,AnimatePresence} from 'framer-motion'
 import {loginToogleAnimation, } from "@/app/styleVariants";
+import axios from 'axios';
+import Appconfig from '../../../../Appconfig';
+import {useRouter} from 'next/navigation';
+
+
 
 export default function LoginSection() {
 
     const [visibility, setVisibility] = useState(false);
     const [login, setLogin] = useState(true);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [msg, setMsg] = useState('');
+    const router = useRouter();
+
 
     const showPassword = () => {
         setVisibility(!visibility);
@@ -24,18 +34,40 @@ export default function LoginSection() {
         setLogin(!login);
     }
 
+    const Auth = async (e) => {
+        e.preventDefault();
+       try { 
+        const response = await axios.post(Appconfig.BACKEND_SERVER_URL+'/login', {
+                email: email,
+                password: password
+            }, {
+                withCredentials: true
+              });
+            console.log(response);
+
+            
+            localStorage.setItem('accessToken', response.data.accessToken);  
+            
+            console.log(response.data.accessToken);
+
+            router.push('/internDashboard');
+        } catch (error) {
+            console.error("Error:", error);
+            if (error.response) {
+              setMsg(error.response.data.msg);
+            }
+        }
+    }
+
     return (
         <main className={'max-h-screen'}>
-            <Link
-                href={'/'}
-                className={
-                    'absolute bg-white p-2 shadow-md border border-background_shade_2 dark:border-dark_2 dark:border-0 dark:bg-dark_2 inline-flex items-center gap-1 text-blue dark:text-yellow top-4 rounded left-4 md:left-7'
-                }
-            >
-                <FaHome/>
-            </Link>
+            <Link href='/'>
+    <div className= 'absolute bg-white p-2 shadow-md border border-background_shade_2 dark:border-dark_2 dark:border-0 dark:bg-dark_2 inline-flex items-center gap-1 text-blue dark:text-yellow top-4 rounded left-4 md:left-7'>
+        <FaHome/>
+    </div>
+</Link>
 
-            <div className={'absolute top-4 rounded right-1 md:right-7'}>
+            <div className='absolute top-4 rounded right-1 md:right-7'>
                 <DarkModeButton/>
             </div>
 
@@ -62,7 +94,7 @@ export default function LoginSection() {
                             exit={{y:-1000}}
                             className="w-full md:w-1/2 px-8 md:px-6 my-1 md:my-4"
                         >
-                            <div className={'flex justify-center items-center my-2'}>
+                            <div className='flex justify-center items-center my-2'>
                                 <Image
                                     width={90}
                                     height={90}
@@ -76,15 +108,14 @@ export default function LoginSection() {
                                 Sign in to your account
                             </h2>
 
-                            <form className="mt-2 md:mt-6 text-sm md:text-md" >
-                                <div className={'relative '}>
+                            <form className="mt-2 md:mt-6 text-sm md:text-md" onSubmit={Auth}>
+                                <div className='relative'>
                                     <input
                                         type="email"
-                                        name=""
-                                        id=""
-                                        placeholder="E-mail@emu.edu.tr"
+                                        id="email"
+                                        placeholder="student-number@emu.edu.tr"
                                         className="input w-full text-dark_2 dark:text-yellow placeholder:text-dark_2 dark:placeholder:text-yellow bg-white dark:bg-dark_2 px-4 py-2.5 border-b-dark_2 dark:border-b-yellow  border-x-0 border-t-0 mt-2 border-2  focus:outline-none"
-                                        // autoFocus
+                                        value={email} onChange={(e) => setEmail(e.target.value)}
                                         required
                                     />
                                 </div>
@@ -92,10 +123,10 @@ export default function LoginSection() {
                                 <div className="mt-2 md:mt-4 relative">
                                     <input
                                         type={visibility ? 'text' : 'password'}
-                                        name=""
-                                        id=""
+                                        id="password"
                                         placeholder="Password"
                                         className="input w-full text-dark_2 dark:text-yellow placeholder:text-dark_2 dark:placeholder:text-yellow bg-white dark:bg-dark_2 px-4 py-2.5 border-b-dark_2 dark:border-b-yellow  border-x-0 border-t-0 mt-2 border-2  focus:outline-none"
+                                        value={password} onChange={(e) => setPassword(e.target.value)}
                                         required
                                     />
                                     <span
@@ -127,7 +158,7 @@ export default function LoginSection() {
                                 </div>
 
                                 <div className={'my-4 text-center text-black dark:text-white hover:underline'}>
-                                    <Link href={'#'}>Forgot Password ?</Link>
+                                    <Link href='#'>Forgot Password ?</Link>
                                 </div>
 
                             </form>
