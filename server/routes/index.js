@@ -1,12 +1,13 @@
 import express from 'express';
 import {
-  Register,
   getUsers,
   Login,
   Logout,
   ForgotPassword,
   newPassword
 } from '../controllers/user.controller.js';
+
+import { Register } from '../controllers/student.controller.js';
 
 import { verifyToken } from '../middleware/verifyToken.js';
 import { refreshToken } from '../controllers/RefreshToken.js';

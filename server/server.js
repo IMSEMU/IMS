@@ -9,7 +9,7 @@ dotenv.config();
 
 const app = express();
 
-const whitelist = ['http://localhost:8081'];
+const whitelist = ['http://localhost:3000'];
 
 const corsOptions = {
   credentials: true,
