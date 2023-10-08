@@ -67,16 +67,16 @@ export const SignupSection = ({loginToogle}) => {
                         />
                     </div>
 
-                    {/*<div className="mt-2 md:mt-4 relative">*/}
-                    {/*    <input*/}
-                    {/*        type={'password'}*/}
-                    {/*        name=""*/}
-                    {/*        id=""*/}
-                    {/*        placeholder="password"*/}
-                    {/*        className="input w-full text-dark_2 dark:text-yellow placeholder:text-dark_2 dark:placeholder:text-yellow bg-white dark:bg-dark_2 px-4 py-2.5 border-b-dark_2 dark:border-b-yellow  border-x-0 border-t-0 mt-1 border-2  focus:outline-none"*/}
-                    {/*        required*/}
-                    {/*    />*/}
-                    {/*</div>*/}
+                    <div className="mt-2 md:mt-4 relative">
+                        <input
+                            type={'password'}
+                            name=""
+                            id=""
+                            placeholder="password"
+                            className="input w-full text-dark_2 dark:text-yellow placeholder:text-dark_2 dark:placeholder:text-yellow bg-white dark:bg-dark_2 px-4 py-2.5 border-b-dark_2 dark:border-b-yellow  border-x-0 border-t-0 mt-1 border-2  focus:outline-none"
+                            required
+                        />
+                    </div>
 
                     <div className="mt-2 md:mt-4 relative">
                         <input

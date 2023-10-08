@@ -158,7 +158,7 @@ export default function LoginSection() {
                                 </div>
 
                                 <div className={'my-4 text-center text-black dark:text-white hover:underline'}>
-                                    <Link href='#'>Forgot Password ?</Link>
+                                    <Link href='/reset-password'>Forgot Password ?</Link>
                                 </div>
 
                             </form>

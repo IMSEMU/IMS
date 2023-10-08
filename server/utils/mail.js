@@ -13,7 +13,7 @@ export class Email {
     this.to = email;
     this.url = url;
     this.token = token;
-    this.from = `POS <${process.env.EMAIL_FROM}>`;
+    this.from = `IMS <${process.env.EMAIL_FROM}>`;
   }
 
   newTransport() {
@@ -47,10 +47,11 @@ export class Email {
   }
 
   async sendWelcome() {
-    await this.send('welcome', "Welcome to MTN's POS");
+    await this.send('welcome', "Welcome to IMS");
   }
 
   async sendPasswordReset() {
     await this.send('passwordReset', 'Your password reset token');
   }
 }
+
