@@ -51,6 +51,7 @@ const Students = db.define(
 
 Students.belongsTo(Users, {
   foreignKey: 'userId',
+  onDelete: 'CASCADE'
 });
 
 

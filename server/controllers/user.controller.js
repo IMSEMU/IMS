@@ -5,47 +5,6 @@ import { Email } from '../utils/mail.js';
 import { Sequelize, where } from 'sequelize';
 import bcrypt from "bcrypt";
 
-// export const Register = async (req, res) => {
-//   const { firstname, lastname, email, password, confPassword } = req.body;
-
-//   // Check if password is missing or undefined
-//   if (!password) {
-//     return res.status(400).json({ msg: "Password is required", requestBody: req.body });
-//   }
-
-//   // Check if password and confirm password match
-//   if (password !== confPassword) {
-//     return res.status(400).json({ msg: "Password and Confirm Password do not match" });
-//   }
-
-//   const saltRounds = 10;
-
-//   try {
-//     // Check if a user with the same email already exists
-//     const existingUser = await Users.findOne({ where: { email: email } });
-
-//     if (existingUser) {
-//       return res.status(400).json({ msg: "Email already exists" });
-//     }
-
-//     const salt = await bcrypt.genSalt(saltRounds);
-//     const hashPassword = await bcrypt.hash(password, salt);
-
-//     await Users.create({
-//       firstname: firstname,
-//       lastname: lastname,
-//       email: email,
-//       password: hashPassword,
-//       roleId: "1"
-//     });
-
-//     return res.json({ msg: "Registration Successful" });
-//   } catch (error) {
-//     console.error(error); // Log the error for debugging purposes
-//     return res.status(500).json({ msg: "Registration Error" });
-//   }
-// };
-
 export const getUsers = async (req, res) => {
   try {
     const users = await Users.findAll({
@@ -137,7 +96,6 @@ export const Login = async (req, res) => {
       return res.status(400).json({ msg: 'Invalid Credentials' });
     }
 
-    // const isPasswordValid = comparePasswords(password, user.password);
     const isPasswordValid = await bcrypt.compare(password, user.password);
 
     if (!isPasswordValid) {
@@ -146,8 +104,9 @@ export const Login = async (req, res) => {
 
     const processedUser = await processUser(user);
     res.cookie('refreshToken', processedUser.refreshToken, {
-      httpOnly: true,
+      // httpOnly: true,
       maxAge: 24 * 60 * 60 * 1000,
+      
     });
 
     return res.status(200).json({ status: 'success', ...processedUser });
@@ -179,7 +138,7 @@ export const Logout = async (req, res) => {
       }
     );
     res.clearCookie('refreshToken');
-    return res.sendStatus(200);
+    return res.status(200).json({ msg: 'Logged out' });
   } catch (error) {
     return res.status(404).json({ msg: '404 Logout Exception Raised ' });
   }

@@ -17,7 +17,7 @@ export default function ResetPassword() {
     const Auth = async (e) => {
         e.preventDefault();
         try {
-          AuthConnect.post('/forgotpassword', { email: email }).then((response) => {
+          await AuthConnect.post('/forgotpassword', { email: email }).then((response) => {
 
             if (response.data.status === 'success') {
             //   setSuccess('Reset link sent to email');

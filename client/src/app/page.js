@@ -5,6 +5,7 @@ import {CompletedInternships} from "@/app/components/completedInternships";
 import {InternshipPositions} from "@/app/components/internshipPositions";
 import {HomeFooter} from "@/app/components/homeFooter";
 
+
 export const metadata = {
   title: 'Home | I.M.S.',
 }

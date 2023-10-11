@@ -37,27 +37,6 @@ export default function NewPassword() {
         }
       }
     };
-   
-
-    // const Auth = async (e) => {
-    //     e.preventDefault();
-    //     try {
-    //       AuthConnect.post('/forgotpassword', { email: email }).then((response) => {
-
-    //         if (response.data.status === 'success') {
-    //         //   setSuccess('Reset link sent to email');
-    //             setShowModal(true);
-    //           console.log('Reset link sent to email');
-    //         }
-    //       });
-    //     } catch (error) {
-    //       if (error.response) {
-    //         setLoading('');
-    
-    //         setError(error.response.data.message);
-    //       }
-    //     }
-    //   };
 
       const closeModal = () => {
         setShowModal(false);

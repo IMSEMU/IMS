@@ -3,7 +3,7 @@ import Users from '../models/user.model.js';
 import bcrypt from "bcrypt";
 
 export const Register = async (req, res) => {
-  const { firstname, lastname, email, password, confPassword } = req.body;
+  const { stdid, firstname, lastname, email, password, confPassword } = req.body;
 
   // Check if password is missing or undefined
   if (!password) {
@@ -28,13 +28,19 @@ export const Register = async (req, res) => {
     const salt = await bcrypt.genSalt(saltRounds);
     const hashPassword = await bcrypt.hash(password, salt);
 
-    await Users.create({
+    const newUser = await Users.create({
       firstname: firstname,
       lastname: lastname,
       email: email,
       password: hashPassword,
       roleId: "1"
     });
+
+    await Students.create({
+      stdid: stdid,
+      userId: newUser.userid,
+    });
+
 
     return res.json({ msg: "Registration Successful" });
   } catch (error) {

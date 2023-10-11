@@ -10,11 +10,8 @@ import {DarkModeButton} from "@/app/globalComponents/darkModeButton";
 import {SignupSection} from "@/app/login/components/signupSection";
 import {motion,AnimatePresence} from 'framer-motion'
 import {loginToogleAnimation, } from "@/app/styleVariants";
-import axios from 'axios';
-import Appconfig from '../../../../Appconfig';
+import AuthConnect from "@/auth";
 import {useRouter} from 'next/navigation';
-
-
 
 export default function LoginSection() {
 
@@ -37,18 +34,15 @@ export default function LoginSection() {
     const Auth = async (e) => {
         e.preventDefault();
        try { 
-        const response = await axios.post(Appconfig.BACKEND_SERVER_URL+'/login', {
+        const response = await AuthConnect.post('/login', {
                 email: email,
                 password: password
-            }, {
-                withCredentials: true
-              });
+        });
+            localStorage.setItem('accessToken', response.data.accessToken);
+            localStorage.setItem('user', JSON.stringify(response.data.user));
+            console.log(localStorage.getItem("accessToken"));
+            
             console.log(response);
-
-            
-            localStorage.setItem('accessToken', response.data.accessToken);  
-            
-            console.log(response.data.accessToken);
 
             router.push('/internDashboard');
         } catch (error) {
@@ -113,7 +107,7 @@ export default function LoginSection() {
                                     <input
                                         type="email"
                                         id="email"
-                                        placeholder="student-number@emu.edu.tr"
+                                        placeholder="address@provider.com"
                                         className="input w-full text-dark_2 dark:text-yellow placeholder:text-dark_2 dark:placeholder:text-yellow bg-white dark:bg-dark_2 px-4 py-2.5 border-b-dark_2 dark:border-b-yellow  border-x-0 border-t-0 mt-2 border-2  focus:outline-none"
                                         value={email} onChange={(e) => setEmail(e.target.value)}
                                         required
