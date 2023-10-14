@@ -21,6 +21,7 @@ const corsOptions = {
     }
     return callback(null, true);
   },
+  methods: 'GET, PATCH, POST, PUT, DELETE',
 };
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Methods', 'GET, PATCH, POST, PUT, DELETE');

@@ -1,18 +1,37 @@
+'use client'
 import Link from "next/link";
 import Image from "next/image";
 import {CiSettings} from "react-icons/ci";
 import {VscSignOut} from "react-icons/vsc";
 import {HomeIcon,DashboardIcon,NotificationIcon,ChatIcon,LogbookIcon} from "@/app/svg_Icons";
+import { useRouter } from "next/navigation";
+import AuthConnect from "@/auth";
 
 export const PcSideNav = () => {
 
     let navlinks = [
         {name:'Home',icons: <HomeIcon />,link:'/'},
         {name:'Dashboard',icons: <DashboardIcon />,link:''},
-        {name:'Notifications',icons: <NotificationIcon />,link:''},
+        // {name:'Notifications',icons: <NotificationIcon />,link:''},
         {name:'Chat',icons: <ChatIcon />,link:''},
         {name:'Logbook',icons: <LogbookIcon />,link:''},
     ]
+
+    const router = useRouter();
+    const handleLogout = async () => {
+      try { 
+        const response = await AuthConnect.delete('/logout');
+            console.log(response);
+
+            router.push('/');
+        } catch (error) {
+            console.error("Error:", error);
+            if (error.response) {
+              setMsg(error.response.data.msg);
+            }
+        }
+    };
+  
 
   return(
       <main className={' bg-white dark:bg-dark_2 hidden sm:block z-50 h-screen w-[6rem] lg:w-[12rem] xl:w-[16rem]  py-2 sticky top-0 border-r border-background_shade_2'}>
@@ -70,7 +89,7 @@ export const PcSideNav = () => {
                             <span className={'hidden lg:block font-semibold text-md l truncate w-full'}>Joel Ikenga</span>
                             <span className={'hidden lg:block text-sm w-full'}>Student</span>
                         </div>
-                      <div className={'text-3xl flex items-center justify-center lg:text-2xl'}><VscSignOut /></div>
+                      <div className={'text-3xl flex items-center justify-center lg:text-2xl'}><button onClick={handleLogout}><VscSignOut /></button></div>
                     </div>
                   </div>
 

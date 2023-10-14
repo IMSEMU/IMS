@@ -3,9 +3,55 @@ import {AnimatePresence,motion} from "framer-motion";
 import {loginToogleAnimation} from "@/app/styleVariants";
 import {MdVerifiedUser} from "react-icons/md";
 import {VscSignIn} from "react-icons/vsc";
+import { useRouter } from "next/navigation";
+import AuthConnect from "@/auth";
+import {useState} from "react";
+import Modal from "@/app/globalComponents/modal";
+
 
 export const SignupSection = ({loginToogle}) => {
-    console.log(loginToogle)
+    const [stdid, setStdid] = useState('');
+    const [firstname, setFirstname] = useState('');
+    const [lastname, setLastname] = useState('');
+    const [email, setEmail] = useState('');
+      const [password, setPassword] = useState('');
+      const [confPassword, setConfPassword] = useState('');
+      const [msg, setMsg] = useState('');
+      const [showModal, setShowModal] = useState(false);
+      const router = useRouter();
+  
+      const signupnewuser = async (e) => {
+        e.preventDefault();
+        try { 
+            const response = await AuthConnect.post('/register', {
+                stdid : stdid,
+                firstname: firstname,
+                lastname: lastname,
+                email: email,
+                password: password,
+                confPassword: confPassword,
+            });
+    
+            if (response.data.status === 'success') {
+                alert("Registration Successful");
+                router.push("/login");
+            }// else {
+            //     alert("Registration Unsuccessful");
+            // }
+        } catch (error) {
+            if (error.response) {
+                setMsg(error.response.data.msg);
+            }
+            alert("Registration Error"); // You can add a generic error message here
+        }
+    };
+
+    
+    
+    
+    
+    
+    
   return (
     <>
       <main className="w-full md:w-1/2 px-8 md:px-6 ">
@@ -33,50 +79,71 @@ export const SignupSection = ({loginToogle}) => {
                     Register for Internship
                 </h2>
 
-                <form className="mt-2  text-sm md:text-md" action="#" method="GET">
-                    <div className={'relative '}>
-                        <input
-                            type="email"
-                            name=""
-                            id=""
-                            placeholder="E-mail@emu.edu.tr"
-                            className="input w-full text-dark_2 dark:text-yellow placeholder:text-dark_2 dark:placeholder:text-yellow bg-white dark:bg-dark_2 px-4 py-2.5 border-b-dark_2 dark:border-b-yellow  border-x-0 border-t-0 mt-0 border-2  focus:outline-none"
-                            required
-                        />
-                    </div>
-
-                    <div className="mt-2 md:mt-4 relative">
+                <form className="mt-2  text-sm md:text-md" onSubmit={signupnewuser}>
+                <div className="mt-2 md:mt-4 relative flex space-x-2">
+  <div className="w-1/2">
+    <input
+      type="text"
+      name=""
+      id=""
+      placeholder="Student number"
+      className="input w-full text-dark_2 dark:text-yellow placeholder:text-dark_2 dark:placeholder:text-yellow bg-white dark:bg-dark_2 px-4 py-2.5 border-b-dark_2 dark:border-b-yellow border-x-0 border-t-0 mt-1 border-2 focus:outline-none"
+      value={stdid}
+      onChange={(e) => setStdid(e.target.value)}
+      required
+    />
+  </div>
+  <div className="w-1/2">
+    <input
+      type="email"
+      name=""
+      id=""
+      placeholder="E-mail@emu.edu.tr"
+      className="input w-full text-dark_2 dark:text-yellow placeholder:text-dark_2 dark:placeholder:text-yellow bg-white dark:bg-dark_2 px-4 py-2.5 border-b-dark_2 dark:border-b-yellow border-x-0 border-t-0 mt-1 border-2 focus:outline-none"
+      value={email}
+      onChange={(e) => setEmail(e.target.value)}
+      required
+    />
+  </div>
+</div>
+<div className="mt-2 md:mt-4 relative flex space-x-2">
+                    <div className="w-1/2">
                         <input
                             type={'text'}
                             name=""
                             id=""
-                            placeholder="Firstname"
+                            placeholder="First Name"
                             className="input w-full text-dark_2 dark:text-yellow placeholder:text-dark_2 dark:placeholder:text-yellow bg-white dark:bg-dark_2 px-4 py-2.5 border-b-dark_2 dark:border-b-yellow  border-x-0 border-t-0 mt-1 border-2  focus:outline-none"
+                            value={firstname} onChange={(e) => setFirstname(e.target.value)}
                             required
                         />
                     </div>
 
-                    <div className="mt-2 md:mt-4 relative">
+                    <div className="w-1/2">
                         <input
                             type={'text'}
                             name=""
                             id=""
-                            placeholder="Lastname"
+                            placeholder="Last Name"
                             className="input w-full text-dark_2 dark:text-yellow placeholder:text-dark_2 dark:placeholder:text-yellow bg-white dark:bg-dark_2 px-4 py-2.5 border-b-dark_2 dark:border-b-yellow  border-x-0 border-t-0 mt-1 border-2  focus:outline-none"
+                            value={lastname} onChange={(e) => setLastname(e.target.value)}
                             required
                         />
                     </div>
+                    </div>
 
-                    {/*<div className="mt-2 md:mt-4 relative">*/}
-                    {/*    <input*/}
-                    {/*        type={'password'}*/}
-                    {/*        name=""*/}
-                    {/*        id=""*/}
-                    {/*        placeholder="password"*/}
-                    {/*        className="input w-full text-dark_2 dark:text-yellow placeholder:text-dark_2 dark:placeholder:text-yellow bg-white dark:bg-dark_2 px-4 py-2.5 border-b-dark_2 dark:border-b-yellow  border-x-0 border-t-0 mt-1 border-2  focus:outline-none"*/}
-                    {/*        required*/}
-                    {/*    />*/}
-                    {/*</div>*/}
+                    <div className="mt-2 md:mt-4 relative">
+                        <input
+                            type={'password'}
+                            name=""
+                            id=""
+                            placeholder="password"
+                            className="input w-full text-dark_2 dark:text-yellow placeholder:text-dark_2 dark:placeholder:text-yellow bg-white dark:bg-dark_2 px-4 py-2.5 border-b-dark_2 dark:border-b-yellow  border-x-0 border-t-0 mt-1 border-2  focus:outline-none"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                        />
+                    </div>
 
                     <div className="mt-2 md:mt-4 relative">
                         <input
@@ -85,6 +152,8 @@ export const SignupSection = ({loginToogle}) => {
                             id=""
                             placeholder="confirm Passwod"
                             className="input w-full text-dark_2 dark:text-yellow placeholder:text-dark_2 dark:placeholder:text-yellow bg-white dark:bg-dark_2 px-4 py-2.5 border-b-dark_2 dark:border-b-yellow  border-x-0 border-t-0 mt-1 border-2  focus:outline-none"
+                            value={confPassword}
+                            onChange={(e) => setConfPassword(e.target.value)}
                             required
                         />
 
@@ -129,7 +198,12 @@ export const SignupSection = ({loginToogle}) => {
 
 
         </AnimatePresence>
-
+        <Modal
+        isOpen={showModal}
+        message='Registration Successful'
+        buttonText='Go to Login'
+        buttonLink='/login'
+      />
       </main>
     </>
   );
