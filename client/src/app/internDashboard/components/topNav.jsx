@@ -5,6 +5,7 @@ import {GiPencil} from "react-icons/gi";
 import {VscSignOut} from "react-icons/vsc";
 import {RiSunFoggyFill} from "react-icons/ri";
 import {DarkModeButton} from "@/app/globalComponents/darkModeButton";
+import { NotificationIcon } from "@/app/svg_Icons";
 
 
 export const TopNav = () => {
@@ -29,74 +30,82 @@ export const TopNav = () => {
             </div>
 
             {/*profile*/}
-            <div className={"flex items-baseline text-blue relative"}>
-              <Image
-                  src={'/dark-flower.jpeg'}
-                  alt={"qq"}
-                  height={2000}
-                  width={2000}
-                  priority
-                  className={'w-[3rem] h-[3rem] rounded-full'}
-              />
+            <div className="flex flex-wrap justify-center items-center gap-4">
 
-            {/*    dropdown*/}
-                <div className={' hidden absolute right-4 top-14 w-[16rem] h-fit bg-background_shade_2 rounded text-black'}>
+                {/* notification */}
+                <div className="">
+                    <NotificationIcon />
+                </div>
 
-                    {/*image and name*/}
-                    <div className={'flex justify-start items-center p-3 gap-3 border-b border-dark_3'}>
+                <div className={"flex items-baseline text-blue relative"}>
+                <Image
+                    src={'/dark-flower.jpeg'}
+                    alt={"qq"}
+                    height={2000}
+                    width={2000}
+                    priority
+                    className={'w-[3rem] h-[3rem] rounded-full'}
+                />
 
-                      <div className={'relative cursor-pointer rounded-full overflow-hidden w-[5rem]  flex items-center'}>
-                          <Image
-                              src={'/dark-flower.jpeg'}
-                              alt={"qq"}
-                              height={2000}
-                              width={2000}
-                              priority
-                              className={'w-[3.3rem] h-[3.3rem] rounded-full'}
-                          />
-                          <div className={'absolute bottom-0 right-2 bg-white text-black rounded-full text-xl'}>
-                              <BiPlus />
-                          </div>
-                      </div>
+                {/*    dropdown*/}
+                    <div className={'  absolute right-4 top-14 w-[16rem] h-fit bg-background_shade_2 rounded text-black'}>
 
-                      <div className={'flex truncate flex-wrap w-full'}>
-                          <p className={'truncate text-sm sm:text-md md:text-lg font-semibold'}>Joel Ikenga</p>
-                          <p className={'truncate text-sm sm:text-md text-blue cursor-pointer'}>joelikenga@email.com</p>
-                      </div>
+                        {/*image and name*/}
+                        <div className={'flex justify-start items-center p-3 gap-3 border-b border-dark_3'}>
 
-                    </div>
-
-                {/*    options*/}
-                    <div className={'p-3'}>
-
-                        <div className={'flex justify-start gap-2 capitalize py-1.5 my-1 cursor-pointer'}>
-                            <GiPencil className={'text-2xl text-blue'} />
-                            <p className={''}>Edit Profile</p>
+                        <div className={'relative cursor-pointer rounded-full overflow-hidden w-[5rem]  flex items-center'}>
+                            <Image
+                                src={'/dark-flower.jpeg'}
+                                alt={"qq"}
+                                height={2000}
+                                width={2000}
+                                priority
+                                className={'w-[3.3rem] h-[3.3rem] rounded-full'}
+                            />
+                            <div className={'absolute bottom-0 right-2 bg-white text-black rounded-full text-xl'}>
+                                <BiPlus />
+                            </div>
                         </div>
 
-                        <div className={'flex justify-between gap-2 capitalize py-1.5 my-1 cursor-pointer'}>
+                        <div className={'flex truncate flex-wrap w-full'}>
+                            <p className={'truncate text-sm sm:text-md md:text-lg font-semibold'}>Joel Ikenga</p>
+                            <p className={'truncate text-sm sm:text-md text-blue cursor-pointer'}>joelikenga@email.com</p>
+                        </div>
 
-                            <div className={'inline-flex gap-2'}>
-                                <RiSunFoggyFill className={'text-2xl text-blue'} />
-                                <p className={''}>Theme</p>
+                        </div>
+
+                    {/*    options*/}
+                        <div className={'p-3'}>
+
+                            <div className={'flex justify-start gap-2 capitalize py-1.5 my-1 cursor-pointer'}>
+                                <GiPencil className={'text-2xl text-blue'} />
+                                <p className={''}>Edit Profile</p>
                             </div>
 
-                            <span  className={'border-2 border-dark_3'}>
-                                <DarkModeButton />
-                            </span>
+                            <div className={'flex justify-between gap-2 capitalize py-1.5 my-1 cursor-pointer'}>
 
-                        </div>
+                                <div className={'inline-flex gap-2'}>
+                                    <RiSunFoggyFill className={'text-2xl text-blue'} />
+                                    <p className={''}>Theme</p>
+                                </div>
 
-                        <div className={'flex justify-start gap-2 capitalize py-1.5 my-1 cursor-pointer'}>
-                            <VscSignOut className={'text-2xl text-blue'} />
-                            <p className={''}>Logout</p>
+                                <span  className={''}>
+                                    <DarkModeButton />
+                                </span>
+
+                            </div>
+
+                            <div className={'flex justify-start gap-2 capitalize py-1.5 my-1 cursor-pointer'}>
+                                <VscSignOut className={'text-2xl text-blue'} />
+                                <p className={''}>Logout</p>
+                            </div>
+
                         </div>
 
                     </div>
 
                 </div>
-
-            </div>
+                </div>
 
 
         </nav>

@@ -86,12 +86,12 @@ export const Dashboard = () => {
             </div>
 
 
-            {/*notification Card*/}
+            {/*Announcement Card*/}
             <div className={'bg-background_shade sm:w-[20rem] xl:w-[20rem] w-[23rem] h-[19rem] rounded'}>
 
                 {/*section Name*/}
                 <p className={" font-semibold m-3 text-black dark:text-white text-sm md:text-md lg:text-lg  inline-flex text-center  border-yellow border-x-[0.4rem] md:border-x-[0.3rem] px-2"}>
-                  Notification
+                  Announcement
                 </p>
 
                 {/*section container*/}
@@ -121,12 +121,12 @@ export const Dashboard = () => {
             </div>
 
 
-            {/*contact Card*/}
+            {/*Todo Card*/}
             <div className={'bg-background_shade sm:w-[20rem] xl:w-[20rem] w-[23rem] h-[19rem] rounded'}>
 
                 {/*section Name*/}
                 <p className={" font-semibold m-3 text-black dark:text-white text-sm md:text-md lg:text-lg  inline-flex text-center  border-yellow border-x-[0.4rem] md:border-x-[0.3rem] px-2"}>
-                  Contact
+                  Tasks
                 </p>
 
                 {/*section Container*/}
@@ -135,17 +135,10 @@ export const Dashboard = () => {
                   <div className={' mx-auto max-w-[18rem]  rounded bg-background_shade_2 dark:bg-dark_4 border-yellow text-black'}>
 
                       <div className={'flex justify-center items-center p-2.5 w-full gap-2 '}>
-                      <Image
-                          src={'/dark-flower.jpeg'}
-                          alt={"qq"}
-                          height={1000}
-                          width={1000}
-                          priority
-                          className={'w-[3rem] h-[3rem] rounded-full '}
-                      />
-                        <div className={'flex flex-wrap items-center justify-start truncate'}>
-                            <span className={'font-semibold text-md capitalize truncate w-full'}>Joel Ikenga</span>
-                            <span className={'text-sm md:text-md w-full truncate'}>Internship co-ordinator</span>
+
+                        <div className={'flex flex-wrap items-center justify-between truncate w-full'}>
+                            <span className={'font-bold text-md capitalize truncate w-full text-blue'}>Task #1</span>
+                            <span className={'text-center font-bold text-sm md:text-md w-full truncate'}>Fill Logbook</span>
                         </div>
                       <Link href={''} className={'flex items-center justify-center'}><EnvelopIcon /></Link>
                     </div>

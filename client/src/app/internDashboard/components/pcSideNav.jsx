@@ -15,7 +15,7 @@ export const PcSideNav = () => {
     ]
 
   return(
-      <main className={' bg-white dark:bg-dark_2 hidden sm:block z-50 h-screen w-[6rem] lg:w-[16rem]  py-2 sticky top-0 border-r border-background_shade_2'}>
+      <main className={' bg-white dark:bg-dark_2 hidden sm:block z-50 h-screen w-[6rem] lg:w-[12rem] xl:w-[16rem]  py-2 sticky top-0 border-r border-background_shade_2'}>
 
             <div className={"flex justify-start items-center  gap-1 ml-6 cursor-pointer"}>
 
@@ -33,7 +33,7 @@ export const PcSideNav = () => {
 
             </div>
 
-          <div className={'py-6 px-6 w-[6rem] lg:w-[16rem] '}>
+          <div className={'py-6 px-6 w-[6rem] lg:w-[12rem] xl:w-[16rem] '}>
 
               {/*top navs*/}
               <div className={'py-2 flex flex-wrap justify-center gap-2'}>
@@ -56,7 +56,7 @@ export const PcSideNav = () => {
               <div className={' absolute bottom-3 left-0  w-full'}>
 
 
-                  <div className={' cursor-pointer w-fit mx-auto max-w-[13rem] rounded bg-background_shade_2 dark:bg-dark_4 border-yellow text-black'}>
+                  <div className={' cursor-pointer w-fit mx-auto max-w-[11rem] xl:max-w-[13rem]  rounded bg-background_shade_2 dark:bg-dark_4 border-yellow text-black'}>
                     <div className={'flex justify-center items-center p-2 lg:px-2.5 lg:py-2.5 w-fit lg:w-full gap-2 '}>
                       <Image
                           src={'/dark-flower.jpeg'}
