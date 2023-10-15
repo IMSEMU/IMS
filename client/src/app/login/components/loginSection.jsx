@@ -40,7 +40,6 @@ export default function LoginSection() {
         });
             localStorage.setItem('accessToken', response.data.accessToken);
             localStorage.setItem('user', JSON.stringify(response.data.user));
-            console.log(localStorage.getItem("accessToken"));
             
             console.log(response);
 

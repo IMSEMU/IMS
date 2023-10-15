@@ -15,9 +15,6 @@ export const getUsers = async (req, res) => {
     console.log(error);
   }
 };
-function comparePasswords(inputPassword, storedPassword) {
-  return inputPassword === storedPassword;
-}
 
 const generateTokens = (
   userid,
@@ -104,7 +101,7 @@ export const Login = async (req, res) => {
 
     const processedUser = await processUser(user);
     res.cookie('refreshToken', processedUser.refreshToken, {
-      // httpOnly: true,
+      httpOnly: true,
       maxAge: 24 * 60 * 60 * 1000,
       
     });
