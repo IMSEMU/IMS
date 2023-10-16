@@ -1,22 +1,13 @@
-import {PcSideNav} from "@/app/internDashboard/components/pcSideNav";
-import {Body} from "@/app/internDashboard/components/body";
-import {MobileNav} from "@/app/internDashboard/components/mobileNav";
+import { InternDashboardPage } from "./components/internDashboardPage";
 
 export const metadata = {
-  title: 'Dashboard | I.M.S.',
-}
+    title: 'Dashboard | I.M.S.',
+  }
+
 const InternDashboard = () => {
     return(
         <main className={'p-0 m-0 bg-white dark:bg-dark_2'}>
-
-
-            {/*Sidenav and body*/}
-            <div className={'flex flex-nowrap'}>
-               <PcSideNav />
-               <Body />
-               <MobileNav />
-            </div>
-
+           <InternDashboardPage/>
         </main>
     )
 }
