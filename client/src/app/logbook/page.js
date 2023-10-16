@@ -25,7 +25,7 @@ const Logbook = () => {
                     </div>
 
                     {/* Logbook Display section */}
-                    <div className="w-1/2 bg-background_shade dark:bg-dark_3 rounded">
+                    <div className="w-1/2 bg-background_shade dark:bg-dark_3 rounded overflow-y">
                        <LogbookDisplay />
                     </div>
 
