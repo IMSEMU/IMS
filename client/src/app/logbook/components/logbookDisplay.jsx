@@ -1,18 +1,42 @@
 'use client'
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { BiChevronsRight } from "react-icons/bi";
 import { FaEllipsisV, FaTimes } from "react-icons/fa";
 import { GiTrashCan,GiPencil } from "react-icons/gi";
+import AuthConnect from "@/auth";
+import { format } from 'date-fns';
 
 export const LogbookDisplay = () => {
 
     const [options, setOptions] = useState(false);
 
+    const [logbookEntries, setLogbookEntries] = useState([]);
+
+  useEffect(() => {
+    // Fetch logbook entries from the API
+    const fetchLogbookEntries = async () => {
+      try {
+        const response = await AuthConnect.get('/viewlog');
+        setLogbookEntries(response.data);
+      } catch (error) {
+        console.error("Error fetching logbook entries:", error);
+      }
+    };
+
+    fetchLogbookEntries();
+  }, []);
+
     const optionToogle = () => {
         setOptions(!options);
     }
+    const formatDate = (fullDate) => {
+        const date = new Date(fullDate);
+        return format(date, 'dd/MM/yyyy');
+      };
+    
     
     return ( 
+<<<<<<< HEAD
         <div  className="m-4 bg-[rgb(173,173,173)] dark:bg-dark_2 rounded h-fit">
 
             <div className="mx-4 py-2.5 dark:text-white flex items-center justify-between rounded">
@@ -20,12 +44,28 @@ export const LogbookDisplay = () => {
                 <div className="ml-3  flex flex-wrap gap-1 w-[5rem]">
                     <p className=" bg-yellow rounded text-sm font-medium text-white px-1 py-0.5">21/21/21</p>
                     <p className="font-semibold"># Day 1</p>
+=======
+        <div className="m-4 bg-blue rounded h-fit" >
+      {logbookEntries.length === 0 ? (
+        <p className=" font-semibold text-lg text-center text-white">No logbook entries</p>
+      ) : (
+        logbookEntries.map((entry) => (
+          <div key={entry.logid}>
+            {/* Render each logbook entry */}
+            <div className="mx-4 py-2 text-white flex items-center justify-between rounded">
+
+                <div className="ml-3  flex flex-wrap gap-1 w-[5rem]">
+                    <p className="font-semibold">Day {entry.day}</p>
+                    <p className=" bg-yellow rounded text-sm font-medium text-white px-1 py-0.5">{formatDate(entry.date)}</p>
+>>>>>>> cbd4f761ef8ad08f778e068844b3f1c6d92b4f07
                 </div>
 
-                <div className="flex flex-wrap truncate w-40 text-center items-center">
-                    <span className=" font-semibold text-lg">Frontend</span>
-
-                </div>
+                <div className="flex flex-wrap  truncate w-40 items-center">
+  <div>
+    <span className="font-semibold text-lg text-center">{entry.department}</span>
+    <p className="text-m text-justify">{entry.description}</p>
+  </div>
+</div>
 
                 <div className="relative mr-3">
                     <FaEllipsisV className=" cursor-pointer" onClick={optionToogle} />
@@ -54,8 +94,15 @@ export const LogbookDisplay = () => {
                 </div>
 
             </div>
+          </div>
+        ))
+      )}
+    </div>
+   
 
-        </div>
+            
+
+    
      );
 }
  

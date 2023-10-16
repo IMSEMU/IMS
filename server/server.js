@@ -23,16 +23,16 @@ const corsOptions = {
   },
   methods: 'GET, PATCH, POST, PUT, DELETE',
 };
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Methods', 'GET, PATCH, POST, PUT, DELETE');
-  res.header(
-    'Access-Control-Allow-Headers',
-    'Content-Type, Access-Control-Allow-Origin, Origin, X-Requested-With, Content-Type, Accept'
-  );
-  res.header('Access-Control-Allow-Credentials', 'true');
+// app.use((req, res, next) => {
+//   res.header('Access-Control-Allow-Methods', 'GET, PATCH, POST, PUT, DELETE');
+//   res.header(
+//     'Access-Control-Allow-Headers',
+//     'Content-Type, Access-Control-Allow-Origin, Origin, X-Requested-With, Content-Type, Accept'
+//   );
+//   res.header('Access-Control-Allow-Credentials', 'true');
 
-  next();
-});
+//   next();
+// });
 app.use(cors(corsOptions));
 
 app.use(bodyParser.urlencoded({ extended: false }));
