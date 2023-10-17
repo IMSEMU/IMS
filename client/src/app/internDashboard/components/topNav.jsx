@@ -6,9 +6,24 @@ import {VscSignOut} from "react-icons/vsc";
 import {RiSunFoggyFill} from "react-icons/ri";
 import {DarkModeButton} from "@/app/globalComponents/darkModeButton";
 import { NotificationIcon } from "@/app/svg_Icons";
-
+import { useRouter } from "next/navigation";
+import AuthConnect from "@/auth";
 
 export const TopNav = (props) => {
+    const router = useRouter();
+    const handleLogout = async () => {
+      try { 
+        const response = await AuthConnect.delete('/logout');
+            console.log(response);
+
+            router.push('/');
+        } catch (error) {
+            console.error("Error:", error);
+            if (error.response) {
+              setMsg(error.response.data.msg);
+            }
+        }
+    };
   return(
 <main className={"remove-highlight border-b border-b-background_shade z-50 mx-0 bg-white dark:bg-dark_2 sticky w-full  top-0"}>
         <nav className={"sticky bg-white dark:bg-dark_2 top-0 z-50 flex justify-between sm:justify-end  w-full max-w-[83.75rem] pr-6 mx-auto py-2"}>
@@ -95,10 +110,10 @@ export const TopNav = (props) => {
 
                             </div>
 
-                            <div className={'flex justify-start gap-2 capitalize py-1.5 my-1 cursor-pointer'}>
-                                <VscSignOut className={'text-2xl text-blue'} />
+                            <button onClick={handleLogout}><div className={'flex justify-start gap-2 capitalize py-1.5 my-1 cursor-pointer'}>
+                            <VscSignOut className={'text-2xl text-blue'} />
                                 <p className={''}>Logout</p>
-                            </div>
+                            </div></button>
 
                         </div>
 
