@@ -39,6 +39,18 @@ const Students = db.define(
     father_name: {
         type: DataTypes.STRING,
     },
+    isConfirmed: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
+    filledSocial: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
+    logComplete: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
   },
   {
     freezeTableName: true,

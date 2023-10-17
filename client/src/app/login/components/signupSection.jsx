@@ -21,7 +21,6 @@ export const SignupSection = ({loginToogle}) => {
       const router = useRouter();
   
       const signupnewuser = async (e) => {
-        e.preventDefault();
         try { 
             const response = await AuthConnect.post('/register', {
                 stdid : stdid,

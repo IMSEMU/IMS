@@ -1,17 +1,19 @@
 import {HiMiniCalendarDays} from "react-icons/hi2";
 import Calendar from "@/app/internDashboard/components/calendar";
 import {BiPlus} from "react-icons/bi";
-import {EnvelopIcon} from "@/app/svg_Icons";
 import Image from "next/image";
 import Link from "next/link";
 import { LogbookDisplay } from "@/app/logbook/components/logbookDisplay";
+import { useEffect, useState } from "react";
+import AuthConnect from "@/auth";
 
-export const Dashboard = () => {
+export const Dashboard = (props) => {
+    const [country, setCountry] = useState("Turkey");
   return(
       <main className={'m-5 bg-white dark:bg-dark_2 '}>
 
           <div className={'text-md lg:text-xl xl:text-2xl py-1 md:py-2 w-full max-w-[1300px] xl:mx-auto mx-2 font-bold'}>
-              <p>Welcome Joel</p>
+              <p>Welcome {props.firstname} </p>
           </div>
 
 
@@ -134,30 +136,59 @@ export const Dashboard = () => {
                 <div className={'h-[15rem] overflow-y-scroll'}>
 
                   <div className={' mx-auto max-w-[18rem]  rounded bg-background_shade_2 dark:bg-dark_4 border-yellow text-black'}>
+                    
+            {/* Fill Internship Application Form */}
+            {!props.isConfirmed ? (
+                <div className={'flex justify-center items-center p-2.5 w-full gap-2 hover:bg-blue hover:text-white'}>
+                <Link href={''} className={'flex items-center justify-center py-1.5 px-1'}>
+                    <span className={'text-center font-bold text-md w-full '}>Fill Internship Application Form</span>
+                </Link>
+                </div>
+            ) : (
+                <div className={'flex justify-center items-center p-2.5 w-full gap-2  text-black/25 disabled'}>
+                    <span className={'text-center font-bold text-md w-full '}>Fill Internship Application Form</span>
+                </div>
+            )}
 
-                    <div className={'flex justify-center items-center p-2.5 w-full gap-2 hover:bg-blue hover:text-white'}>
-                        <Link href={''} className={'flex items-center justify-center py-1.5 px-1'}> 
-                        <span className={'text-center font-bold text-md w-full '}>Fill Internship Application Form</span>
-                        </Link>
-                    </div>
-
-                    <div className={'flex justify-center items-center p-2.5 w-full gap-2 hover:bg-blue hover:text-white'}>
-                        <Link href={''} className={'flex items-center justify-center py-1.5 px-1'}> 
+            {/* Fill Social Insurance Form */}
+            {props.isConfirmed && !props.logComplete && (country === 'Turkey' || country === 'KKTC') ? (
+                <div className={'flex justify-center items-center p-2.5 w-full gap-2 hover:bg-blue hover:text-white'}>
+                    <Link href={''} className={'flex items-center justify-center py-1.5 px-1'}>
                         <span className={'text-center font-bold text-md w-full '}>Fill Social Insurance Form</span>
-                        </Link>
-                    </div>
+                    </Link>
+                </div>
+            ) : (
+                <div className={'flex justify-center items-center p-2.5 w-full gap-2 text-black/25 disabled'}>
+                    <span className={'text-center font-bold text-md w-full'}>Fill Social Insurance Form</span>
+                </div>
+            )}
 
-                    <div className={'flex justify-center items-center p-2.5 w-full gap-2 hover:bg-blue hover:text-white'}>
-                        <Link href={''} className={'flex items-center justify-center py-1.5 px-1'}> 
+            {/* Fill Logbook */}
+            {(props.isConfirmed && !props.logComplete && !(country === 'Turkey' || country === 'KKTC')) || (props.filledSocial && !props.logComplete &&(country === 'Turkey' || country === 'KKTC')) ? (
+                <div className={'flex justify-center items-center p-2.5 w-full gap-2 hover:bg-blue hover:text-white'}>
+                    <Link href={''} className={'flex items-center justify-center py-1.5 px-1'}>
                         <span className={'text-center font-bold text-md w-full '}>Fill Logbook</span>
-                        </Link>
-                    </div>
+                    </Link>
+                </div>
+            ) : (
+                <div className={'flex justify-center items-center p-2.5 w-full gap-2 text-black/25 disabled'}>
+                    <span className={'text-center font-bold text-md w-full '}>Fill Logbook</span>
+                </div>
+            )}
 
-                    <div className={'flex justify-center items-center p-2.5 w-full gap-2 hover:bg-blue hover:text-white'}>
-                        <Link href={''} className={'flex items-center justify-center py-1.5 px-1'}> 
+            {/* Write Report */}
+            {props.logComplete ? (
+                <div className={'flex justify-center items-center p-2.5 w-full gap-2 hover:bg-blue hover:text-white'}>
+                    <Link href={''} className={'flex items-center justify-center py-1.5 px-1'}>
                         <span className={'text-center font-bold text-md w-full '}>Write Report</span>
-                        </Link>
-                    </div>
+                    </Link>
+                </div>
+            ) : (
+                <div className={'flex justify-center items-center p-2.5 w-full gap-2 text-black/25 disabled'}>
+                    <span className={'text-center font-bold text-md w-full '}>Write Report</span>
+                </div>
+            )}
+
 
                   </div>
 

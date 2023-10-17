@@ -8,7 +8,7 @@ import {DarkModeButton} from "@/app/globalComponents/darkModeButton";
 import { NotificationIcon } from "@/app/svg_Icons";
 
 
-export const TopNav = () => {
+export const TopNav = (props) => {
   return(
 <main className={"remove-highlight border-b border-b-background_shade z-50 mx-0 bg-white dark:bg-dark_2 sticky w-full  top-0"}>
         <nav className={"sticky bg-white dark:bg-dark_2 top-0 z-50 flex justify-between sm:justify-end  w-full max-w-[83.75rem] pr-6 mx-auto py-2"}>
@@ -68,8 +68,8 @@ export const TopNav = () => {
                         </div>
 
                         <div className={'flex truncate flex-wrap w-full'}>
-                            <p className={'truncate text-sm sm:text-md md:text-lg font-semibold'}>Joel Ikenga</p>
-                            <p className={'truncate text-sm sm:text-md text-blue cursor-pointer'}>joelikenga@email.com</p>
+                            <p className={'truncate text-sm sm:text-md md:text-lg font-semibold'}>{props.firstname} {props.lastname}</p>
+                            <p className={'truncate text-sm sm:text-md text-blue cursor-pointer'}>{props.email}</p>
                         </div>
 
                         </div>
