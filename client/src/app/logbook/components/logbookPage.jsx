@@ -5,6 +5,8 @@ import { LogbookDisplay } from "./logbookDisplay";
 import AuthConnect from "@/auth";
 import { useRouter } from "next/navigation"; 
 import { useEffect, useState } from "react";
+import { TopNav } from "@/app/internDashboard/components/topNav";
+// import { TopNav } from "@/app/internDashboard/components/topNav";
 
 export const LogbookPage = () => {
     const router = useRouter();
@@ -29,22 +31,19 @@ export const LogbookPage = () => {
       }
   return(
       <main>
-          <Navbar />
-          <main className={'max-h-screen'}>
-                        <section className="p-2 bg-white dark:bg-dark_1 min-h-screen flex items-center justify-center">
-                <div className="bg-white dark:bg-dark_2 p-3.5 flex rounded shadow-xl dark:border-none border border-background_shade_2 max-w-[30rem] md:max-w-full w-[60rem] h-[32rem]">
+          <main className={' flex items-center justify-center'}>
+              <section className="p-2 bg-white dark:bg-dark_1 flex items-center justify-center">
+                <div className="bg-white dark:bg-dark_2 p-3.5 flex rounded shadow-xl dark:border-none border border-background_shade_2 w-[25rem] lg:w-[50rem] h-[32rem]">
                    
                    {/* LOgbook Add section */}
-                    <div className="w-1/2">
-
-
+                    <div className=" lg:w-1/2">
                       <div className=" flex items-center h-full">
                         <AddLogData />
                       </div>
                     </div>
 
                     {/* Logbook Display section */}
-                    <div className="w-1/2 bg-background_shade dark:bg-dark_3 rounded">
+                    <div className="hidden lg:block w-1/2 bg-background_shade dark:bg-dark_3 rounded">
                        <LogbookDisplay />
                     </div>
 

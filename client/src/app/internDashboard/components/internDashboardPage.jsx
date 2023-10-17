@@ -1,7 +1,7 @@
 'use client'
-import {PcSideNav} from "@/app/internDashboard/components/pcSideNav";
+import {PcSideNav} from "../../globalComponents/pcSideNav";
 import {Body} from "@/app/internDashboard/components/body";
-import {MobileNav} from "@/app/internDashboard/components/mobileNav";
+import {MobileNav} from "../../globalComponents/mobileNav";
 import AuthConnect from "@/auth";
 import { useRouter } from "next/navigation"; 
 import { useEffect, useState } from "react";

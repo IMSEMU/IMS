@@ -125,7 +125,7 @@ export default function LoginSection() {
                                     <span
                                         onClick={() => showPassword()}
                                         className={
-                                            'bg-white dark:bg-dark_2 absolute p-0.5 md:p-1.5 text-blue cursor-pointer bottom-2 right-4 text-xl'
+                                            ' bg-opacity-0  absolute p-0.5 md:p-1.5 text-blue cursor-pointer bottom-2 right-4 text-xl'
                                         }
                                     >
                                         {visibility ? <RxEyeClosed/> : <RxEyeOpen/>}
