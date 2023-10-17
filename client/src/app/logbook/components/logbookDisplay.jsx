@@ -36,17 +36,9 @@ export const LogbookDisplay = () => {
     
     
     return ( 
-<<<<<<< HEAD
-        <div  className="m-4 bg-[rgb(173,173,173)] dark:bg-dark_2 rounded h-fit">
-
-            <div className="mx-4 py-2.5 dark:text-white flex items-center justify-between rounded">
-
-                <div className="ml-3  flex flex-wrap gap-1 w-[5rem]">
-                    <p className=" bg-yellow rounded text-sm font-medium text-white px-1 py-0.5">21/21/21</p>
-                    <p className="font-semibold"># Day 1</p>
-=======
-        <div className="m-4 bg-blue rounded h-fit" >
-      {logbookEntries.length === 0 ? (
+       // <div className="m-4 bg-blue rounded h-fit" >
+       <div className="bg-blue rounded">
+        {logbookEntries.length === 0 ? (
         <p className=" font-semibold text-lg text-center text-white">No logbook entries</p>
       ) : (
         logbookEntries.map((entry) => (
@@ -54,10 +46,9 @@ export const LogbookDisplay = () => {
             {/* Render each logbook entry */}
             <div className="mx-4 py-2 text-white flex items-center justify-between rounded">
 
-                <div className="ml-3  flex flex-wrap gap-1 w-[5rem]">
+                <div className="ml-3  flex flex-wrap gap-1 w-[4rem]">
                     <p className="font-semibold">Day {entry.day}</p>
-                    <p className=" bg-yellow rounded text-sm font-medium text-white px-1 py-0.5">{formatDate(entry.date)}</p>
->>>>>>> cbd4f761ef8ad08f778e068844b3f1c6d92b4f07
+                    <p className=" bg-yellow rounded text-sm font-small text-white px-1 py-0.5">{formatDate(entry.date)}</p>
                 </div>
 
                 <div className="flex flex-wrap  truncate w-40 items-center">
@@ -97,7 +88,7 @@ export const LogbookDisplay = () => {
           </div>
         ))
       )}
-    </div>
+   </div>
    
 
             
