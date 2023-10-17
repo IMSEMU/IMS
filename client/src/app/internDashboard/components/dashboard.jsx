@@ -1,16 +1,19 @@
 import {HiMiniCalendarDays} from "react-icons/hi2";
 import Calendar from "@/app/internDashboard/components/calendar";
 import {BiPlus} from "react-icons/bi";
-import {EnvelopIcon} from "@/app/svg_Icons";
 import Image from "next/image";
 import Link from "next/link";
+import { LogbookDisplay } from "@/app/logbook/components/logbookDisplay";
+import { useEffect, useState } from "react";
+import AuthConnect from "@/auth";
 
-export const Dashboard = () => {
+export const Dashboard = (props) => {
+    const [country, setCountry] = useState("Turkey");
   return(
       <main className={'m-5 bg-white dark:bg-dark_2 '}>
 
           <div className={'text-md lg:text-xl xl:text-2xl py-1 md:py-2 w-full max-w-[1300px] xl:mx-auto mx-2 font-bold'}>
-              <p>Welcome Joel</p>
+              <p>Welcome {props.firstname} </p>
           </div>
 
 
@@ -71,16 +74,16 @@ export const Dashboard = () => {
                       Logbook
                     </p>
 
-                    <Link href={''} className={'px-2 py-1 bg-blue text-white rounded inline-flex items-center justify-center gap-1'}>
+                    <Link href={'/logbook'} className={'px-2 py-1 bg-blue text-white rounded inline-flex items-center justify-center gap-1'}>
                         <BiPlus className={'text-white text-xl'}/>
                         <div>Add</div>
                     </Link>
-
+                   
                 </div>
 
                 {/*    section container*/}
                 <div className={'h-[15rem] overflow-y-scroll'}>
-
+                <LogbookDisplay/>
                 </div>
 
             </div>
@@ -91,7 +94,7 @@ export const Dashboard = () => {
 
                 {/*section Name*/}
                 <p className={" font-semibold m-3 text-black dark:text-white text-sm md:text-md lg:text-lg  inline-flex text-center  border-yellow border-x-[0.4rem] md:border-x-[0.3rem] px-2"}>
-                  Announcement
+                  Announcements
                 </p>
 
                 {/*section container*/}
@@ -104,8 +107,8 @@ export const Dashboard = () => {
                             <Image src={'/envelope.png'} width={1000} height={1000} className={'w-[3rem] h-[3rem]'} alt={""} />
 
                             <div className={'truncate flex flex-wrap justify-start items-center gap-1'}>
-                                <p className={'font-semibold capitalize '}>Title nfj</p>
-                                <span className={'truncate text-sm lg:text-md'}>dgdjdjdjdjdjdjddjdjdjddjjjfjfjfjfjffjfj</span>
+                                <p className={'font-semibold capitalize '}>Title</p>
+                                <span className={'truncate text-sm lg:text-md'}>Announcement content</span>
                             </div>
 
                             <div className={'flex items-center justify-center text-sm w-fit'}>
@@ -126,22 +129,66 @@ export const Dashboard = () => {
 
                 {/*section Name*/}
                 <p className={" font-semibold m-3 text-black dark:text-white text-sm md:text-md lg:text-lg  inline-flex text-center  border-yellow border-x-[0.4rem] md:border-x-[0.3rem] px-2"}>
-                  Tasks
+                  To-Do
                 </p>
 
                 {/*section Container*/}
                 <div className={'h-[15rem] overflow-y-scroll'}>
 
                   <div className={' mx-auto max-w-[18rem]  rounded bg-background_shade_2 dark:bg-dark_4 border-yellow text-black'}>
+                    
+            {/* Fill Internship Application Form */}
+            {!props.isConfirmed ? (
+                <div className={'flex justify-center items-center p-2.5 w-full gap-2 hover:bg-blue hover:text-white'}>
+                <Link href={''} className={'flex items-center justify-center py-1.5 px-1'}>
+                    <span className={'text-center font-bold text-md w-full '}>Fill Internship Application Form</span>
+                </Link>
+                </div>
+            ) : (
+                <div className={'flex justify-center items-center p-2.5 w-full gap-2  text-black/25 disabled'}>
+                    <span className={'text-center font-bold text-md w-full '}>Fill Internship Application Form</span>
+                </div>
+            )}
 
-                      <div className={'flex justify-center items-center p-2.5 w-full gap-2 '}>
+            {/* Fill Social Insurance Form */}
+            {props.isConfirmed && !props.logComplete && (country === 'Turkey' || country === 'KKTC') ? (
+                <div className={'flex justify-center items-center p-2.5 w-full gap-2 hover:bg-blue hover:text-white'}>
+                    <Link href={''} className={'flex items-center justify-center py-1.5 px-1'}>
+                        <span className={'text-center font-bold text-md w-full '}>Fill Social Insurance Form</span>
+                    </Link>
+                </div>
+            ) : (
+                <div className={'flex justify-center items-center p-2.5 w-full gap-2 text-black/25 disabled'}>
+                    <span className={'text-center font-bold text-md w-full'}>Fill Social Insurance Form</span>
+                </div>
+            )}
 
-                        <div className={'flex flex-wrap items-center justify-between truncate w-full'}>
-                            <span className={'font-bold text-md capitalize truncate w-full text-blue'}>Task #1</span>
-                            <span className={'text-center font-bold text-sm md:text-md w-full truncate'}>Fill Logbook</span>
-                        </div>
-                      <Link href={''} className={'flex items-center justify-center'}><EnvelopIcon /></Link>
-                    </div>
+            {/* Fill Logbook */}
+            {(props.isConfirmed && !props.logComplete && !(country === 'Turkey' || country === 'KKTC')) || (props.filledSocial && !props.logComplete &&(country === 'Turkey' || country === 'KKTC')) ? (
+                <div className={'flex justify-center items-center p-2.5 w-full gap-2 hover:bg-blue hover:text-white'}>
+                    <Link href={''} className={'flex items-center justify-center py-1.5 px-1'}>
+                        <span className={'text-center font-bold text-md w-full '}>Fill Logbook</span>
+                    </Link>
+                </div>
+            ) : (
+                <div className={'flex justify-center items-center p-2.5 w-full gap-2 text-black/25 disabled'}>
+                    <span className={'text-center font-bold text-md w-full '}>Fill Logbook</span>
+                </div>
+            )}
+
+            {/* Write Report */}
+            {props.logComplete ? (
+                <div className={'flex justify-center items-center p-2.5 w-full gap-2 hover:bg-blue hover:text-white'}>
+                    <Link href={''} className={'flex items-center justify-center py-1.5 px-1'}>
+                        <span className={'text-center font-bold text-md w-full '}>Write Report</span>
+                    </Link>
+                </div>
+            ) : (
+                <div className={'flex justify-center items-center p-2.5 w-full gap-2 text-black/25 disabled'}>
+                    <span className={'text-center font-bold text-md w-full '}>Write Report</span>
+                </div>
+            )}
+
 
                   </div>
 

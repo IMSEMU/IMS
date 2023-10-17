@@ -24,6 +24,7 @@ export const LogbookDisplay = () => {
     fetchLogbookEntries();
   }, []);
 
+<<<<<<< HEAD
   const optionToggle = () => {
     setOptions(!options);
   };
@@ -37,11 +38,28 @@ export const LogbookDisplay = () => {
     <div className="m-4 bg-blue rounded h-fit">
       {logbookEntries.length === 0 ? (
         <p className="font-semibold text-lg text-center text-white">No logbook entries</p>
+=======
+    const optionToogle = () => {
+        setOptions(!options);
+    }
+    const formatDate = (fullDate) => {
+        const date = new Date(fullDate);
+        return format(date, 'dd/MM/yyyy');
+      };
+    
+    
+    return ( 
+       // <div className="m-4 bg-blue rounded h-fit" >
+       <div className="bg-blue rounded">
+        {logbookEntries.length === 0 ? (
+        <p className=" font-semibold text-lg text-center text-white">No logbook entries</p>
+>>>>>>> 459c871cea9f760f1fa7d5bb9d69e1d397115ca5
       ) : (
         logbookEntries.map((entry) => (
           <div key={entry.logid}>
             {/* Render each logbook entry */}
             <div className="mx-4 py-2 text-white flex items-center justify-between rounded">
+<<<<<<< HEAD
               <div className="ml-3 flex flex-wrap gap-1 w-[5rem]">
                 <p className="font-semibold">Day {entry.day}</p>
                 <p className="bg-yellow rounded text-sm font-medium text-white px-1 py-0.5">
@@ -52,6 +70,12 @@ export const LogbookDisplay = () => {
                 <div>
                   <span className="font-semibold text-lg text-center">{entry.department}</span>
                   <p className="text-m text-justify">{entry.description}</p>
+=======
+
+                <div className="ml-3  flex flex-wrap gap-1 w-[4rem]">
+                    <p className="font-semibold">Day {entry.day}</p>
+                    <p className=" bg-yellow rounded text-sm font-small text-white px-1 py-0.5">{formatDate(entry.date)}</p>
+>>>>>>> 459c871cea9f760f1fa7d5bb9d69e1d397115ca5
                 </div>
               </div>
               <div className="relative mr-3">
@@ -78,6 +102,18 @@ export const LogbookDisplay = () => {
           </div>
         ))
       )}
+<<<<<<< HEAD
     </div>
   );
 };
+=======
+   </div>
+   
+
+            
+
+    
+     );
+}
+ 
+>>>>>>> 459c871cea9f760f1fa7d5bb9d69e1d397115ca5

@@ -8,9 +8,24 @@ import {RiSunFoggyFill} from "react-icons/ri";
 import {DarkModeButton} from "@/app/globalComponents/darkModeButton";
 import { NotificationIcon } from "@/app/svg_Icons";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import AuthConnect from "@/auth";
 
+export const TopNav = (props) => {
+    const router = useRouter();
+    const handleLogout = async () => {
+      try { 
+        const response = await AuthConnect.delete('/logout');
+            console.log(response);
 
-export const TopNav = () => {
+            router.push('/');
+        } catch (error) {
+            console.error("Error:", error);
+            if (error.response) {
+              setMsg(error.response.data.msg);
+            }
+        }
+    };
 
     const [profileDrop ,setProfileDrop ] = useState(false);
     const [notificationDrop ,setNotificationDrop ] = useState(false);
@@ -96,10 +111,10 @@ export const TopNav = () => {
                                 </div>
                             </div>
 
-                            <div className={'flex truncate flex-wrap w-full'}>
-                                <p className={'truncate text-sm sm:text-md md:text-lg font-semibold'}>Joel Ikenga</p>
-                                <p className={'truncate text-sm sm:text-md text-blue cursor-pointer'}>joelikenga@email.com</p>
-                            </div>
+                        <div className={'flex truncate flex-wrap w-full'}>
+                            <p className={'truncate text-sm sm:text-md md:text-lg font-semibold'}>Joel Ikenga</p>
+                            <p className={'truncate text-sm sm:text-md text-blue cursor-pointer'}>joelikenga@email.com</p>
+                        </div>
 
                             </div>
 
@@ -124,10 +139,10 @@ export const TopNav = () => {
 
                                 </div>
 
-                                <div className={'flex justify-start gap-2 capitalize py-1.5 my-1 cursor-pointer'}>
-                                    <VscSignOut className={'text-2xl text-blue'} />
-                                    <p className={''}>Logout</p>
-                                </div>
+                            <div className={'flex justify-start gap-2 capitalize py-1.5 my-1 cursor-pointer'}>
+                                <VscSignOut className={'text-2xl text-blue'} />
+                                <p className={''}>Logout</p>
+                            </div>
 
                             </div>
 

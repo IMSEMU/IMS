@@ -1,6 +1,7 @@
 import Students from '../models/student.model.js';
 import Users from '../models/user.model.js';
 import bcrypt from "bcrypt";
+import { verifyToken } from '../middleware/verifyToken.js';
 
 export const Register = async (req, res) => {
   const { stdid, firstname, lastname, email, password, confPassword } = req.body;
@@ -48,3 +49,36 @@ export const Register = async (req, res) => {
     return res.status(500).json({ msg: "Registration Error" });
   }
 };
+
+export const getStudent = async (req, res) => {
+  try {
+   
+    // Check if user is logged in
+    const refreshToken = req.cookies.refreshToken;
+    if (!refreshToken) {
+      return res.status(401).json({ msg: 'Unauthorized' });
+    }
+
+    // Verify refresh token and get user ID
+    const { userid } = await verifyToken(refreshToken);
+    if (!userid) {
+      return res.status(401).json({ msg: 'Unauthorized' });
+    }
+    const user = await Users.findAll({
+      where: { userid: userid },
+      attributes: ['userid', 'firstname', 'lastname', 'email']
+    });
+    const student = await Students.findAll({ 
+      where: { userid: userid },
+      attributes: ['userId', 'stdid', 'isConfirmed', 'filledSocial', 'logComplete']
+    });
+    const stdInfo = {
+      user,
+      student
+    };
+    res.status(200).json(stdInfo);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ msg: 'Internal server error' });
+  }
+}

@@ -7,14 +7,14 @@ import {HomeIcon,DashboardIcon,NotificationIcon,ChatIcon,LogbookIcon} from "@/ap
 import { useRouter } from "next/navigation";
 import AuthConnect from "@/auth";
 
-export const PcSideNav = () => {
+export const PcSideNav = (props) => {
 
     let navlinks = [
         {name:'Home',icons: <HomeIcon />,link:'/'},
-        {name:'Dashboard',icons: <DashboardIcon />,link:''},
+        // {name:'Dashboard',icons: <DashboardIcon />,link:''},
         // {name:'Notifications',icons: <NotificationIcon />,link:''},
         {name:'Chat',icons: <ChatIcon />,link:''},
-        {name:'Logbook',icons: <LogbookIcon />,link:''},
+        // {name:'Logbook',icons: <LogbookIcon />,link:''},
     ]
 
     const router = useRouter();
@@ -86,7 +86,7 @@ export const PcSideNav = () => {
                           className={'w-[2rem] h-[2rem] rounded-full hidden lg:inline-block'}
                       />
                         <div className={'flex flex-wrap items-center justify-start'}>
-                            <span className={'hidden lg:block font-semibold text-md l truncate w-full'}>Joel Ikenga</span>
+                            <span className={'hidden lg:block font-semibold text-md l truncate w-full'}>{props.firstname} {props.lastname}</span>
                             <span className={'hidden lg:block text-sm w-full'}>Student</span>
                         </div>
                       <div className={'text-3xl flex items-center justify-center lg:text-2xl'}><button onClick={handleLogout}><VscSignOut /></button></div>
