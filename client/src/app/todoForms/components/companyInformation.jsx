@@ -88,12 +88,12 @@ const CompanyInformation = () => {
                       <div className="mt-2 md:mt-4 relative flex space-x-2">
 
                       <div className="w-full">
-                              <input
+                              <textarea
                                   type={'text'}
                                   name=""
                                   id=""
                                   placeholder="Description of work to be done"
-                                  className="input w-full text-dark_2 dark:text-yellow placeholder:text-dark_2 dark:placeholder:text-yellow bg-white dark:bg-dark_2 px-4 py-2.5 border-b-dark_2 dark:border-b-yellow rounded mt-1 border-2  focus:outline-none"
+                                  className="min-h-[8rem] max-h-[8rem] w-full text-dark_2 dark:text-yellow placeholder:text-dark_2 dark:placeholder:text-yellow bg-white dark:bg-dark_2 px-4 py-2.5 border-b-dark_2 dark:border-b-yellow rounded mt-1 border-2  focus:outline-none"
                                   
                               />
                           </div>
@@ -104,7 +104,7 @@ const CompanyInformation = () => {
                                   name=""
                                   id=""
                                   placeholder="fax"
-                                  className="input w-full text-dark_2 dark:text-yellow placeholder:text-dark_2 dark:placeholder:text-yellow bg-white dark:bg-dark_2 px-4 py-2.5 border-b-dark_2 dark:border-b-yellow  border-x-0 border-t-0 mt-1 border-2  focus:outline-none"
+                                  className=" w-full text-dark_2 dark:text-yellow placeholder:text-dark_2 dark:placeholder:text-yellow bg-white dark:bg-dark_2 px-4 py-2.5 border-b-dark_2 dark:border-b-yellow  border-x-0 border-t-0 mt-1 border-2  focus:outline-none"
                                   
                               />
                           </div>

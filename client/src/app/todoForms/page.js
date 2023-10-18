@@ -12,12 +12,12 @@ const Forms = () => {
     return ( 
         <main className="bg-white dark:bg-dark_1 h-screen">
             <Navbar />
-            <div className="my-1 flex justify-center items-center font-bold">
+            <div className="mt-4 flex justify-center items-center font-bold text-black dark:text-white">
                 <div className="border-x-[0.4rem] text-xl border-yellow"><p className="px-2">Summer internship Form</p></div>
             </div>
             {/* <StudentInfo /> */}
-            {/* <CompanyInformation /> */}
-            <CompanySupervisor />
+            <CompanyInformation />
+            {/* <CompanySupervisor /> */}
         </main>
      );
 }
