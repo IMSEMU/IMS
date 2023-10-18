@@ -14,9 +14,7 @@ export const PcSideNav = (props) => {
     if(props.page === '/internDashboard'){
       navlinks = [
         {name:'Home',icons: <HomeIcon />,link:'/'},
-
         {name:'Chat',icons: <ChatIcon />,link:''},
-        {name:'Logbook',icons: <LogbookIcon />,link:''},
     ]
     }else if(props.page === '/logbook'){
       navlinks = [

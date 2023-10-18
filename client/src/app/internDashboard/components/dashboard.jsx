@@ -138,7 +138,7 @@ export const Dashboard = (props) => {
                     
             {/* Fill Internship Application Form */}
             {!props.isConfirmed ? (
-                <div className={' p-2 rounded w-full  gap-2 bg-background_shade_2 dark:bg-dark_4 hover:bg-yellow_2 hover:text-black'}>
+                <div className={' p-2 rounded w-full  gap-2 bg-background_shade_2 dark:bg-dark_4 hover:bg-blue hover:text-white'}>
                     <Link href={''} className={'flex items-center justify-center py-1.5 gap-2 px-1'}>
                         <span className={'text-center font-bold text-md w-full '}>Internship Application Form</span>
                         <div className="text-xl ">
