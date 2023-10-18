@@ -2,10 +2,14 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { AnimatePresence,motion } from "framer-motion";
+import CompanyInformation from "./companyInformation";
+import { loginToogleAnimation } from "@/app/styleVariants";
 
 const StudentInfo = () => {
 
     const [imageSrc, setImageSrc] = useState('');
+    const [form , setForm] = useState(1);
 
 const handleFileChange = (e) => {
   const selectedFile = e.target.files[0];
@@ -22,11 +26,20 @@ const handleFileChange = (e) => {
 
     return ( 
         <main>
-              <section className="p-2 bg-white dark:bg-dark_1 flex items-center justify-center px-4 sm:px-12 md:px-20">
+            <AnimatePresence>
+                {form===1  ? form === 1 && (
+              <section 
+
+              className="p-2 bg-white dark:bg-dark_1 flex items-center justify-center px-4 sm:px-12 md:px-20">
                 <div className="bg-white dark:bg-dark_2 p-3.5 flex rounded shadow-xl dark:border-none border border-background_shade_2 w-[40rem] lg:w-[40rem] h-[32rem]">
                    
                    {/* LOgbook Add section */}
-                    <div className=" w-full">
+                    <motion.div
+                        variants={loginToogleAnimation}
+                        initial={'initial'}
+                        animate={'animate' }
+                        exit={{y:-1000}}
+                        className=" w-full">
                         <p className={" font-bold my-4 text-black dark:text-white text-sm md:text-md lg:text-lg  inline-flex text-center  border-yellow border-x-[0.4rem] md:border-x-[0.3rem] px-2"}>
                           Students Information
                         </p>
@@ -131,15 +144,18 @@ const handleFileChange = (e) => {
                                 </div>
 
                                 <div className="w-1/2 flex items-center justify-end mt-2 text-white">
-                                 <button className="bg-blue py-2 font-medium px-3.5 rounded">Next</button>
+                                 <button  onClick={()=>{setForm(2)}} className="bg-blue py-2 font-medium px-3.5 rounded">Next</button>
                                 </div>
                             </div>
                         </form>
 
-                    </div>
+                    </motion.div>
 
                 </div>
             </section>
+                ) : <CompanyInformation />
+                }
+            </AnimatePresence>
         </main>
      );
 }

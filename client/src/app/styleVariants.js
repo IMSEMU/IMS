@@ -29,9 +29,9 @@ export const loginToogleAnimation = {
         opacity:1,
         x:0,
         transition: {
-            duration:0.5,
+            // duration:0.5,
             type:"spring",
-            bounce:0.15
+            bounce:0.6
         }
     },
         exit:{

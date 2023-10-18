@@ -16,8 +16,8 @@ const Forms = () => {
                 <div className="border-x-[0.4rem] text-2xl border-yellow"><p className="px-2">Internship Application Form</p></div>
             </div>
             <StudentInfo />
-            <CompanyInformation />
-            <CompanySupervisor />
+            {/* <CompanyInformation /> */}
+            {/* <CompanySupervisor /> */}
         </main>
      );
 }
