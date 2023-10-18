@@ -7,7 +7,7 @@ export const metadata = {
 }
 const Logbook = () => {
   return(
-      <main className="flex flex-nowrap min-w-screen">
+      <main className="flex flex-nowrap min-w-screen min-h-screen  bg-white dark:bg-dark_2">
         <PcSideNav />
          <LogbookPage />
          <MobileNav />

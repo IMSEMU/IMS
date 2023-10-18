@@ -52,13 +52,13 @@ export const TopNav = (props) => {
     const [profileDrop ,setProfileDrop ] = useState(false);
     const [notificationDrop ,setNotificationDrop ] = useState(false);
 
-    const profileDropToogle = () =>{
+    const profileDropToggle = () =>{
         setProfileDrop(!profileDrop);
         notificationDrop === true ? setNotificationDrop(false) : notificationDrop; 
 
     }    
     
-    const notificationDropToogle = () =>{
+    const notificationDropToggle = () =>{
         setNotificationDrop(!notificationDrop)
         profileDrop === true ? setProfileDrop(false) : profileDrop; 
   
@@ -88,11 +88,11 @@ export const TopNav = (props) => {
             <div className="flex flex-wrap justify-center items-center gap-4">
 
                 {/* notification */}
-                <div onClick={notificationDropToogle} className=" cursor-pointer">
+                <div onClick={notificationDropToggle} onBlur={notificationDropToggle} className=" cursor-pointer">
                     <NotificationIcon />
                 </div>
 
-                <div onClick={profileDropToogle} className={"flex items-baseline text-blue relative cursor-pointer"}>
+                <div onClick={profileDropToggle} onBlur={profileDropToggle} className={"flex items-baseline text-blue relative cursor-pointer"}>
                     <Image
                         src={'/dark-flower.jpeg'}
                         alt={"qq"}
@@ -183,8 +183,8 @@ export const TopNav = (props) => {
                             <div className={'p-3'}>
 
                                 <div className={'flex justify-start items-center gap-2 capitalize py-1 my-1 cursor-pointer'}>
-                                    <div className=" bg-dark_2 p-1.5 rounded-full">
-                                        <GiPencil className={'text-2xl text-yellow'} />
+                                    <div className=" bg-background_shade dark:bg-white p-1.5 rounded-full">
+                                        <GiPencil className={'text-2xl text-blue'} />
                                     </div>
                                     <p className={''}>Edit Profile</p>
                                 </div>
@@ -192,8 +192,8 @@ export const TopNav = (props) => {
                                 <div className={'flex justify-between items-center gap-2 capitalize py-1 my-1 cursor-pointer'}>
 
                                     <div className={'inline-flex gap-2'}>
-                                        <div className=" bg-dark_2 p-1.5 rounded-full">
-                                            <RiSunFoggyFill className={'text-2xl text-yellow'} />
+                                        <div className=" bg-background_shade dark:bg-white p-1.5 rounded-full">
+                                            <RiSunFoggyFill className={'text-2xl text-blue'} />
                                         </div>
                                         <p className={''}>Theme</p>
                                     </div>
@@ -205,7 +205,7 @@ export const TopNav = (props) => {
                                 </div>
 
                             <div onClick={handleLogout} className={'flex justify-start items-center gap-2 capitalize py-1 my-1 cursor-pointer'}>
-                                <div className=" bg-dark_2 p-1.5 rounded-full"><VscSignOut className={'text-2xl text-yellow'} /></div>
+                                <div className=" bg-background_shade dark:bg-white p-1.5 rounded-full"><VscSignOut className={'text-2xl text-blue'} /></div>
                                 <p className={''}>Logout</p>
                             </div>
 
