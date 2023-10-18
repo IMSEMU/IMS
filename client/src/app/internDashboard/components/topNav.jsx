@@ -65,7 +65,7 @@ export const TopNav = (props) => {
     }
 
   return(
-<main className={" border-b border-b-background_shade z-50 mx-0 bg-white dark:bg-dark_2 sticky w-full  top-0"}>
+<main className={"remove-highlight border-b border-b-background_shade z-50 mx-0 bg-white dark:bg-dark_2 sticky w-full  top-0"}>
         <nav className={"sticky bg-white dark:bg-dark_2 top-0 z-50 flex justify-between sm:justify-end  w-full max-w-[83.75rem] pr-6 mx-auto py-2"}>
 
             <div className={"sm:hidden flex justify-start items-center  gap-1 ml-6 cursor-pointer"}>
@@ -88,7 +88,7 @@ export const TopNav = (props) => {
             <div className="flex flex-wrap justify-center items-center gap-4">
 
                 {/* notification */}
-                <div onClick={notificationDropToggle} onBlur={notificationDropToggle} className=" cursor-pointer">
+                <div className="">
                     <NotificationIcon />
                 </div>
 
@@ -173,8 +173,8 @@ export const TopNav = (props) => {
                             </div>
 
                         <div className={'flex truncate flex-wrap w-full'}>
-                            <p className={'truncate text-sm sm:text-md md:text-lg font-semibold'}>emu student</p>
-                            <p className={'truncate text-sm sm:text-md text-blue dark:text-yellow cursor-pointer'}>student@email.com</p>
+                            <p className={'truncate text-sm sm:text-md md:text-lg font-semibold'}>{props.firstname} {props.lastname}</p>
+                            <p className={'truncate text-sm sm:text-md text-blue dark:text-yellow cursor-pointer'}>{props.email}</p>
                         </div>
 
                             </div>

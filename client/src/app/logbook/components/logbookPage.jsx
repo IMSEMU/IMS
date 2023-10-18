@@ -5,12 +5,15 @@ import { LogbookDisplay } from "./logbookDisplay";
 import AuthConnect from "@/auth";
 import { useRouter } from "next/navigation"; 
 import { useEffect, useState } from "react";
-import { TopNav } from "@/app/internDashboard/components/topNav";
-// import { TopNav } from "@/app/internDashboard/components/topNav";
+import { MobileNav } from "../../globalComponents/mobileNav";
+import { PcSideNav } from "../../globalComponents/pcSideNav";
+import { usePathname } from "next/navigation";
 
 export const LogbookPage = () => {
     const router = useRouter();
     const [token, setToken] = useState(null);
+    const [std, setStd] = useState([]);
+    const pathname = usePathname();
     
     useEffect(() => {
         const getToken = async () => {
@@ -26,14 +29,26 @@ export const LogbookPage = () => {
     
         getToken();
       }, []);
+      useEffect(() => {
+        const getStudent = async () => {
+          try {
+            const response = await AuthConnect.get('/getstudent');
+            setStd(response.data.user[0]);
+    
+          } catch (error) {
+            console.error("Error fetching student:", error);
+          }
+        };
+    
+        getStudent();
+      }, []);
       if (!token) {
         return null; // Prevent rendering the dashboard until token is fetched
       }
   return(
-      <main className="w-full h-full bg-white dark:bg-dark_2">
-        <TopNav />
-          <main className={' flex items-center justify-center my-4'}>
-              <section className="p-2 bg-white dark:bg-dark_1 flex items-center justify-center">
+          <main className={' flex items-center justify-center '}>
+          <PcSideNav page={pathname} firstname={std.firstname} lastname={std.lastname}/>
+              <section className="p-2 bg-white dark:bg-dark_1 flex items-center justify-center px-20">
                 <div className="bg-white dark:bg-dark_2 p-3.5 flex rounded shadow-xl dark:border-none border border-background_shade_2 w-[25rem] lg:w-[50rem] h-[32rem]">
                    
                    {/* LOgbook Add section */}
@@ -50,7 +65,7 @@ export const LogbookPage = () => {
 
                 </div>
             </section>
+            <MobileNav />
         </main>
-      </main>
   )
 }
