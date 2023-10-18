@@ -31,7 +31,7 @@ export const LogbookPage = () => {
       }
   return(
       <main>
-          <main className={' flex items-center justify-center'}>
+          <main className={' flex items-center justify-center '}>
               <section className="p-2 bg-white dark:bg-dark_1 flex items-center justify-center">
                 <div className="bg-white dark:bg-dark_2 p-3.5 flex rounded shadow-xl dark:border-none border border-background_shade_2 w-[25rem] lg:w-[50rem] h-[32rem]">
                    

@@ -1,14 +1,8 @@
 'use client'
-<<<<<<< HEAD
 import {PcSideNav} from "../../globalComponents/pcSideNav";
-import {Body} from "@/app/internDashboard/components/body";
 import {MobileNav} from "../../globalComponents/mobileNav";
-=======
-import {PcSideNav} from "@/app/internDashboard/components/pcSideNav";
-import {MobileNav} from "@/app/internDashboard/components/mobileNav";
 import {TopNav} from "@/app/internDashboard/components/topNav";
 import {Dashboard} from "@/app/internDashboard/components/dashboard";
->>>>>>> 459c871cea9f760f1fa7d5bb9d69e1d397115ca5
 import AuthConnect from "@/auth";
 import { useRouter } from "next/navigation"; 
 import { useEffect, useState } from "react";
