@@ -5,6 +5,8 @@ import { FaEllipsisV, FaTimes } from "react-icons/fa";
 import { GiTrashCan,GiPencil } from "react-icons/gi";
 import AuthConnect from "@/auth";
 import { format } from 'date-fns';
+import { Nodata } from "@/app/svg_Icons";
+import { Empty } from 'antd';
 
 export const LogbookDisplay = () => {
 
@@ -36,27 +38,28 @@ export const LogbookDisplay = () => {
     
     
     return ( 
-       // <div className="m-4 bg-blue rounded h-fit" >
-       <div className="bg-blue rounded">
-        {logbookEntries.length === 0 ? (
-        <p className=" font-semibold text-lg text-center text-white">No logbook entries</p>
+        <div className="m-4 bg- rounded h-fit" >
+      {logbookEntries.length === 0 ? (
+        <div className=" font-semibold text-lg text-center text-white">
+            <Empty />
+        </div>
       ) : (
         logbookEntries.map((entry) => (
           <div key={entry.logid}>
             {/* Render each logbook entry */}
             <div className="mx-4 py-2 text-white flex items-center justify-between rounded">
 
-                <div className="ml-3  flex flex-wrap gap-1 w-[4rem]">
+                <div className="ml-3  flex flex-wrap gap-1 w-[5rem]">
                     <p className="font-semibold">Day {entry.day}</p>
-                    <p className=" bg-yellow rounded text-sm font-small text-white px-1 py-0.5">{formatDate(entry.date)}</p>
+                    <p className=" bg-yellow rounded text-sm font-medium text-white px-1 py-0.5">{formatDate(entry.date)}</p>
                 </div>
 
                 <div className="flex flex-wrap  truncate w-40 items-center">
-  <div>
-    <span className="font-semibold text-lg text-center">{entry.department}</span>
-    <p className="text-m text-justify">{entry.description}</p>
-  </div>
-</div>
+                  <div>
+                    <span className="font-semibold text-lg text-center">{entry.department}</span>
+                    <p className="text-m text-justify">{entry.description}</p>
+                  </div>
+                </div>
 
                 <div className="relative mr-3">
                     <FaEllipsisV className=" cursor-pointer" onClick={optionToogle} />
@@ -88,12 +91,8 @@ export const LogbookDisplay = () => {
           </div>
         ))
       )}
-   </div>
+    </div>
    
-
-            
-
-    
      );
 }
  

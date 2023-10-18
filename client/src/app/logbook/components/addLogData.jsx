@@ -40,6 +40,7 @@ export  const AddLogData = () => {
           <div className="w-[22rem]">
               <input placeholder="Day"  
               type="number" 
+              min={0}
               value={day} onChange={(e) => setDay(e.target.value)}
               className="rounded p-3 outline-none w-full border border-dark_4 dark:border-none dark:bg-background_shade_2 text-dark_2 placeholder:text-dark_2" />
             </div>

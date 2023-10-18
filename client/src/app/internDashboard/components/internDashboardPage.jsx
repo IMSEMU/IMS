@@ -1,6 +1,6 @@
 'use client'
-import {PcSideNav} from "@/app/internDashboard/components/pcSideNav";
-import {MobileNav} from "@/app/internDashboard/components/mobileNav";
+import {PcSideNav} from "../../globalComponents/pcSideNav";
+import {MobileNav} from "../../globalComponents/mobileNav";
 import {TopNav} from "@/app/internDashboard/components/topNav";
 import {Dashboard} from "@/app/internDashboard/components/dashboard";
 import AuthConnect from "@/auth";
