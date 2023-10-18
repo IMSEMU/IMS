@@ -6,12 +6,14 @@ import {Dashboard} from "@/app/internDashboard/components/dashboard";
 import AuthConnect from "@/auth";
 import { useRouter } from "next/navigation"; 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 
 export const InternDashboardPage = () => {
     const router = useRouter();
     const [token, setToken] = useState(null);
     const [student, setStudent] = useState([]);
     const [std, setStd] = useState([]);
+    const pathname = usePathname();
     
     
     useEffect(() => {
@@ -50,7 +52,7 @@ export const InternDashboardPage = () => {
         <main className={'p-0 m-0 bg-white dark:bg-dark_2'}>
             {/*Sidenav and body*/}
             <div className={'flex flex-nowrap'}>
-               <PcSideNav firstname={std.firstname} lastname={std.lastname}/>
+               <PcSideNav page={pathname} firstname={std.firstname} lastname={std.lastname}/>
                <div className={'h-full w-full'}>
           <TopNav firstname={std.firstname} lastname={std.lastname} email={std.email}/>
           <Dashboard firstname={std.firstname} isConfirmed={student.isConfirmed} filledSocial={student.filledSocial} logComplete={student.logComplete}/>

@@ -47,7 +47,7 @@ export const LogbookDisplay = () => {
         logbookEntries.map((entry) => (
           <div key={entry.logid}>
             {/* Render each logbook entry */}
-            <div className="mx-4 py-2 text-white flex items-center justify-between rounded">
+            <div className="mx-4 py-2 text-white flex items-center justify-between rounded bg-blue">
 
                 <div className="ml-3  flex flex-wrap gap-1 w-[5rem]">
                     <p className="font-semibold">Day {entry.day}</p>

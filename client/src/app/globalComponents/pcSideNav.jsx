@@ -9,13 +9,22 @@ import AuthConnect from "@/auth";
 
 export const PcSideNav = (props) => {
 
-    let navlinks = [
+    let navlinks;
+    
+    if(props.page === '/internDashboard'){
+      navlinks = [
         {name:'Home',icons: <HomeIcon />,link:'/'},
-        // {name:'Dashboard',icons: <DashboardIcon />,link:''},
-        // {name:'Notifications',icons: <NotificationIcon />,link:''},
+
         {name:'Chat',icons: <ChatIcon />,link:''},
-        {name:'Logbook',icons: <LogbookIcon />,link:''},
+        // {name:'Logbook',icons: <LogbookIcon />,link:''},
     ]
+    }else if(props.page === '/logbook'){
+      navlinks = [
+        {name:'Home',icons: <HomeIcon />,link:'/'},
+        {name:'Dashboard',icons: <DashboardIcon />,link:'/internDashboard'},
+        {name:'Chat',icons: <ChatIcon />,link:''},
+    ]
+    }
 
     const router = useRouter();
     const handleLogout = async () => {

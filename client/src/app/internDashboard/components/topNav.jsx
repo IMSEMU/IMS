@@ -173,8 +173,8 @@ export const TopNav = (props) => {
                             </div>
 
                         <div className={'flex truncate flex-wrap w-full'}>
-                            <p className={'truncate text-sm sm:text-md md:text-lg font-semibold'}>emu student</p>
-                            <p className={'truncate text-sm sm:text-md text-blue dark:text-yellow cursor-pointer'}>student@email.com</p>
+                            <p className={'truncate text-sm sm:text-md md:text-lg font-semibold'}>{props.firstname} {props.lastname}</p>
+                            <p className={'truncate text-sm sm:text-md text-blue dark:text-yellow cursor-pointer'}>{props.email}</p>
                         </div>
 
                             </div>
