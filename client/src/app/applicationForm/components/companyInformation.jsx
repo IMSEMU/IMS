@@ -127,13 +127,17 @@ const CompanyInformation = () => {
                           </div>
 
                       </div>
+                      <div>
+                        <button onClick={()=>{setForm(1)}} className="">previous</button>
+                        <button onClick={()=>{setForm(3)}} className="">previous</button>
+                      </div>
                   </form>
 
               </motion.div>
 
           </div>
       </section>
-            ) : <CompanySupervisor />
+            ) : form===3  ? form === 3 &&(<CompanySupervisor />) : (form === 1 && <StudentsInfo />)
         }
       </AnimatePresence>
   </main>
