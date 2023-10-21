@@ -1,0 +1,22 @@
+{
+  "Index": {
+    "title": "Selam Dünya!"
+  },
+  "Loginbtn": {
+    "login": "Giriş yapmak"
+  },
+  "Announcement": {
+    "title": "Haber ve Duyurular"
+  },
+  "Completed Internships": {
+    "title": "Tamamlanan Stajlar",
+    "Company Name": "Firma Adı",
+    "City": "Şehir",
+    "Country": "Ülke",
+    "Work Fields": "Çalışma Alanları",
+    "Year": "Yıl"
+  },
+  "Available Internship Positions": {
+    "title": "Mevcut Staj Pozisyonları"
+  }
+}

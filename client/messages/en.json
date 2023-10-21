@@ -1,0 +1,22 @@
+{
+  "Index": {
+    "title": "Hello world!"
+  },
+  "Loginbtn": {
+    "login": "Login"
+  },
+  "Announcement": {
+    "title": "News and Announcements"
+  },
+  "Completed Internships": {
+    "title": "Completed Internships",
+    "Company Name": "Company Name",
+    "City": "City",
+    "Country": "Country",
+    "Work Fields": "Work Fieldss",
+    "Year": "Year"
+  },
+  "Available Internship Positions": {
+    "title": "Available Internship Positions"
+  }
+}
