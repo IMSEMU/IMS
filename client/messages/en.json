@@ -13,10 +13,34 @@
     "Company Name": "Company Name",
     "City": "City",
     "Country": "Country",
-    "Work Fields": "Work Fieldss",
+    "Work Fields": "Work Fields",
     "Year": "Year"
   },
   "Available Internship Positions": {
     "title": "Available Internship Positions"
+  },
+  "Home Footer": {
+    "sitemap": "Sitemap",
+    "Homepage": "Homepage",
+    "News and Announcements": "News & Announcements",
+    "Completed Internships": "Completed Internships",
+    "Available Internship Positions": "Available Internship Positions",
+    "useful links": "Useful Links",
+    "EMU Official Website": "E.M.U. Official Website",
+    "Student Portal": "Student Portal",
+    "LMS": "L.M.S.",
+    "Staff Portal": "Staff Portal",
+    "EMU": "Eastern Mediterranean University",
+    "address1": "99628, Famagusta, Northern Cyprus",
+    "address2": "Mersin 10, Turkey"
+  },
+  "Login Page": {
+    "signin": "Sign into your account",
+    "Loginbtn": "Login",
+    "forgotpass": "Forgot Password?",
+    "microsoft": "Login with Microsoft",
+    "email-placeholder": "address@provider.com",
+    "Password": "Password",
+    "Register": "Register"
   }
 }

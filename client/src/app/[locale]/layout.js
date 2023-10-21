@@ -41,8 +41,9 @@ export default async function LocaleLayout({ children, params: { locale } }) {
 
   return (
     <html lang={locale}>
+      <link rel={"icon"} href={"/logo.svg"} />
       <DarkModeProvider>
-        <body>
+        <body className={`bg-white dark:bg-black ${inter.className}`}>
           <NextIntlClientProvider locale={locale} messages={messages}>
             {children}
           </NextIntlClientProvider>

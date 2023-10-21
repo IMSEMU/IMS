@@ -18,5 +18,29 @@
   },
   "Available Internship Positions": {
     "title": "Mevcut Staj Pozisyonları"
+  },
+  "Home Footer": {
+    "sitemap": "Site haritası",
+    "Homepage": "Ana sayfa",
+    "News and Announcements": "Haberler & Duyurular",
+    "Completed Internships": "Tamamlanan Stajlar",
+    "Available Internship Positions": "Mevcut Staj Pozisyonları",
+    "useful links": "Kullanışlı bağlantılar",
+    "EMU Official Website": "DAÜ Resmi internet sitesi",
+    "Student Portal": "Öğrenci Portalı",
+    "LMS": "L.M.S.",
+    "Staff Portal": "Personel Portalı",
+    "EMU": "Doğu Akdeniz Üniversitesi",
+    "address1": "99628, Gazimağusa, Kuzey Kıbrıs",
+    "address2": "Mersin 10, Turkey"
+  },
+  "Login Page": {
+    "signin": "Hesabınıza giriş yapın",
+    "Loginbtn": "Giriş yapmak",
+    "forgotpass": "Parolanızı mı unuttunuz?",
+    "microsoft": "Microsoft'la oturum açın",
+    "email-placeholder": "adres@sağlayıcı.com",
+    "Password": "Şifre",
+    "Register": "Kayıt olmak"
   }
 }
