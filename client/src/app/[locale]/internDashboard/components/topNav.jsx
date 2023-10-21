@@ -14,8 +14,10 @@ import { BsTrash3 } from "react-icons/bs";
 import { HiOutlineTrash } from "react-icons/hi2";
 import { HiAnnotation } from "react-icons/hi";
 import { LuClock2 } from "react-icons/lu";
+import { useTranslations } from "next-intl";
 
 export const TopNav = (props) => {
+  const t = useTranslations("topnav");
   const router = useRouter();
   const handleLogout = async () => {
     try {
@@ -121,7 +123,7 @@ export const TopNav = (props) => {
                     "items-center m-0.5 font-semibold text-black dark:text-white text-sm md:text-md inline-flex text-center border-yellow border-x-[0.4rem] md:border-x-[0.3rem] px-2"
                   }
                 >
-                  <p>Notifications</p>
+                  <p>{t("notif")}</p>
                 </div>
 
                 {/* <button className="capitalize gap-0.5 flex text-sm item-center bg-blue text-white py-1 px-1.5 rounded">
@@ -222,7 +224,7 @@ export const TopNav = (props) => {
                   <div className=" bg-background_shade dark:bg-white p-1.5 rounded-full">
                     <GiPencil className={"text-2xl text-blue"} />
                   </div>
-                  <p className={""}>Edit Profile</p>
+                  <p className={""}>{t("edit")}</p>
                 </div>
 
                 <div
@@ -234,7 +236,7 @@ export const TopNav = (props) => {
                     <div className=" bg-background_shade dark:bg-white p-1.5 rounded-full">
                       <RiSunFoggyFill className={"text-2xl text-blue"} />
                     </div>
-                    <p className={""}>Theme</p>
+                    <p className={""}>{t("theme")}</p>
                   </div>
 
                   <span className={""}>
@@ -251,7 +253,7 @@ export const TopNav = (props) => {
                   <div className=" bg-background_shade dark:bg-white p-1.5 rounded-full">
                     <VscSignOut className={"text-2xl text-blue"} />
                   </div>
-                  <p className={""}>Logout</p>
+                  <p className={""}>{t("logout")}</p>
                 </div>
               </div>
             </div>

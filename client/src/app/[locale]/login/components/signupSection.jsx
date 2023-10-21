@@ -5,8 +5,10 @@ import { useRouter } from "next/navigation";
 import AuthConnect from "@/auth";
 import { useState } from "react";
 import Modal from "../../globalComponents/modal";
+import { useTranslations } from "next-intl";
 
 export const SignupSection = ({ loginToogle }) => {
+  const t = useTranslations("Signup Page");
   const [stdid, setStdid] = useState("");
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
@@ -58,7 +60,7 @@ export const SignupSection = ({ loginToogle }) => {
           </div>
 
           <h2 className="mt-0.5 text-sm md:text-md lg:text-lg xl:text-xl font-bold text-center text-black dark:text-white">
-            Register for Internship
+            {t("title")}
           </h2>
 
           <form className="mt-2  text-sm md:text-md" onSubmit={signupnewuser}>
@@ -68,7 +70,7 @@ export const SignupSection = ({ loginToogle }) => {
                   type="text"
                   name=""
                   id=""
-                  placeholder="Student number"
+                  placeholder={t("stdid")}
                   className="input w-full text-dark_2 dark:text-yellow placeholder:text-dark_2 dark:placeholder:text-yellow bg-white dark:bg-dark_2 px-4 py-2.5 border-b-dark_2 dark:border-b-yellow border-x-0 border-t-0 mt-1 border-2 focus:outline-none"
                   value={stdid}
                   onChange={(e) => setStdid(e.target.value)}
@@ -80,7 +82,7 @@ export const SignupSection = ({ loginToogle }) => {
                   type="email"
                   name=""
                   id=""
-                  placeholder="E-mail@emu.edu.tr"
+                  placeholder={t("email")}
                   className="input w-full text-dark_2 dark:text-yellow placeholder:text-dark_2 dark:placeholder:text-yellow bg-white dark:bg-dark_2 px-4 py-2.5 border-b-dark_2 dark:border-b-yellow border-x-0 border-t-0 mt-1 border-2 focus:outline-none"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -94,7 +96,7 @@ export const SignupSection = ({ loginToogle }) => {
                   type={"text"}
                   name=""
                   id=""
-                  placeholder="First Name"
+                  placeholder={t("fname")}
                   className="input w-full text-dark_2 dark:text-yellow placeholder:text-dark_2 dark:placeholder:text-yellow bg-white dark:bg-dark_2 px-4 py-2.5 border-b-dark_2 dark:border-b-yellow  border-x-0 border-t-0 mt-1 border-2  focus:outline-none"
                   value={firstname}
                   onChange={(e) => setFirstname(e.target.value)}
@@ -108,7 +110,7 @@ export const SignupSection = ({ loginToogle }) => {
                   name=""
                   id=""
                   autoComplete="off"
-                  placeholder="Last Name"
+                  placeholder={t("lname")}
                   className="input w-full text-dark_2 dark:text-yellow placeholder:text-dark_2 dark:placeholder:text-yellow bg-white dark:bg-dark_2 px-4 py-2.5 border-b-dark_2 dark:border-b-yellow  border-x-0 border-t-0 mt-1 border-2  focus:outline-none"
                   value={lastname}
                   onChange={(e) => setLastname(e.target.value)}
@@ -122,7 +124,7 @@ export const SignupSection = ({ loginToogle }) => {
                 type={"password"}
                 name=""
                 id=""
-                placeholder="password"
+                placeholder={t("Password")}
                 className="input w-full text-dark_2 dark:text-yellow placeholder:text-dark_2 dark:placeholder:text-yellow bg-white dark:bg-dark_2 px-4 py-2.5 border-b-dark_2 dark:border-b-yellow  border-x-0 border-t-0 mt-1 border-2  focus:outline-none"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -135,7 +137,7 @@ export const SignupSection = ({ loginToogle }) => {
                 type={"password"}
                 name=""
                 id=""
-                placeholder="confirm Passwod"
+                placeholder={t("confpass")}
                 className="input w-full text-dark_2 dark:text-yellow placeholder:text-dark_2 dark:placeholder:text-yellow bg-white dark:bg-dark_2 px-4 py-2.5 border-b-dark_2 dark:border-b-yellow  border-x-0 border-t-0 mt-1 border-2  focus:outline-none"
                 value={confPassword}
                 onChange={(e) => setConfPassword(e.target.value)}
@@ -166,14 +168,14 @@ export const SignupSection = ({ loginToogle }) => {
                   width={20}
                   height={20}
                 />
-                <span>Microsoft</span>
+                <span>{t("microsoft")}</span>
               </button>
 
               <button
                 type="submit"
                 className="flex items-center justify-center gap-2 w-full md:w-fit  bg-blue hover:bg-blue-400 focus:bg-blue-400 text-white font-semibold rounded px-3 py-2 mt-5"
               >
-                <span>Register</span>
+                <span>{t("Register")}</span>
               </button>
             </div>
           </form>
@@ -184,7 +186,7 @@ export const SignupSection = ({ loginToogle }) => {
               className="flex items-center gap-2 w-fit md:w-full justify-center  bg-blue text-white font-semibold rounded px-3 py-2 "
             >
               <span className={"flex items-center gap-1"}>
-                <VscSignIn /> Login
+                <VscSignIn /> {t("Loginbtn")}
               </span>
             </button>
           </div>

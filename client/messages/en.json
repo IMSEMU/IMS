@@ -42,5 +42,47 @@
     "email-placeholder": "address@provider.com",
     "Password": "Password",
     "Register": "Register"
+  },
+  "Signup Page": {
+    "title": "Register for Internship",
+    "stdid": "Student Number",
+    "email": "studentnumber@emu.edu.tr",
+    "fname": "First Name",
+    "lname": "Last Name",
+    "Password": "Password",
+    "confpass": "Confirm Password",
+    "microsoft": "Register with Microsoft",
+    "Register": "Register",
+    "Loginbtn": "Login"
+  },
+  "sidenav": {
+    "home": "Home",
+    "chat": "Discussion Forum",
+    "dashboard": "Dashboard",
+    "student": "Student"
+  },
+  "topnav": {
+    "edit": "Edit Profile",
+    "theme": "Theme",
+    "logout": "Logout",
+    "notif": "Notifications"
+  },
+  "dash": {
+    "welcome": "Welcome",
+    "logbook": "Logbook",
+    "add": "Add",
+    "Announcements": "Announcements",
+    "todo": "To-Do",
+    "iaf": "Fill Internship Application Form",
+    "sif": "Fill Social Insurance Form",
+    "filllg": "Fill Logbook",
+    "report": "Write Report"
+  },
+  "logbook": {
+    "title": "Daily Logbook",
+    "day": "Day",
+    "dept": "Department",
+    "desc": "Brief Description of Work Done",
+    "add": "Add"
   }
 }

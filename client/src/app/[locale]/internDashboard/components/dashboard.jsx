@@ -14,8 +14,10 @@ import {
 } from "react-icons/bs";
 import { FaBriefcase, FaRegCalendarCheck } from "react-icons/fa";
 import { RiVerifiedBadgeFill } from "react-icons/ri";
+import { useTranslations } from "next-intl";
 
 export const Dashboard = (props) => {
+  const t = useTranslations("dash");
   const [country, setCountry] = useState("Turkey");
   return (
     <main className={"m-5 bg-white dark:bg-dark_2 "}>
@@ -24,7 +26,9 @@ export const Dashboard = (props) => {
           "text-md lg:text-xl xl:text-2xl py-1 md:py-2 w-full max-w-[1300px] xl:mx-auto mx-2 font-bold"
         }
       >
-        <p>Welcome {props.firstname} </p>
+        <p>
+          {t("welcome")} {props.firstname}{" "}
+        </p>
       </div>
 
       {/*  section 1*/}
@@ -122,7 +126,7 @@ export const Dashboard = (props) => {
                 " font-semibold text-black dark:text-white text-sm md:text-md lg:text-lg  inline-flex text-center  border-yellow border-x-[0.4rem] md:border-x-[0.3rem] px-2"
               }
             >
-              Logbook
+              {t("logbook")}
             </p>
 
             <Link
@@ -132,7 +136,7 @@ export const Dashboard = (props) => {
               }
             >
               <BiPlus className={"text-white text-xl"} />
-              <div>Add</div>
+              <div>{t("add")}</div>
             </Link>
           </div>
 
@@ -154,7 +158,7 @@ export const Dashboard = (props) => {
               " font-semibold m-3 text-black dark:text-white text-sm md:text-md lg:text-lg  inline-flex text-center  border-yellow border-x-[0.4rem] md:border-x-[0.3rem] px-2"
             }
           >
-            Announcements
+            {t("Announcements")}
           </p>
 
           {/*section container*/}
@@ -211,7 +215,7 @@ export const Dashboard = (props) => {
               " font-semibold m-3 text-black dark:text-white text-sm md:text-md lg:text-lg  inline-flex text-center  border-yellow border-x-[0.4rem] md:border-x-[0.3rem] px-2"
             }
           >
-            To-Do
+            {t("todo")}
           </p>
 
           {/*section Container*/}
@@ -225,7 +229,7 @@ export const Dashboard = (props) => {
               {!props.isConfirmed ? (
                 <div
                   className={
-                    " p-2 rounded w-full  gap-2 bg-background_shade_2 dark:bg-dark_2 hover:bg-dark_4 text-black"
+                    " p-2 rounded w-full  gap-2 bg-background_shade_2 dark:bg-dark_2 text-black hover:bg-blue hover:text-white"
                   }
                 >
                   <Link
@@ -235,7 +239,7 @@ export const Dashboard = (props) => {
                     }
                   >
                     <span className={"text-center font-bold text-md w-full "}>
-                      Internship Application Form
+                      {t("iaf")}
                     </span>
                     <div className="text-xl ">
                       {props.isConfirmed && props.logComplete ? (
@@ -257,7 +261,7 @@ export const Dashboard = (props) => {
                       "text-center font-bold text-md w-full flex justify-center gap-2"
                     }
                   >
-                    <p>Internship Application Form</p>
+                    <p>{t("iaf")}</p>
                     <BsPatchCheckFill className="text-[green] text-xl " />
                   </div>
                 </div>
@@ -277,7 +281,7 @@ export const Dashboard = (props) => {
                     className={"flex items-center justify-center py-1.5 px-1"}
                   >
                     <span className={"text-center font-bold text-md w-full "}>
-                      Social Insurance Form
+                      {t("sif")}
                     </span>
                   </Link>
                 </div>
@@ -292,7 +296,7 @@ export const Dashboard = (props) => {
                       "text-center font-bold text-md w-full flex justify-center gap-2"
                     }
                   >
-                    <p>Social Insurance Form</p>
+                    <p>{t("sif")}</p>
                     {props.isConfirmed && (
                       <BsPatchCheckFill className="text-[green] text-xl " />
                     )}
@@ -317,7 +321,7 @@ export const Dashboard = (props) => {
                     className={"flex items-center justify-center py-1.5 px-1"}
                   >
                     <span className={"text-center font-bold text-md w-full "}>
-                      Fill Logbook
+                      F{t("filllg")}
                     </span>
                   </Link>
                 </div>
@@ -328,7 +332,7 @@ export const Dashboard = (props) => {
                   }
                 >
                   <span className={"text-center font-bold text-md w-full "}>
-                    Fill Logbook
+                    {t("filllg")}
                   </span>
                 </div>
               )}
@@ -345,7 +349,7 @@ export const Dashboard = (props) => {
                     className={"flex items-center justify-center py-1.5 px-1"}
                   >
                     <span className={"text-center font-bold text-md w-full "}>
-                      Write Report
+                      {t("report")}
                     </span>
                   </Link>
                 </div>
@@ -356,7 +360,7 @@ export const Dashboard = (props) => {
                   }
                 >
                   <span className={"text-center font-bold text-md w-full "}>
-                    Write Report
+                    {t("report")}
                   </span>
                 </div>
               )}

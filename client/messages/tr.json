@@ -42,5 +42,47 @@
     "email-placeholder": "adres@sağlayıcı.com",
     "Password": "Şifre",
     "Register": "Kayıt olmak"
+  },
+  "Signup Page": {
+    "title": "Staj Kaydı",
+    "stdid": "Öğrenci Numarası",
+    "email": "öğrencinumarası@emu.edu.tr",
+    "fname": "İlk adı",
+    "lname": "Soy isim",
+    "Password": " Şifre",
+    "confpass": "Şifreyi Onayla",
+    "microsoft": "Microsoft'a kaydolun",
+    "Register": "Kayıt olmak",
+    "Loginbtn": "Giriş yapmak"
+  },
+  "sidenav": {
+    "home": "Ev",
+    "chat": "Tartışma forumu",
+    "dashboard": "Gösterge Paneli",
+    "student": "Öğrenci"
+  },
+  "topnav": {
+    "edit": "Profili Düzenle",
+    "theme": "Tema",
+    "logout": "Çıkış Yap",
+    "notif": "Bildirimler"
+  },
+  "dash": {
+    "welcome": "Hoş geldin",
+    "logbook": "Seyir defteri",
+    "add": "Eklemek",
+    "Announcements": "Duyurular",
+    "todo": "Yapmak",
+    "iaf": "Staj Başvuru Formunu Doldurun",
+    "sif": "Sosyal Sigorta Formunu Doldurun",
+    "filllg": "Kayıt Defterini Doldur",
+    "report": "Rapor yazmak"
+  },
+  "logbook": {
+    "title": "Günlük Kayıt Defteri",
+    "day": "Gün",
+    "dept": "Departman",
+    "desc": "Yapılan İşin Kısa Açıklaması",
+    "add": "Eklemek"
   }
 }

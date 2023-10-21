@@ -12,20 +12,34 @@ import {
 } from "../svg_Icons";
 import { useRouter } from "next/navigation";
 import AuthConnect from "@/auth";
+import { useTranslations } from "next-intl";
 
 export const PcSideNav = (props) => {
+  const t = useTranslations("sidenav");
   let navlinks;
 
-  if (props.page === "/internDashboard") {
+  if (
+    props.page === "/internDashboard" ||
+    props.page === "/tr/internDashboard"
+  ) {
     navlinks = [
-      { name: "Home", icons: <HomeIcon />, link: "/" },
-      { name: "Chat", icons: <ChatIcon />, link: "" },
+      { name: t("home"), icons: <HomeIcon />, link: "/" },
+      { name: t("chat"), icons: <ChatIcon />, link: "" },
     ];
-  } else if (props.page === "/logbook" || props.page === "/applicationForm") {
+  } else if (
+    props.page === "/logbook" ||
+    props.page === "/applicationForm" ||
+    props.page === "/tr/logbook" ||
+    props.page === "/tr/applicationForm"
+  ) {
     navlinks = [
-      { name: "Home", icons: <HomeIcon />, link: "/" },
-      { name: "Dashboard", icons: <DashboardIcon />, link: "/internDashboard" },
-      { name: "Chat", icons: <ChatIcon />, link: "" },
+      { name: t("home"), icons: <HomeIcon />, link: "/" },
+      {
+        name: t("dashboard"),
+        icons: <DashboardIcon />,
+        link: "/internDashboard",
+      },
+      { name: t("chat"), icons: <ChatIcon />, link: "" },
     ];
   }
 
@@ -125,7 +139,7 @@ export const PcSideNav = (props) => {
                   {props.firstname} {props.lastname}
                 </span>
                 <span className={"hidden lg:block text-sm w-full"}>
-                  Student
+                  {t("student")}
                 </span>
               </div>
               <div
