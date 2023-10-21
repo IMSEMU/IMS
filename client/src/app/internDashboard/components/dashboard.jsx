@@ -7,6 +7,8 @@ import { LogbookDisplay } from "@/app/logbook/components/logbookDisplay";
 import { useEffect, useState } from "react";
 import AuthConnect from "@/auth";
 import { BsExclamationTriangleFill, BsPatchCheckFill, BsPatchExclamationFill, BsPatchQuestionFill } from "react-icons/bs";
+import { FaBriefcase, FaRegCalendarCheck } from "react-icons/fa";
+import { RiVerifiedBadgeFill } from "react-icons/ri";
 
 export const Dashboard = (props) => {
     const [country, setCountry] = useState("Turkey");
@@ -18,54 +20,64 @@ export const Dashboard = (props) => {
           </div>
 
         {/*  section 1*/}
-        <div className={'flex flex-wrap  justify-center items-center  gap-1.5  max-w-[1300px] xl:mx-auto mx-2'}>
+        <div className={'grid grid-cols-6  justify-between items-center  gap-4 w-full max-w-[1300px] self-center px-4 sm:px-10 lg:px-0'}>
 
             {/*total days*/}
-            <div className={'lg:h-[12rem] xl:w-[20rem] xl:h-[14rem]  w-[17.8rem]  h-[13rem]  bg-background_shade_2 rounded'}>
+            <div className={'min-h-[12rem] lg:h-[12rem] xl:h-[14rem] flex flex-wrap items-center gap-2 content-center justify-around col-span-6 md:col-span-3 lg:col-span-2 bg-white shadow-lg border border-background_shade_2 rounded'}>
 
-                    <div className={'mx-auto my-4 flex items-center gap-2'}>
-                        <div className={'w-full flex items-center mx-3 px-2'}>
-                            <span className={'text-3xl rounded p-3 my-1 bg-white text-blue'}><HiMiniCalendarDays /></span>
+                    <div className="flex justify-end w-full gap- items-center mx-10 my-2">
+                        <div className="inline-flex justify-end w-fit px-1.5 py-0.5 rounded bg-white gap-2 items-center  border border-dark_4 ">
+                            <FaRegCalendarCheck className="text-[green] text-xl"/>
+                            <p>40</p>
                         </div>
                     </div>
 
-                    <div className={'flex items-center text-md xl:text-lg mb-1 mx-3 px-2'}>
-                        <p>Total Days</p>
+                    <div className="flex w-full items-center justify-center ">
+                        <div className={'p-2 flex items-center w-1/4'}>
+                            <span className={'text-4xl rounded p-4 my-1 bg-dark_3 text-white'}><HiMiniCalendarDays /></span>
+                        </div>
+
+                        <div className={'flex flex-wrap justify-center text-center items-center gap-2 text-md xl:text-lg p-2'}>
+                            <div className="w-full text-4xl font-bold">23</div>
+                            <div className="w-full text-xs">Remaining Days</div>
+                        </div>
                     </div>
 
-                    <div className={' flex items-center text-md xl:text-lg justify-between my-2 mx-3 px-2'}>
-                        <p>40</p>
-
-                    </div>
             </div>
 
             {/*orgaization name*/}
-            <div className={'lg:h-[12rem] xl:w-[20rem] xl:h-[14rem] w-[17.8rem]  h-[13rem]  bg-background_shade_2 rounded'}>
+            <div className={'min-h-[12rem] lg:h-[12rem] xl:h-[14rem] flex flex-wrap items-center gap-2 content-center justify-around col-span-6 md:col-span-3 lg:col-span-2 bg-white shadow-lg border border-background_shade_2 rounded'}>
 
-                    <div className={'mx-auto my-4 flex items-center gap-2'}>
-                        <div className={'w-full flex items-center mx-3 px-2'}>
-                            <span className={'text-3xl rounded p-3 my-1 bg-white text-blue'}><HiMiniCalendarDays /></span>
+                    <div className="flex justify-end w-full gap- items-center mx-10 my-2">
+                        <div className="inline-flex justify-end w-fit px-1.5 py-0.5 rounded bg-white gap-2 items-center  border border-dark_4 ">
+                            <RiVerifiedBadgeFill className="text-[green] text-xl"/>
+                            <p>Verified</p>
                         </div>
                     </div>
 
-                    <div className={'flex items-center text-md xl:text-lg mb-1 mx-3 px-2'}>
-                        <p>Total Days</p>
+                    <div className="flex w-full items-center justify-center ">
+                        <div className={'p-2 flex items-center w-1/4'}>
+                            <span className={'text-4xl rounded p-4 my-1 bg-dark_3 text-white'}><FaBriefcase /></span>
+                        </div>
+
+                        <div className={'w-1/2 flex flex-wrap justify-center text-center items-center gap-2 text-md xl:text-lg p-2'}>
+                            <div className=" text-xl truncate font-bold mx-1 max-w-[100%]">
+                                <p className="truncate">Eastern Meditrannean</p>
+                            </div>
+                            <div className="w-full text-xs">company  Name</div>
+                        </div>
                     </div>
 
-                    <div className={' flex items-center text-md xl:text-lg justify-between my-2 mx-3 px-2'}>
-                        <p className={'truncate w-[14rem]'}>Eastern mediteranean university</p>
-
-                    </div>
             </div>
 
-            <div className={' w-[18.5rem] xl:w-[20rem] flex items-center justify-center'}>
+            <div className={' col-span-6 md:col-span-3 lg:col-span-2 flex items-center justify-center'}>
                 <Calendar />
             </div>
 
 
 
             {/*logbook Card*/}
-            <div className={'bg-background_shade  w-[17.8rem] xl:w-[20rem] h-[19rem] rounded'}>
+            <div className={'bg-background_shade col-span-6 md:col-span-3 lg:col-span-2 h-[19rem] rounded'}>
 
                 {/*section Name and Buton*/}
                 <div className={'justify-between flex items-center mx-3 mt-3 mb-2'}>
@@ -89,7 +101,7 @@ export const Dashboard = (props) => {
 
 
             {/*Announcement Card*/}
-            <div className={'bg-background_shade  w-[17.8rem] xl:w-[20rem] h-[19rem] rounded'}>
+            <div className={'bg-background_shade  col-span-6 md:col-span-3 lg:col-span-2 h-[19rem] rounded'}>
 
                 {/*section Name*/}
                 <p className={" font-semibold m-3 text-black dark:text-white text-sm md:text-md lg:text-lg  inline-flex text-center  border-yellow border-x-[0.4rem] md:border-x-[0.3rem] px-2"}>
@@ -99,15 +111,15 @@ export const Dashboard = (props) => {
                 {/*section container*/}
                 <div className={'h-[15rem] overflow-y-auto'}>
 
-                    <div className={'mx-auto max-w-[17.8rem]  my-2 bg-background_shade_2 rounded'}>
+                    <div className={'mx-auto max-w-[90%]  my-2 bg-background_shade_2 hover:bg-dark_4 rounded'}>
 
                         <Link href={''} className={'flex justify-between items-center w-full py-3 px-2 w gap-3'}>
 
                             <Image src={'/envelope.png'} width={1000} height={1000} className={'w-[3rem] h-[3rem]'} alt={""} />
 
-                            <div className={'truncate flex flex-wrap justify-start items-center gap-1'}>
+                            <div className={'truncate flex flex-wrap justify-start items-center  gap-1'}>
                                 <p className={'font-semibold capitalize '}>Title</p>
-                                <span className={'truncate text-sm lg:text-md'}>Announcement content</span>
+                                <span className={'truncate text-sm lg:text-md'}>Announcement contentfffffffff</span>
                             </div>
 
                             <div className={'flex items-center justify-center text-sm w-fit'}>
@@ -124,7 +136,7 @@ export const Dashboard = (props) => {
 
 
             {/*Todo Card*/}
-            <div className={'bg-background_shade  w-[17.8rem] xl:w-[20rem] h-[19rem] rounded'}>
+            <div className={'bg-background_shade col-span-6 md:col-span-3 lg:col-span-2 h-[19rem] rounded'}>
 
                 {/*section Name*/}
                 <p className={" font-semibold m-3 text-black dark:text-white text-sm md:text-md lg:text-lg  inline-flex text-center  border-yellow border-x-[0.4rem] md:border-x-[0.3rem] px-2"}>
@@ -134,15 +146,15 @@ export const Dashboard = (props) => {
                 {/*section Container*/}
                 <div className={'h-[15rem] overflow-y-auto'}>
 
-                  <div className={' mx-auto max-w-[18rem]  rounded  border-yellow text-black'}>
+                  <div className={' mx-auto max-w-[90%]  rounded  border-yellow text-black'}>
                     
             {/* Fill Internship Application Form */}
             {!props.isConfirmed ? (
-                <div className={' p-2 rounded w-full  gap-2 bg-background_shade_2 dark:bg-dark_4 hover:bg-blue hover:text-white'}>
+                <div className={' p-2 rounded w-full  gap-2 bg-background_shade_2 dark:bg-dark_2 hover:bg-dark_4 text-black'}>
                     <Link href={'/applicationForm'} className={'flex items-center justify-center py-1.5 gap-2 px-1'}>
                         <span className={'text-center font-bold text-md w-full '}>Internship Application Form</span>
                         <div className="text-xl ">
-                            { props.isConfirmed && props.logComplete ? <BsPatchCheckFill className="text-[green]"/> : <BsExclamationTriangleFill className="text-[#ffd000]"/>}
+                            { props.isConfirmed && props.logComplete ? <BsPatchCheckFill className="text-[green]"/> : <BsExclamationTriangleFill className="text-[#cab13e]"/>}
 
                         </div>
                     </Link>

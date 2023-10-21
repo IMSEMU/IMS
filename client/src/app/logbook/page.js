@@ -6,7 +6,7 @@ export const metadata = {
 }
 const Logbook = () => {
   return(
-      <main className="flex flex-nowrap min-w-screen">
+      <main className=" min-w-screen min-h-screen ">
          <LogbookPage />
       </main>
   )

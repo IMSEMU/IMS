@@ -46,9 +46,13 @@ export const LogbookPage = () => {
         return null; // Prevent rendering the dashboard until token is fetched
       }
   return(
-          <main className={' flex items-center justify-center '}>
-          <PcSideNav page={pathname} firstname={std.firstname} lastname={std.lastname}/>
-              <section className="p-2 bg-white dark:bg-dark_1 flex items-center justify-center px-20">
+          <main className={''}>
+
+          <div className="flex w-full">
+              <PcSideNav page={pathname} firstname={std.firstname} lastname={std.lastname}/>
+           
+              
+              <section className=" bg-white dark:bg-dark_1 flex items-center justify-center w-full">
                 <div className="bg-white dark:bg-dark_2 p-3.5 flex rounded shadow-xl dark:border-none border border-background_shade_2 w-[25rem] lg:w-[50rem] h-[32rem]">
                    
                    {/* LOgbook Add section */}
@@ -65,6 +69,8 @@ export const LogbookPage = () => {
 
                 </div>
             </section>
+</div>
+
             <MobileNav />
         </main>
   )

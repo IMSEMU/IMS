@@ -10,8 +10,9 @@ import { Empty } from 'antd';
 export const LogbookDisplay = () => {
 
     const [options, setOptions] = useState(false);
-
     const [logbookEntries, setLogbookEntries] = useState([]);
+    const [selectedItem, setSelectedItem] = useState(null);
+
 
   useEffect(() => {
     // Fetch logbook entries from the API
@@ -27,7 +28,8 @@ export const LogbookDisplay = () => {
     fetchLogbookEntries();
   }, []);
 
-    const optionToogle = () => {
+    const optionToogle = (logid) => {
+        setSelectedItem(logid)
         setOptions(!options);
     }
     const formatDate = (fullDate) => {
@@ -46,10 +48,10 @@ export const LogbookDisplay = () => {
         logbookEntries.map((entry) => (
           <div key={entry.logid}>
             {/* Render each logbook entry */}
-            <div className="mx-1 py-2 bg-blue dark:bg-dark_4 dark:text-black text-white flex items-center justify-between rounded">
+            <div className="my-2 mx-1 py-2 bg-background_shade_2 hover:bg-dark_4 dark:bg-dark_4 dark:text-black text-black flex items-center justify-between rounded">
 
                 <div className="ml-3  flex flex-wrap gap-1 w-[5rem]">
-                    <p className="font-semibold">Day {entry.day}</p>
+                    <p className="font-semibold">#Day-{entry.day}</p>
                     <p className=" bg-yellow rounded text-sm font-medium text-white px-1 py-0.5">{formatDate(entry.date)}</p>
                 </div>
 
@@ -61,11 +63,11 @@ export const LogbookDisplay = () => {
                 </div>
 
                 <div className="relative mr-3">
-                    <FaEllipsisV className=" cursor-pointer" onClick={optionToogle} />
+                    <FaEllipsisV className=" cursor-pointer" onClick={()=>optionToogle(entry.logid)} />
 
                     {
                         options &&
-                        <div className="absolute text-white -left-10 -top-[1.4rem] h-fit rounded w-[5rem] bg-dark_3">
+                        <div className="from-left absolute text-white -left-10 -top-[1.4rem] h-fit rounded w-[5rem] bg-dark_3">
                             <div className="relative">
                                 <div className="m-0.5 p-1 rounded flex text-sm font-medium items-center cursor-pointer gap-0.5 hover:bg-b dark:hover:bg-background_shade">
                                     <GiTrashCan className="text-xl text-yellow"/>

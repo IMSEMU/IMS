@@ -8,11 +8,9 @@ module.exports = {
   darkMode: 'class',
 
   theme: {
-    extend: {
-        grayscale: {
-        10: '10%',
-      }
-    },
+    
+    extend: {},
+
     colors:{
         yellow : "#FFB81C",
         yellow_2 : "rgba(255, 184, 28, 0.48)",

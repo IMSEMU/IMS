@@ -6,12 +6,12 @@ import {HomeIcon,DashboardIcon,NotificationIcon,ChatIcon,LogbookIcon} from "@/ap
 export  const MobileNav = () => {
 
     let  pathname = usePathname();
-    // console.log(pathname);
+    console.log(pathname);
 
-    // if(pathname.includes('/internDashboard')){
-    //     pathname = '/Dashboard';
-    // }
-    // console.log(pathname);
+    if(pathname.includes('/internDashboard')){
+        pathname = '/Dashboard';
+    }
+    console.log(pathname);
 
 
     return(

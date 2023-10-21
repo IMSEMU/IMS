@@ -1,23 +1,19 @@
-// "use client"
 import './globals.css'
 import { Inter } from 'next/font/google'
-import {DarkModeProvider} from "@/app/contexts/darkModeContext";
+// import {Providers} from '../app/provider'
+import { DarkModeProvider } from './contexts/darkModeContext'
 
 const inter = Inter({ subsets: ['latin'] })
 
-// export const metadata = {
-//   title: {
-//     template: '%s | I.M.S.',
-//     default: 'I.M.S', // a default is required when creating a template
-//   },
-// }
-
 export default function RootLayout({ children }) {
+  // console.log(children);
   return (
-    <html lang="en">
+    <html lang="en" >
       <link rel={"icon"} href={"/logo.svg"}/>
       <DarkModeProvider>
-         <body className={inter.className }>{children}</body>
+      {/* <Providers> */}
+         <body className={`bg-white dark:bg-black ${inter.className }`}>{children}</body>
+      {/* </Providers> */}
       </DarkModeProvider>
     </html>
   )

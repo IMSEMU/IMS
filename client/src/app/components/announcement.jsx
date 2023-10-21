@@ -9,6 +9,8 @@ import {getAnnouncements} from "../../../utils/dataFetching";
 export const Announcement = () => {
   const [cards, setCards] = useState([]);
   const [selectedCard, setSelectedCard] = useState([]);
+  const [select, setSelect] = useState(false);
+  const [close, setClose] = useState(false);
 
   // Fetch card data
   useEffect(() => {
@@ -22,7 +24,9 @@ export const Announcement = () => {
   // Click handler for opening announcements
   const handleCardClick = (card) => {
     setSelectedCard(card);
+    setSelect(true);
   };
+
 
     return (
       <>
@@ -36,16 +40,18 @@ export const Announcement = () => {
           </div>
 
           {/* Announcement section */}
-          <div className={"text-xs sm:text-sm md:text-md lg:text-lg xl:text-xl 2xl:text-2xl items-center justify-center mt-4 bg-background_shade_2 dark:bg-dark_3 rounded gap-0 flex w-full"}>
+          <div className={"text-xs sm:text-sm md:text-md lg:text-lg xl:text-xl 2xl:text-2xl items-center justify-center mt-4 bg-background_shade_2 dark:bg-dark_3 rounded gap-2 flex w-full"}>
 
             {/* Announcements */}
-            <div className={"h-[30rem] sm:h-[32rem] overflow-y-auto w-fit cursor-pointer my-2 xl:m-4"}>
+            <div className={"h-[30rem] sm:h-[32rem] overflow-y-auto w-full max-w-[80%] sm:max-w-[70%] sm:w-[70%] md:max-w-full md:w-[40%] cursor-pointer my-2 xl:m-4"}>
 
               {cards && cards.map((message) => {
                 return (
-                  <div key={message.id} className={"text-[0.9rem] sm:text-sm w-[100vw] sm:w-full flex items-start justify-center"}>
+                  <div key={message.id} className={"text-[0.9rem] sm:text-sm w-full sm:w-full flex items-start justify-center"}>
 
-                    <div onClick={() => handleCardClick(message)} className={"w-full md:w-[23rem] flex justify-between items-center rounded my-1.5 mx-1.5 bg-white dark:bg-dark_2"}>
+                    <div 
+                      onClick={() => {handleCardClick(message); setClose(true)}} 
+                      className={"w-full md:w-[23rem] flex justify-between items-center rounded my-1.5 mx-1.5 bg-white dark:bg-dark_2"}>
 
                       <div className={"text-xs sm:text-sm md:text-md p-3"}>
 
@@ -57,7 +63,7 @@ export const Announcement = () => {
                       </div>
 
                       {/* Important Announcement identifier */}
-                      {message.important ? <FaExclamationTriangle className={"mr-3 text-md xl:text-xl 2xl:text-2xl text-[red] cursor-pointer"}/> : ""}
+                      {/* {message.important ? <FaExclamationTriangle className={"mr-3 text-md xl:text-xl 2xl:text-2xl text-[red] cursor-pointer"}/> : ""} */}
                     </div>
 
                   </div>
@@ -69,15 +75,14 @@ export const Announcement = () => {
 
 
             {/* Announcement Display */}
-            <div className={"text-xs sm:text-sm md:text-md xl:text-xl overflow-y-scroll relative hidden sm:block bg-white dark:bg-background_shade_2 md:w-[40rem] m-2 rounded sm:h-[31.5rem]"}>
+            <div className={"text-xs sm:text-sm md:text-md xl:text-xl overflow-y-auto relative hidden md:block bg-white dark:bg-background_shade_2 md:w-1/2 m-2 rounded sm:h-[31.5rem]"}>
 
               {/* Display the contents of selected card */}
               <div className={"w-full py-4 px-6 "}>
-
-                {selectedCard === null ?
-                  <div className={"text-xl md:text-2xl text-background_shade_2 text-center font-semibold "}>
-                    <TfiAnnouncement className={"inline-flex mb-2 "} />
-                    <strong>Select an announcement</strong>
+                {select === false ?
+                  <div className={"text-xl md:text-xl my-2 text-dark_4 items-center min-w-full justify-center hidden md:flex gap-2 text-center font-semibold "}>
+                    <TfiAnnouncement className={" mb-2 text-2xl "} />
+                    <strong className="" >Click to view announcement</strong>
                   </div>
                   :
                   selectedCard && (
@@ -86,10 +91,6 @@ export const Announcement = () => {
                         <div className={"font-bold text-center"}>
                           <h2>{selectedCard.subject}</h2>
                         </div>
-                        <div className={"absolute top-0 right-0"}>
-                          {selectedCard.important ?
-                            <FaExclamationTriangle className={"text-md xl:text-xl 2xl:text-2xl mr-3 mt-4 text-[red] cursor-pointer"}/> : ""}
-                        </div>
                       </div>
                       <p className={"p-3"}>{selectedCard.body}</p>
                     </div>
@@ -97,24 +98,22 @@ export const Announcement = () => {
               </div>
             </div>
                                   {/*open in mobile view */}
-              <div className={"z-[99]  top-0 hidden bg-white fixed h-[100%] w-[100vw]"}>
-                  <Navbar className={"mt-2"} />
+              <div className={ close ? "z-[60] bg-[rgba(0,0,0,0.85)] text-black dark:text-white top-0 md:hidden flex items-center fixed min-h-screen min-w-screen" : 'hidden'}>
                   <div className={"flex items-center"}>
-                  <div className={"w-full h-[20rem] mx-auto py-4 px-6 border"}>
-                    <div className={""}>XX</div>
+                  <div className={"w-[85%] from-bottom  rounded h-[25rem]  mx-auto p-4 bg-white dark:bg-dark_2"}>
+                    {/* close modal */}
+                    <div onClick={()=>{setClose(false)}} className={"flex justify-end items-center p-2"}>xx</div>
                 {
                   selectedCard && (
-                    <div className={"relative"}>
-                      <div className={"sticky top-0 p-3 bg-white"}>
+                    <div className={" z-50"}>
+                      <div className={" p-3 "}>
                         <div className={"font-bold text-center"}>
                           <h2>{selectedCard.subject}</h2>
                         </div>
-                        <div className={"absolute top-0 right-0"}>
-                          {selectedCard.important ?
-                            <FaExclamationTriangle className={"text-md xl:text-xl 2xl:text-2xl mr-3 mt-4 text-[red] cursor-pointer"}/> : ""}
-                        </div>
                       </div>
-                      <p className={"p-3"}>{selectedCard.body}</p>
+                        <div className="overflow-y-auto">
+                          <p className={"p-3"}>{selectedCard.body}</p>
+                        </div>
                     </div>
                   )}
               </div>

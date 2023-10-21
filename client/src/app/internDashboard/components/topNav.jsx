@@ -88,11 +88,11 @@ export const TopNav = (props) => {
             <div className="flex flex-wrap justify-center items-center gap-4">
 
                 {/* notification */}
-                <div className="">
+                <div onClick={notificationDropToggle} className="">
                     <NotificationIcon />
                 </div>
 
-                <div onClick={profileDropToggle} onBlur={profileDropToggle} className={"flex items-baseline text-blue relative cursor-pointer"}>
+                <div onClick={profileDropToggle}  className={"flex items-baseline text-blue relative cursor-pointer"}>
                     <Image
                         src={'/dark-flower.jpeg'}
                         alt={"qq"}
@@ -107,7 +107,7 @@ export const TopNav = (props) => {
 
                 {
                     notificationDrop &&
-                    <div className=" overflow-hidden absolute right-4 top-16 w-[18rem] h-fit max-h-[30rem] border dark:border-none rounded bg-white dark:bg-dark_3 text-black">
+                    <div className=" from-top overflow-hidden absolute right-4 top-16 w-[18rem] h-fit max-h-[30rem] border dark:border-none rounded bg-white dark:bg-dark_3 text-black">
 
                         {/* clear all notifications */}
                         <div className=" py-3 px-2 flex justify-between">
@@ -156,7 +156,7 @@ export const TopNav = (props) => {
                     {/*  profile  dropdown*/}
 
                     { profileDrop &&
-                        <div className={'  absolute right-4 top-16 w-[18rem] h-fit border dark:border-none rounded bg-white dark:bg-dark_3 text-black dark:text-white'}>
+                        <div className={'from-top  absolute right-4 top-16 w-[18rem] h-fit border dark:border-none rounded bg-white dark:bg-dark_3 text-black dark:text-white'}>
 
                             {/*image and name*/}
                             <div className={'flex justify-start items-center p-3 gap-3 border-b border-dark_3 dark:border-white'}>

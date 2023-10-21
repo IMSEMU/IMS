@@ -55,15 +55,7 @@ export const SignupSection = ({loginToogle}) => {
     <>
       <main className="w-full md:w-1/2 px-8 md:px-6 ">
         {/* Form section */}
-         <AnimatePresence>
-
-            <motion.div
-                variants={loginToogleAnimation}
-                initial={"initial"}
-                animate={'animate' }
-                exit={"exit"}
-                className=""
-            >
+            <div className="from-left">
                 <div className={'flex justify-center items-center'}>
                     <Image
                         width={90}
@@ -123,6 +115,7 @@ export const SignupSection = ({loginToogle}) => {
                             type={'text'}
                             name=""
                             id=""
+                            autoComplete="off"
                             placeholder="Last Name"
                             className="input w-full text-dark_2 dark:text-yellow placeholder:text-dark_2 dark:placeholder:text-yellow bg-white dark:bg-dark_2 px-4 py-2.5 border-b-dark_2 dark:border-b-yellow  border-x-0 border-t-0 mt-1 border-2  focus:outline-none"
                             value={lastname} onChange={(e) => setLastname(e.target.value)}
@@ -193,10 +186,8 @@ export const SignupSection = ({loginToogle}) => {
                     </button>
                 </div>
 
-            </motion.div>
+            </div>
 
-
-        </AnimatePresence>
         <Modal
         isOpen={showModal}
         message='Registration Successful'

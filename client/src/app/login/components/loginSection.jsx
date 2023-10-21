@@ -78,14 +78,9 @@ export default function LoginSection() {
                     </div>
 
                     {/* Form section */}
-                    <AnimatePresence>
-                        {login ? login && (
-                        <motion.div
-                            variants={loginToogleAnimation}
-                            initial={'initial'}
-                            animate={'animate' }
-                            exit={{y:-1000}}
-                            className="w-full md:w-1/2 px-8 md:px-6 my-1 md:my-4"
+                    {/* <AnimatePresence> */}
+                        {login ? 
+                        <div className="from-left w-full md:w-1/2 px-8 md:px-6 my-1 md:my-4"
                         >
                             <div className='flex justify-center items-center my-2'>
                                 <Image
@@ -166,11 +161,11 @@ export default function LoginSection() {
                                     </span>
                                 </button>
                             </div>
-                        </motion.div>
-                ) : (
+                        </div>
+                : 
                     <SignupSection loginToogle={loginToogle} />
-                )}
-                    </AnimatePresence>
+                }
+                    {/* </AnimatePresence> */}
 
                 </div>
             </section>

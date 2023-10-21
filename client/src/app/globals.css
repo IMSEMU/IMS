@@ -36,6 +36,7 @@ margin: 0;
 .skeleton-loader{
     animation: skeleton 3s ease-in-out 2s infinite alternate;
 }
+
 @keyframes skeleton {
   0%   {opacity: 0.3}
   25%  {opacity: 1}
@@ -44,4 +45,56 @@ margin: 0;
   100% {opacity: 0.3}
 }
 
+.from-left
+    {
+        opacity:1;
+        animation: slideLeft 500ms ease-out;
+        transition: transform 0.5s, display 0.5s opacity 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+    }
 
+@keyframes slideLeft {
+    from{
+        opacity:0;
+        transform: translateX(2rem);
+    }
+    to{
+        opacity:1;
+        transform:translateX(0rem);
+    }
+}
+
+.from-bottom
+    {
+        opacity:1;
+        animation: slideUp 500ms ease-out;
+        transition: transform 0.5s, display 0.5s opacity 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+    }
+
+@keyframes slideUp {
+    from{
+        opacity:0;
+        transform: translateY(2rem);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0rem);
+    }
+}
+
+.from-top
+    {
+        opacity:1;
+        animation: slideDowm 500ms ease-out;
+        transition: transform 0.5s, display 0.5s opacity 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+    }
+
+@keyframes slideDowm {
+    from{
+        opacity:0;
+        transform: translateY(-2rem);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0rem);
+    }
+}

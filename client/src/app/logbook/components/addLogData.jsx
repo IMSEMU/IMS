@@ -1,6 +1,6 @@
 'use client'
 import { BiPlus } from "react-icons/bi";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import AuthConnect from "@/auth";
 
 export  const AddLogData = () => {
@@ -8,25 +8,49 @@ export  const AddLogData = () => {
   const [date, setDate] = useState("");
   const [department, setDepartment] = useState("");
   const [description, setDescription] = useState("");
+  const [logEntries, setLogEntries] = useState([]);
+
+  useEffect(()=>{
+    const logList = logEntries.map((entry) => (
+      <li key={entry.id}>
+        <p>Day: {entry.day}</p>
+        <p>Date: {entry.date}</p>
+        <p>Department: {entry.department}</p>
+        <p>Description: {entry.description}</p>
+      </li>
+    ));
+    console.log(logList);
+
+  },[logEntries]
+  );
 
   const createLogEntry = async (e) => {
-   try { 
-    const response = await AuthConnect.post('/createlog', {
-            day: day,
-            date: date,
-            department: department,
-            description: description
-    });
-         
-        console.log(response);
-
+    e.preventDefault();
+  
+    try {
+      const response = await AuthConnect.post('/createlog', {
+        day: day,
+        date: date,
+        department: department,
+        description: description
+      });
+  
+      console.log(response);
+  
+      setDay('');
+      setDate('');
+      setDepartment('');
+      setDescription('');
+  
+      setLogEntries((prevLogEntries) => [...prevLogEntries, response.data]);
     } catch (error) {
-        console.error("Error:", error);
-        if (error.response) {
-          setMsg(error.response.data.msg);
-        }
+      console.error("Error:", error);
+      if (error.response) {
+        setMsg(error.response.data.msg);
+      }
     }
-}
+  };
+  
 
   return ( 
       <div className="w-full">
