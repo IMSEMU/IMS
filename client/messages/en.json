@@ -84,5 +84,26 @@
     "dept": "Department",
     "desc": "Brief Description of Work Done",
     "add": "Add"
+  },
+  "iaf": {
+    "title": "Internship Application Form",
+    "stdinfo": "Student Information",
+    "name": "Name",
+    "stdid": "Student Number",
+    "email": "Email Address",
+    "phone": "Telephone Number",
+    "address": "Postal Address",
+    "compinfo": "Company Information",
+    "compname": "Company Name",
+    "work": "Working Fields",
+    "website": "Organizational Web Address",
+    "orgemail": "Organizational Email",
+    "fax": "Fax",
+    "desc": "Description of the work to be done during internship and the reason for choosing this company",
+    "cis": "Company Internship Supervisor Information",
+    "fname": "First Name",
+    "lname": "Last Name",
+    "pos": "Position in the Company",
+    "submit": "Submit"
   }
 }

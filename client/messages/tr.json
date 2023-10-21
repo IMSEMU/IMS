@@ -84,5 +84,26 @@
     "dept": "Departman",
     "desc": "Yapılan İşin Kısa Açıklaması",
     "add": "Eklemek"
+  },
+  "iaf": {
+    "title": "Staj Başvuru Formu",
+    "stdinfo": "Öğrenci bilgileri",
+    "name": "İsim",
+    "stdid": "Öğrenci Numarası",
+    "email": " E-posta Adresi",
+    "phone": "Telefon numarası",
+    "address": "Posta adresi",
+    "compinfo": "Şirket Bilgisi",
+    "compname": "Firma Adı",
+    "work": "Çalışma Alanları",
+    "website": "Kurumsal Web Adresi",
+    "orgemail": "Kurumsal E-posta",
+    "fax": "Faks",
+    "desc": "Staj sırasında yapılacak işin tanımı ve bu firmayı seçme nedeni",
+    "cis": "Şirket Staj Sorumlusu Bilgileri",
+    "fname": "İlk adı",
+    "lname": "Soy isim",
+    "pos": "Şirketteki Pozisyonu",
+    "submit": "Göndermek"
   }
 }
