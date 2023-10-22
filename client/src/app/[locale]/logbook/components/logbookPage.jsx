@@ -13,6 +13,7 @@ export const LogbookPage = () => {
   const router = useRouter();
   const [token, setToken] = useState(null);
   const [std, setStd] = useState([]);
+  const [logbookEntries, setLogbookEntries] = useState([]);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -41,6 +42,24 @@ export const LogbookPage = () => {
 
     getStudent();
   }, []);
+  useEffect(() => {
+    // Fetch logbook entries from the API
+    const fetchLogbookEntries = async () => {
+      try {
+        const response = await AuthConnect.get("/viewlog");
+        setLogbookEntries(response.data);
+      } catch (error) {
+        console.error("Error fetching logbook entries:", error);
+      }
+    };
+
+    fetchLogbookEntries();
+  }, [logbookEntries]);
+
+  const updateLogbookEntries = (newLogEntry) => {
+    setLogbookEntries((prevEntries) => [...prevEntries, newLogEntry]);
+  };
+
   if (!token) {
     return null; // Prevent rendering the dashboard until token is fetched
   }
@@ -64,13 +83,13 @@ export const LogbookPage = () => {
               {/* LOgbook Add section */}
               <div className=" lg:w-1/2">
                 <div className=" flex items-center h-full">
-                  <AddLogData />
+                  <AddLogData updateLogbookEntries={updateLogbookEntries} />
                 </div>
               </div>
 
               {/* Logbook Display section */}
               <div className="hidden lg:block w-1/2 bg-background_shade dark:bg-dark_3 rounded">
-                <LogbookDisplay />
+                <LogbookDisplay logbookEntries={logbookEntries} />
               </div>
             </div>
           </section>

@@ -3,30 +3,14 @@ import { useState, useEffect } from "react";
 import { BiChevronsRight } from "react-icons/bi";
 import { FaEllipsisV, FaTimes } from "react-icons/fa";
 import { GiTrashCan, GiPencil } from "react-icons/gi";
-import AuthConnect from "@/auth";
-import { format } from "date-fns";
 import { Empty } from "antd";
-import { useTranslations } from "next-intl";
+import { useTranslations, useFormatter } from "next-intl";
 
-export const LogbookDisplay = () => {
+export const LogbookDisplay = ({ logbookEntries }) => {
   const t = useTranslations("logbook");
+  const format = useFormatter();
   const [options, setOptions] = useState(false);
-  const [logbookEntries, setLogbookEntries] = useState([]);
   const [selectedItem, setSelectedItem] = useState(null);
-
-  useEffect(() => {
-    // Fetch logbook entries from the API
-    const fetchLogbookEntries = async () => {
-      try {
-        const response = await AuthConnect.get("/viewlog");
-        setLogbookEntries(response.data);
-      } catch (error) {
-        console.error("Error fetching logbook entries:", error);
-      }
-    };
-
-    fetchLogbookEntries();
-  }, []);
 
   const optionToogle = (logid) => {
     setSelectedItem(logid);
@@ -34,11 +18,16 @@ export const LogbookDisplay = () => {
   };
   const formatDate = (fullDate) => {
     const date = new Date(fullDate);
-    return format(date, "dd/MM/yyyy");
+    const formattedDate = format.dateTime(date, {
+      year: "2-digit",
+      month: "2-digit",
+      day: "2-digit",
+    });
+    return formattedDate;
   };
 
   return (
-    <div className="m-4 rounded h-fit">
+    <div className="m-4 rounded h-[28rem] overflow-x-hidden overflow-y-scroll">
       {logbookEntries.length === 0 ? (
         <div className=" font-semibold text-lg text-center text-white">
           <Empty />

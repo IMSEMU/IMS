@@ -1,13 +1,12 @@
-import ResetPassword from "@/app/reset-password/components/resetPassword";
+import ResetPassword from "../reset-password/components/resetPassword";
 
 export const metadata = {
-  title: 'Reset Password | I.M.S.',
-}
+  title: "Reset Password | I.M.S.",
+};
 export default function resetPass() {
-
   return (
-        <div className={' bg-white dark:bg-dark_2'}>
-            <ResetPassword />
-        </div>
-  )
+    <div className={" bg-white dark:bg-dark_2"}>
+      <ResetPassword />
+    </div>
+  );
 }
