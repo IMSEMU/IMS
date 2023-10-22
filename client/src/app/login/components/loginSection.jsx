@@ -12,6 +12,7 @@ import {motion,AnimatePresence} from 'framer-motion'
 import {loginToogleAnimation, } from "@/app/styleVariants";
 import AuthConnect from "@/auth";
 import {useRouter} from 'next/navigation';
+import { FailedToast, SuccessToast } from "@/app/globalComponents/toastNotifications";
 
 export default function LoginSection() {
 
@@ -20,6 +21,7 @@ export default function LoginSection() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [msg, setMsg] = useState('');
+    const [toastStatus, setToastStatus] =useState();
     const router = useRouter();
 
 
@@ -44,11 +46,16 @@ export default function LoginSection() {
             console.log(response);
 
             router.push('/internDashboard');
+
+            setToastStatus(true);
         } catch (error) {
+            
             console.error("Error:", error);
             if (error.response) {
               setMsg(error.response.data.msg);
+              
             }
+            setToastStatus(false);
         }
     }
 
@@ -78,7 +85,7 @@ export default function LoginSection() {
                     </div>
 
                     {/* Form section */}
-                    {/* <AnimatePresence> */}
+
                         {login ? 
                         <div className="from-left w-full md:w-1/2 px-8 md:px-6 my-1 md:my-4"
                         >
@@ -165,10 +172,11 @@ export default function LoginSection() {
                 : 
                     <SignupSection loginToogle={loginToogle} />
                 }
-                    {/* </AnimatePresence> */}
 
                 </div>
             </section>
+            
+            {toastStatus ? <SuccessToast errorMssg={msg} setErrorMssg={setMsg}/> : <FailedToast errorMssg={msg} setErrorMssg={setMsg}/>}
         </main>
     );
 }

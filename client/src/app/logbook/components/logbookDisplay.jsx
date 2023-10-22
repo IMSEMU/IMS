@@ -52,7 +52,7 @@ export const LogbookDisplay = () => {
 
                 <div className="ml-3  flex flex-wrap gap-1 w-[5rem]">
                     <p className="font-semibold">#Day-{entry.day}</p>
-                    <p className=" bg-yellow rounded text-sm font-medium text-white px-1 py-0.5">{formatDate(entry.date)}</p>
+                    <p className=" bg-blue rounded text-sm font-medium text-white px-1 py-0.5">{formatDate(entry.date)}</p>
                 </div>
 
                 <div className="flex flex-wrap  truncate w-40 items-center">

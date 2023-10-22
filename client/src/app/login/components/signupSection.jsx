@@ -6,6 +6,7 @@ import {VscSignIn} from "react-icons/vsc";
 import { useRouter } from "next/navigation";
 import AuthConnect from "@/auth";
 import {useState} from "react";
+import { FailedToast, SuccessToast } from "@/app/globalComponents/toastNotifications"
 import Modal from "@/app/globalComponents/modal";
 
 
@@ -18,6 +19,7 @@ export const SignupSection = ({loginToogle}) => {
       const [confPassword, setConfPassword] = useState('');
       const [msg, setMsg] = useState('');
       const [showModal, setShowModal] = useState(false);
+      const [toastStatus, setToastStatus] =useState();
       const router = useRouter();
   
       const signupnewuser = async (e) => {
@@ -34,14 +36,17 @@ export const SignupSection = ({loginToogle}) => {
             if (response.data.status === 'success') {
                 alert("Registration Successful");
                 router.push("/login");
-            }// else {
+            }
+            setToastStatus(true);
+            // else {
             //     alert("Registration Unsuccessful");
             // }
         } catch (error) {
             if (error.response) {
                 setMsg(error.response.data.msg);
             }
-            alert("Registration Error"); // You can add a generic error message here
+            setToastStatus(false);
+            alert(msg); // You can add a generic error message here
         }
     };
 
@@ -149,7 +154,7 @@ export const SignupSection = ({loginToogle}) => {
                             required
                         />
 
-                        <span className={'bg-white dark:bg-dark_2 absolute p-0.5 md:p-1.5 text-[green] cursor-pointer bottom-2 right-4 text-xl'}>
+                        <span className={ password === confPassword ?' bg-none absolute p-0.5 md:p-1.5 text-[green] cursor-pointer bottom-2 right-4 text-xl' : 'hidden'}>
                              <MdVerifiedUser/>
                         </span>
                     </div>
@@ -194,6 +199,7 @@ export const SignupSection = ({loginToogle}) => {
         buttonText='Go to Login'
         buttonLink='/login'
       />
+      {toastStatus ? <SuccessToast errorMssg={msg} setErrorMssg={setMsg}/> : <FailedToast errorMssg={msg} setErrorMssg={setMsg}/>}
       </main>
     </>
   );
