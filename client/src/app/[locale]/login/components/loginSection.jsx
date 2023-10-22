@@ -20,6 +20,7 @@ export default function LoginSection() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [msg, setMsg] = useState("");
+  const [toastStatus, setToastStatus] =useState();
   const router = useRouter();
 
   const showPassword = () => {
@@ -43,11 +44,13 @@ export default function LoginSection() {
       console.log(response);
 
       router.push("/internDashboard");
+      setToastStatus(true);
     } catch (error) {
       console.error("Error:", error);
       if (error.response) {
         setMsg(error.response.data.msg);
       }
+      setToastStatus(false);
     }
   };
 
@@ -177,9 +180,10 @@ export default function LoginSection() {
           ) : (
             <SignupSection loginToogle={loginToogle} />
           )}
-          {/* </AnimatePresence> */}
+         
         </div>
       </section>
+      {toastStatus ? <SuccessToast errorMssg={msg} setErrorMssg={setMsg}/> : <FailedToast errorMssg={msg} setErrorMssg={setMsg}/>}
     </main>
   );
 }
