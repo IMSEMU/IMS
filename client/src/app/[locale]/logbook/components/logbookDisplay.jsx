@@ -18,10 +18,10 @@ export const LogbookDisplay = ({ logbookEntries }) => {
   };
   const formatDate = (fullDate) => {
     const date = new Date(fullDate);
-    const formattedDate = format.dateTime(date, {
-      year: "2-digit",
-      month: "2-digit",
+    const formattedDate = date.toLocaleDateString("en-GB", {
       day: "2-digit",
+      month: "2-digit",
+      year: "2-digit",
     });
     return formattedDate;
   };

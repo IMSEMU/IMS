@@ -3,7 +3,7 @@ import { BiPlus } from "react-icons/bi";
 import { useEffect, useState } from "react";
 import AuthConnect from "@/auth";
 import { useTranslations } from "next-intl";
-import Calendar from "react-calendar";
+import Modal from "../../globalComponents/modal";
 
 export const AddLogData = ({ updateLogbookEntries, setHasNewLogEntry }) => {
   const t = useTranslations("logbook");
@@ -11,10 +11,8 @@ export const AddLogData = ({ updateLogbookEntries, setHasNewLogEntry }) => {
   const [date, setDate] = useState(new Date());
   const [department, setDepartment] = useState("");
   const [description, setDescription] = useState("");
-
-  const handleDateChange = (date) => {
-    setDate(date);
-  };
+  const [error, setError] = useState(null);
+  const [showErrorModal, setShowErrorModal] = useState(false);
 
   const createLogEntry = async (e) => {
     e.preventDefault();
@@ -38,9 +36,16 @@ export const AddLogData = ({ updateLogbookEntries, setHasNewLogEntry }) => {
     } catch (error) {
       console.error("Error:", error);
       if (error.response) {
-        setMsg(error.response.data.msg);
+        if (error.response.status === 400) {
+          // Handle 400 Bad Request error
+          setError(error.response.data.msg);
+          setShowErrorModal(true);
+        }
       }
     }
+  };
+  const closeModal = () => {
+    setShowErrorModal(false);
   };
 
   return (
@@ -75,6 +80,7 @@ export const AddLogData = ({ updateLogbookEntries, setHasNewLogEntry }) => {
               type="date"
               value={date}
               onChange={(e) => setDate(e.target.value)}
+              max={new Date().toISOString().split("T")[0]}
               className="rounded p-3 outline-none w-full border border-dark_4 dark:border-none dark:bg-background_shade_2 text-dark_2 placeholder:text-dark_2"
             />
           </div>
@@ -110,6 +116,20 @@ export const AddLogData = ({ updateLogbookEntries, setHasNewLogEntry }) => {
           </div>
         </div>
       </form>
+      {/* Error Modal */}
+      {showErrorModal && (
+        <Modal onClose={closeModal}>
+          <div className="flex flex-col justify-center items-center">
+            <div className="text-red-500 font-bold">{error}</div>
+            <button
+              onClick={closeModal}
+              className="bg-blue text-white px-3 py-1 mt-2"
+            >
+              Close
+            </button>
+          </div>
+        </Modal>
+      )}
     </div>
   );
 };
