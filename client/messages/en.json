@@ -105,5 +105,8 @@
     "lname": "Last Name",
     "pos": "Position in the Company",
     "submit": "Submit"
+  },
+  "LocaleSwitcher": {
+    "label": "EN"
   }
 }

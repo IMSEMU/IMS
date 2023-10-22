@@ -11,6 +11,7 @@ import { SignupSection } from "../../login/components/signupSection";
 import AuthConnect from "@/auth";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
+import { LanguageToggle } from "../../globalComponents/languageToggle";
 
 export default function LoginSection() {
   const t = useTranslations("Login Page");
@@ -58,7 +59,8 @@ export default function LoginSection() {
         </div>
       </Link>
 
-      <div className="absolute top-4 rounded right-1 md:right-7">
+      <div className="absolute flex top-4 rounded right-1 md:right-7">
+        <LanguageToggle />
         <DarkModeButton />
       </div>
 

@@ -10,8 +10,7 @@ import { NotificationIcon } from "../../svg_Icons";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import AuthConnect from "@/auth";
-import { BsTrash3 } from "react-icons/bs";
-import { HiOutlineTrash } from "react-icons/hi2";
+import { LanguageToggle } from "../../globalComponents/languageToggle";
 import { HiAnnotation } from "react-icons/hi";
 import { LuClock2 } from "react-icons/lu";
 import { useTranslations } from "next-intl";
@@ -93,6 +92,7 @@ export const TopNav = (props) => {
 
         {/*left navgations*/}
         <div className="flex flex-wrap justify-center items-center gap-4">
+          <LanguageToggle />
           {/* notification */}
           <div onClick={notificationDropToggle} className="">
             <NotificationIcon />

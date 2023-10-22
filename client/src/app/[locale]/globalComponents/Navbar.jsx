@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import { BiLogIn } from "react-icons/bi";
-import { LanguageToogle } from "../globalComponents/languageToogle";
+import { LanguageToggle } from "./languageToggle";
 import Link from "next/link";
 import { DarkModeButton } from "../globalComponents/darkModeButton";
 import { useTranslations } from "next-intl";
@@ -33,9 +33,6 @@ export const Navbar = () => {
                 priority
               />
             </Link>
-
-            {/*language toogle*/}
-            <LanguageToogle />
           </div>
 
           {/*navs*/}
@@ -43,6 +40,8 @@ export const Navbar = () => {
 
           {/*login button*/}
           <div className={"flex items-center"}>
+            {/*language toogle*/}
+            <LanguageToggle />
             <DarkModeButton />
 
             <Link

@@ -105,5 +105,8 @@
     "lname": "Soy isim",
     "pos": "Şirketteki Pozisyonu",
     "submit": "Göndermek"
+  },
+  "LocaleSwitcher": {
+    "label": "TR"
   }
 }
