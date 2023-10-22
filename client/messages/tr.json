@@ -1,0 +1,112 @@
+{
+  "Index": {
+    "title": "Selam Dünya!"
+  },
+  "Loginbtn": {
+    "login": "Giriş yapmak"
+  },
+  "Announcement": {
+    "title": "Haber ve Duyurular"
+  },
+  "Completed Internships": {
+    "title": "Tamamlanan Stajlar",
+    "Company Name": "Firma Adı",
+    "City": "Şehir",
+    "Country": "Ülke",
+    "Work Fields": "Çalışma Alanları",
+    "Year": "Yıl"
+  },
+  "Available Internship Positions": {
+    "title": "Mevcut Staj Pozisyonları"
+  },
+  "Home Footer": {
+    "sitemap": "Site haritası",
+    "Homepage": "Ana sayfa",
+    "News and Announcements": "Haberler & Duyurular",
+    "Completed Internships": "Tamamlanan Stajlar",
+    "Available Internship Positions": "Mevcut Staj Pozisyonları",
+    "useful links": "Kullanışlı bağlantılar",
+    "EMU Official Website": "DAÜ Resmi internet sitesi",
+    "Student Portal": "Öğrenci Portalı",
+    "LMS": "L.M.S.",
+    "Staff Portal": "Personel Portalı",
+    "EMU": "Doğu Akdeniz Üniversitesi",
+    "address1": "99628, Gazimağusa, Kuzey Kıbrıs",
+    "address2": "Mersin 10, Turkey"
+  },
+  "Login Page": {
+    "signin": "Hesabınıza giriş yapın",
+    "Loginbtn": "Giriş yapmak",
+    "forgotpass": "Parolanızı mı unuttunuz?",
+    "microsoft": "Microsoft'la oturum açın",
+    "email-placeholder": "adres@sağlayıcı.com",
+    "Password": "Şifre",
+    "Register": "Kayıt olmak"
+  },
+  "Signup Page": {
+    "title": "Staj Kaydı",
+    "stdid": "Öğrenci Numarası",
+    "email": "öğrencinumarası@emu.edu.tr",
+    "fname": "İlk adı",
+    "lname": "Soy isim",
+    "Password": " Şifre",
+    "confpass": "Şifreyi Onayla",
+    "microsoft": "Microsoft'a kaydolun",
+    "Register": "Kayıt olmak",
+    "Loginbtn": "Giriş yapmak"
+  },
+  "sidenav": {
+    "home": "Ev",
+    "chat": "Tartışma forumu",
+    "dashboard": "Gösterge Paneli",
+    "student": "Öğrenci"
+  },
+  "topnav": {
+    "edit": "Profili Düzenle",
+    "theme": "Tema",
+    "logout": "Çıkış Yap",
+    "notif": "Bildirimler"
+  },
+  "dash": {
+    "welcome": "Hoş geldin",
+    "logbook": "Seyir defteri",
+    "add": "Eklemek",
+    "Announcements": "Duyurular",
+    "todo": "Yapmak",
+    "iaf": "Staj Başvuru Formunu Doldurun",
+    "sif": "Sosyal Sigorta Formunu Doldurun",
+    "filllg": "Kayıt Defterini Doldur",
+    "report": "Rapor yazmak"
+  },
+  "logbook": {
+    "title": "Günlük Kayıt Defteri",
+    "day": "Gün",
+    "dept": "Departman",
+    "desc": "Yapılan İşin Kısa Açıklaması",
+    "add": "Eklemek"
+  },
+  "iaf": {
+    "title": "Staj Başvuru Formu",
+    "stdinfo": "Öğrenci bilgileri",
+    "name": "İsim",
+    "stdid": "Öğrenci Numarası",
+    "email": " E-posta Adresi",
+    "phone": "Telefon numarası",
+    "address": "Posta adresi",
+    "compinfo": "Şirket Bilgisi",
+    "compname": "Firma Adı",
+    "work": "Çalışma Alanları",
+    "website": "Kurumsal Web Adresi",
+    "orgemail": "Kurumsal E-posta",
+    "fax": "Faks",
+    "desc": "Staj sırasında yapılacak işin tanımı ve bu firmayı seçme nedeni",
+    "cis": "Şirket Staj Sorumlusu Bilgileri",
+    "fname": "İlk adı",
+    "lname": "Soy isim",
+    "pos": "Şirketteki Pozisyonu",
+    "submit": "Göndermek"
+  },
+  "LocaleSwitcher": {
+    "label": "TR"
+  }
+}

@@ -1,0 +1,112 @@
+{
+  "Index": {
+    "title": "Hello world!"
+  },
+  "Loginbtn": {
+    "login": "Login"
+  },
+  "Announcement": {
+    "title": "News and Announcements"
+  },
+  "Completed Internships": {
+    "title": "Completed Internships",
+    "Company Name": "Company Name",
+    "City": "City",
+    "Country": "Country",
+    "Work Fields": "Work Fields",
+    "Year": "Year"
+  },
+  "Available Internship Positions": {
+    "title": "Available Internship Positions"
+  },
+  "Home Footer": {
+    "sitemap": "Sitemap",
+    "Homepage": "Homepage",
+    "News and Announcements": "News & Announcements",
+    "Completed Internships": "Completed Internships",
+    "Available Internship Positions": "Available Internship Positions",
+    "useful links": "Useful Links",
+    "EMU Official Website": "E.M.U. Official Website",
+    "Student Portal": "Student Portal",
+    "LMS": "L.M.S.",
+    "Staff Portal": "Staff Portal",
+    "EMU": "Eastern Mediterranean University",
+    "address1": "99628, Famagusta, Northern Cyprus",
+    "address2": "Mersin 10, Turkey"
+  },
+  "Login Page": {
+    "signin": "Sign into your account",
+    "Loginbtn": "Login",
+    "forgotpass": "Forgot Password?",
+    "microsoft": "Login with Microsoft",
+    "email-placeholder": "address@provider.com",
+    "Password": "Password",
+    "Register": "Register"
+  },
+  "Signup Page": {
+    "title": "Register for Internship",
+    "stdid": "Student Number",
+    "email": "studentnumber@emu.edu.tr",
+    "fname": "First Name",
+    "lname": "Last Name",
+    "Password": "Password",
+    "confpass": "Confirm Password",
+    "microsoft": "Register with Microsoft",
+    "Register": "Register",
+    "Loginbtn": "Login"
+  },
+  "sidenav": {
+    "home": "Home",
+    "chat": "Discussion Forum",
+    "dashboard": "Dashboard",
+    "student": "Student"
+  },
+  "topnav": {
+    "edit": "Edit Profile",
+    "theme": "Theme",
+    "logout": "Logout",
+    "notif": "Notifications"
+  },
+  "dash": {
+    "welcome": "Welcome",
+    "logbook": "Logbook",
+    "add": "Add",
+    "Announcements": "Announcements",
+    "todo": "To-Do",
+    "iaf": "Fill Internship Application Form",
+    "sif": "Fill Social Insurance Form",
+    "filllg": "Fill Logbook",
+    "report": "Write Report"
+  },
+  "logbook": {
+    "title": "Daily Logbook",
+    "day": "Day",
+    "dept": "Department",
+    "desc": "Brief Description of Work Done",
+    "add": "Add"
+  },
+  "iaf": {
+    "title": "Internship Application Form",
+    "stdinfo": "Student Information",
+    "name": "Name",
+    "stdid": "Student Number",
+    "email": "Email Address",
+    "phone": "Telephone Number",
+    "address": "Postal Address",
+    "compinfo": "Company Information",
+    "compname": "Company Name",
+    "work": "Working Fields",
+    "website": "Organizational Web Address",
+    "orgemail": "Organizational Email",
+    "fax": "Fax",
+    "desc": "Description of the work to be done during internship and the reason for choosing this company",
+    "cis": "Company Internship Supervisor Information",
+    "fname": "First Name",
+    "lname": "Last Name",
+    "pos": "Position in the Company",
+    "submit": "Submit"
+  },
+  "LocaleSwitcher": {
+    "label": "EN"
+  }
+}
