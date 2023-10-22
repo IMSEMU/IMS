@@ -19,6 +19,21 @@ import { useTranslations } from "next-intl";
 export const Dashboard = (props) => {
   const t = useTranslations("dash");
   const [country, setCountry] = useState("Turkey");
+  const [logbookEntries, setLogbookEntries] = useState([]);
+
+  useEffect(() => {
+    const fetchLogbookEntries = async () => {
+      try {
+        const response = await AuthConnect.get("/viewlog");
+        setLogbookEntries(response.data);
+      } catch (error) {
+        console.error("Error fetching logbook entries:", error);
+      }
+    };
+
+    // Fetch initial logbook entries when the page loads
+    fetchLogbookEntries();
+  }, []);
   return (
     <main className={"m-5 bg-white dark:bg-dark_2 "}>
       <div
@@ -142,7 +157,7 @@ export const Dashboard = (props) => {
 
           {/*    section container*/}
           <div className={"h-[15rem] overflow-y-auto"}>
-            <LogbookDisplay />
+            <LogbookDisplay logbookEntries={logbookEntries} />
           </div>
         </div>
 

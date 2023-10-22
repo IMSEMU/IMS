@@ -27,7 +27,7 @@ export const LogbookDisplay = ({ logbookEntries }) => {
   };
 
   return (
-    <div className="m-4 rounded h-[28rem] overflow-x-hidden overflow-y-scroll">
+    <div className="m-4 rounded h-fit ">
       {logbookEntries.length === 0 ? (
         <div className=" font-semibold text-lg text-center text-white">
           <Empty />

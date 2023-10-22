@@ -111,7 +111,7 @@ export const LogbookPage = () => {
               </div>
 
               {/* Logbook Display section */}
-              <div className="hidden lg:block w-1/2 bg-background_shade dark:bg-dark_3 rounded">
+              <div className="hidden lg:block w-1/2 bg-background_shade dark:bg-dark_3 rounded overflow-x-hidden overflow-y-auto">
                 <LogbookDisplay logbookEntries={logbookEntries} />
               </div>
             </div>
