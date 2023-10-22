@@ -5,7 +5,7 @@ import AuthConnect from "@/auth";
 import { useTranslations } from "next-intl";
 import Calendar from "react-calendar";
 
-export const AddLogData = ({ updateLogbookEntries }) => {
+export const AddLogData = ({ updateLogbookEntries, setHasNewLogEntry }) => {
   const t = useTranslations("logbook");
   const [day, setDay] = useState("");
   const [date, setDate] = useState(new Date());
@@ -30,6 +30,7 @@ export const AddLogData = ({ updateLogbookEntries }) => {
       console.log(response);
       const newLogEntry = response.data;
       updateLogbookEntries(newLogEntry);
+      setHasNewLogEntry(true);
       setDay("");
       setDate("");
       setDepartment("");

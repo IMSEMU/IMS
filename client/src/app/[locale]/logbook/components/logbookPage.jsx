@@ -15,6 +15,7 @@ export const LogbookPage = () => {
   const [std, setStd] = useState([]);
   const [logbookEntries, setLogbookEntries] = useState([]);
   const pathname = usePathname();
+  const [hasNewLogEntry, setHasNewLogEntry] = useState(false);
 
   useEffect(() => {
     const getToken = async () => {
@@ -42,8 +43,8 @@ export const LogbookPage = () => {
 
     getStudent();
   }, []);
+
   useEffect(() => {
-    // Fetch logbook entries from the API
     const fetchLogbookEntries = async () => {
       try {
         const response = await AuthConnect.get("/viewlog");
@@ -53,8 +54,27 @@ export const LogbookPage = () => {
       }
     };
 
+    // Fetch initial logbook entries when the page loads
     fetchLogbookEntries();
-  }, [logbookEntries]);
+  }, []);
+
+  // Update logbook entries when a new entry is added
+  useEffect(() => {
+    if (hasNewLogEntry) {
+      const fetchLogbookEntries = async () => {
+        try {
+          const response = await AuthConnect.get("/viewlog");
+          setLogbookEntries(response.data);
+        } catch (error) {
+          console.error("Error fetching logbook entries:", error);
+        }
+      };
+
+      fetchLogbookEntries();
+      // Reset the hasNewLogEntry flag
+      setHasNewLogEntry(false);
+    }
+  }, [hasNewLogEntry]);
 
   const updateLogbookEntries = (newLogEntry) => {
     setLogbookEntries((prevEntries) => [...prevEntries, newLogEntry]);
@@ -83,7 +103,10 @@ export const LogbookPage = () => {
               {/* LOgbook Add section */}
               <div className=" lg:w-1/2">
                 <div className=" flex items-center h-full">
-                  <AddLogData updateLogbookEntries={updateLogbookEntries} />
+                  <AddLogData
+                    updateLogbookEntries={updateLogbookEntries}
+                    setHasNewLogEntry={setHasNewLogEntry}
+                  />
                 </div>
               </div>
 
