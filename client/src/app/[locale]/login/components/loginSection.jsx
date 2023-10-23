@@ -12,6 +12,7 @@ import AuthConnect from "@/auth";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { LanguageToggle } from "../../globalComponents/languageToggle";
+import { FailedToast, SuccessToast } from "../../globalComponents/toastNotifications";
 
 export default function LoginSection() {
   const t = useTranslations("Login Page");
