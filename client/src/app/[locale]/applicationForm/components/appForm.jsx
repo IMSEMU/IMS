@@ -3,6 +3,8 @@ import { useRouter } from "next/navigation";
 import AuthConnect from "@/auth";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
+import ConfirmationModal from "./confimationModal";
+import Modal from "../../globalComponents/modal";
 
 export const AppForm = (props) => {
   const t = useTranslations("iaf");
@@ -23,7 +25,94 @@ export const AppForm = (props) => {
   const [msg, setMsg] = useState("");
   const router = useRouter();
   const [imageSrc, setImageSrc] = useState("");
-  const [form, setForm] = useState(1);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isConfirmationModalOpen, setIsConfirmationModalOpen] = useState(false);
+  const [hasValidationError, setHasValidationError] = useState(false);
+
+  const [formData, setFormData] = useState({
+    fname: "",
+    lname: "",
+    email: "",
+    stdid: "",
+    stdphoneno: "",
+    stdaddress: "",
+    companyname: "",
+    fields: "",
+    website: "",
+    compemail: "",
+    compaddress: "",
+    compphone: "",
+    compfax: "",
+    workdesc: "",
+    supfname: "",
+    suplname: "",
+    supemail: "",
+    position: "",
+  });
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+
+    if (
+      stdphoneno === "" ||
+      stdaddress === "" ||
+      companyname === "" ||
+      fields === "" ||
+      website === "" ||
+      compemail === "" ||
+      compaddress === "" ||
+      compphone === "" ||
+      compfax === "" ||
+      workdesc === "" ||
+      supfname === "" ||
+      suplname === "" ||
+      supemail === "" ||
+      position === ""
+    ) {
+      setHasValidationError(true);
+      return;
+    }
+
+    setFormData({
+      fname: props.firstname,
+      lname: props.lastname,
+      email: props.email,
+      stdid: props.stdid,
+      stdphoneno: stdphoneno,
+      stdaddress: stdaddress,
+      companyname: companyname,
+      fields: fields,
+      website: website,
+      compemail: compemail,
+      compaddress: compaddress,
+      compphone: compphone,
+      compfax: compfax,
+      workdesc: workdesc,
+      supfname: supfname,
+      suplname: suplname,
+      supemail: supemail,
+      position: position,
+    });
+    setIsConfirmationModalOpen(true);
+  };
+
+  const handleBackToForm = () => {
+    setIsConfirmationModalOpen(false);
+  };
+
+  const handleInputChange = (event) => {
+    setCompname(event.target.value);
+    setIsDropdownOpen(true);
+  };
+
+  const handleSelectOption = (company) => {
+    setCompname(company);
+    setIsDropdownOpen(false);
+  };
+
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
@@ -57,13 +146,8 @@ export const AppForm = (props) => {
         supemail: supemail,
         position: position,
       });
-
-      if (response.data.status === "success") {
-        alcort("Application Successful");
-        router.push("/internDashboard");
-      } // else {
-      //     alert("Registration Unsuccessful");
-      // }
+      alert("Application Successful");
+      router.push("/internDashboard");
     } catch (error) {
       if (error.response) {
         setMsg(error.response.data.msg);
@@ -102,7 +186,7 @@ export const AppForm = (props) => {
             </div>
 
             {/* forms */}
-            <form onSubmit={submitApplication}>
+            <form>
               <div className="mx-4 lg:mx-16">
                 <div className="mt-2 md:mt-4 relative flex space-x-2">
                   <div className="w-1/2">
@@ -135,6 +219,7 @@ export const AppForm = (props) => {
                     className="input w-full text-dark_2 dark:text-yellow placeholder:text-dark_2 dark:placeholder:text-yellow bg-white dark:bg-dark_2 px-4 py-2.5 border-b-dark_2 dark:border-b-yellow  border-x-0 border-t-0 mt-1 border-2  focus:outline-none"
                     value={stdphoneno}
                     onChange={(e) => setStdPhone(e.target.value)}
+                    required
                   />
                 </div>
 
@@ -147,6 +232,7 @@ export const AppForm = (props) => {
                     className="input w-full text-dark_2 dark:text-yellow placeholder:text-dark_2 dark:placeholder:text-yellow bg-white dark:bg-dark_2 px-4 py-2.5 border-b-dark_2 dark:border-b-yellow  border-x-0 border-t-0 mt-1 border-2  focus:outline-none"
                     value={stdaddress}
                     onChange={(e) => setStdAddress(e.target.value)}
+                    required
                   />
                 </div>
                 <div className="mt-2 md:mt-4 relative flex space-x-2">
@@ -158,6 +244,7 @@ export const AppForm = (props) => {
                     id=""
                     placeholder="profile Picture"
                     className="input w-full text-dark_2 dark:text-yellow placeholder:text-dark_2 dark:placeholder:text-yellow bg-white file:text-blue file:font-bold file:bg-white file:border file:rounded dark:bg-dark_2 pr-4 py-0.5 border-b-dark_2 dark:border-b-yellow  border-x-0 border-t-0 mt-1 border-2  focus:outline-none"
+                    required
                   />
                 </div>
               </div>
@@ -171,16 +258,44 @@ export const AppForm = (props) => {
                 </p>
               </div>
               <div className="mx-4 lg:mx-16">
-                <div className="mt-2 md:mt-4 relative flex space-x-2">
-                  <input
-                    type={"text"}
-                    name=""
-                    id=""
-                    placeholder={t("compname")}
-                    className="input w-full text-dark_2 dark:text-yellow placeholder:text-dark_2 dark:placeholder:text-yellow bg-white dark:bg-dark_2 px-4 py-2.5 border-b-dark_2 dark:border-b-yellow  border-x-0 border-t-0 mt-1 border-2  focus:outline-none"
-                    value={companyname}
-                    onChange={(e) => setCompname(e.target.value)}
-                  />
+                <div className="mt-2">
+                  <div className="relative flex">
+                    <input
+                      type="text"
+                      value={companyname}
+                      onChange={handleInputChange}
+                      placeholder={t("compname")}
+                      className="input w-full text-dark_2 dark:text-yellow placeholder:text-dark_2 dark:placeholder:text-yellow bg-white dark:bg-dark_2 px-4 py-2.5 border-b-dark_2 dark:border-b-yellow  border-x-0 border-t-0 mt-1 border-2  focus:outline-none"
+                      required
+                    />
+                    <button
+                      type="button"
+                      onClick={toggleDropdown}
+                      className={"mt-1 text-yellow"}
+                    >
+                      ▼
+                    </button>
+                  </div>
+
+                  {isDropdownOpen && (
+                    <div className="absolute z-10 w-[30rem] mt-1 bg-white border border-gray-300 rounded-md shadow-lg">
+                      <ul className="py-1">
+                        {props.companies
+                          .filter((company) =>
+                            company.name.includes(companyname)
+                          )
+                          .map((company) => (
+                            <li
+                              key={company.name}
+                              className="px-4 py-2 hover:bg-black/25 cursor-pointer"
+                              onClick={() => handleSelectOption(company.name)}
+                            >
+                              {company.name}
+                            </li>
+                          ))}
+                      </ul>
+                    </div>
+                  )}
                 </div>
                 <div className="mt-2 md:mt-4 relative flex space-x-2">
                   <input
@@ -191,6 +306,7 @@ export const AppForm = (props) => {
                     className="input w-full text-dark_2 dark:text-yellow placeholder:text-dark_2 dark:placeholder:text-yellow bg-white dark:bg-dark_2 px-4 py-2.5 border-b-dark_2 dark:border-b-yellow  border-x-0 border-t-0 mt-1 border-2  focus:outline-none"
                     value={fields}
                     onChange={(e) => setFields(e.target.value)}
+                    required
                   />
                 </div>
 
@@ -203,6 +319,7 @@ export const AppForm = (props) => {
                     className="input w-full text-dark_2 dark:text-yellow placeholder:text-dark_2 dark:placeholder:text-yellow bg-white dark:bg-dark_2 px-4 py-2.5 border-b-dark_2 dark:border-b-yellow  border-x-0 border-t-0 mt-1 border-2  focus:outline-none"
                     value={website}
                     onChange={(e) => setWebsite(e.target.value)}
+                    required
                   />
                 </div>
 
@@ -215,6 +332,7 @@ export const AppForm = (props) => {
                     className="input w-full text-dark_2 dark:text-yellow placeholder:text-dark_2 dark:placeholder:text-yellow bg-white dark:bg-dark_2 px-4 py-2.5 border-b-dark_2 dark:border-b-yellow  border-x-0 border-t-0 mt-1 border-2  focus:outline-none"
                     value={compemail}
                     onChange={(e) => setCompEmail(e.target.value)}
+                    required
                   />
                 </div>
 
@@ -227,6 +345,7 @@ export const AppForm = (props) => {
                     className="input w-full text-dark_2 dark:text-yellow placeholder:text-dark_2 dark:placeholder:text-yellow bg-white dark:bg-dark_2 px-4 py-2.5 border-b-dark_2 dark:border-b-yellow  border-x-0 border-t-0 mt-1 border-2  focus:outline-none"
                     value={compaddress}
                     onChange={(e) => setCompAddress(e.target.value)}
+                    required
                   />
                 </div>
 
@@ -240,6 +359,7 @@ export const AppForm = (props) => {
                       className="input w-full text-dark_2 dark:text-yellow placeholder:text-dark_2 dark:placeholder:text-yellow bg-white dark:bg-dark_2 px-4 py-2.5 border-b-dark_2 dark:border-b-yellow  border-x-0 border-t-0 mt-1 border-2  focus:outline-none"
                       value={compphone}
                       onChange={(e) => setCompPhone(e.target.value)}
+                      required
                     />
                   </div>
                   <div className="w-1/2">
@@ -251,6 +371,7 @@ export const AppForm = (props) => {
                       className="input w-full text-dark_2 dark:text-yellow placeholder:text-dark_2 dark:placeholder:text-yellow bg-white dark:bg-dark_2 px-4 py-2.5 border-b-dark_2 dark:border-b-yellow  border-x-0 border-t-0 mt-1 border-2  focus:outline-none"
                       value={compfax}
                       onChange={(e) => setCompFax(e.target.value)}
+                      required
                     />
                   </div>
                 </div>
@@ -265,6 +386,7 @@ export const AppForm = (props) => {
                       className="input w-full text-dark_2 dark:text-yellow placeholder:text-dark_2 dark:placeholder:text-yellow bg-white dark:bg-dark_2 px-4 py-2.5 border-b-dark_2 dark:border-b-yellow rounded mt-1 border-2  focus:outline-none h-[8rem]"
                       value={workdesc}
                       onChange={(e) => setWorkdesc(e.target.value)}
+                      required
                     />
                   </div>
                 </div>
@@ -290,6 +412,7 @@ export const AppForm = (props) => {
                       className="input w-full text-dark_2 dark:text-yellow placeholder:text-dark_2 dark:placeholder:text-yellow bg-white dark:bg-dark_2 px-4 py-2.5 border-b-dark_2 dark:border-b-yellow  border-x-0 border-t-0 mt-1 border-2  focus:outline-none"
                       value={supfname}
                       onChange={(e) => setFname(e.target.value)}
+                      required
                     />
                   </div>
                   <div className="w-1/2">
@@ -301,6 +424,7 @@ export const AppForm = (props) => {
                       className="input w-full text-dark_2 dark:text-yellow placeholder:text-dark_2 dark:placeholder:text-yellow bg-white dark:bg-dark_2 px-4 py-2.5 border-b-dark_2 dark:border-b-yellow  border-x-0 border-t-0 mt-1 border-2  focus:outline-none"
                       value={suplname}
                       onChange={(e) => setLname(e.target.value)}
+                      required
                     />
                   </div>
                 </div>
@@ -315,6 +439,7 @@ export const AppForm = (props) => {
                       className="input w-full text-dark_2 dark:text-yellow placeholder:text-dark_2 dark:placeholder:text-yellow bg-white dark:bg-dark_2 px-4 py-2.5 border-b-dark_2 dark:border-b-yellow  border-x-0 border-t-0 mt-1 border-2  focus:outline-none"
                       value={supemail}
                       onChange={(e) => setEmail(e.target.value)}
+                      required
                     />
                   </div>
                   <div className="w-1/2">
@@ -326,12 +451,14 @@ export const AppForm = (props) => {
                       className="input w-full text-dark_2 dark:text-yellow placeholder:text-dark_2 dark:placeholder:text-yellow bg-white dark:bg-dark_2 px-4 py-2.5 border-b-dark_2 dark:border-b-yellow  border-x-0 border-t-0 mt-1 border-2  focus:outline-none"
                       value={position}
                       onChange={(e) => setPosition(e.target.value)}
+                      required
                     />
                   </div>
                 </div>
 
                 <div className="w-full flex items-center justify-end text-white pt-10">
                   <button
+                    onClick={handleFormSubmit}
                     type="submit"
                     className="bg-blue py-2 px-3.5 rounded "
                   >
@@ -343,6 +470,28 @@ export const AppForm = (props) => {
           </div>
         </div>
       </section>
+      {isConfirmationModalOpen && (
+        <ConfirmationModal
+          onClose={handleBackToForm}
+          onConfirm={submitApplication}
+          formData={formData} // Pass the form data to the modal
+        />
+      )}
+      {hasValidationError && (
+        <Modal onClose={() => setHasValidationError(false)}>
+          <div className="flex flex-col justify-center items-center">
+            <div className="font-bold">
+              <p>Please fill in all required fields.</p>
+            </div>
+            <button
+              onClick={() => setHasValidationError(false)}
+              className="bg-blue text-white px-3 py-1 mt-2"
+            >
+              Close
+            </button>
+          </div>
+        </Modal>
+      )}
     </main>
   );
 };

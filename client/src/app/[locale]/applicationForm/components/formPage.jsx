@@ -15,6 +15,7 @@ export const ApplicationForm = () => {
   const [std, setStd] = useState([]);
   const [student, setStudent] = useState([]);
   const pathname = usePathname();
+  const [companies, setCompanies] = useState([]);
 
   useEffect(() => {
     const getToken = async () => {
@@ -43,6 +44,19 @@ export const ApplicationForm = () => {
 
     getStudent();
   }, []);
+  useEffect(() => {
+    const getCompanies = async () => {
+      try {
+        const response = await AuthConnect.get("/getcomp");
+        setCompanies(response.data);
+      } catch (error) {
+        console.error("Error fetching companies:", error);
+      }
+    };
+
+    // Fetch initial logbook entries when the page loads
+    getCompanies();
+  }, []);
   if (!token) {
     return null; // Prevent rendering the dashboard until token is fetched
   }
@@ -66,6 +80,7 @@ export const ApplicationForm = () => {
             lastname={std.lastname}
             stdid={student.stdid}
             email={std.email}
+            companies={companies}
           />
         </div>
         <MobileNav />
