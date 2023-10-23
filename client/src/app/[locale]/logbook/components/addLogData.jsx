@@ -3,26 +3,16 @@ import { BiPlus } from "react-icons/bi";
 import { useEffect, useState } from "react";
 import AuthConnect from "@/auth";
 import { useTranslations } from "next-intl";
+import Modal from "../../globalComponents/modal";
 
-export const AddLogData = () => {
+export const AddLogData = ({ updateLogbookEntries, setHasNewLogEntry }) => {
   const t = useTranslations("logbook");
   const [day, setDay] = useState("");
-  const [date, setDate] = useState("");
+  const [date, setDate] = useState(new Date());
   const [department, setDepartment] = useState("");
   const [description, setDescription] = useState("");
-  const [logEntries, setLogEntries] = useState([]);
-
-  useEffect(() => {
-    const logList = logEntries.map((entry) => (
-      <li key={entry.id}>
-        <p>Day: {entry.day}</p>
-        <p>Date: {entry.date}</p>
-        <p>Department: {entry.department}</p>
-        <p>Description: {entry.description}</p>
-      </li>
-    ));
-    console.log(logList);
-  }, [logEntries]);
+  const [error, setError] = useState(null);
+  const [showErrorModal, setShowErrorModal] = useState(false);
 
   const createLogEntry = async (e) => {
     e.preventDefault();
@@ -36,19 +26,26 @@ export const AddLogData = () => {
       });
 
       console.log(response);
-
+      const newLogEntry = response.data;
+      updateLogbookEntries(newLogEntry);
+      setHasNewLogEntry(true);
       setDay("");
       setDate("");
       setDepartment("");
       setDescription("");
-
-      setLogEntries((prevLogEntries) => [...prevLogEntries, response.data]);
     } catch (error) {
       console.error("Error:", error);
       if (error.response) {
-        setMsg(error.response.data.msg);
+        if (error.response.status === 400) {
+          // Handle 400 Bad Request error
+          setError(error.response.data.msg);
+          setShowErrorModal(true);
+        }
       }
     }
+  };
+  const closeModal = () => {
+    setShowErrorModal(false);
   };
 
   return (
@@ -77,17 +74,16 @@ export const AddLogData = () => {
               className="rounded p-3 outline-none w-full border border-dark_4 dark:border-none dark:bg-background_shade_2 text-dark_2 placeholder:text-dark_2"
             />
           </div>
-
           <div className="w-[22rem]">
             <input
               placeholder="Date"
               type="date"
               value={date}
               onChange={(e) => setDate(e.target.value)}
+              max={new Date().toISOString().split("T")[0]}
               className="rounded p-3 outline-none w-full border border-dark_4 dark:border-none dark:bg-background_shade_2 text-dark_2 placeholder:text-dark_2"
             />
           </div>
-
           {/* Department input section */}
           <div className="w-[22rem]">
             <input
@@ -98,7 +94,6 @@ export const AddLogData = () => {
               className="rounded p-3 outline-none w-full border border-dark_4 dark:border-none dark:bg-background_shade_2 text-dark_2 placeholder:text-dark_2"
             />
           </div>
-
           {/* work description section */}
           <div>
             <textarea
@@ -108,7 +103,6 @@ export const AddLogData = () => {
               className=" resize-none rounded p-3 outline-none w-[22rem] border border-dark_4 dark:border-none h-[10rem] dark:bg-background_shade_2 text-dark_2 placeholder:text-dark_2"
             />
           </div>
-
           <div className=" flex justify-end mx-4 w-[22rem]">
             <button
               type="submit"
@@ -122,6 +116,20 @@ export const AddLogData = () => {
           </div>
         </div>
       </form>
+      {/* Error Modal */}
+      {showErrorModal && (
+        <Modal onClose={closeModal}>
+          <div className="flex flex-col justify-center items-center">
+            <div className="text-red-500 font-bold">{error}</div>
+            <button
+              onClick={closeModal}
+              className="bg-blue text-white px-3 py-1 mt-2"
+            >
+              Close
+            </button>
+          </div>
+        </Modal>
+      )}
     </div>
   );
 };

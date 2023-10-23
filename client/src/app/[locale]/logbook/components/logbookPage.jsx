@@ -13,7 +13,9 @@ export const LogbookPage = () => {
   const router = useRouter();
   const [token, setToken] = useState(null);
   const [std, setStd] = useState([]);
+  const [logbookEntries, setLogbookEntries] = useState([]);
   const pathname = usePathname();
+  const [hasNewLogEntry, setHasNewLogEntry] = useState(false);
 
   useEffect(() => {
     const getToken = async () => {
@@ -41,6 +43,43 @@ export const LogbookPage = () => {
 
     getStudent();
   }, []);
+
+  useEffect(() => {
+    const fetchLogbookEntries = async () => {
+      try {
+        const response = await AuthConnect.get("/viewlog");
+        setLogbookEntries(response.data);
+      } catch (error) {
+        console.error("Error fetching logbook entries:", error);
+      }
+    };
+
+    // Fetch initial logbook entries when the page loads
+    fetchLogbookEntries();
+  }, []);
+
+  // Update logbook entries when a new entry is added
+  useEffect(() => {
+    if (hasNewLogEntry) {
+      const fetchLogbookEntries = async () => {
+        try {
+          const response = await AuthConnect.get("/viewlog");
+          setLogbookEntries(response.data);
+        } catch (error) {
+          console.error("Error fetching logbook entries:", error);
+        }
+      };
+
+      fetchLogbookEntries();
+      // Reset the hasNewLogEntry flag
+      setHasNewLogEntry(false);
+    }
+  }, [hasNewLogEntry]);
+
+  const updateLogbookEntries = (newLogEntry) => {
+    setLogbookEntries((prevEntries) => [...prevEntries, newLogEntry]);
+  };
+
   if (!token) {
     return null; // Prevent rendering the dashboard until token is fetched
   }
@@ -64,13 +103,16 @@ export const LogbookPage = () => {
               {/* LOgbook Add section */}
               <div className=" lg:w-1/2">
                 <div className=" flex items-center h-full">
-                  <AddLogData />
+                  <AddLogData
+                    updateLogbookEntries={updateLogbookEntries}
+                    setHasNewLogEntry={setHasNewLogEntry}
+                  />
                 </div>
               </div>
 
               {/* Logbook Display section */}
-              <div className="hidden lg:block w-1/2 bg-background_shade dark:bg-dark_3 rounded">
-                <LogbookDisplay />
+              <div className="hidden lg:block w-1/2 bg-background_shade dark:bg-dark_3 rounded overflow-x-hidden overflow-y-auto">
+                <LogbookDisplay logbookEntries={logbookEntries} />
               </div>
             </div>
           </section>
