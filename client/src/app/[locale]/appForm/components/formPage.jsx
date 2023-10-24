@@ -1,5 +1,5 @@
 "use client";
-import { Navbar } from "../../globalComponents/Navbar";
+
 import { AppForm } from "./appForm";
 import AuthConnect from "@/auth";
 import { useRouter } from "next/navigation";
@@ -49,6 +49,7 @@ export const ApplicationForm = () => {
       try {
         const response = await AuthConnect.get("/getcomp");
         setCompanies(response.data);
+        console.log(response.data);
       } catch (error) {
         console.error("Error fetching companies:", error);
       }

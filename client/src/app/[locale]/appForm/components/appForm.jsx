@@ -26,7 +26,6 @@ export const AppForm = (props) => {
   const router = useRouter();
   const [imageSrc, setImageSrc] = useState("");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [isConfirmationModalOpen, setIsConfirmationModalOpen] = useState(false);
   const [hasValidationError, setHasValidationError] = useState(false);
   const [formData, setFormData] = useState({
     fname: "",
@@ -99,18 +98,28 @@ export const AppForm = (props) => {
     submitToggle();
   };
 
-  const handleBackToForm = () => {
-    setIsConfirmationModalOpen(false);
-  };
-
   const handleInputChange = (event) => {
     setCompname(event.target.value);
     setIsDropdownOpen(true);
   };
 
-  const handleSelectOption = (company) => {
-    setCompname(company);
+  const handleSelectOption = (companyname, companyid) => {
+    setCompname(companyname);
     setIsDropdownOpen(false);
+
+    const selectedCompany = props.companies.find(
+      (c) => c.companyid === companyid
+    );
+
+    // If the company is found, set the fields to the company's fields
+    if (selectedCompany) {
+      setFields(selectedCompany.fields);
+      setWebsite(selectedCompany.website);
+      setCompEmail(selectedCompany.email);
+      setCompAddress(selectedCompany.address);
+      setCompPhone(selectedCompany.phoneno);
+      setCompFax(selectedCompany.fax);
+    }
   };
 
   const toggleDropdown = () => {
@@ -286,13 +295,20 @@ export const AppForm = (props) => {
                         <ul className="py-1">
                           {props.companies
                             .filter((company) =>
-                              company.name.includes(companyname)
+                              company.name
+                                .toLowerCase()
+                                .includes(companyname.toLowerCase())
                             )
                             .map((company) => (
                               <li
-                                key={company.name}
+                                key={company.companyid}
                                 className="px-4 py-2 hover:bg-black/25 cursor-pointer"
-                                onClick={() => handleSelectOption(company.name)}
+                                onClick={() =>
+                                  handleSelectOption(
+                                    company.name,
+                                    company.companyid
+                                  )
+                                }
                               >
                                 {company.name}
                               </li>
