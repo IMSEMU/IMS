@@ -104,7 +104,8 @@
     "fname": "İlk adı",
     "lname": "Soy isim",
     "pos": "Şirketteki Pozisyonu",
-    "submit": "Göndermek"
+    "submit": "Göndermek",
+    "submitform": "Göndermek istediğinizden emin misiniz?"
   },
   "LocaleSwitcher": {
     "label": "TR"

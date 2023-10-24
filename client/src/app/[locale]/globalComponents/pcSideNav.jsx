@@ -30,7 +30,9 @@ export const PcSideNav = (props) => {
     props.page === "/logbook" ||
     props.page === "/applicationForm" ||
     props.page === "/tr/logbook" ||
-    props.page === "/tr/applicationForm"
+    props.page === "/tr/applicationForm" ||
+    props.page === "/appForm" ||
+    props.page === "/tr/appForm"
   ) {
     navlinks = [
       { name: t("home"), icons: <HomeIcon />, link: "/" },

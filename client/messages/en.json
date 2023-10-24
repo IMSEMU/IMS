@@ -104,7 +104,8 @@
     "fname": "First Name",
     "lname": "Last Name",
     "pos": "Position in the Company",
-    "submit": "Submit"
+    "submit": "Submit",
+    "submitform": "Are you sure you want to submit?"
   },
   "LocaleSwitcher": {
     "label": "EN"

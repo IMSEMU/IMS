@@ -248,7 +248,7 @@ export const Dashboard = (props) => {
                   }
                 >
                   <Link
-                    href={"/applicationForm"}
+                    href={"/appForm"}
                     className={
                       "flex items-center justify-center py-1.5 gap-2 px-1"
                     }
