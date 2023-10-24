@@ -63,6 +63,7 @@ export const InternDashboardPage = () => {
           />
           <Dashboard
             firstname={std.firstname}
+            filled_iaf={student.filled_iaf}
             isConfirmed={student.isConfirmed}
             filledSocial={student.filledSocial}
             logComplete={student.logComplete}

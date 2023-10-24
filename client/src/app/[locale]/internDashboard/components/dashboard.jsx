@@ -241,7 +241,7 @@ export const Dashboard = (props) => {
               }
             >
               {/* Fill Internship Application Form */}
-              {!props.isConfirmed ? (
+              {!props.filled_iaf ? (
                 <div
                   className={
                     " p-2 rounded w-full  gap-2 bg-background_shade_2 dark:bg-dark_2 text-black hover:bg-blue hover:text-white"
@@ -257,7 +257,8 @@ export const Dashboard = (props) => {
                       {t("iaf")}
                     </span>
                     <div className="text-xl ">
-                      {props.isConfirmed && props.logComplete ? (
+                      {props.filled_iaf ||
+                      (props.isConfirmed && props.logComplete) ? (
                         <BsPatchCheckFill className="text-[green]" />
                       ) : (
                         <BsExclamationTriangleFill className="text-[#cab13e]" />
