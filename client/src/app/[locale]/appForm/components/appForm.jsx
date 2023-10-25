@@ -5,12 +5,14 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import Modal from "../../globalComponents/modal";
 import ConfirmationSection from "./confimationSection";
+import { CldUploadWidget } from "next-cloudinary";
 
 export const AppForm = (props) => {
   const t = useTranslations("iaf");
   const [stdphoneno, setStdPhone] = useState("");
   const [stdaddress, setStdAddress] = useState("");
   const [companyname, setCompname] = useState("");
+  const [compid, setCompid] = useState("");
   const [fields, setFields] = useState("");
   const [website, setWebsite] = useState("");
   const [compemail, setCompEmail] = useState("");
@@ -120,22 +122,25 @@ export const AppForm = (props) => {
       setCompPhone(selectedCompany.phoneno);
       setCompFax(selectedCompany.fax);
     }
+    setCompid(companyid);
   };
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
-  const handleFileChange = (e) => {
-    const selectedFile = e.target.files[0];
+  const handleFieldChange = () => {
+    // Set compid to an empty string
+    setCompid("");
+  };
 
-    if (selectedFile) {
-      const reader = new FileReader();
-
-      reader.onload = (e) => setImageSrc(e.target.result);
-      reader.readAsDataURL(selectedFile);
-    } else {
-      setImageSrc("/avatar.png");
+  const handleImageUploadSuccess = (result) => {
+    console.log(result);
+    console.log("i am here");
+    if (result.event === "success") {
+      // console.log("i am here");
+      const url = result.info.secure_url;
+      setImageSrc(url); // Store the URL in state
     }
   };
 
@@ -145,6 +150,7 @@ export const AppForm = (props) => {
       const response = await AuthConnect.post("/createapp", {
         stdphoneno: stdphoneno,
         stdaddress: stdaddress,
+        compid: compid,
         companyname: companyname,
         fields: fields,
         website: website,
@@ -189,7 +195,7 @@ export const AppForm = (props) => {
               {/* profile pic */}
               <div className="w-full flex justify-center mt-1">
                 <Image
-                  src={imageSrc ? imageSrc : "/avatar.png"}
+                  src={imageSrc || "/avatar.png"}
                   width={1000}
                   height={1000}
                   alt=""
@@ -249,16 +255,26 @@ export const AppForm = (props) => {
                     />
                   </div>
                   <div className="mt-2 md:mt-4 relative flex space-x-2">
-                    <input
-                      type={"file"}
-                      name=""
-                      accept=".png, .jpg, .jpeg"
-                      onChange={handleFileChange}
-                      id=""
-                      placeholder="profile Picture"
-                      className="input w-full text-dark_2 dark:text-yellow placeholder:text-dark_2 dark:placeholder:text-yellow bg-white file:text-blue file:font-bold file:bg-white file:border file:rounded dark:bg-dark_2 pr-4 py-0.5 border-b-dark_2 dark:border-b-yellow  border-x-0 border-t-0 mt-1 border-2  focus:outline-none"
-                      required
-                    />
+                    <span className="pt-2">Photo: </span>
+                    <CldUploadWidget
+                      uploadPreset="p5tgbjfx"
+                      onSuccess={handleImageUploadSuccess}
+                    >
+                      {({ open }) => {
+                        function handleOnClick(e) {
+                          e.preventDefault();
+                          open();
+                        }
+                        return (
+                          <button
+                            className="bg-blue py-2 px-3.5 rounded text-white"
+                            onClick={handleOnClick}
+                          >
+                            Upload an Image
+                          </button>
+                        );
+                      }}
+                    </CldUploadWidget>
                   </div>
                 </div>
                 <div className={"pt-10"}>
@@ -338,7 +354,10 @@ export const AppForm = (props) => {
                       placeholder={t("website")}
                       className="input w-full text-dark_2 dark:text-yellow placeholder:text-dark_2 dark:placeholder:text-yellow bg-white dark:bg-dark_2 px-4 py-2.5 border-b-dark_2 dark:border-b-yellow  border-x-0 border-t-0 mt-1 border-2  focus:outline-none"
                       value={website}
-                      onChange={(e) => setWebsite(e.target.value)}
+                      onChange={(e) => {
+                        setWebsite(e.target.value);
+                        handleFieldChange();
+                      }}
                       required
                     />
                   </div>
@@ -351,7 +370,10 @@ export const AppForm = (props) => {
                       placeholder={t("orgemail")}
                       className="input w-full text-dark_2 dark:text-yellow placeholder:text-dark_2 dark:placeholder:text-yellow bg-white dark:bg-dark_2 px-4 py-2.5 border-b-dark_2 dark:border-b-yellow  border-x-0 border-t-0 mt-1 border-2  focus:outline-none"
                       value={compemail}
-                      onChange={(e) => setCompEmail(e.target.value)}
+                      onChange={(e) => {
+                        setCompEmail(e.target.value);
+                        handleFieldChange();
+                      }}
                       required
                     />
                   </div>
@@ -364,7 +386,10 @@ export const AppForm = (props) => {
                       placeholder={t("address")}
                       className="input w-full text-dark_2 dark:text-yellow placeholder:text-dark_2 dark:placeholder:text-yellow bg-white dark:bg-dark_2 px-4 py-2.5 border-b-dark_2 dark:border-b-yellow  border-x-0 border-t-0 mt-1 border-2  focus:outline-none"
                       value={compaddress}
-                      onChange={(e) => setCompAddress(e.target.value)}
+                      onChange={(e) => {
+                        setCompAddress(e.target.value);
+                        handleFieldChange();
+                      }}
                       required
                     />
                   </div>
@@ -378,7 +403,10 @@ export const AppForm = (props) => {
                         placeholder={t("phone")}
                         className="input w-full text-dark_2 dark:text-yellow placeholder:text-dark_2 dark:placeholder:text-yellow bg-white dark:bg-dark_2 px-4 py-2.5 border-b-dark_2 dark:border-b-yellow  border-x-0 border-t-0 mt-1 border-2  focus:outline-none"
                         value={compphone}
-                        onChange={(e) => setCompPhone(e.target.value)}
+                        onChange={(e) => {
+                          setCompPhone(e.target.value);
+                          handleFieldChange();
+                        }}
                         required
                       />
                     </div>
@@ -390,7 +418,10 @@ export const AppForm = (props) => {
                         placeholder={t("fax")}
                         className="input w-full text-dark_2 dark:text-yellow placeholder:text-dark_2 dark:placeholder:text-yellow bg-white dark:bg-dark_2 px-4 py-2.5 border-b-dark_2 dark:border-b-yellow  border-x-0 border-t-0 mt-1 border-2  focus:outline-none"
                         value={compfax}
-                        onChange={(e) => setCompFax(e.target.value)}
+                        onChange={(e) => {
+                          setCompFax(e.target.value);
+                          handleFieldChange();
+                        }}
                         required
                       />
                     </div>
