@@ -71,7 +71,8 @@ export const AppForm = (props) => {
       supfname === "" ||
       suplname === "" ||
       supemail === "" ||
-      position === ""
+      position === "" ||
+      imageSrc === ""
     ) {
       setHasValidationError(true);
       return;
@@ -135,10 +136,7 @@ export const AppForm = (props) => {
   };
 
   const handleImageUploadSuccess = (result) => {
-    console.log(result);
-    console.log("i am here");
     if (result.event === "success") {
-      // console.log("i am here");
       const url = result.info.secure_url;
       setImageSrc(url); // Store the URL in state
     }
@@ -148,6 +146,7 @@ export const AppForm = (props) => {
     e.preventDefault();
     try {
       const response = await AuthConnect.post("/createapp", {
+        photo: imageSrc,
         stdphoneno: stdphoneno,
         stdaddress: stdaddress,
         compid: compid,
