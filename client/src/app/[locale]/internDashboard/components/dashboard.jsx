@@ -18,7 +18,7 @@ import { useTranslations } from "next-intl";
 
 export const Dashboard = (props) => {
   const t = useTranslations("dash");
-  const [country, setCountry] = useState("Turkey");
+  const [country, setCountry] = useState("Nigeria");
   const [logbookEntries, setLogbookEntries] = useState([]);
 
   useEffect(() => {
@@ -135,30 +135,70 @@ export const Dashboard = (props) => {
           }
         >
           {/*section Name and Buton*/}
-          <div className={"justify-between flex items-center mx-3 mt-3 mb-2"}>
-            <p
-              className={
-                " font-semibold text-black dark:text-white text-sm md:text-md lg:text-lg  inline-flex text-center  border-yellow border-x-[0.4rem] md:border-x-[0.3rem] px-2"
-              }
-            >
-              {t("logbook")}
-            </p>
 
-            <Link
-              href={"/logbook"}
-              className={
-                "px-2 py-1 bg-blue text-white rounded inline-flex items-center justify-center gap-1"
-              }
-            >
-              <BiPlus className={"text-white text-xl"} />
-              <div>{t("add")}</div>
-            </Link>
-          </div>
+          {(props.isConfirmed &&
+            !props.logComplete &&
+            !(country === "Turkey" || country === "KKTC")) ||
+          (props.filledSocial &&
+            !props.logComplete &&
+            (country === "Turkey" || country === "KKTC")) ? (
+            <div>
+              <div
+                className={"justify-between flex items-center mx-3 mt-3 mb-2"}
+              >
+                <p
+                  className={
+                    " font-semibold text-black dark:text-white text-sm md:text-md lg:text-lg  inline-flex text-center  border-yellow border-x-[0.4rem] md:border-x-[0.3rem] px-2"
+                  }
+                >
+                  {t("logbook")}
+                </p>
+                <Link
+                  href={"/logbook"}
+                  className={
+                    "px-2 py-1 bg-blue text-white rounded inline-flex items-center justify-center gap-1"
+                  }
+                >
+                  <BiPlus className={"text-white text-xl"} />
+                  <div>{t("add")}</div>
+                </Link>
+              </div>
 
-          {/*    section container*/}
-          <div className={"h-[15rem] overflow-y-auto"}>
-            <LogbookDisplay logbookEntries={logbookEntries} />
-          </div>
+              {/*    section container*/}
+              <div className={"h-[15rem] overflow-y-auto"}>
+                <LogbookDisplay logbookEntries={logbookEntries} />
+              </div>
+            </div>
+          ) : (
+            <div>
+              <div
+                className={"justify-between flex items-center mx-3 mt-3 mb-2"}
+              >
+                <p
+                  className={
+                    " font-semibold text-black dark:text-white text-sm md:text-md lg:text-lg  inline-flex text-center  border-yellow border-x-[0.4rem] md:border-x-[0.3rem] px-2"
+                  }
+                >
+                  {t("logbook")}
+                </p>
+                <Link
+                  href={""}
+                  className={
+                    "px-2 py-1 bg-background_shade text-white rounded inline-flex items-center justify-center gap-1"
+                  }
+                >
+                  <BiPlus className={"text-white text-xl"} />
+                  <div>{t("add")}</div>
+                </Link>
+              </div>
+
+              {props.logComplete && (
+                <div className={"h-[15rem] overflow-y-auto"}>
+                  <LogbookDisplay logbookEntries={logbookEntries} />
+                </div>
+              )}
+            </div>
+          )}
         </div>
 
         {/*Announcement Card*/}
@@ -257,12 +297,7 @@ export const Dashboard = (props) => {
                       {t("iaf")}
                     </span>
                     <div className="text-xl ">
-                      {props.filled_iaf ||
-                      (props.isConfirmed && props.logComplete) ? (
-                        <BsPatchCheckFill className="text-[green]" />
-                      ) : (
-                        <BsExclamationTriangleFill className="text-[#cab13e]" />
-                      )}
+                      <BsExclamationTriangleFill className="text-[#cab13e]" />
                     </div>
                   </Link>
                 </div>
@@ -286,19 +321,25 @@ export const Dashboard = (props) => {
               {/* Fill Social Insurance Form */}
               {props.isConfirmed &&
               !props.logComplete &&
+              !props.filledSocial &&
               (country === "Turkey" || country === "KKTC") ? (
                 <div
                   className={
-                    " flex justify-center items-center p-2.5 w-full gap-2 hover:bg-blue hover:text-white"
+                    " p-2 rounded w-full  gap-2 bg-background_shade_2 dark:bg-dark_2 text-black hover:bg-blue hover:text-white"
                   }
                 >
                   <Link
                     href={""}
-                    className={"flex items-center justify-center py-1.5 px-1"}
+                    className={
+                      "flex items-center justify-center py-1.5 gap-2 px-1"
+                    }
                   >
                     <span className={"text-center font-bold text-md w-full "}>
                       {t("sif")}
                     </span>
+                    <div className="text-xl ">
+                      <BsExclamationTriangleFill className="text-[#cab13e]" />
+                    </div>
                   </Link>
                 </div>
               ) : (
@@ -313,7 +354,7 @@ export const Dashboard = (props) => {
                     }
                   >
                     <p>{t("sif")}</p>
-                    {props.isConfirmed && (
+                    {props.filledSocial && (
                       <BsPatchCheckFill className="text-[green] text-xl " />
                     )}
                   </div>
@@ -329,16 +370,22 @@ export const Dashboard = (props) => {
                 (country === "Turkey" || country === "KKTC")) ? (
                 <div
                   className={
-                    "flex justify-center items-center p-2.5 w-full gap-2 hover:bg-blue hover:text-white"
+                    " p-2 rounded w-full  gap-2 bg-background_shade_2 dark:bg-dark_2 text-black hover:bg-blue hover:text-white"
                   }
                 >
                   <Link
                     href={""}
-                    className={"flex items-center justify-center py-1.5 px-1"}
+                    className={
+                      "flex items-center justify-center py-1.5 gap-2 px-1"
+                    }
                   >
                     <span className={"text-center font-bold text-md w-full "}>
-                      F{t("filllg")}
+                      {t("filllg")}
                     </span>
+
+                    <div className="text-xl ">
+                      <BsExclamationTriangleFill className="text-[#cab13e]" />
+                    </div>
                   </Link>
                 </div>
               ) : (
@@ -350,23 +397,31 @@ export const Dashboard = (props) => {
                   <span className={"text-center font-bold text-md w-full "}>
                     {t("filllg")}
                   </span>
+                  {props.logComplete && (
+                    <BsPatchCheckFill className="text-[green] text-xl " />
+                  )}
                 </div>
               )}
 
               {/* Write Report */}
-              {props.logComplete ? (
+              {props.logComplete && !props.reportComplete ? (
                 <div
                   className={
-                    "flex justify-center items-center p-2.5 w-full gap-2 hover:bg-blue hover:text-white"
+                    " p-2 rounded w-full  gap-2 bg-background_shade_2 dark:bg-dark_2 text-black hover:bg-blue hover:text-white"
                   }
                 >
                   <Link
                     href={""}
-                    className={"flex items-center justify-center py-1.5 px-1"}
+                    className={
+                      "flex items-center justify-center py-1.5 gap-2 px-1"
+                    }
                   >
                     <span className={"text-center font-bold text-md w-full "}>
                       {t("report")}
                     </span>
+                    <div className="text-xl ">
+                      <BsExclamationTriangleFill className="text-[#cab13e]" />
+                    </div>
                   </Link>
                 </div>
               ) : (
@@ -378,6 +433,9 @@ export const Dashboard = (props) => {
                   <span className={"text-center font-bold text-md w-full "}>
                     {t("report")}
                   </span>
+                  {props.reportComplete && (
+                    <BsPatchCheckFill className="text-[green] text-xl " />
+                  )}
                 </div>
               )}
             </div>

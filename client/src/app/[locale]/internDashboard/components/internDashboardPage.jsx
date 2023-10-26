@@ -67,6 +67,7 @@ export const InternDashboardPage = () => {
             isConfirmed={student.isConfirmed}
             filledSocial={student.filledSocial}
             logComplete={student.logComplete}
+            reportComplete={student.reportComplete}
           />
         </div>
         <MobileNav />
