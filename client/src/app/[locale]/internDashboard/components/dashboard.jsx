@@ -374,7 +374,7 @@ export const Dashboard = (props) => {
                   }
                 >
                   <Link
-                    href={""}
+                    href={"/logbook"}
                     className={
                       "flex items-center justify-center py-1.5 gap-2 px-1"
                     }

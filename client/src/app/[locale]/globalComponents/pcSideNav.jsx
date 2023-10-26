@@ -121,8 +121,8 @@ export const PcSideNav = (props) => {
               }
             >
               <Image
-                src={"/dark-flower.jpeg"}
-                alt={"qq"}
+                src={!props.image ? "/avatar.png" : props.image}
+                alt={"Profile Picture"}
                 height={1000}
                 width={1000}
                 priority

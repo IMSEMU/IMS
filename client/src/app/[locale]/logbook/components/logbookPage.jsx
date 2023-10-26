@@ -16,6 +16,7 @@ export const LogbookPage = () => {
   const [logbookEntries, setLogbookEntries] = useState([]);
   const pathname = usePathname();
   const [hasNewLogEntry, setHasNewLogEntry] = useState(false);
+  const [student, setStudent] = useState([]);
 
   useEffect(() => {
     const getToken = async () => {
@@ -35,7 +36,9 @@ export const LogbookPage = () => {
     const getStudent = async () => {
       try {
         const response = await AuthConnect.get("/getstudent");
+        setStudent(response.data.student[0]);
         setStd(response.data.user[0]);
+        console.log(std);
       } catch (error) {
         console.error("Error fetching student:", error);
       }
@@ -91,12 +94,14 @@ export const LogbookPage = () => {
           page={pathname}
           firstname={std.firstname}
           lastname={std.lastname}
+          image={student.photo}
         />
         <div className={"h-full w-full"}>
           <TopNav
             firstname={std.firstname}
             lastname={std.lastname}
             email={std.email}
+            image={student.photo}
           />
           <section className=" bg-white dark:bg-dark_1 flex items-center justify-center w-full pt-5">
             <div className="bg-white dark:bg-dark_2 p-3.5 flex rounded shadow-xl dark:border-none border border-background_shade_2 w-[25rem] lg:w-[50rem] h-[32rem]">

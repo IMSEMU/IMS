@@ -54,12 +54,14 @@ export const InternDashboardPage = () => {
           page={pathname}
           firstname={std.firstname}
           lastname={std.lastname}
+          image={student.photo}
         />
         <div className={"h-full w-full"}>
           <TopNav
             firstname={std.firstname}
             lastname={std.lastname}
             email={std.email}
+            image={student.photo}
           />
           <Dashboard
             firstname={std.firstname}

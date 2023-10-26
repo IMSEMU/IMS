@@ -103,8 +103,8 @@ export const TopNav = (props) => {
             className={"flex items-baseline text-blue relative cursor-pointer"}
           >
             <Image
-              src={"/dark-flower.jpeg"}
-              alt={"qq"}
+              src={!props.image ? "/avatar.png" : props.image}
+              alt={"Profile Picture"}
               height={2000}
               width={2000}
               priority
@@ -187,8 +187,8 @@ export const TopNav = (props) => {
                   }
                 >
                   <Image
-                    src={"/dark-flower.jpeg"}
-                    alt={"qq"}
+                    src={!props.image ? "/avatar.png" : props.image}
+                    alt={"Profile Picture"}
                     height={2000}
                     width={2000}
                     priority
