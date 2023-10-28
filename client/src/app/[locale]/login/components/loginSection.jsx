@@ -12,7 +12,10 @@ import AuthConnect from "@/auth";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { LanguageToggle } from "../../globalComponents/languageToggle";
-import { FailedToast, SuccessToast } from "../../globalComponents/toastNotifications";
+import {
+  FailedToast,
+  SuccessToast,
+} from "../../globalComponents/toastNotifications";
 
 export default function LoginSection() {
   const t = useTranslations("Login Page");
@@ -21,7 +24,7 @@ export default function LoginSection() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [msg, setMsg] = useState("");
-  const [toastStatus, setToastStatus] =useState();
+  const [toastStatus, setToastStatus] = useState();
   const router = useRouter();
 
   const showPassword = () => {
@@ -39,12 +42,20 @@ export default function LoginSection() {
         email: email,
         password: password,
       });
+
       localStorage.setItem("accessToken", response.data.accessToken);
       localStorage.setItem("user", JSON.stringify(response.data.user));
 
-      console.log(response);
+      const user = JSON.parse(localStorage.getItem("user"));
+      const userrole = user.userrole;
 
-      router.push("/internDashboard");
+      if (userrole === 1) {
+        router.push("/internDashboard");
+      }
+      if (userrole === 3) {
+        router.push("/confirmationForm");
+      }
+
       setToastStatus(true);
     } catch (error) {
       console.error("Error:", error);
@@ -181,10 +192,13 @@ export default function LoginSection() {
           ) : (
             <SignupSection loginToogle={loginToogle} />
           )}
-         
         </div>
       </section>
-      {toastStatus ? <SuccessToast errorMssg={msg} setErrorMssg={setMsg}/> : <FailedToast errorMssg={msg} setErrorMssg={setMsg}/>}
+      {toastStatus ? (
+        <SuccessToast errorMssg={msg} setErrorMssg={setMsg} />
+      ) : (
+        <FailedToast errorMssg={msg} setErrorMssg={setMsg} />
+      )}
     </main>
   );
 }

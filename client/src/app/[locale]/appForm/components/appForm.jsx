@@ -1,13 +1,14 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import AuthConnect from "@/auth";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
 import Modal from "../../globalComponents/modal";
 import ConfirmationSection from "./confimationSection";
 import { CldUploadWidget } from "next-cloudinary";
+import jwtDecode from "jwt-decode";
 
-export const AppForm = (props) => {
+export const AppForm = () => {
   const t = useTranslations("iaf");
   const [stdphoneno, setStdPhone] = useState("");
   const [stdaddress, setStdAddress] = useState("");
@@ -29,6 +30,10 @@ export const AppForm = (props) => {
   const [imageSrc, setImageSrc] = useState("");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [hasValidationError, setHasValidationError] = useState(false);
+  const [std, setStd] = useState([]);
+  const [student, setStudent] = useState([]);
+  const [companies, setCompanies] = useState([]);
+
   const [formData, setFormData] = useState({
     fname: "",
     lname: "",
@@ -50,6 +55,42 @@ export const AppForm = (props) => {
     position: "",
   });
   const [form, setForm] = useState(true);
+
+  const token = localStorage.getItem("accessToken");
+  let decodedToken, firstname, lastname, email;
+  if (token) {
+    decodedToken = jwtDecode(token);
+    firstname = decodedToken.firstname;
+    lastname = decodedToken.lastname;
+    email = decodedToken.email;
+  }
+
+  useEffect(() => {
+    const getStudent = async () => {
+      try {
+        const response = await AuthConnect.get("/getstudent");
+        setStudent(response.data.student[0]);
+      } catch (error) {
+        console.error("Error fetching student:", error);
+      }
+    };
+
+    getStudent();
+  }, []);
+  useEffect(() => {
+    const getCompanies = async () => {
+      try {
+        const response = await AuthConnect.get("/getcomp");
+        setCompanies(response.data);
+        console.log(response.data);
+      } catch (error) {
+        console.error("Error fetching companies:", error);
+      }
+    };
+
+    // Fetch initial logbook entries when the page loads
+    getCompanies();
+  }, []);
 
   const submitToggle = () => {
     setForm(!form);
@@ -79,10 +120,10 @@ export const AppForm = (props) => {
     }
 
     setFormData({
-      fname: props.firstname,
-      lname: props.lastname,
-      email: props.email,
-      stdid: props.stdid,
+      fname: firstname,
+      lname: lastname,
+      email: email,
+      stdid: student.stdid,
       stdphoneno: stdphoneno,
       stdaddress: stdaddress,
       companyname: companyname,
@@ -110,9 +151,7 @@ export const AppForm = (props) => {
     setCompname(companyname);
     setIsDropdownOpen(false);
 
-    const selectedCompany = props.companies.find(
-      (c) => c.companyid === companyid
-    );
+    const selectedCompany = companies.find((c) => c.companyid === companyid);
 
     // If the company is found, set the fields to the company's fields
     if (selectedCompany) {
@@ -209,13 +248,13 @@ export const AppForm = (props) => {
                   <div className="mt-2 md:mt-4 relative flex space-x-2">
                     <div className="w-1/2">
                       <span>
-                        {t("name")}: {props.firstname} {props.lastname}{" "}
+                        {t("name")}: {firstname} {lastname}{" "}
                       </span>
                     </div>
 
                     <div className="w-1/2">
                       <span>
-                        {t("stdid")}: {props.stdid}{" "}
+                        {t("stdid")}: {student.stdid}{" "}
                       </span>
                     </div>
                   </div>
@@ -223,7 +262,7 @@ export const AppForm = (props) => {
                   <div className="mt-2 md:mt-4 relative flex space-x-2">
                     <div>
                       <span>
-                        {t("email")}: {props.email}{" "}
+                        {t("email")}: {email}{" "}
                       </span>
                     </div>
                   </div>
@@ -308,7 +347,7 @@ export const AppForm = (props) => {
                     {isDropdownOpen && (
                       <div className="absolute z-10 w-[30rem] mt-1 bg-white border border-gray-300 rounded-md shadow-lg">
                         <ul className="py-1">
-                          {props.companies
+                          {companies
                             .filter((company) =>
                               company.name
                                 .toLowerCase()

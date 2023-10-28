@@ -6,20 +6,38 @@ import Link from "next/link";
 import { LogbookDisplay } from "../../logbook/components/logbookDisplay";
 import { useEffect, useState } from "react";
 import AuthConnect from "@/auth";
-import {
-  BsExclamationTriangleFill,
-  BsPatchCheckFill,
-  BsPatchExclamationFill,
-  BsPatchQuestionFill,
-} from "react-icons/bs";
+import { BsExclamationTriangleFill, BsPatchCheckFill } from "react-icons/bs";
 import { FaBriefcase, FaRegCalendarCheck } from "react-icons/fa";
 import { RiVerifiedBadgeFill } from "react-icons/ri";
 import { useTranslations } from "next-intl";
+import jwtDecode from "jwt-decode";
 
-export const Dashboard = (props) => {
+export const Dashboard = () => {
   const t = useTranslations("dash");
+  const [student, setStudent] = useState([]);
   const [country, setCountry] = useState("Nigeria");
   const [logbookEntries, setLogbookEntries] = useState([]);
+
+  const token = localStorage.getItem("accessToken");
+  let decodedToken, firstname;
+  if (token) {
+    decodedToken = jwtDecode(token);
+    firstname = decodedToken.firstname;
+  }
+
+  useEffect(() => {
+    const getStudent = async () => {
+      try {
+        const response = await AuthConnect.get("/getstudent");
+        setStudent(response.data.student[0]);
+        setStd(response.data.user[0]);
+      } catch (error) {
+        console.error("Error fetching student:", error);
+      }
+    };
+
+    getStudent();
+  }, []);
 
   useEffect(() => {
     const fetchLogbookEntries = async () => {
@@ -42,7 +60,7 @@ export const Dashboard = (props) => {
         }
       >
         <p>
-          {t("welcome")} {props.firstname}{" "}
+          {t("welcome")} {firstname}{" "}
         </p>
       </div>
 
@@ -136,11 +154,11 @@ export const Dashboard = (props) => {
         >
           {/*section Name and Buton*/}
 
-          {(props.isConfirmed &&
-            !props.logComplete &&
+          {(student.isConfirmed &&
+            !student.logComplete &&
             !(country === "Turkey" || country === "KKTC")) ||
-          (props.filledSocial &&
-            !props.logComplete &&
+          (student.filledSocial &&
+            !student.logComplete &&
             (country === "Turkey" || country === "KKTC")) ? (
             <div>
               <div
@@ -192,7 +210,7 @@ export const Dashboard = (props) => {
                 </Link>
               </div>
 
-              {props.logComplete && (
+              {student.logComplete && (
                 <div className={"h-[15rem] overflow-y-auto"}>
                   <LogbookDisplay logbookEntries={logbookEntries} />
                 </div>
@@ -281,7 +299,7 @@ export const Dashboard = (props) => {
               }
             >
               {/* Fill Internship Application Form */}
-              {!props.filled_iaf ? (
+              {!student.filled_iaf ? (
                 <div
                   className={
                     " p-2 rounded w-full  gap-2 bg-background_shade_2 dark:bg-dark_2 text-black hover:bg-blue hover:text-white"
@@ -319,9 +337,9 @@ export const Dashboard = (props) => {
               )}
 
               {/* Fill Social Insurance Form */}
-              {props.isConfirmed &&
-              !props.logComplete &&
-              !props.filledSocial &&
+              {student.isConfirmed &&
+              !student.logComplete &&
+              !student.filledSocial &&
               (country === "Turkey" || country === "KKTC") ? (
                 <div
                   className={
@@ -354,7 +372,7 @@ export const Dashboard = (props) => {
                     }
                   >
                     <p>{t("sif")}</p>
-                    {props.filledSocial && (
+                    {student.filledSocial && (
                       <BsPatchCheckFill className="text-[green] text-xl " />
                     )}
                   </div>
@@ -362,11 +380,11 @@ export const Dashboard = (props) => {
               )}
 
               {/* Fill Logbook */}
-              {(props.isConfirmed &&
-                !props.logComplete &&
+              {(student.isConfirmed &&
+                !student.logComplete &&
                 !(country === "Turkey" || country === "KKTC")) ||
-              (props.filledSocial &&
-                !props.logComplete &&
+              (student.filledSocial &&
+                !student.logComplete &&
                 (country === "Turkey" || country === "KKTC")) ? (
                 <div
                   className={
@@ -397,14 +415,14 @@ export const Dashboard = (props) => {
                   <span className={"text-center font-bold text-md w-full "}>
                     {t("filllg")}
                   </span>
-                  {props.logComplete && (
+                  {student.logComplete && (
                     <BsPatchCheckFill className="text-[green] text-xl " />
                   )}
                 </div>
               )}
 
               {/* Write Report */}
-              {props.logComplete && !props.reportComplete ? (
+              {student.logComplete && !student.reportComplete ? (
                 <div
                   className={
                     " p-2 rounded w-full  gap-2 bg-background_shade_2 dark:bg-dark_2 text-black hover:bg-blue hover:text-white"
@@ -433,7 +451,7 @@ export const Dashboard = (props) => {
                   <span className={"text-center font-bold text-md w-full "}>
                     {t("report")}
                   </span>
-                  {props.reportComplete && (
+                  {student.reportComplete && (
                     <BsPatchCheckFill className="text-[green] text-xl " />
                   )}
                 </div>
