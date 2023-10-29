@@ -4,7 +4,6 @@ import { VscSignIn } from "react-icons/vsc";
 import { useRouter } from "next/navigation";
 import AuthConnect from "@/auth";
 import { useState } from "react";
-import Modal from "../../globalComponents/modal";
 import { useTranslations } from "next-intl";
 
 export const SignupSection = ({ loginToogle }) => {
@@ -29,18 +28,16 @@ export const SignupSection = ({ loginToogle }) => {
         password: password,
         confPassword: confPassword,
       });
-
+      console.log(response.data);
       if (response.data.status === "success") {
         alert("Registration Successful");
         router.push("/login");
-      } // else {
-      //     alert("Registration Unsuccessful");
-      // }
+      }
     } catch (error) {
       if (error.response) {
         setMsg(error.response.data.msg);
       }
-      alert("Registration Error"); // You can add a generic error message here
+      alert("Registration Unsuccessful"); // You can add a generic error message here
     }
   };
 
@@ -191,13 +188,6 @@ export const SignupSection = ({ loginToogle }) => {
             </button>
           </div>
         </div>
-
-        <Modal
-          isOpen={showModal}
-          message="Registration Successful"
-          buttonText="Go to Login"
-          buttonLink="/login"
-        />
       </main>
     </>
   );

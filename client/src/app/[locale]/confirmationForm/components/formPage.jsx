@@ -7,6 +7,7 @@ import { PcSideNav } from "../../globalComponents/pcSideNav";
 import { MobileNav } from "../../globalComponents/mobileNav";
 import { ConForm } from "./conForm";
 import jwtDecode from "jwt-decode";
+import { ProtectedRoute } from "../../globalComponents/compProtectedRoute";
 
 export const ConfirmationForm = () => {
   const router = useRouter();
@@ -43,7 +44,9 @@ export const ConfirmationForm = () => {
         <PcSideNav />
         <div className={"h-full w-full"}>
           <TopNav />
-          <ConForm />
+          <ProtectedRoute>
+            <ConForm />
+          </ProtectedRoute>
         </div>
         <MobileNav />
       </div>

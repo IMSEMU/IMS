@@ -14,8 +14,9 @@ import { useRouter, usePathname } from "next/navigation";
 import AuthConnect from "@/auth";
 import { useTranslations } from "next-intl";
 import jwtDecode from "jwt-decode";
+import { useState, useEffect } from "react";
 
-export const PcSideNav = (props) => {
+export const PcSideNav = () => {
   const t = useTranslations("sidenav");
   const pathname = usePathname();
   let navlinks;
@@ -57,6 +58,23 @@ export const PcSideNav = (props) => {
   }
 
   const router = useRouter();
+  const [photo, setPhoto] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const getPhoto = async () => {
+      try {
+        const response = await AuthConnect.get("/getphoto");
+        setPhoto(response.data);
+      } catch (error) {
+        console.error("Error fetching photo:", error);
+      } finally {
+        setIsLoading(false); // Set isLoading to false when done
+      }
+    };
+
+    getPhoto();
+  }, []);
   const handleLogout = async () => {
     try {
       const response = await AuthConnect.delete("/logout");
@@ -70,6 +88,10 @@ export const PcSideNav = (props) => {
       }
     }
   };
+  if (isLoading) {
+    // Render a loading indicator or nothing while data is being fetched
+    return null;
+  }
 
   return (
     <main
@@ -132,7 +154,7 @@ export const PcSideNav = (props) => {
               }
             >
               <Image
-                src={!props.image ? "/avatar.png" : props.image}
+                src={photo === "" || !photo ? "/avatar.png" : photo}
                 alt={"Profile Picture"}
                 height={1000}
                 width={1000}

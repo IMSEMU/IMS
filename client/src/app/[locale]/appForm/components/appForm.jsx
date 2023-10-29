@@ -30,7 +30,6 @@ export const AppForm = () => {
   const [imageSrc, setImageSrc] = useState("");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [hasValidationError, setHasValidationError] = useState(false);
-  const [std, setStd] = useState([]);
   const [student, setStudent] = useState([]);
   const [companies, setCompanies] = useState([]);
 
@@ -69,7 +68,7 @@ export const AppForm = () => {
     const getStudent = async () => {
       try {
         const response = await AuthConnect.get("/getstudent");
-        setStudent(response.data.student[0]);
+        setStudent(response.data);
       } catch (error) {
         console.error("Error fetching student:", error);
       }
@@ -80,7 +79,7 @@ export const AppForm = () => {
   useEffect(() => {
     const getCompanies = async () => {
       try {
-        const response = await AuthConnect.get("/getcomp");
+        const response = await AuthConnect.get("/getcomps");
         setCompanies(response.data);
         console.log(response.data);
       } catch (error) {

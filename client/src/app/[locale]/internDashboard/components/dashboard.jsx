@@ -29,8 +29,8 @@ export const Dashboard = () => {
     const getStudent = async () => {
       try {
         const response = await AuthConnect.get("/getstudent");
-        setStudent(response.data.student[0]);
-        setStd(response.data.user[0]);
+        console.log(response.data);
+        setStudent(response.data);
       } catch (error) {
         console.error("Error fetching student:", error);
       }

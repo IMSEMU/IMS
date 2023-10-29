@@ -1,7 +1,6 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import { BiPlus } from "react-icons/bi";
 import { GiPencil } from "react-icons/gi";
 import { VscSignOut } from "react-icons/vsc";
 import { RiSunFoggyFill } from "react-icons/ri";
@@ -20,6 +19,7 @@ export const TopNav = () => {
   const t = useTranslations("topnav");
   const router = useRouter();
   const [photo, setPhoto] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
 
   const token = localStorage.getItem("accessToken");
   let decodedToken, firstname, lastname, email;
@@ -31,16 +31,18 @@ export const TopNav = () => {
   }
 
   useEffect(() => {
-    const getStudent = async () => {
+    const getPhoto = async () => {
       try {
-        const response = await AuthConnect.get("/getstudent");
-        setPhoto(response.data.student[0]);
+        const response = await AuthConnect.get("/getphoto");
+        setPhoto(response.data);
       } catch (error) {
-        console.error("Error fetching student:", error);
+        console.error("Error fetching photo:", error);
+      } finally {
+        setIsLoading(false); // Set isLoading to false when done
       }
     };
 
-    getStudent();
+    getPhoto();
   }, []);
 
   const handleLogout = async () => {
@@ -86,7 +88,10 @@ export const TopNav = () => {
     setNotificationDrop(!notificationDrop);
     profileDrop === true ? setProfileDrop(false) : profileDrop;
   };
-
+  if (isLoading) {
+    // Render a loading indicator or nothing while data is being fetched
+    return null;
+  }
   return (
     <main
       className={
@@ -128,7 +133,7 @@ export const TopNav = () => {
             className={"flex items-baseline text-blue relative cursor-pointer"}
           >
             <Image
-              src={photo != "" ? "/avatar.png" : photo}
+              src={photo === "" || !photo ? "/avatar.png" : photo}
               alt={"Profile Picture"}
               height={2000}
               width={2000}
@@ -212,7 +217,7 @@ export const TopNav = () => {
                   }
                 >
                   <Image
-                    src={photo != "" ? "/avatar.png" : photo}
+                    src={photo === "" || !photo ? "/avatar.png" : photo}
                     alt={"Profile Picture"}
                     height={2000}
                     width={2000}
