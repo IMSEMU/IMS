@@ -18,7 +18,7 @@ export const Navbar = () => {
       >
         <nav
           className={
-            "sticky bg-white dark:bg-dark_2 top-0 z-50 flex justify-between w-full max-w-[83.75rem] px-1 mx-auto py-1"
+            "sticky bg-white dark:bg-dark_2  top-0 z-50 flex justify-between w-full max-w-[83.75rem] px-1 mx-auto py-1"
           }
         >
           {/*logo*/}
@@ -39,7 +39,7 @@ export const Navbar = () => {
           <div className={""}></div>
 
           {/*login button*/}
-          <div className={"flex items-center"}>
+          <div className={"flex items-center gap-2"}>
             {/*language toogle*/}
             <LanguageToggle />
             <DarkModeButton />

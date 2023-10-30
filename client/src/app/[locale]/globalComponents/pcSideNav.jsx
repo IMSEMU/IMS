@@ -1,7 +1,6 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import { CiSettings } from "react-icons/ci";
 import { VscSignOut } from "react-icons/vsc";
 import {
   HomeIcon,
@@ -11,26 +10,28 @@ import {
   LogbookIcon,
 } from "../svg_Icons";
 import { useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import AuthConnect from "@/auth";
 import { useTranslations } from "next-intl";
 
 export const PcSideNav = (props) => {
   const t = useTranslations("sidenav");
   let navlinks;
-
+  const path = usePathname();
+  console.log(path);
   if (
-    props.page === "/internDashboard" ||
-    props.page === "/tr/internDashboard"
+    path === "/internDashboard" ||
+    path === "/tr/internDashboard"
   ) {
     navlinks = [
       { name: t("home"), icons: <HomeIcon />, link: "/" },
       { name: t("chat"), icons: <ChatIcon />, link: "" },
     ];
   } else if (
-    props.page === "/logbook" ||
-    props.page === "/applicationForm" ||
-    props.page === "/tr/logbook" ||
-    props.page === "/tr/applicationForm"
+    path === "/logbook" ||
+    path === "/applicationForm" ||
+    path === "/tr/logbook" ||
+    path === "/tr/applicationForm"
   ) {
     navlinks = [
       { name: t("home"), icons: <HomeIcon />, link: "/" },
@@ -40,6 +41,11 @@ export const PcSideNav = (props) => {
         link: "/internDashboard",
       },
       { name: t("chat"), icons: <ChatIcon />, link: "" },
+    ];
+  }//for department Dashboard
+  else if (path === "/departmentDashboard") {
+    navlinks = [
+      { name: "home", icons: <HomeIcon />, link: "/" }
     ];
   }
 

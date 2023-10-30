@@ -6,12 +6,7 @@ import Link from "next/link";
 import { LogbookDisplay } from "../../logbook/components/logbookDisplay";
 import { useEffect, useState } from "react";
 import AuthConnect from "@/auth";
-import {
-  BsExclamationTriangleFill,
-  BsPatchCheckFill,
-  BsPatchExclamationFill,
-  BsPatchQuestionFill,
-} from "react-icons/bs";
+import { BsBuildings, BsExclamationTriangleFill, BsPatchCheckFill } from "react-icons/bs";
 import { FaBriefcase, FaRegCalendarCheck } from "react-icons/fa";
 import { RiVerifiedBadgeFill } from "react-icons/ri";
 import { useTranslations } from "next-intl";
@@ -21,7 +16,7 @@ export const Dashboard = (props) => {
   const [country, setCountry] = useState("Turkey");
   const [logbookEntries, setLogbookEntries] = useState([]);
 
-  useEffect(() => {
+useEffect(() => {
     const fetchLogbookEntries = async () => {
       try {
         const response = await AuthConnect.get("/viewlog");
@@ -103,7 +98,7 @@ export const Dashboard = (props) => {
               <span
                 className={"text-4xl rounded p-4 my-1 bg-dark_3 text-white"}
               >
-                <FaBriefcase />
+                <BsBuildings />
               </span>
             </div>
 
@@ -138,7 +133,7 @@ export const Dashboard = (props) => {
           <div className={"justify-between flex items-center mx-3 mt-3 mb-2"}>
             <p
               className={
-                " font-semibold text-black dark:text-white text-sm md:text-md lg:text-lg  inline-flex text-center  border-yellow border-x-[0.4rem] md:border-x-[0.3rem] px-2"
+                " font-semibold text-black dark:text-white  text-sm md:text-md xl:text-lg  inline-flex text-center  border-yellow border-x-[0.3rem] px-2"
               }
             >
               {t("logbook")}
@@ -170,7 +165,7 @@ export const Dashboard = (props) => {
           {/*section Name*/}
           <p
             className={
-              " font-semibold m-3 text-black dark:text-white text-sm md:text-md lg:text-lg  inline-flex text-center  border-yellow border-x-[0.4rem] md:border-x-[0.3rem] px-2"
+              " font-semibold m-3 text-black dark:text-white  text-sm md:text-md xl:text-lg  inline-flex text-center  border-yellow border-x-[0.3rem] px-2"
             }
           >
             {t("Announcements")}
@@ -227,7 +222,7 @@ export const Dashboard = (props) => {
           {/*section Name*/}
           <p
             className={
-              " font-semibold m-3 text-black dark:text-white text-sm md:text-md lg:text-lg  inline-flex text-center  border-yellow border-x-[0.4rem] md:border-x-[0.3rem] px-2"
+              " font-semibold m-3 text-black dark:text-white  text-sm md:text-md xl:text-lg  inline-flex text-center  border-yellow border-x-[0.3rem] px-2"
             }
           >
             {t("todo")}
