@@ -109,5 +109,38 @@
   },
   "LocaleSwitcher": {
     "label": "TR"
+  },
+  "sif": {
+    "title": "Sosyal Sigorta Formu",
+    "stdinfo": "Öğrenci Kayıt Bilgileri",
+    "name": "İsim",
+    "stdid": "Öğrenci Numarası",
+    "email": "E-posta Adresi",
+    "phone": "Telefon numarası",
+    "address": "Posta adresi",
+    "idpass": "Kimlik/Pasaport Numarası",
+    "ayear": "Akademik yıl",
+    "dept": "Bölüm/Program",
+    "fac": "Fakülte/Okul",
+    "fname": "Baba adı",
+    "mname": "Annenin Adı",
+    "pob": "Doğum yeri",
+    "dob": "Doğum tarihi",
+    "doi": "Veriliş tarihi",
+    "validity": "Geçerlilik süresi",
+    "subtitle": "Staj Yeri Hakkında Bilgi",
+    "sdate": "Staj Başlangıç Tarihi",
+    "edate": "Staj Bitiş Tarihi",
+    "days": "Süre(İş Günleri)",
+    "compname": "Firma Adı",
+    "work": "Çalışma Alanları",
+    "website": "Kurumsal Web Adresi",
+    "orgemail": "Kurumsal E-posta",
+    "sub": "İşveren veya Yetkili",
+    "sgk": "İşveren S.G.K numarası",
+    "pos": "Şirketteki Pozisyonu",
+    "date": "Tarih",
+    "submit": "Göndermek",
+    "submitform": "Göndermek istediğinizden emin misiniz?"
   }
 }
