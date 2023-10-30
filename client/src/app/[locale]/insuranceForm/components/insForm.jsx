@@ -1,8 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import jwtDecode from "jwt-decode";
 import { useTranslations } from "next-intl";
 import AuthConnect from "@/auth";
 import { DateInput } from "../../globalComponents/dateInput";
+import { useReactToPrint } from "react-to-print";
+import { PrintInsurance } from "../../globalComponents/printInsurance";
 
 export const InsForm = () => {
   const t = useTranslations("sif");
@@ -48,6 +50,11 @@ export const InsForm = () => {
     };
     getCompany();
   }, []);
+
+  const componentRef = useRef();
+  const handlePrinting = useReactToPrint({
+    content: () => componentRef.current,
+  });
   if (!company) {
     return null;
   }
@@ -55,6 +62,9 @@ export const InsForm = () => {
   return (
     <main>
       <div className="my-1 flex justify-center items-center font-bold pt-5">
+        <div className="invisible absolute">
+          <PrintInsurance props={t("title")} ref={componentRef} />
+        </div>
         <div className=" my-2 border-x-[0.4rem] text-2xl border-yellow dark:text-white">
           <p className="px-2 ">{t("title")}</p>
         </div>
@@ -325,7 +335,11 @@ export const InsForm = () => {
             </div>
 
             <div className="w-full flex items-center justify-end text-white pt-10">
-              <button type="submit" className="bg-blue py-2 px-3.5 rounded ">
+              <button
+                onClick={() => handlePrinting()}
+                type="button"
+                className="bg-blue py-2 px-3.5 rounded "
+              >
                 {t("submit")}
               </button>
             </div>
