@@ -1,8 +1,12 @@
 import React from "react";
 import { useTranslations } from "next-intl";
 
-const ConfirmationSection = ({ submitToggle, formData, submitApplication }) => {
-  const t = useTranslations("iaf");
+const ConfirmationSection = ({
+  submitToggle,
+  formData,
+  submitInsuranceForm,
+}) => {
+  const t = useTranslations("sif");
 
   return (
     <main>
@@ -58,6 +62,74 @@ const ConfirmationSection = ({ submitToggle, formData, submitApplication }) => {
                 {t("address")}: {formData.stdaddress}
               </span>
             </div>
+
+            <div className="mt-2 md:mt-4 relative flex space-x-2">
+              <div className="w-1/2">
+                <span>
+                  {t("idpass")}: {formData.idpassno}{" "}
+                </span>
+              </div>
+
+              <div className="w-1/2">
+                <span>
+                  {t("ayear")}: {formData.ayear}
+                </span>
+              </div>
+            </div>
+            <div className="mt-2 md:mt-4 relative flex space-x-2">
+              <div className="w-1/2">
+                <span>
+                  {t("dept")}: {formData.dept}{" "}
+                </span>
+              </div>
+
+              <div className="w-1/2">
+                <span>
+                  {t("fac")}: {formData.faculty}
+                </span>
+              </div>
+            </div>
+            <div className="mt-2 md:mt-4 relative flex space-x-2">
+              <div className="w-1/2">
+                <span>
+                  {t("fname")}: {formData.fname}{" "}
+                </span>
+              </div>
+
+              <div className="w-1/2">
+                <span>
+                  {t("mname")}: {formData.mname}
+                </span>
+              </div>
+            </div>
+            <div className="mt-2 md:mt-4 relative flex space-x-2">
+              <div className="w-1/2">
+                <span>
+                  {t("pob")}: {formData.pob}{" "}
+                </span>
+              </div>
+
+              <div className="w-1/2">
+                <span>
+                  {t("dob")}:{" "}
+                  {formData.dob ? formData.dob.toISOString().slice(0, 10) : ""}
+                </span>
+              </div>
+            </div>
+            <div className="mt-2 md:mt-4 relative flex space-x-2">
+              <div className="w-1/2">
+                <span>
+                  {t("doi")}:{" "}
+                  {formData.doi ? formData.doi.toISOString().slice(0, 10) : ""}{" "}
+                </span>
+              </div>
+
+              <div className="w-1/2">
+                <span>
+                  {t("validity")}: {formData.validity}
+                </span>
+              </div>
+            </div>
           </div>
           <div className={"pt-10"}>
             <p
@@ -65,10 +137,33 @@ const ConfirmationSection = ({ submitToggle, formData, submitApplication }) => {
                 " font-bold my-4 text-black dark:text-white text-sm md:text-md lg:text-lg  inline-flex text-center  border-yellow border-x-[0.4rem] md:border-x-[0.3rem] px-2"
               }
             >
-              {t("compinfo")}
+              {t("subtitle")}
             </p>
           </div>
           <div>
+            <div className="mt-2 md:mt-4 relative flex space-x-2">
+              <div className="w-1/2">
+                <span>
+                  {t("sdate")}:{" "}
+                  {formData.startdate
+                    ? formData.startdate.toISOString().slice(0, 10)
+                    : ""}
+                </span>
+              </div>
+              <div className="w-1/2">
+                <span>
+                  {t("days")}: {formData.duration}
+                </span>
+              </div>
+            </div>
+            <div className="mt-2 md:mt-4 relative flex space-x-2">
+              <span>
+                {t("edate")}:{" "}
+                {formData.enddate
+                  ? formData.enddate.toISOString().slice(0, 10)
+                  : ""}
+              </span>
+            </div>
             <div className="mt-2 md:mt-4 relative flex space-x-2">
               <span>
                 {t("compname")}: {formData.companyname}
@@ -82,13 +177,13 @@ const ConfirmationSection = ({ submitToggle, formData, submitApplication }) => {
 
             <div className="mt-2 md:mt-4 relative flex space-x-2">
               <span>
-                {t("website")}: {formData.website}
+                {t("orgemail")}: {formData.compemail}
               </span>
             </div>
 
             <div className="mt-2 md:mt-4 relative flex space-x-2">
               <span>
-                {t("orgemail")}: {formData.compemail}
+                {t("website")}: {formData.website}
               </span>
             </div>
 
@@ -99,24 +194,9 @@ const ConfirmationSection = ({ submitToggle, formData, submitApplication }) => {
             </div>
 
             <div className="mt-2 md:mt-4 relative flex space-x-2">
-              <div className="w-1/2">
-                <span>
-                  {t("phone")}: {formData.compphone}
-                </span>
-              </div>
-              <div className="w-1/2">
-                <span>
-                  {t("fax")}: {formData.compfax}
-                </span>
-              </div>
-            </div>
-
-            <div className="mt-2 md:mt-4 relative flex space-x-2">
-              <div className="w-full">
-                <span>
-                  {t("desc")}: {formData.workdesc}
-                </span>
-              </div>
+              <span>
+                {t("phone")}: {formData.compphone}
+              </span>
             </div>
           </div>
           <div className={"pt-10"}>
@@ -125,7 +205,7 @@ const ConfirmationSection = ({ submitToggle, formData, submitApplication }) => {
                 " font-bold my-4 text-black dark:text-white text-sm md:text-md lg:text-lg  inline-flex text-center  border-yellow border-x-[0.4rem] md:border-x-[0.3rem] px-2"
               }
             >
-              {t("cis")}
+              {t("sub")}
             </p>
           </div>
 
@@ -133,12 +213,12 @@ const ConfirmationSection = ({ submitToggle, formData, submitApplication }) => {
             <div className="mt-2 md:mt-4 relative flex space-x-2">
               <div className="w-1/2">
                 <span>
-                  {t("fname")}: {formData.supfname}
+                  {t("name")}: {formData.supfname} {formData.suplname}
                 </span>
               </div>
               <div className="w-1/2">
                 <span>
-                  {t("lname")}: {formData.suplname}
+                  {t("pos")}: {formData.position}
                 </span>
               </div>
             </div>
@@ -151,7 +231,7 @@ const ConfirmationSection = ({ submitToggle, formData, submitApplication }) => {
               </div>
               <div className="w-1/2">
                 <span>
-                  {t("pos")}: {formData.position}
+                  {t("sgk")}: {formData.sgk}
                 </span>
               </div>
             </div>
@@ -164,7 +244,7 @@ const ConfirmationSection = ({ submitToggle, formData, submitApplication }) => {
               </button>
               <button
                 className="bg-blue text-white px-3 py-1 mt-2 justify-end"
-                onClick={submitApplication}
+                onClick={submitInsuranceForm}
               >
                 Submit
               </button>
