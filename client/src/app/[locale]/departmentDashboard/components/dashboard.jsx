@@ -8,6 +8,7 @@ import { HiMagnifyingGlass } from "react-icons/hi2";
 import { Empty } from "antd";
 import AuthConnect from "@/auth";
 import { useTranslations } from "next-intl";
+import Link from "next/link";
 
 export const Dashboard = () => {
   const t = useTranslations("logbook");
@@ -242,80 +243,102 @@ export const Dashboard = () => {
                       </div>
                     ) : (
                       submissions.map((submission) => (
-                        <div
-                          key={submission.internshipid}
-                          className=" flex justify-center flex-wrap"
+                        <Link
+                          href={
+                            submission.filled_iaf && !submission.iafConfirmed
+                              ? "/iafview"
+                              : submission.filledConForm &&
+                                !submission.conFormConfirmed
+                              ? "/conformview"
+                              : submission.filledSocial &&
+                                !submission.sifConfirmed
+                              ? "/sifview"
+                              : submission.logComplete &&
+                                !submission.logConfirmed
+                              ? "/logview"
+                              : submission.compEvalFilled &&
+                                !submission.compEvalConfirmed
+                              ? "/compevalview"
+                              : submission.reportComplete &&
+                                !submission.reportConfirmed
+                              ? "/reportview"
+                              : ""
+                          }
                         >
-                          {/* Render each submission */}
-                          <div className="my-2 mx-1 py-2 bg-blue text-white dark:bg-dark_4 dark:text-black w-full flex max-w-[30rem] items-center justify-between rounded">
-                            <div
-                              className={
-                                "w-2/12 flex justify-center items-center"
-                              }
-                            >
-                              <Image
-                                src={"/avatar.png"}
-                                alt={"Profile Picture"}
-                                height={1000}
-                                width={1000}
-                                priority
+                          <div
+                            key={submission.internshipid}
+                            className=" flex justify-center flex-wrap"
+                          >
+                            <div className="my-2 mx-1 py-2 bg-blue text-white dark:bg-dark_4 dark:text-black w-full flex max-w-[30rem] items-center justify-between rounded">
+                              <div
                                 className={
-                                  "w-[2rem] h-[2rem] rounded-full hidden lg:inline-block"
+                                  "w-2/12 flex justify-center items-center"
                                 }
-                              />
-                            </div>
-                            <div className={"w-10/12 ml-5"}>
-                              <div className=" flex flex-wrap">
-                                <p className="font-semibold">
-                                  {submission.stdid}
-                                </p>
+                              >
+                                <Image
+                                  src={"/avatar.png"}
+                                  alt={"Profile Picture"}
+                                  height={1000}
+                                  width={1000}
+                                  priority
+                                  className={
+                                    "w-[2rem] h-[2rem] rounded-full hidden lg:inline-block"
+                                  }
+                                />
                               </div>
-                              {submission.filled_iaf &&
-                              !submission.iafConfirmed ? (
-                                <div className="flex">
-                                  <span className="text-md">
-                                    Internship Application Form
-                                  </span>
+                              <div className={"w-10/12 ml-5"}>
+                                <div className=" flex flex-wrap">
+                                  <p className="font-semibold">
+                                    {submission.stdid}
+                                  </p>
                                 </div>
-                              ) : submission.filledConForm &&
-                                !submission.conFormConfirmed ? (
-                                <div className="flex">
-                                  <span className="text-md">
-                                    Internship Confirmation Form
-                                  </span>
-                                </div>
-                              ) : submission.filledSocial &&
-                                !submission.sifConfirmed ? (
-                                <div className="flex">
-                                  <span className="text-md">
-                                    Social Insurance Form
-                                  </span>
-                                </div>
-                              ) : submission.logComplete &&
-                                !submission.logConfirmed ? (
-                                <div className="flex">
-                                  <span className="text-md">Logbook</span>
-                                </div>
-                              ) : submission.compEvalFilled &&
-                                !submission.compEvalConfirmed ? (
-                                <div className="flex">
-                                  <span className="text-md">
-                                    Company Evaluation Form
-                                  </span>
-                                </div>
-                              ) : submission.reportComplete &&
-                                !submission.reportConfirmed ? (
-                                <div className="flex">
-                                  <span className="text-md">Report</span>
-                                </div>
-                              ) : (
-                                <div className="flex">
-                                  <span className="text-md">Problem</span>
-                                </div>
-                              )}
+                                {submission.filled_iaf &&
+                                !submission.iafConfirmed ? (
+                                  <div className="flex">
+                                    <span className="text-md">
+                                      Internship Application Form
+                                    </span>
+                                  </div>
+                                ) : submission.filledConForm &&
+                                  !submission.conFormConfirmed ? (
+                                  <div className="flex">
+                                    <span className="text-md">
+                                      Internship Confirmation Form
+                                    </span>
+                                  </div>
+                                ) : submission.filledSocial &&
+                                  !submission.sifConfirmed ? (
+                                  <div className="flex">
+                                    <span className="text-md">
+                                      Social Insurance Form
+                                    </span>
+                                  </div>
+                                ) : submission.logComplete &&
+                                  !submission.logConfirmed ? (
+                                  <div className="flex">
+                                    <span className="text-md">Logbook</span>
+                                  </div>
+                                ) : submission.compEvalFilled &&
+                                  !submission.compEvalConfirmed ? (
+                                  <div className="flex">
+                                    <span className="text-md">
+                                      Company Evaluation Form
+                                    </span>
+                                  </div>
+                                ) : submission.reportComplete &&
+                                  !submission.reportConfirmed ? (
+                                  <div className="flex">
+                                    <span className="text-md">Report</span>
+                                  </div>
+                                ) : (
+                                  <div className="flex">
+                                    <span className="text-md">Problem</span>
+                                  </div>
+                                )}
+                              </div>
                             </div>
                           </div>
-                        </div>
+                        </Link>
                       ))
                     )}
                   </div>
