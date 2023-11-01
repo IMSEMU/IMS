@@ -31,7 +31,8 @@
     "react-calendar": "^4.6.1",
     "react-dom": "^18.2.0",
     "react-icons": "^4.10.1",
-    "react-router-dom": "^6.16.0"
+    "react-router-dom": "^6.16.0",
+    "react-to-print": "^2.14.15"
   },
   "devDependencies": {
     "tailwindcss": "^3.3.3"

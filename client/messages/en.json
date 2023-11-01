@@ -109,5 +109,38 @@
   },
   "LocaleSwitcher": {
     "label": "EN"
+  },
+  "sif": {
+    "title": "Social Insurance Form",
+    "stdinfo": "Student Registration Information",
+    "name": "Name",
+    "stdid": "Student Number",
+    "email": "Email Address",
+    "phone": "Telephone Number",
+    "address": "Postal Address",
+    "idpass": "ID/Passport Number",
+    "ayear": "Academic Year",
+    "dept": "Department/Program",
+    "fac": "Faculty/School",
+    "fname": "Father's Name",
+    "mname": "Mother's Name",
+    "pob": "Place of Birth",
+    "dob": "Date of Birth",
+    "doi": "Date of Issue",
+    "validity": "Validity Period",
+    "subtitle": "Information about the Place of Internship",
+    "sdate": "Internship Start Date",
+    "edate": "Internship End Date",
+    "days": "Duration(Working Days)",
+    "compname": "Company Name",
+    "work": "Working Fields",
+    "website": "Organizational Web Address",
+    "orgemail": "Organizational Email",
+    "sub": "Employer or Authority",
+    "sgk": "Employer S.G.K number",
+    "pos": "Position in the Company",
+    "date": "Date",
+    "submit": "Submit",
+    "submitform": "Are you sure you want to submit?"
   }
 }
