@@ -6,7 +6,8 @@ import Link from "next/link";
 import { LogbookDisplay } from "../../logbook/components/logbookDisplay";
 import { useEffect, useState } from "react";
 import AuthConnect from "@/auth";
-import { BsExclamationTriangleFill, BsPatchCheckFill } from "react-icons/bs";
+// import { BsExclamationTriangleFill, BsPatchCheckFill } from "react-icons/bs";
+import { BsBuildings, BsExclamationTriangleFill, BsPatchCheckFill } from "react-icons/bs";
 import { FaBriefcase, FaRegCalendarCheck } from "react-icons/fa";
 import { RiVerifiedBadgeFill } from "react-icons/ri";
 import { useTranslations } from "next-intl";
@@ -17,6 +18,7 @@ export const Dashboard = () => {
   const [student, setStudent] = useState([]);
   const [country, setCountry] = useState("Nigeria");
   const [logbookEntries, setLogbookEntries] = useState([]);
+
 
   const token = localStorage.getItem("accessToken");
   let decodedToken, firstname;
@@ -121,7 +123,7 @@ export const Dashboard = () => {
               <span
                 className={"text-4xl rounded p-4 my-1 bg-dark_3 text-white"}
               >
-                <FaBriefcase />
+                <BsBuildings />
               </span>
             </div>
 
@@ -228,7 +230,7 @@ export const Dashboard = () => {
           {/*section Name*/}
           <p
             className={
-              " font-semibold m-3 text-black dark:text-white text-sm md:text-md lg:text-lg  inline-flex text-center  border-yellow border-x-[0.4rem] md:border-x-[0.3rem] px-2"
+              " font-semibold m-3 text-black dark:text-white  text-sm md:text-md xl:text-lg  inline-flex text-center  border-yellow border-x-[0.3rem] px-2"
             }
           >
             {t("Announcements")}
@@ -285,7 +287,7 @@ export const Dashboard = () => {
           {/*section Name*/}
           <p
             className={
-              " font-semibold m-3 text-black dark:text-white text-sm md:text-md lg:text-lg  inline-flex text-center  border-yellow border-x-[0.4rem] md:border-x-[0.3rem] px-2"
+              " font-semibold m-3 text-black dark:text-white  text-sm md:text-md xl:text-lg  inline-flex text-center  border-yellow border-x-[0.3rem] px-2"
             }
           >
             {t("todo")}

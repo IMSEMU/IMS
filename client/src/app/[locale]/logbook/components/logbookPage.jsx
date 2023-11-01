@@ -15,6 +15,7 @@ export const LogbookPage = () => {
   const [logbookEntries, setLogbookEntries] = useState([]);
   const [hasNewLogEntry, setHasNewLogEntry] = useState(false);
   const [user, setUser] = useState(null);
+  const [mobileLogAdd, setMobileLogAdd] = useState(true);
 
   useEffect(() => {
     const getToken = async () => {
@@ -85,24 +86,48 @@ export const LogbookPage = () => {
         <div className={"h-full w-full"}>
           <TopNav />
           <ProtectedRoute>
-            <section className=" bg-white dark:bg-dark_1 flex items-center justify-center w-full pt-5">
-              <div className="bg-white dark:bg-dark_2 p-3.5 flex rounded shadow-xl dark:border-none border border-background_shade_2 w-[25rem] lg:w-[50rem] h-[32rem]">
-                {/* LOgbook Add section */}
-                <div className=" lg:w-1/2">
-                  <div className=" flex items-center h-full">
-                    <AddLogData
-                      updateLogbookEntries={updateLogbookEntries}
-                      setHasNewLogEntry={setHasNewLogEntry}
-                    />
-                  </div>
-                </div>
-
-                {/* Logbook Display section */}
-                <div className="hidden lg:block w-1/2 bg-background_shade dark:bg-dark_3 rounded overflow-x-hidden overflow-y-auto">
-                  <LogbookDisplay logbookEntries={logbookEntries} />
+          <section className=" bg-white dark:bg-dark_1 flex items-center justify-center w-full pt-5">
+            <div className="bg-white dark:bg-dark_2 p-3.5 flex rounded shadow-xl dark:border-none border border-background_shade_2 w-[90%] md:w-[70%] lg:w-[50rem] h-[10%] mb-20 md:mb-4 lg:mb-2 md:h-[32rem]">
+              {/* LOgbook Add section */}
+              <div className="hidden lg:block lg:w-1/2">
+                <div className=" flex items-center h-full">
+                  <AddLogData
+                    updateLogbookEntries={updateLogbookEntries}
+                    setHasNewLogEntry={setHasNewLogEntry}
+                  />
                 </div>
               </div>
-            </section>
+
+              {/* Logbook Display section */}
+              <div className=" w-full lg:w-1/2 bg-background_shade dark:bg-dark_3 rounded overflow-x-auto">
+                <div className="hidden lg:block"><LogbookDisplay logbookEntries={logbookEntries} /></div>
+
+{/* mobile screen view */}
+
+<div className="lg:hidden">
+<div className={"w-full flex items-center justify-between my-3 px-3"}>
+        <p
+          className={
+            " font-bold  text-black dark:text-white text-sm md:text-md lg:text-lg  inline-flex text-center  border-yellow border-x-[0.4rem] md:border-x-[0.3rem] px-2"
+          }
+        >
+          Daily Logbook
+        </p>
+        <button onClick={()=>setMobileLogAdd(!mobileLogAdd)} className="px-2 py-1 bg-blue rounded text-white">{mobileLogAdd ? "Add" : "Logbook"}</button>
+      </div>
+
+      {mobileLogAdd ?
+        <LogbookDisplay logbookEntries={logbookEntries} /> : 
+        <AddLogData
+        updateLogbookEntries={updateLogbookEntries}
+        setHasNewLogEntry={setHasNewLogEntry}
+      />
+      }
+</div>
+
+              </div>
+            </div>
+          </section>
           </ProtectedRoute>
         </div>
         <MobileNav />

@@ -121,7 +121,7 @@ export const TopNav = () => {
         </div>
 
         {/*left navgations*/}
-        <div className="flex flex-wrap justify-center items-center gap-4">
+        <div className="flex flex-wrap justify-center items-center gap-5">
           <LanguageToggle />
           {/* notification */}
           <div onClick={notificationDropToggle} className="">
@@ -176,7 +176,7 @@ export const TopNav = () => {
 
                       <div className="truncate">
                         <p className="truncate font-medium">
-                          {notification.title}Submit logbook f
+                          {notification.title}
                         </p>
                       </div>
 

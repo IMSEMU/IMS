@@ -1,7 +1,6 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import { CiSettings } from "react-icons/ci";
 import { VscSignOut } from "react-icons/vsc";
 import {
   HomeIcon,
@@ -54,6 +53,11 @@ export const PcSideNav = () => {
         link: "/internDashboard",
       },
       { name: t("chat"), icons: <ChatIcon />, link: "" },
+    ];
+  }//for department Dashboard
+  else if (pathname === "/departmentDashboard") {
+    navlinks = [
+      { name: "home", icons: <HomeIcon />, link: "/" }
     ];
   }
 

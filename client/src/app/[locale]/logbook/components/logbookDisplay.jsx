@@ -27,21 +27,21 @@ export const LogbookDisplay = ({ logbookEntries }) => {
   };
 
   return (
-    <div className="m-4 rounded h-fit ">
+    <div className="m-4 rounded h-fit from-left">
       {logbookEntries.length === 0 ? (
         <div className=" font-semibold text-lg text-center text-white">
           <Empty />
         </div>
       ) : (
         logbookEntries.map((entry) => (
-          <div key={entry.logid}>
+          <div key={entry.logid} className=" flex justify-center flex-wrap">
             {/* Render each logbook entry */}
-            <div className="my-2 mx-1 py-2 bg-blue text-white dark:bg-dark_4 dark:text-black  flex items-center justify-between rounded">
+            <div className="my-2 mx-1 py-2 bg-blue text-white dark:bg-dark_4 dark:text-black w-full max-w-[30rem] flex items-center justify-between rounded">
               <div className="ml-3  flex flex-wrap gap-1 w-[5rem]">
                 <p className="font-semibold">
                   {t("day")} {entry.day}
                 </p>
-                <p className=" bg-yellow rounded text-sm font-medium text-white px-1 py-0.5">
+                <p className=" bg-yellow_2 rounded text-sm font-medium text-white px-1 py-0.5">
                   {formatDate(entry.date)}
                 </p>
               </div>
