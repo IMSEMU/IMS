@@ -12,7 +12,6 @@ export const Dashboard = () => {
 
   return (
     <main className="w-full">
-      <TopNav />
       <div className="m-4 mb-20 md:mb-4">
         <div
           className={

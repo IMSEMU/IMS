@@ -54,11 +54,12 @@ export const PcSideNav = () => {
       },
       { name: t("chat"), icons: <ChatIcon />, link: "" },
     ];
-  }//for department Dashboard
-  else if (pathname === "/departmentDashboard") {
-    navlinks = [
-      { name: "home", icons: <HomeIcon />, link: "/" }
-    ];
+  } //for department Dashboard
+  else if (
+    pathname === "/departmentDashboard" ||
+    pathname === "/tr/departmentDashboard"
+  ) {
+    navlinks = [{ name: t("home"), icons: <HomeIcon />, link: "/" }];
   }
 
   const router = useRouter();
@@ -183,11 +184,11 @@ export const PcSideNav = () => {
                   </span>
                 ) : userrole === 2 ? (
                   <span className={"hidden lg:block text-sm w-full"}>
-                    dept_sup
+                    Department Supervisor
                   </span>
                 ) : userrole === 3 ? (
                   <span className={"hidden lg:block text-sm w-full"}>
-                    comp_sup
+                    Company Supervisor
                   </span>
                 ) : (
                   <span className={"hidden lg:block text-sm w-full"}>

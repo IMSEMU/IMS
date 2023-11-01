@@ -43,14 +43,20 @@ export default function LoginSection() {
         password: password,
       });
 
+      console.log(response);
       localStorage.setItem("accessToken", response.data.accessToken);
       localStorage.setItem("user", JSON.stringify(response.data.user));
 
       const user = JSON.parse(localStorage.getItem("user"));
       const userrole = user.userrole;
 
+      console.log(response);
+
       if (userrole === 1) {
         router.push("/internDashboard");
+      }
+      if (userrole === 2) {
+        router.push("/departmentDashboard");
       }
       if (userrole === 3) {
         router.push("/confirmationForm");
