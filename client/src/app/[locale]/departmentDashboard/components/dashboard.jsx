@@ -9,11 +9,19 @@ import { Empty } from "antd";
 import AuthConnect from "@/auth";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
+import jwtDecode from "jwt-decode";
 
 export const Dashboard = () => {
   const t = useTranslations("logbook");
   const [stdInfoSearch, setStdInfoSearch] = useState(false);
   const [submissions, setSubmissions] = useState([]);
+
+  const token = localStorage.getItem("accessToken");
+  let decodedToken, firstname;
+  if (token) {
+    decodedToken = jwtDecode(token);
+    firstname = decodedToken.firstname;
+  }
 
   useEffect(() => {
     const fetchSubmissions = async () => {
@@ -37,7 +45,7 @@ export const Dashboard = () => {
             "text-md lg:text-xl xl:text-2xl py-1 md:py-2 w-full max-w-[1300px] xl:mx-auto mx-2 font-bold"
           }
         >
-          <p>welcome Johnny</p>
+          <p>welcome {firstname}</p>
         </div>
 
         <div className="grid grid-cols-3 gap-4">
@@ -246,22 +254,22 @@ export const Dashboard = () => {
                         <Link
                           href={
                             submission.filled_iaf && !submission.iafConfirmed
-                              ? "/iafview"
+                              ? `/iafview?id=${submission.internshipid}&stdid=${submission.stdid}`
                               : submission.filledConForm &&
                                 !submission.conFormConfirmed
-                              ? "/conformview"
+                              ? `/conformview?id=${submission.internshipid}&stdid=${submission.stdid}`
                               : submission.filledSocial &&
                                 !submission.sifConfirmed
-                              ? "/sifview"
+                              ? `/sifview?id=${submission.internshipid}&stdid=${submission.stdid}`
                               : submission.logComplete &&
                                 !submission.logConfirmed
-                              ? "/logview"
+                              ? `/logview?id=${submission.internshipid}&stdid=${submission.stdid}`
                               : submission.compEvalFilled &&
                                 !submission.compEvalConfirmed
-                              ? "/compevalview"
+                              ? `/compevalview?id=${submission.internshipid}&stdid=${submission.stdid}`
                               : submission.reportComplete &&
                                 !submission.reportConfirmed
-                              ? "/reportview"
+                              ? `/reportview?id=${submission.internshipid}&stdid=${submission.stdid}`
                               : ""
                           }
                         >

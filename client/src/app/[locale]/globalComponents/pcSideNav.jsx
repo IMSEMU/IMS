@@ -43,7 +43,9 @@ export const PcSideNav = () => {
     pathname === "/insuranceForm" ||
     pathname === "/tr/insuranceForm" ||
     pathname === "/confirmationForm" ||
-    pathname === "/tr/confirmationForm"
+    pathname === "/tr/confirmationForm" ||
+    pathname === "/iafview" ||
+    pathname === "/tr/iafview"
   ) {
     navlinks = [
       { name: t("home"), icons: <HomeIcon />, link: "/" },
