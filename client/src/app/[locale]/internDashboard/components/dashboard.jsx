@@ -6,7 +6,7 @@ import Link from "next/link";
 import { LogbookDisplay } from "../../logbook/components/logbookDisplay";
 import { useEffect, useState } from "react";
 import AuthConnect from "@/auth";
-import { BsExclamationTriangleFill, BsPatchCheckFill } from "react-icons/bs";
+// import { BsExclamationTriangleFill, BsPatchCheckFill } from "react-icons/bs";
 import { BsBuildings, BsExclamationTriangleFill, BsPatchCheckFill } from "react-icons/bs";
 import { FaBriefcase, FaRegCalendarCheck } from "react-icons/fa";
 import { RiVerifiedBadgeFill } from "react-icons/ri";

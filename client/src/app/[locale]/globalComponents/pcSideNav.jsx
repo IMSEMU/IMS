@@ -55,7 +55,7 @@ export const PcSideNav = () => {
       { name: t("chat"), icons: <ChatIcon />, link: "" },
     ];
   }//for department Dashboard
-  else if (path === "/departmentDashboard") {
+  else if (pathname === "/departmentDashboard") {
     navlinks = [
       { name: "home", icons: <HomeIcon />, link: "/" }
     ];
