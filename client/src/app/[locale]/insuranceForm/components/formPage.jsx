@@ -1,15 +1,16 @@
 "use client";
-import { PcSideNav } from "../../globalComponents/pcSideNav";
-import { MobileNav } from "../../globalComponents/mobileNav";
-import { TopNav } from "../../internDashboard/components/topNav";
-import { Dashboard } from "../../internDashboard/components/dashboard";
+
+import { InsForm } from "./insForm";
 import AuthConnect from "@/auth";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import jwtDecode from "jwt-decode";
+import { TopNav } from "../../internDashboard/components/topNav";
+import { PcSideNav } from "../../globalComponents/pcSideNav";
+import { MobileNav } from "../../globalComponents/mobileNav";
 import { ProtectedRoute } from "../../globalComponents/stdProtectedRoute";
 
-export const InternDashboardPage = () => {
+export const InsuranceForm = () => {
   const router = useRouter();
   const [user, setUser] = useState(null);
 
@@ -37,18 +38,17 @@ export const InternDashboardPage = () => {
   if (!user) {
     return null; // Prevent rendering the dashboard until token is fetched
   }
+
   return (
-    <main className={"p-0 m-0 bg-white dark:bg-dark_2"}>
-      {/*Sidenav and body*/}
+    <main className="bg-white dark:bg-dark_1 h-screen">
       <div className={"flex flex-nowrap"}>
         <PcSideNav />
         <div className={"h-full w-full"}>
           <TopNav />
           <ProtectedRoute>
-            <Dashboard />
+            <InsForm />
           </ProtectedRoute>
         </div>
-
         <MobileNav />
       </div>
     </main>

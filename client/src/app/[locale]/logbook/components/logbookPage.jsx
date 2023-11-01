@@ -7,23 +7,28 @@ import { useEffect, useState } from "react";
 import { MobileNav } from "../../globalComponents/mobileNav";
 import { PcSideNav } from "../../globalComponents/pcSideNav";
 import { TopNav } from "../../internDashboard/components/topNav";
-import { usePathname } from "next/navigation";
+import { ProtectedRoute } from "../../globalComponents/stdProtectedRoute";
+import jwtDecode from "jwt-decode";
 
 export const LogbookPage = () => {
   const router = useRouter();
-  const [token, setToken] = useState(null);
-  const [std, setStd] = useState([]);
   const [logbookEntries, setLogbookEntries] = useState([]);
-  const pathname = usePathname();
   const [hasNewLogEntry, setHasNewLogEntry] = useState(false);
+  const [user, setUser] = useState(null);
   const [mobileLogAdd, setMobileLogAdd] = useState(true);
 
   useEffect(() => {
     const getToken = async () => {
       try {
         const response = await AuthConnect.get("/token");
-        console.log(response);
-        setToken(response);
+
+        // Decode the token immediately after setting it
+        try {
+          const decoded = jwtDecode(response.data);
+          setUser(decoded);
+        } catch (error) {
+          console.error("Error decoding token:", error);
+        }
       } catch (error) {
         console.error("User not authenticated", error);
         router.push("/login");
@@ -31,18 +36,6 @@ export const LogbookPage = () => {
     };
 
     getToken();
-  }, []);
-  useEffect(() => {
-    const getStudent = async () => {
-      try {
-        const response = await AuthConnect.get("/getstudent");
-        setStd(response.data.user[0]);
-      } catch (error) {
-        console.error("Error fetching student:", error);
-      }
-    };
-
-    getStudent();
   }, []);
 
   useEffect(() => {
@@ -81,24 +74,18 @@ export const LogbookPage = () => {
     setLogbookEntries((prevEntries) => [...prevEntries, newLogEntry]);
   };
 
-  if (!token) {
+  if (!user) {
     return null; // Prevent rendering the dashboard until token is fetched
   }
+
   return (
     <main className={"p-0 m-0 bg-white dark:bg-dark_2"}>
       {/*Sidenav and body*/}
       <div className={"flex flex-nowrap"}>
-        <PcSideNav
-          page={pathname}
-          firstname={std.firstname}
-          lastname={std.lastname}
-        />
+        <PcSideNav />
         <div className={"h-full w-full"}>
-          <TopNav
-            firstname={std.firstname}
-            lastname={std.lastname}
-            email={std.email}
-          />
+          <TopNav />
+          <ProtectedRoute>
           <section className=" bg-white dark:bg-dark_1 flex items-center justify-center w-full pt-5">
             <div className="bg-white dark:bg-dark_2 p-3.5 flex rounded shadow-xl dark:border-none border border-background_shade_2 w-[90%] md:w-[70%] lg:w-[50rem] h-[10%] mb-20 md:mb-4 lg:mb-2 md:h-[32rem]">
               {/* LOgbook Add section */}
@@ -141,6 +128,7 @@ export const LogbookPage = () => {
               </div>
             </div>
           </section>
+          </ProtectedRoute>
         </div>
         <MobileNav />
       </div>

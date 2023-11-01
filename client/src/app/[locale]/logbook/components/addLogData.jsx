@@ -120,7 +120,7 @@ export const AddLogData = ({ updateLogbookEntries, setHasNewLogEntry }) => {
       {showErrorModal && (
         <Modal onClose={closeModal}>
           <div className="flex flex-col justify-center items-center">
-            <div className="text-red-500 font-bold">{error}</div>
+            <div className="font-bold">{error}</div>
             <button
               onClick={closeModal}
               className="bg-blue text-white px-3 py-1 mt-2"

@@ -9,29 +9,41 @@ import {
   ChatIcon,
   LogbookIcon,
 } from "../svg_Icons";
-import { useRouter } from "next/navigation";
-import { usePathname } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import AuthConnect from "@/auth";
 import { useTranslations } from "next-intl";
+import jwtDecode from "jwt-decode";
+import { useState, useEffect } from "react";
 
-export const PcSideNav = (props) => {
+export const PcSideNav = () => {
   const t = useTranslations("sidenav");
+  const pathname = usePathname();
   let navlinks;
-  const path = usePathname();
-  console.log(path);
-  if (
-    path === "/internDashboard" ||
-    path === "/tr/internDashboard"
-  ) {
+
+  const token = localStorage.getItem("accessToken");
+  let decodedToken, firstname, lastname, userrole;
+  if (token) {
+    decodedToken = jwtDecode(token);
+    firstname = decodedToken.firstname;
+    lastname = decodedToken.lastname;
+    userrole = decodedToken.userrole;
+  }
+  if (pathname === "/internDashboard" || pathname === "/tr/internDashboard") {
     navlinks = [
       { name: t("home"), icons: <HomeIcon />, link: "/" },
       { name: t("chat"), icons: <ChatIcon />, link: "" },
     ];
   } else if (
-    path === "/logbook" ||
-    path === "/applicationForm" ||
-    path === "/tr/logbook" ||
-    path === "/tr/applicationForm"
+    pathname === "/logbook" ||
+    pathname === "/applicationForm" ||
+    pathname === "/tr/logbook" ||
+    pathname === "/tr/applicationForm" ||
+    pathname === "/appForm" ||
+    pathname === "/tr/appForm" ||
+    pathname === "/insuranceForm" ||
+    pathname === "/tr/insuranceForm" ||
+    pathname === "/confirmationForm" ||
+    pathname === "/tr/confirmationForm"
   ) {
     navlinks = [
       { name: t("home"), icons: <HomeIcon />, link: "/" },
@@ -50,6 +62,23 @@ export const PcSideNav = (props) => {
   }
 
   const router = useRouter();
+  const [photo, setPhoto] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const getPhoto = async () => {
+      try {
+        const response = await AuthConnect.get("/getphoto");
+        setPhoto(response.data);
+      } catch (error) {
+        console.error("Error fetching photo:", error);
+      } finally {
+        setIsLoading(false); // Set isLoading to false when done
+      }
+    };
+
+    getPhoto();
+  }, []);
   const handleLogout = async () => {
     try {
       const response = await AuthConnect.delete("/logout");
@@ -63,6 +92,10 @@ export const PcSideNav = (props) => {
       }
     }
   };
+  if (isLoading) {
+    // Render a loading indicator or nothing while data is being fetched
+    return null;
+  }
 
   return (
     <main
@@ -125,8 +158,8 @@ export const PcSideNav = (props) => {
               }
             >
               <Image
-                src={"/dark-flower.jpeg"}
-                alt={"qq"}
+                src={photo === "" || !photo ? "/avatar.png" : photo}
+                alt={"Profile Picture"}
                 height={1000}
                 width={1000}
                 priority
@@ -142,11 +175,25 @@ export const PcSideNav = (props) => {
                     "hidden lg:block font-semibold text-md l truncate w-full"
                   }
                 >
-                  {props.firstname} {props.lastname}
+                  {firstname} {lastname}
                 </span>
-                <span className={"hidden lg:block text-sm w-full"}>
-                  {t("student")}
-                </span>
+                {userrole === 1 ? (
+                  <span className={"hidden lg:block text-sm w-full"}>
+                    {t("student")}
+                  </span>
+                ) : userrole === 2 ? (
+                  <span className={"hidden lg:block text-sm w-full"}>
+                    dept_sup
+                  </span>
+                ) : userrole === 3 ? (
+                  <span className={"hidden lg:block text-sm w-full"}>
+                    comp_sup
+                  </span>
+                ) : (
+                  <span className={"hidden lg:block text-sm w-full"}>
+                    problem
+                  </span>
+                )}
               </div>
               <div
                 className={

@@ -1,23 +1,50 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import { BiPlus } from "react-icons/bi";
 import { GiPencil } from "react-icons/gi";
 import { VscSignOut } from "react-icons/vsc";
 import { RiSunFoggyFill } from "react-icons/ri";
 import { DarkModeButton } from "../../globalComponents/darkModeButton";
 import { NotificationIcon } from "../../svg_Icons";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import AuthConnect from "@/auth";
 import { LanguageToggle } from "../../globalComponents/languageToggle";
 import { HiAnnotation } from "react-icons/hi";
 import { LuClock2 } from "react-icons/lu";
 import { useTranslations } from "next-intl";
+import jwtDecode from "jwt-decode";
 
-export const TopNav = (props) => {
+export const TopNav = () => {
   const t = useTranslations("topnav");
   const router = useRouter();
+  const [photo, setPhoto] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
+
+  const token = localStorage.getItem("accessToken");
+  let decodedToken, firstname, lastname, email;
+  if (token) {
+    decodedToken = jwtDecode(token);
+    firstname = decodedToken.firstname;
+    lastname = decodedToken.lastname;
+    email = decodedToken.email;
+  }
+
+  useEffect(() => {
+    const getPhoto = async () => {
+      try {
+        const response = await AuthConnect.get("/getphoto");
+        setPhoto(response.data);
+      } catch (error) {
+        console.error("Error fetching photo:", error);
+      } finally {
+        setIsLoading(false); // Set isLoading to false when done
+      }
+    };
+
+    getPhoto();
+  }, []);
+
   const handleLogout = async () => {
     try {
       const response = await AuthConnect.delete("/logout");
@@ -61,7 +88,10 @@ export const TopNav = (props) => {
     setNotificationDrop(!notificationDrop);
     profileDrop === true ? setProfileDrop(false) : profileDrop;
   };
-
+  if (isLoading) {
+    // Render a loading indicator or nothing while data is being fetched
+    return null;
+  }
   return (
     <main
       className={
@@ -103,8 +133,8 @@ export const TopNav = (props) => {
             className={"flex items-baseline text-blue relative cursor-pointer"}
           >
             <Image
-              src={"/dark-flower.jpeg"}
-              alt={"qq"}
+              src={photo === "" || !photo ? "/avatar.png" : photo}
+              alt={"Profile Picture"}
               height={2000}
               width={2000}
               priority
@@ -187,8 +217,8 @@ export const TopNav = (props) => {
                   }
                 >
                   <Image
-                    src={"/dark-flower.jpeg"}
-                    alt={"qq"}
+                    src={photo === "" || !photo ? "/avatar.png" : photo}
+                    alt={"Profile Picture"}
                     height={2000}
                     width={2000}
                     priority
@@ -202,14 +232,14 @@ export const TopNav = (props) => {
                       "truncate text-sm sm:text-md md:text-lg font-semibold"
                     }
                   >
-                    {props.firstname} {props.lastname}
+                    {firstname} {lastname}
                   </p>
                   <p
                     className={
                       "truncate text-sm sm:text-md text-blue dark:text-yellow cursor-pointer"
                     }
                   >
-                    {props.email}
+                    {email}
                   </p>
                 </div>
               </div>

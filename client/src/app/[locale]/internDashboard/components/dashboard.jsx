@@ -6,17 +6,42 @@ import Link from "next/link";
 import { LogbookDisplay } from "../../logbook/components/logbookDisplay";
 import { useEffect, useState } from "react";
 import AuthConnect from "@/auth";
+import { BsExclamationTriangleFill, BsPatchCheckFill } from "react-icons/bs";
 import { BsBuildings, BsExclamationTriangleFill, BsPatchCheckFill } from "react-icons/bs";
 import { FaBriefcase, FaRegCalendarCheck } from "react-icons/fa";
 import { RiVerifiedBadgeFill } from "react-icons/ri";
 import { useTranslations } from "next-intl";
+import jwtDecode from "jwt-decode";
 
-export const Dashboard = (props) => {
+export const Dashboard = () => {
   const t = useTranslations("dash");
-  const [country, setCountry] = useState("Turkey");
+  const [student, setStudent] = useState([]);
+  const [country, setCountry] = useState("Nigeria");
   const [logbookEntries, setLogbookEntries] = useState([]);
 
-useEffect(() => {
+
+  const token = localStorage.getItem("accessToken");
+  let decodedToken, firstname;
+  if (token) {
+    decodedToken = jwtDecode(token);
+    firstname = decodedToken.firstname;
+  }
+
+  useEffect(() => {
+    const getStudent = async () => {
+      try {
+        const response = await AuthConnect.get("/getstudent");
+        console.log(response.data);
+        setStudent(response.data);
+      } catch (error) {
+        console.error("Error fetching student:", error);
+      }
+    };
+
+    getStudent();
+  }, []);
+
+  useEffect(() => {
     const fetchLogbookEntries = async () => {
       try {
         const response = await AuthConnect.get("/viewlog");
@@ -37,7 +62,7 @@ useEffect(() => {
         }
       >
         <p>
-          {t("welcome")} {props.firstname}{" "}
+          {t("welcome")} {firstname}{" "}
         </p>
       </div>
 
@@ -130,30 +155,70 @@ useEffect(() => {
           }
         >
           {/*section Name and Buton*/}
-          <div className={"justify-between flex items-center mx-3 mt-3 mb-2"}>
-            <p
-              className={
-                " font-semibold text-black dark:text-white  text-sm md:text-md xl:text-lg  inline-flex text-center  border-yellow border-x-[0.3rem] px-2"
-              }
-            >
-              {t("logbook")}
-            </p>
 
-            <Link
-              href={"/logbook"}
-              className={
-                "px-2 py-1 bg-blue text-white rounded inline-flex items-center justify-center gap-1"
-              }
-            >
-              <BiPlus className={"text-white text-xl"} />
-              <div>{t("add")}</div>
-            </Link>
-          </div>
+          {(student.isConfirmed &&
+            !student.logComplete &&
+            !(country === "Turkey" || country === "KKTC")) ||
+          (student.filledSocial &&
+            !student.logComplete &&
+            (country === "Turkey" || country === "KKTC")) ? (
+            <div>
+              <div
+                className={"justify-between flex items-center mx-3 mt-3 mb-2"}
+              >
+                <p
+                  className={
+                    " font-semibold text-black dark:text-white text-sm md:text-md lg:text-lg  inline-flex text-center  border-yellow border-x-[0.4rem] md:border-x-[0.3rem] px-2"
+                  }
+                >
+                  {t("logbook")}
+                </p>
+                <Link
+                  href={"/logbook"}
+                  className={
+                    "px-2 py-1 bg-blue text-white rounded inline-flex items-center justify-center gap-1"
+                  }
+                >
+                  <BiPlus className={"text-white text-xl"} />
+                  <div>{t("add")}</div>
+                </Link>
+              </div>
 
-          {/*    section container*/}
-          <div className={"h-[15rem] overflow-y-auto"}>
-            <LogbookDisplay logbookEntries={logbookEntries} />
-          </div>
+              {/*    section container*/}
+              <div className={"h-[15rem] overflow-y-auto"}>
+                <LogbookDisplay logbookEntries={logbookEntries} />
+              </div>
+            </div>
+          ) : (
+            <div>
+              <div
+                className={"justify-between flex items-center mx-3 mt-3 mb-2"}
+              >
+                <p
+                  className={
+                    " font-semibold text-black dark:text-white text-sm md:text-md lg:text-lg  inline-flex text-center  border-yellow border-x-[0.4rem] md:border-x-[0.3rem] px-2"
+                  }
+                >
+                  {t("logbook")}
+                </p>
+                <Link
+                  href={""}
+                  className={
+                    "px-2 py-1 bg-background_shade text-white rounded inline-flex items-center justify-center gap-1"
+                  }
+                >
+                  <BiPlus className={"text-white text-xl"} />
+                  <div>{t("add")}</div>
+                </Link>
+              </div>
+
+              {student.logComplete && (
+                <div className={"h-[15rem] overflow-y-auto"}>
+                  <LogbookDisplay logbookEntries={logbookEntries} />
+                </div>
+              )}
+            </div>
+          )}
         </div>
 
         {/*Announcement Card*/}
@@ -236,14 +301,14 @@ useEffect(() => {
               }
             >
               {/* Fill Internship Application Form */}
-              {!props.isConfirmed ? (
+              {!student.filled_iaf ? (
                 <div
                   className={
                     " p-2 rounded w-full  gap-2 bg-background_shade_2 dark:bg-dark_2 text-black hover:bg-blue hover:text-white"
                   }
                 >
                   <Link
-                    href={"/applicationForm"}
+                    href={"/appForm"}
                     className={
                       "flex items-center justify-center py-1.5 gap-2 px-1"
                     }
@@ -252,11 +317,7 @@ useEffect(() => {
                       {t("iaf")}
                     </span>
                     <div className="text-xl ">
-                      {props.isConfirmed && props.logComplete ? (
-                        <BsPatchCheckFill className="text-[green]" />
-                      ) : (
-                        <BsExclamationTriangleFill className="text-[#cab13e]" />
-                      )}
+                      <BsExclamationTriangleFill className="text-[#cab13e]" />
                     </div>
                   </Link>
                 </div>
@@ -278,21 +339,27 @@ useEffect(() => {
               )}
 
               {/* Fill Social Insurance Form */}
-              {props.isConfirmed &&
-              !props.logComplete &&
+              {student.isConfirmed &&
+              !student.logComplete &&
+              !student.filledSocial &&
               (country === "Turkey" || country === "KKTC") ? (
                 <div
                   className={
-                    " flex justify-center items-center p-2.5 w-full gap-2 hover:bg-blue hover:text-white"
+                    " p-2 rounded w-full  gap-2 bg-background_shade_2 dark:bg-dark_2 text-black hover:bg-blue hover:text-white"
                   }
                 >
                   <Link
                     href={""}
-                    className={"flex items-center justify-center py-1.5 px-1"}
+                    className={
+                      "flex items-center justify-center py-1.5 gap-2 px-1"
+                    }
                   >
                     <span className={"text-center font-bold text-md w-full "}>
                       {t("sif")}
                     </span>
+                    <div className="text-xl ">
+                      <BsExclamationTriangleFill className="text-[#cab13e]" />
+                    </div>
                   </Link>
                 </div>
               ) : (
@@ -307,7 +374,7 @@ useEffect(() => {
                     }
                   >
                     <p>{t("sif")}</p>
-                    {props.isConfirmed && (
+                    {student.filledSocial && (
                       <BsPatchCheckFill className="text-[green] text-xl " />
                     )}
                   </div>
@@ -315,24 +382,30 @@ useEffect(() => {
               )}
 
               {/* Fill Logbook */}
-              {(props.isConfirmed &&
-                !props.logComplete &&
+              {(student.isConfirmed &&
+                !student.logComplete &&
                 !(country === "Turkey" || country === "KKTC")) ||
-              (props.filledSocial &&
-                !props.logComplete &&
+              (student.filledSocial &&
+                !student.logComplete &&
                 (country === "Turkey" || country === "KKTC")) ? (
                 <div
                   className={
-                    "flex justify-center items-center p-2.5 w-full gap-2 hover:bg-blue hover:text-white"
+                    " p-2 rounded w-full  gap-2 bg-background_shade_2 dark:bg-dark_2 text-black hover:bg-blue hover:text-white"
                   }
                 >
                   <Link
-                    href={""}
-                    className={"flex items-center justify-center py-1.5 px-1"}
+                    href={"/logbook"}
+                    className={
+                      "flex items-center justify-center py-1.5 gap-2 px-1"
+                    }
                   >
                     <span className={"text-center font-bold text-md w-full "}>
-                      F{t("filllg")}
+                      {t("filllg")}
                     </span>
+
+                    <div className="text-xl ">
+                      <BsExclamationTriangleFill className="text-[#cab13e]" />
+                    </div>
                   </Link>
                 </div>
               ) : (
@@ -344,23 +417,31 @@ useEffect(() => {
                   <span className={"text-center font-bold text-md w-full "}>
                     {t("filllg")}
                   </span>
+                  {student.logComplete && (
+                    <BsPatchCheckFill className="text-[green] text-xl " />
+                  )}
                 </div>
               )}
 
               {/* Write Report */}
-              {props.logComplete ? (
+              {student.logComplete && !student.reportComplete ? (
                 <div
                   className={
-                    "flex justify-center items-center p-2.5 w-full gap-2 hover:bg-blue hover:text-white"
+                    " p-2 rounded w-full  gap-2 bg-background_shade_2 dark:bg-dark_2 text-black hover:bg-blue hover:text-white"
                   }
                 >
                   <Link
                     href={""}
-                    className={"flex items-center justify-center py-1.5 px-1"}
+                    className={
+                      "flex items-center justify-center py-1.5 gap-2 px-1"
+                    }
                   >
                     <span className={"text-center font-bold text-md w-full "}>
                       {t("report")}
                     </span>
+                    <div className="text-xl ">
+                      <BsExclamationTriangleFill className="text-[#cab13e]" />
+                    </div>
                   </Link>
                 </div>
               ) : (
@@ -372,6 +453,9 @@ useEffect(() => {
                   <span className={"text-center font-bold text-md w-full "}>
                     {t("report")}
                   </span>
+                  {student.reportComplete && (
+                    <BsPatchCheckFill className="text-[green] text-xl " />
+                  )}
                 </div>
               )}
             </div>
