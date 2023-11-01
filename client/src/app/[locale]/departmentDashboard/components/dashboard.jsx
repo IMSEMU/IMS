@@ -1,14 +1,32 @@
 "use client";
+import Image from "next/image";
 import { FaUserGroup } from "react-icons/fa6";
 import { BsBuildings } from "react-icons/bs";
-
 import { BiPlus, BiX } from "react-icons/bi";
-import { TopNav } from "../../internDashboard/components/topNav";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { HiMagnifyingGlass } from "react-icons/hi2";
+import { Empty } from "antd";
+import AuthConnect from "@/auth";
+import { useTranslations } from "next-intl";
 
 export const Dashboard = () => {
+  const t = useTranslations("logbook");
   const [stdInfoSearch, setStdInfoSearch] = useState(false);
+  const [submissions, setSubmissions] = useState([]);
+
+  useEffect(() => {
+    const fetchSubmissions = async () => {
+      try {
+        const response = await AuthConnect.get("/getsubs");
+        setSubmissions(response.data);
+        console.log(response.data);
+      } catch (error) {
+        console.error("Error fetching Submissions:", error);
+      }
+    };
+
+    fetchSubmissions();
+  }, []);
 
   return (
     <main className="w-full">
@@ -159,8 +177,6 @@ export const Dashboard = () => {
               </div>
             </div>
 
-            {/* Companies Information */}
-
             {/* internship opportunities */}
 
             <div className=" col-span-6 md:col-span-3">
@@ -217,12 +233,93 @@ export const Dashboard = () => {
               </div>
 
               {/*section container*/}
-              <div className={"h-[15rem] overflow-y-auto"}>
-                <div
-                  className={
-                    "mx-auto max-w-[90%]  my-2 bg-background_shade_2 hover:bg-dark_4 rounded"
-                  }
-                ></div>
+              <div className={"h-fit overflow-y-auto"}>
+                <div className={"mx-auto max-w-[90%] my-2 rounded"}>
+                  <div className=" rounded h-fit from-left">
+                    {submissions.length === 0 ? (
+                      <div className=" font-semibold text-lg text-center text-white">
+                        <Empty />
+                      </div>
+                    ) : (
+                      submissions.map((submission) => (
+                        <div
+                          key={submission.internshipid}
+                          className=" flex justify-center flex-wrap"
+                        >
+                          {/* Render each submission */}
+                          <div className="my-2 mx-1 py-2 bg-blue text-white dark:bg-dark_4 dark:text-black w-full flex max-w-[30rem] items-center justify-between rounded">
+                            <div
+                              className={
+                                "w-2/12 flex justify-center items-center"
+                              }
+                            >
+                              <Image
+                                src={"/avatar.png"}
+                                alt={"Profile Picture"}
+                                height={1000}
+                                width={1000}
+                                priority
+                                className={
+                                  "w-[2rem] h-[2rem] rounded-full hidden lg:inline-block"
+                                }
+                              />
+                            </div>
+                            <div className={"w-10/12 ml-5"}>
+                              <div className=" flex flex-wrap">
+                                <p className="font-semibold">
+                                  {submission.stdid}
+                                </p>
+                              </div>
+                              {submission.filled_iaf &&
+                              !submission.iafConfirmed ? (
+                                <div className="flex">
+                                  <span className="text-md">
+                                    Internship Application Form
+                                  </span>
+                                </div>
+                              ) : submission.filledConForm &&
+                                !submission.conFormConfirmed ? (
+                                <div className="flex">
+                                  <span className="text-md">
+                                    Internship Confirmation Form
+                                  </span>
+                                </div>
+                              ) : submission.filledSocial &&
+                                !submission.sifConfirmed ? (
+                                <div className="flex">
+                                  <span className="text-md">
+                                    Social Insurance Form
+                                  </span>
+                                </div>
+                              ) : submission.logComplete &&
+                                !submission.logConfirmed ? (
+                                <div className="flex">
+                                  <span className="text-md">Logbook</span>
+                                </div>
+                              ) : submission.compEvalFilled &&
+                                !submission.compEvalConfirmed ? (
+                                <div className="flex">
+                                  <span className="text-md">
+                                    Company Evaluation Form
+                                  </span>
+                                </div>
+                              ) : submission.reportComplete &&
+                                !submission.reportConfirmed ? (
+                                <div className="flex">
+                                  <span className="text-md">Report</span>
+                                </div>
+                              ) : (
+                                <div className="flex">
+                                  <span className="text-md">Problem</span>
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                      ))
+                    )}
+                  </div>
+                </div>
               </div>
             </div>
           </div>

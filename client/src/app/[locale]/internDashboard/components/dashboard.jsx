@@ -7,7 +7,11 @@ import { LogbookDisplay } from "../../logbook/components/logbookDisplay";
 import { useEffect, useState } from "react";
 import AuthConnect from "@/auth";
 // import { BsExclamationTriangleFill, BsPatchCheckFill } from "react-icons/bs";
-import { BsBuildings, BsExclamationTriangleFill, BsPatchCheckFill } from "react-icons/bs";
+import {
+  BsBuildings,
+  BsExclamationTriangleFill,
+  BsPatchCheckFill,
+} from "react-icons/bs";
 import { FaBriefcase, FaRegCalendarCheck } from "react-icons/fa";
 import { RiVerifiedBadgeFill } from "react-icons/ri";
 import { useTranslations } from "next-intl";
@@ -18,7 +22,6 @@ export const Dashboard = () => {
   const [student, setStudent] = useState([]);
   const [country, setCountry] = useState("Nigeria");
   const [logbookEntries, setLogbookEntries] = useState([]);
-
 
   const token = localStorage.getItem("accessToken");
   let decodedToken, firstname;
@@ -156,7 +159,7 @@ export const Dashboard = () => {
         >
           {/*section Name and Buton*/}
 
-          {(student.isConfirmed &&
+          {(student.iafConfirmed &&
             !student.logComplete &&
             !(country === "Turkey" || country === "KKTC")) ||
           (student.filledSocial &&
@@ -339,7 +342,7 @@ export const Dashboard = () => {
               )}
 
               {/* Fill Social Insurance Form */}
-              {student.isConfirmed &&
+              {student.iafConfirmed &&
               !student.logComplete &&
               !student.filledSocial &&
               (country === "Turkey" || country === "KKTC") ? (
@@ -382,7 +385,7 @@ export const Dashboard = () => {
               )}
 
               {/* Fill Logbook */}
-              {(student.isConfirmed &&
+              {(student.iafConfirmed &&
                 !student.logComplete &&
                 !(country === "Turkey" || country === "KKTC")) ||
               (student.filledSocial &&

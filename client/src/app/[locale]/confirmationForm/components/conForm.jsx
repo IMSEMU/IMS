@@ -1,3 +1,11 @@
+import { useRouter } from "next/navigation";
+import AuthConnect from "@/auth";
+import { useState, useEffect } from "react";
+import { useTranslations } from "next-intl";
+import Modal from "../../globalComponents/modal";
+import ConfirmationSection from "./confimationSection";
+import jwtDecode from "jwt-decode";
+
 export const ConForm = () => {
   return (
     <main>
