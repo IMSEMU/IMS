@@ -11,12 +11,11 @@ export const IafView = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [info, setInfo] = useState(null);
+  const [confirm, setConfirm] = useState(false);
+  const [confirmed, setConfirmed] = useState(false);
 
   const stdid = searchParams.get("stdid");
   const id = searchParams.get("id");
-
-  console.log(id);
-  console.log(stdid);
 
   useEffect(() => {
     const fetchStudentById = async () => {
@@ -29,6 +28,26 @@ export const IafView = () => {
   if (!info) {
     return null;
   }
+
+  const confirmApplication = async (e) => {
+    try {
+      const response = await AuthConnect.post("/confirmapp", {
+        stdid: stdid,
+      });
+      if (response) {
+        setConfirmed(true);
+      }
+    } catch (error) {
+      if (error.response) {
+        setMsg(error.response.data.msg);
+      }
+      alert("Application Error"); // You can add a generic error message here
+    }
+  };
+
+  const push = () => {
+    router.push("/departmentDashboard");
+  };
 
   return (
     <main>
@@ -197,7 +216,10 @@ export const IafView = () => {
                 <button className="bg-red text-white px-3 py-1 mt-2 justify-start rounded">
                   Reject
                 </button>
-                <button className="bg-blue text-white px-3 py-1 mt-2 justify-end rounded">
+                <button
+                  className="bg-blue text-white px-3 py-1 mt-2 justify-end rounded"
+                  onClick={() => setConfirm(true)}
+                >
                   Confirm
                 </button>
               </div>
@@ -205,6 +227,46 @@ export const IafView = () => {
           </div>
         </div>
       </section>
+      {confirm && (
+        <Modal onClose={() => setConfirm(false)}>
+          <div className="flex flex-col justify-center items-center">
+            <div className="font-bold">
+              <p>
+                Are you sure you want to confirm this Internship Application?
+              </p>
+            </div>
+            <div className="flex justify-between mt-2 w-10/12">
+              <button
+                className="bg-red text-white px-3 py-1 mt-2 justify-start rounded"
+                onClick={() => setConfirm(false)}
+              >
+                No
+              </button>
+              <button
+                className="bg-blue text-white px-3 py-1 mt-2 justify-end rounded"
+                onClick={confirmApplication}
+              >
+                Yes
+              </button>
+            </div>
+          </div>
+        </Modal>
+      )}
+      {confirmed && (
+        <Modal onClose={() => push()}>
+          <div className="flex flex-col justify-center items-center">
+            <div className="font-bold">
+              <p>Internship Application Confirmed</p>
+            </div>
+            <button
+              className="bg-red text-white px-3 py-1 mt-2 justify-start rounded"
+              onClick={() => push()}
+            >
+              Close
+            </button>
+          </div>
+        </Modal>
+      )}
     </main>
   );
 };
