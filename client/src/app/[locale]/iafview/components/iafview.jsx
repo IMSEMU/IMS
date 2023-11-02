@@ -13,6 +13,9 @@ export const IafView = () => {
   const [info, setInfo] = useState(null);
   const [confirm, setConfirm] = useState(false);
   const [confirmed, setConfirmed] = useState(false);
+  const [reject, setReject] = useState(false);
+  const [rejected, setRejected] = useState(false);
+  const [msg, setMsg] = useState("");
 
   const stdid = searchParams.get("stdid");
   const id = searchParams.get("id");
@@ -47,6 +50,22 @@ export const IafView = () => {
 
   const push = () => {
     router.push("/departmentDashboard");
+  };
+
+  const rejectApplication = async (e) => {
+    try {
+      const response = await AuthConnect.post("/rejectapp", {
+        stdid: stdid,
+      });
+      if (response) {
+        setRejected(true);
+      }
+    } catch (error) {
+      if (error.response) {
+        setMsg(error.response.data.msg);
+      }
+      alert("Application Error"); // You can add a generic error message here
+    }
   };
 
   return (
@@ -213,7 +232,10 @@ export const IafView = () => {
                 </div>
               </div>
               <div className="flex justify-between mt-2">
-                <button className="bg-red text-white px-3 py-1 mt-2 justify-start rounded">
+                <button
+                  className="bg-red text-white px-3 py-1 mt-2 justify-start rounded"
+                  onClick={() => setReject(true)}
+                >
                   Reject
                 </button>
                 <button
@@ -259,7 +281,47 @@ export const IafView = () => {
               <p>Internship Application Confirmed</p>
             </div>
             <button
-              className="bg-red text-white px-3 py-1 mt-2 justify-start rounded"
+              className="bg-blue text-white px-3 py-1 mt-2 justify-start rounded"
+              onClick={() => push()}
+            >
+              Close
+            </button>
+          </div>
+        </Modal>
+      )}
+      {reject && (
+        <Modal onClose={() => setConfirm(false)}>
+          <div className="flex flex-col justify-center items-center">
+            <div className="font-bold">
+              <p>
+                Are you sure you want to reject this Internship Application?
+              </p>
+            </div>
+            <div className="flex justify-between mt-2 w-10/12">
+              <button
+                className="bg-blue text-white px-3 py-1 mt-2 justify-start rounded"
+                onClick={() => setReject(false)}
+              >
+                No
+              </button>
+              <button
+                className="bg-red text-white px-3 py-1 mt-2 justify-end rounded"
+                onClick={rejectApplication}
+              >
+                Yes
+              </button>
+            </div>
+          </div>
+        </Modal>
+      )}
+      {rejected && (
+        <Modal onClose={() => push()}>
+          <div className="flex flex-col justify-center items-center">
+            <div className="font-bold">
+              <p>Internship Application Rejected</p>
+            </div>
+            <button
+              className="bg-blue text-white px-3 py-1 mt-2 justify-start rounded"
               onClick={() => push()}
             >
               Close
