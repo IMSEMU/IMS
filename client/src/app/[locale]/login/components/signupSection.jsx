@@ -146,7 +146,11 @@ export const SignupSection = ({ loginToogle }) => {
                   "bg-white dark:bg-dark_2 absolute p-0.5 md:p-1.5 text-[green] cursor-pointer bottom-2 right-4 text-xl"
                 }
               >
-                <MdVerifiedUser />
+                {password != "" && password === confPassword ? (
+                  <MdVerifiedUser />
+                ) : (
+                  <div></div>
+                )}
               </span>
             </div>
 

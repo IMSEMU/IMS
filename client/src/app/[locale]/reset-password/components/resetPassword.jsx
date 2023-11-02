@@ -11,7 +11,8 @@ import Modal from "../../globalComponents/modal";
 export default function ResetPassword() {
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
-  const [showModal, setShowModal] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [failure, setFailure] = useState(false);
 
   const Auth = async (e) => {
     e.preventDefault();
@@ -19,21 +20,16 @@ export default function ResetPassword() {
       await AuthConnect.post("/forgotpassword", { email: email }).then(
         (response) => {
           if (response.data.status === "success") {
-            //   setSuccess('Reset link sent to email');
-            setShowModal(true);
-            console.log("Reset link sent to email");
+            setSuccess(true);
           }
         }
       );
     } catch (error) {
       if (error.response) {
         setError(error.response.data.message);
+        setFailure(true);
       }
     }
-  };
-
-  const closeModal = () => {
-    setShowModal(false);
   };
 
   return (
@@ -82,7 +78,7 @@ export default function ResetPassword() {
                 <input
                   type="email"
                   id="email"
-                  placeholder="student-number@emu.edu.tr"
+                  placeholder="address@provider.com"
                   className="input w-full text-dark_2 dark:text-yellow placeholder:text-dark_2 dark:placeholder:text-yellow bg-white dark:bg-dark_2 px-4 py-2.5 border-b-dark_2 dark:border-b-yellow  border-x-0 border-t-0 mt-2 border-2  focus:outline-none"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -107,13 +103,36 @@ export default function ResetPassword() {
         </div>
       </section>
 
-      {/* Modal */}
-      <Modal
-        isOpen={showModal}
-        message="Reset token sent to your email"
-        buttonText="Go to Login"
-        buttonLink="/login"
-      />
+      {success && (
+        <Modal onClose={() => setSuccess(false)}>
+          <div className="flex flex-col justify-center items-center">
+            <div className="font-bold">
+              <p>Reset link sent to email</p>
+            </div>
+            <button
+              onClick={() => setSuccess(false)}
+              className="bg-blue text-white px-3 py-1 mt-2"
+            >
+              Close
+            </button>
+          </div>
+        </Modal>
+      )}
+      {failure && (
+        <Modal onClose={() => setFailure(false)}>
+          <div className="flex flex-col justify-center items-center">
+            <div className="font-bold">
+              <p>{error}</p>
+            </div>
+            <button
+              onClick={() => setFailure(false)}
+              className="bg-blue text-white px-3 py-1 mt-2"
+            >
+              Close
+            </button>
+          </div>
+        </Modal>
+      )}
     </main>
   );
 }

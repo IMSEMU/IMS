@@ -23,7 +23,6 @@ export const IafView = () => {
       const response = await AuthConnect.get(`/getInternship/${stdid}/${id}`);
       console.log(response.data);
       setInfo(response.data);
-      //   const resonse = await fetch(`/api/something/${id}`)
     };
     fetchStudentById();
   }, []);
