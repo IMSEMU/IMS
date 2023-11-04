@@ -10,6 +10,9 @@ import AuthConnect from "@/auth";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import jwtDecode from "jwt-decode";
+import { DisplayAnnouncement } from "../../deptAnnouncement/components/displayAnnouncement";
+import { StudentList } from "../../studentInformation/components/studentsList";
+import { DeptInternshipDisplay } from "../../deptInternshipPosition/components/deptInternshipDisplay";
 
 export const Dashboard = () => {
   const t = useTranslations("logbook");
@@ -114,11 +117,13 @@ export const Dashboard = () => {
 
                 {/*section container*/}
                 <div className={"h-[15rem] overflow-y-auto"}>
-                  <div
+                  {/* <div
                     className={
                       "mx-auto max-w-[90%]  my-2 bg-background_shade_2 hover:bg-dark_4 rounded"
                     }
-                  ></div>
+                  > */}
+                  <DisplayAnnouncement />
+                  {/* </div> */}
                 </div>
               </div>
             </div>
@@ -178,10 +183,10 @@ export const Dashboard = () => {
                 {/*section container*/}
                 <div className={"h-[15rem] overflow-y-auto"}>
                   <div
-                    className={
-                      "mx-auto max-w-[90%]  my-2 bg-background_shade_2 hover:bg-dark_4 rounded"
-                    }
-                  ></div>
+                    className={"mx-auto my-2 flex justify-center items-center"}
+                  >
+                    <StudentList />
+                  </div>
                 </div>
               </div>
             </div>
@@ -215,11 +220,9 @@ export const Dashboard = () => {
 
                 {/*section container*/}
                 <div className={"h-[15rem] overflow-y-auto"}>
-                  <div
-                    className={
-                      "mx-auto max-w-[90%]  my-2 bg-background_shade_2 hover:bg-dark_4 rounded"
-                    }
-                  ></div>
+                  <div className={"mx-auto max-w-[95%]  my-2"}>
+                    <DeptInternshipDisplay />
+                  </div>
                 </div>
               </div>
             </div>
@@ -244,7 +247,7 @@ export const Dashboard = () => {
               {/*section container*/}
               <div className={"h-fit overflow-y-auto"}>
                 <div className={"mx-auto max-w-[90%] my-2 rounded"}>
-                  <div className=" rounded h-fit from-left">
+                  <div className=" rounded h-fit">
                     {submissions.length === 0 ? (
                       <div className=" font-semibold text-lg text-center text-white">
                         <Empty />

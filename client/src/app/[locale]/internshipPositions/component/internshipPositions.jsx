@@ -3,9 +3,9 @@ import Image from "next/image";
 import { FaRegClock } from "react-icons/fa";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { InternshipCardsSkeleton } from "../skeletonLoader";
-import { getAvailableInternship } from "../../../../utils/dataFetching";
-import { AnimatedButton } from "../globalComponents/animatedButton";
+import { InternshipCardsSkeleton } from "../../skeletonLoader";
+import { getAvailableInternship } from "../../../../../utils/dataFetching";
+import { AnimatedButton } from "../../globalComponents/animatedButton";
 import { useTranslations } from "next-intl";
 
 export const InternshipPositions = () => {

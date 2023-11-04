@@ -2,7 +2,7 @@ import { Navbar } from "../[locale]/globalComponents/Navbar";
 import { Jumbotron } from "../[locale]/components/jumbotron";
 import { Announcement } from "../[locale]/components/announcement";
 import { CompletedInternships } from "../[locale]/components/completedInternships";
-import { InternshipPositions } from "../[locale]/components/internshipPositions";
+import { InternshipPositions } from "../[locale]/internshipPositions/component/internshipPositions";
 import { HomeFooter } from "../[locale]/components/homeFooter";
 
 export const metadata = {
