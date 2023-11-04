@@ -1,12 +1,14 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import AuthConnect from "@/auth";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useTranslations } from "next-intl";
 import Modal from "../../globalComponents/modal";
 import ConfirmationSection from "./confimationSection";
 import { CldUploadWidget } from "next-cloudinary";
 import jwtDecode from "jwt-decode";
+import Select from "react-select";
+import countryList from "react-select-country-list";
 
 export const AppForm = () => {
   const t = useTranslations("iaf");
@@ -20,6 +22,8 @@ export const AppForm = () => {
   const [compaddress, setCompAddress] = useState("");
   const [compphone, setCompPhone] = useState("");
   const [compfax, setCompFax] = useState("");
+  const [compcity, setCity] = useState("");
+  const [country, setCountry] = useState("");
   const [workdesc, setWorkdesc] = useState("");
   const [supfname, setFname] = useState("");
   const [suplname, setLname] = useState("");
@@ -29,6 +33,7 @@ export const AppForm = () => {
   const router = useRouter();
   const [imageSrc, setImageSrc] = useState("");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isCountryDropdownOpen, setIsCountryDropdownOpen] = useState(false);
   const [hasValidationError, setHasValidationError] = useState(false);
   const [student, setStudent] = useState([]);
   const [companies, setCompanies] = useState([]);
@@ -47,6 +52,8 @@ export const AppForm = () => {
     compaddress: "",
     compphone: "",
     compfax: "",
+    compcity: "",
+    country: "",
     workdesc: "",
     supfname: "",
     suplname: "",
@@ -54,6 +61,10 @@ export const AppForm = () => {
     position: "",
   });
   const [form, setForm] = useState(true);
+  const originalOptions = useMemo(() => countryList().getData(), []);
+  const additionalOption = { value: "KKTC", label: "North Cyprus (KKTC)" };
+
+  const updatedOptions = originalOptions.concat(additionalOption);
 
   const token = localStorage.getItem("accessToken");
   let decodedToken, firstname, lastname, email;
@@ -107,6 +118,8 @@ export const AppForm = () => {
       compemail === "" ||
       compaddress === "" ||
       compphone === "" ||
+      compcity === "" ||
+      country === "" ||
       workdesc === "" ||
       supfname === "" ||
       suplname === "" ||
@@ -132,6 +145,8 @@ export const AppForm = () => {
       compaddress: compaddress,
       compphone: compphone,
       compfax: compfax,
+      compcity: compcity,
+      country: country,
       workdesc: workdesc,
       supfname: supfname,
       suplname: suplname,
@@ -160,12 +175,28 @@ export const AppForm = () => {
       setCompAddress(selectedCompany.address);
       setCompPhone(selectedCompany.phoneno);
       setCompFax(selectedCompany.fax);
+      setCity(selectedCompany.city);
+      setCountry(selectedCompany.country);
     }
     setCompid(companyid);
   };
 
+  const handleCountryChange = (event) => {
+    setCountry(event.target.value);
+    setIsCountryDropdownOpen(true);
+  };
+
+  const handleSelectCountry = (country) => {
+    setCountry(country);
+    setIsCountryDropdownOpen(false);
+  };
+
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
+  };
+
+  const toggleCountryDropdown = () => {
+    setIsCountryDropdownOpen(!isCountryDropdownOpen);
   };
 
   const handleFieldChange = () => {
@@ -195,6 +226,8 @@ export const AppForm = () => {
         compaddress: compaddress,
         compphone: compphone,
         compfax: compfax,
+        compcity: compcity,
+        country: country,
         workdesc: workdesc,
         supfname: supfname,
         suplname: suplname,
@@ -429,6 +462,67 @@ export const AppForm = () => {
                       }}
                       required
                     />
+                  </div>
+
+                  <div className="mt-2 md:mt-4 relative flex space-x-2">
+                    <div className="w-1/2">
+                      <input
+                        type={"text"}
+                        name=""
+                        id=""
+                        placeholder={t("city")}
+                        className="input w-full text-dark_2 dark:text-yellow placeholder:text-dark_2 dark:placeholder:text-yellow bg-white dark:bg-dark_2 px-4 py-2.5 border-b-dark_2 dark:border-b-yellow  border-x-0 border-t-0 mt-1 border-2  focus:outline-none"
+                        value={compcity}
+                        onChange={(e) => {
+                          setCity(e.target.value);
+                          handleFieldChange();
+                        }}
+                        required
+                      />
+                    </div>
+                    <div className="w-1/2">
+                      <div className="relative flex">
+                        <input
+                          type="text"
+                          value={country}
+                          onChange={handleCountryChange}
+                          placeholder={t("country")}
+                          className="input w-full text-dark_2 dark:text-yellow placeholder:text-dark_2 dark:placeholder:text-yellow bg-white dark:bg-dark_2 px-4 py-2.5 border-b-dark_2 dark:border-b-yellow  border-x-0 border-t-0 mt-1 border-2  focus:outline-none"
+                          required
+                        />
+                        <button
+                          type="button"
+                          onClick={toggleCountryDropdown}
+                          className={"mt-1 text-yellow"}
+                        >
+                          ▼
+                        </button>
+                      </div>
+
+                      {isCountryDropdownOpen && (
+                        <div className="absolute z-10 w-[15rem] mt-1 bg-white border border-gray-300 rounded-md shadow-lg">
+                          <ul className="py-1">
+                            {updatedOptions
+                              .filter((option) =>
+                                option.label
+                                  .toLowerCase()
+                                  .includes(country.toLowerCase())
+                              )
+                              .map((option) => (
+                                <li
+                                  key={option.value} // Assuming value is unique
+                                  className="px-4 py-2 hover:bg-black/25 cursor-pointer"
+                                  onClick={() =>
+                                    handleSelectCountry(option.label)
+                                  }
+                                >
+                                  {option.label}
+                                </li>
+                              ))}
+                          </ul>
+                        </div>
+                      )}
+                    </div>
                   </div>
 
                   <div className="mt-2 md:mt-4 relative flex space-x-2">

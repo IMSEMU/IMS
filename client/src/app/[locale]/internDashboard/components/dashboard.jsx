@@ -20,7 +20,7 @@ import jwtDecode from "jwt-decode";
 export const Dashboard = () => {
   const t = useTranslations("dash");
   const [student, setStudent] = useState([]);
-  const [country, setCountry] = useState("Nigeria");
+  const [country, setCountry] = useState("");
   const [logbookEntries, setLogbookEntries] = useState([]);
 
   const token = localStorage.getItem("accessToken");
@@ -36,6 +36,7 @@ export const Dashboard = () => {
         const response = await AuthConnect.get("/getstudent");
         console.log(response.data);
         setStudent(response.data);
+        setCountry(response.data.country);
       } catch (error) {
         console.error("Error fetching student:", error);
       }
@@ -161,10 +162,10 @@ export const Dashboard = () => {
 
           {(student.iafConfirmed &&
             !student.logComplete &&
-            !(country === "Turkey" || country === "KKTC")) ||
+            !(country === "Turkey" || country === "North Cyprus (KKTC)")) ||
           (student.filledSocial &&
             !student.logComplete &&
-            (country === "Turkey" || country === "KKTC")) ? (
+            (country === "Turkey" || country === "North Cyprus (KKTC)")) ? (
             <div>
               <div
                 className={"justify-between flex items-center mx-3 mt-3 mb-2"}
@@ -345,14 +346,14 @@ export const Dashboard = () => {
               {student.iafConfirmed &&
               !student.logComplete &&
               !student.filledSocial &&
-              (country === "Turkey" || country === "KKTC") ? (
+              (country === "Turkey" || country === "North Cyprus (KKTC)") ? (
                 <div
                   className={
                     " p-2 rounded w-full  gap-2 bg-background_shade_2 dark:bg-dark_2 text-black hover:bg-blue hover:text-white"
                   }
                 >
                   <Link
-                    href={""}
+                    href={"/insuranceForm"}
                     className={
                       "flex items-center justify-center py-1.5 gap-2 px-1"
                     }
@@ -386,11 +387,13 @@ export const Dashboard = () => {
 
               {/* Fill Logbook */}
               {(student.iafConfirmed &&
+                student.conFormConfirmed &&
                 !student.logComplete &&
-                !(country === "Turkey" || country === "KKTC")) ||
-              (student.filledSocial &&
+                !(country === "Turkey" || country === "North Cyprus (KKTC)")) ||
+              (student.sifConfirmed &&
+                student.conFormConfirmed &&
                 !student.logComplete &&
-                (country === "Turkey" || country === "KKTC")) ? (
+                (country === "Turkey" || country === "North Cyprus (KKTC)")) ? (
                 <div
                   className={
                     " p-2 rounded w-full  gap-2 bg-background_shade_2 dark:bg-dark_2 text-black hover:bg-blue hover:text-white"
