@@ -101,6 +101,19 @@ const ConfirmationSection = ({ submitToggle, formData, submitApplication }) => {
             <div className="mt-2 md:mt-4 relative flex space-x-2">
               <div className="w-1/2">
                 <span>
+                  {t("city")}: {formData.compcity}
+                </span>
+              </div>
+              <div className="w-1/2">
+                <span>
+                  {t("country")}: {formData.country}
+                </span>
+              </div>
+            </div>
+
+            <div className="mt-2 md:mt-4 relative flex space-x-2">
+              <div className="w-1/2">
+                <span>
                   {t("phone")}: {formData.compphone}
                 </span>
               </div>

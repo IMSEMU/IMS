@@ -99,6 +99,8 @@
     "website": "Organizational Web Address",
     "orgemail": "Organizational Email",
     "fax": "Fax",
+    "city": "City",
+    "country": "Country",
     "desc": "Description of the work to be done during internship and the reason for choosing this company",
     "cis": "Company Internship Supervisor Information",
     "fname": "First Name",

@@ -99,6 +99,8 @@
     "website": "Kurumsal Web Adresi",
     "orgemail": "Kurumsal E-posta",
     "fax": "Faks",
+    "city": "Şehir",
+    "country": "Ülke",
     "desc": "Staj sırasında yapılacak işin tanımı ve bu firmayı seçme nedeni",
     "cis": "Şirket Staj Sorumlusu Bilgileri",
     "fname": "İlk adı",
