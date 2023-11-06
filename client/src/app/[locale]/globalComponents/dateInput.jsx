@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export const DateInput = ({ placeholder, onDateChange }) => {
+export const DateInput = ({ placeholder, onDateChange, max, min }) => {
   const [inputType, setInputType] = useState("text");
   const [date, setDate] = useState(null); // State to store the date
 
@@ -30,6 +30,8 @@ export const DateInput = ({ placeholder, onDateChange }) => {
       onBlur={handleBlur}
       onChange={handleChange}
       value={date ? date.toISOString().slice(0, 10) : ""} // Display in YYYY-MM-DD format
+      max={max}
+      min={min}
     />
   );
 };
