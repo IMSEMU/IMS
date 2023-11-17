@@ -344,6 +344,7 @@ export const Dashboard = () => {
 
               {/* Fill Social Insurance Form */}
               {student.iafConfirmed &&
+              student.conFormConfirmed &&
               !student.logComplete &&
               !student.filledSocial &&
               (country === "Turkey" || country === "North Cyprus (KKTC)") ? (

@@ -43,9 +43,7 @@ export const PcSideNav = () => {
     pathname === "/insuranceForm" ||
     pathname === "/tr/insuranceForm" ||
     pathname === "/confirmationForm" ||
-    pathname === "/tr/confirmationForm" ||
-    pathname === "/iafview" ||
-    pathname === "/tr/iafview"
+    pathname === "/tr/confirmationForm"
   ) {
     navlinks = [
       { name: t("home"), icons: <HomeIcon />, link: "/" },
@@ -62,6 +60,20 @@ export const PcSideNav = () => {
     pathname === "/tr/departmentDashboard"
   ) {
     navlinks = [{ name: t("home"), icons: <HomeIcon />, link: "/" }];
+  } else if (
+    pathname === "/iafview" ||
+    pathname === "/tr/iafview" ||
+    pathname === "/conformview" ||
+    pathname === "/tr/conformview"
+  ) {
+    navlinks = [
+      { name: t("home"), icons: <HomeIcon />, link: "/" },
+      {
+        name: t("dashboard"),
+        icons: <DashboardIcon />,
+        link: "/departmentDashboard",
+      },
+    ];
   }
 
   const router = useRouter();

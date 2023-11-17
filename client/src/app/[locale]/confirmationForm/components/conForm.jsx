@@ -133,7 +133,7 @@ export const ConForm = () => {
 
                 <div className="mt-2 relative  md:mt-1  lg:flex  lg:space-x-5">
                   <div className="max-lg:md:mx-12 lg:w-1/2">
-                    <span>Telehone Number: {company.phoneno}</span>
+                    <span>Telephone Number: {company.phoneno}</span>
                   </div>
 
                   <div className="max-lg:md:mx-12 lg:w-1/2">
