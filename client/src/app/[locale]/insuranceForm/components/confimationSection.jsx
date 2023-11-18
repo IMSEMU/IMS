@@ -32,7 +32,7 @@ const ConfirmationSection = ({
             <div className="mt-2 md:mt-4 relative flex space-x-2">
               <div className="w-1/2">
                 <span>
-                  {t("name")}: {formData.fname} {formData.lname}
+                  {t("name")}: {formData.stdfname} {formData.stdlname}
                 </span>
               </div>
 
@@ -46,7 +46,7 @@ const ConfirmationSection = ({
             <div className="mt-2 md:mt-4 relative flex space-x-2">
               <div className="w-1/2">
                 <span>
-                  {t("email")}: {formData.email}{" "}
+                  {t("email")}: {formData.stdemail}{" "}
                 </span>
               </div>
 
@@ -111,16 +111,14 @@ const ConfirmationSection = ({
 
               <div className="w-1/2">
                 <span>
-                  {t("dob")}:{" "}
-                  {formData.dob ? formData.dob.toISOString().slice(0, 10) : ""}
+                  {t("dob")}: {formData.dob}
                 </span>
               </div>
             </div>
             <div className="mt-2 md:mt-4 relative flex space-x-2">
               <div className="w-1/2">
                 <span>
-                  {t("doi")}:{" "}
-                  {formData.doi ? formData.doi.toISOString().slice(0, 10) : ""}{" "}
+                  {t("doi")}: {formData.doi}{" "}
                 </span>
               </div>
 
@@ -145,9 +143,7 @@ const ConfirmationSection = ({
               <div className="w-1/2">
                 <span>
                   {t("sdate")}:{" "}
-                  {formData.startdate
-                    ? formData.startdate.toISOString().slice(0, 10)
-                    : ""}
+                  {formData.startdate ? formData.startdate.split("T")[0] : ""}
                 </span>
               </div>
               <div className="w-1/2">
@@ -159,9 +155,7 @@ const ConfirmationSection = ({
             <div className="mt-2 md:mt-4 relative flex space-x-2">
               <span>
                 {t("edate")}:{" "}
-                {formData.enddate
-                  ? formData.enddate.toISOString().slice(0, 10)
-                  : ""}
+                {formData.enddate ? formData.enddate.split("T")[0] : ""}
               </span>
             </div>
             <div className="mt-2 md:mt-4 relative flex space-x-2">

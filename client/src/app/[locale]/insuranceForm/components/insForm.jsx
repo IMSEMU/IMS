@@ -20,14 +20,10 @@ export const InsForm = () => {
   const [fname, setFname] = useState("");
   const [mname, setMname] = useState("");
   const [pob, setPOB] = useState("");
-  const [startDate, setStartDate] = useState(null);
-  const [endDate, setEndDate] = useState(null);
-  const [signDate, setSignDate] = useState(null);
   const [birthDate, setBirthDate] = useState(null);
   const [issueDate, setIssueDate] = useState(null);
   const [validity, setValidity] = useState("");
   const [sgk, setSGK] = useState("");
-  const [days, setDays] = useState("");
   const [company, setCompany] = useState(null);
   const [form, setForm] = useState(true);
   const [hasValidationError, setHasValidationError] = useState(false);
@@ -125,6 +121,7 @@ export const InsForm = () => {
     }
 
     setFormData({
+      stdid: student.stdid,
       stdfname: firstname,
       stdlname: lastname,
       stdemail: email,
@@ -137,12 +134,12 @@ export const InsForm = () => {
       fname: fname,
       mname: mname,
       pob: pob,
-      dob: birthDate,
-      doi: issueDate,
+      dob: birthDate.toISOString().slice(0, 10),
+      doi: issueDate.toISOString().slice(0, 10),
       validity: validity,
-      startdate: startDate,
-      duration: days,
-      enddate: endDate,
+      startdate: student.startdate,
+      duration: student.duration,
+      enddate: student.enddate,
       companyname: company.compname,
       fields: company.fields,
       website: company.website,
@@ -185,7 +182,7 @@ export const InsForm = () => {
       }
     }
   };
-  if (!company) {
+  if (!company || !student) {
     return null;
   }
 
@@ -193,7 +190,7 @@ export const InsForm = () => {
     <main>
       <div className="my-1 flex justify-center items-center font-bold pt-5">
         <div className="invisible absolute">
-          <PrintInsurance props={t("title")} ref={componentRef} />
+          <PrintInsurance formData={formData} ref={componentRef} />
         </div>
         <div className=" my-2 border-x-[0.4rem] text-2xl border-yellow dark:text-white">
           <p className="px-2 ">{t("title")}</p>
@@ -371,42 +368,17 @@ export const InsForm = () => {
               <div className="mx-4 lg:mx-16 space-y-2 ">
                 <div className="mt-2 relative  md:mt-1  lg:flex  lg:space-x-5">
                   <div className="max-lg:md:mx-12 lg:w-1/2">
-                    <DateInput
-                      placeholder={t("sdate")}
-                      onDateChange={(date) => setStartDate(date)}
-                      value={startDate}
-                    />
+                    {t("sdate")}: {student.startdate.split("T")[0]}
                   </div>
 
                   <div className="max-lg:md:mx-12 lg:w-1/2">
-                    <DateInput
-                      placeholder={t("edate")}
-                      onDateChange={(date) => setEndDate(date)}
-                      value={formData.enddate}
-                    />
+                    {t("edate")}: {student.enddate.split("T")[0]}
                   </div>
                 </div>
 
                 <div className="mt-2 relative  md:mt-1  lg:flex  lg:space-x-5">
                   <div className="max-lg:md:mx-12 lg:w-1/2">
-                    <select
-                      id="days"
-                      name="days"
-                      className="select w-full text-dark_2 dark:text-yellow bg-white dark:bg-dark_2 px-4 py-2.5 border-b-dark_2 dark:border-b-yellow border-x-0 border-t-0 mt-1 border-2 focus:outline-none"
-                      value={days}
-                      onChange={(e) => setDays(e.target.value)}
-                    >
-                      <option
-                        value=""
-                        disabled
-                        selected
-                        className="text-dark_2 dark:text-yellow"
-                      >
-                        {t("days")}
-                      </option>
-                      <option value="20">20</option>
-                      <option value="40">40</option>
-                    </select>
+                    {t("days")}: {student.duration}
                   </div>
 
                   <div className="max-lg:md:mx-12 lg:w-1/2">
@@ -476,8 +448,7 @@ export const InsForm = () => {
                       {t("email")}: {company.supemail}
                     </span>
                   </div>
-                </div>
-                <div className="mt-2 relative  md:mt-1  lg:flex  lg:space-x-5">
+
                   <div className="max-lg:md:mx-12 lg:w-1/2">
                     <input
                       type={"text"}
@@ -487,13 +458,6 @@ export const InsForm = () => {
                       value={sgk}
                       onChange={(e) => setSGK(e.target.value)}
                       className="input w-full text-dark_2 dark:text-yellow placeholder:text-dark_2 dark:placeholder:text-yellow bg-white dark:bg-dark_2 px-4 py-2.5 border-b-dark_2 dark:border-b-yellow  border-x-0 border-t-0 mt-1 border-2  focus:outline-none"
-                    />
-                  </div>
-                  <div className="max-lg:md:mx-12 lg:w-1/2">
-                    <DateInput
-                      placeholder={t("date")}
-                      onDateChange={(date) => setSignDate(date)}
-                      value={signDate}
                     />
                   </div>
                 </div>
