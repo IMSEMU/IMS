@@ -64,7 +64,9 @@ export const PcSideNav = () => {
     pathname === "/iafview" ||
     pathname === "/tr/iafview" ||
     pathname === "/conformview" ||
-    pathname === "/tr/conformview"
+    pathname === "/tr/conformview" ||
+    pathname === "/sifview" ||
+    pathname === "/tr/sifview"
   ) {
     navlinks = [
       { name: t("home"), icons: <HomeIcon />, link: "/" },

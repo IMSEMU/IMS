@@ -163,7 +163,7 @@ export const Dashboard = () => {
           {(student.iafConfirmed &&
             !student.logComplete &&
             !(country === "Turkey" || country === "North Cyprus (KKTC)")) ||
-          (student.filledSocial &&
+          (student.sifConfirmed &&
             !student.logComplete &&
             (country === "Turkey" || country === "North Cyprus (KKTC)")) ? (
             <div>
