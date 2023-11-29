@@ -4,8 +4,15 @@ import { useEffect, useState } from "react";
 import AuthConnect from "@/auth";
 import { useTranslations } from "next-intl";
 import Modal from "../../globalComponents/modal";
+import { DateInput } from "../../globalComponents/dateInput";
 
-export const AddLogData = ({ updateLogbookEntries, setHasNewLogEntry }) => {
+export const AddLogData = ({
+  updateLogbookEntries,
+  setHasNewLogEntry,
+  startdate,
+  enddate,
+  duration,
+}) => {
   const t = useTranslations("logbook");
   const [day, setDay] = useState("");
   const [date, setDate] = useState(new Date());
@@ -17,29 +24,34 @@ export const AddLogData = ({ updateLogbookEntries, setHasNewLogEntry }) => {
   const createLogEntry = async (e) => {
     e.preventDefault();
 
-    try {
-      const response = await AuthConnect.post("/createlog", {
-        day: day,
-        date: date,
-        department: department,
-        description: description,
-      });
+    if (day > duration) {
+      setError("Invalid Day. Day cannot be more than Internship Duration");
+      setShowErrorModal(true);
+    } else {
+      try {
+        const response = await AuthConnect.post("/createlog", {
+          day: day,
+          date: date,
+          department: department,
+          description: description,
+        });
 
-      console.log(response);
-      const newLogEntry = response.data;
-      updateLogbookEntries(newLogEntry);
-      setHasNewLogEntry(true);
-      setDay("");
-      setDate("");
-      setDepartment("");
-      setDescription("");
-    } catch (error) {
-      console.error("Error:", error);
-      if (error.response) {
-        if (error.response.status === 400) {
-          // Handle 400 Bad Request error
-          setError(error.response.data.msg);
-          setShowErrorModal(true);
+        console.log(response);
+        const newLogEntry = response.data;
+        updateLogbookEntries(newLogEntry);
+        setHasNewLogEntry(true);
+        setDay("");
+        setDate(null);
+        setDepartment("");
+        setDescription("");
+      } catch (error) {
+        console.error("Error:", error);
+        if (error.response) {
+          if (error.response.status === 400) {
+            // Handle 400 Bad Request error
+            setError(error.response.data.msg);
+            setShowErrorModal(true);
+          }
         }
       }
     }
@@ -75,12 +87,12 @@ export const AddLogData = ({ updateLogbookEntries, setHasNewLogEntry }) => {
             />
           </div>
           <div className="w-[90%]">
-            <input
+            <DateInput
               placeholder="Date"
-              type="date"
+              onDateChange={(date) => setDate(date)}
               value={date}
-              onChange={(e) => setDate(e.target.value)}
-              max={new Date().toISOString().split("T")[0]}
+              min={new Date(startdate).toISOString().split("T")[0]}
+              max={new Date(enddate).toISOString().split("T")[0]}
               className="rounded p-3 outline-none w-full border border-dark_4 dark:border-none dark:bg-background_shade_2 text-dark_2 placeholder:text-dark_2"
             />
           </div>

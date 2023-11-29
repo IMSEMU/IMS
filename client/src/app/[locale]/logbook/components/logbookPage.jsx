@@ -16,6 +16,8 @@ export const LogbookPage = () => {
   const [hasNewLogEntry, setHasNewLogEntry] = useState(false);
   const [user, setUser] = useState(null);
   const [mobileLogAdd, setMobileLogAdd] = useState(true);
+  const [student, setStudent] = useState(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const getToken = async () => {
@@ -36,6 +38,20 @@ export const LogbookPage = () => {
     };
 
     getToken();
+  }, []);
+
+  useEffect(() => {
+    const getStudent = async () => {
+      try {
+        const response = await AuthConnect.get("/getstudent");
+        setStudent(response.data);
+        console.log(response.data);
+      } catch (error) {
+        console.error("Error fetching student:", error);
+      }
+    };
+
+    getStudent();
   }, []);
 
   useEffect(() => {
@@ -74,7 +90,26 @@ export const LogbookPage = () => {
     setLogbookEntries((prevEntries) => [...prevEntries, newLogEntry]);
   };
 
-  if (!user) {
+  const submitLogbook = async () => {
+    console.log("here");
+    try {
+      const response = await AuthConnect.post("/submitlog", {});
+      console.log(response);
+      alert("Logbook Submitted");
+      router.push("/internDashboard");
+    } catch (error) {
+      console.error("Error:", error);
+      if (error.response) {
+        if (error.response.status === 400) {
+          // Handle 400 Bad Request error
+          setError(error.response.data.msg);
+          console.log(error.response.data.msg);
+        }
+      }
+    }
+  };
+
+  if (!user || !student) {
     return null; // Prevent rendering the dashboard until token is fetched
   }
 
@@ -86,48 +121,80 @@ export const LogbookPage = () => {
         <div className={"h-full w-full"}>
           <TopNav />
           <ProtectedRoute>
-          <section className=" bg-white dark:bg-dark_1 flex items-center justify-center w-full pt-5">
-            <div className="bg-white dark:bg-dark_2 p-3.5 flex rounded shadow-xl dark:border-none border border-background_shade_2 w-[90%] md:w-[70%] lg:w-[50rem] h-[10%] mb-20 md:mb-4 lg:mb-2 md:h-[32rem]">
-              {/* LOgbook Add section */}
-              <div className="hidden lg:block lg:w-1/2">
-                <div className=" flex items-center h-full">
-                  <AddLogData
-                    updateLogbookEntries={updateLogbookEntries}
-                    setHasNewLogEntry={setHasNewLogEntry}
-                  />
+            <section className=" bg-white dark:bg-dark_1 flex items-center justify-center w-full pt-5">
+              <div className="bg-white dark:bg-dark_2 p-3.5 flex rounded shadow-xl dark:border-none border border-background_shade_2 w-[90%] md:w-[70%] lg:w-[50rem] h-[10%] mb-20 md:mb-4 lg:mb-2 md:h-[32rem]">
+                {/* LOgbook Add section */}
+                <div className="hidden lg:block lg:w-1/2">
+                  <div className=" flex items-center h-full">
+                    <AddLogData
+                      updateLogbookEntries={updateLogbookEntries}
+                      setHasNewLogEntry={setHasNewLogEntry}
+                      startdate={student.startdate}
+                      enddate={student.enddate}
+                      duration={student.duration}
+                    />
+                  </div>
+                </div>
+
+                {/* Logbook Display section */}
+                <div className=" w-full lg:w-1/2 bg-background_shade dark:bg-dark_3 rounded overflow-x-auto">
+                  <div className="hidden lg:block">
+                    <LogbookDisplay logbookEntries={logbookEntries} />
+                  </div>
+
+                  {/* mobile screen view */}
+
+                  <div className="lg:hidden">
+                    <div
+                      className={
+                        "w-full flex items-center justify-between my-3 px-3"
+                      }
+                    >
+                      <p
+                        className={
+                          " font-bold  text-black dark:text-white text-sm md:text-md lg:text-lg  inline-flex text-center  border-yellow border-x-[0.4rem] md:border-x-[0.3rem] px-2"
+                        }
+                      >
+                        Daily Logbook
+                      </p>
+                      <button
+                        onClick={() => setMobileLogAdd(!mobileLogAdd)}
+                        className="px-2 py-1 bg-blue rounded text-white"
+                      >
+                        {mobileLogAdd ? "Add" : "Logbook"}
+                      </button>
+                    </div>
+
+                    {mobileLogAdd ? (
+                      <LogbookDisplay logbookEntries={logbookEntries} />
+                    ) : (
+                      <AddLogData
+                        updateLogbookEntries={updateLogbookEntries}
+                        setHasNewLogEntry={setHasNewLogEntry}
+                        startdate={student.startdate}
+                        enddate={student.enddate}
+                      />
+                    )}
+                  </div>
                 </div>
               </div>
-
-              {/* Logbook Display section */}
-              <div className=" w-full lg:w-1/2 bg-background_shade dark:bg-dark_3 rounded overflow-x-auto">
-                <div className="hidden lg:block"><LogbookDisplay logbookEntries={logbookEntries} /></div>
-
-{/* mobile screen view */}
-
-<div className="lg:hidden">
-<div className={"w-full flex items-center justify-between my-3 px-3"}>
-        <p
-          className={
-            " font-bold  text-black dark:text-white text-sm md:text-md lg:text-lg  inline-flex text-center  border-yellow border-x-[0.4rem] md:border-x-[0.3rem] px-2"
-          }
-        >
-          Daily Logbook
-        </p>
-        <button onClick={()=>setMobileLogAdd(!mobileLogAdd)} className="px-2 py-1 bg-blue rounded text-white">{mobileLogAdd ? "Add" : "Logbook"}</button>
-      </div>
-
-      {mobileLogAdd ?
-        <LogbookDisplay logbookEntries={logbookEntries} /> : 
-        <AddLogData
-        updateLogbookEntries={updateLogbookEntries}
-        setHasNewLogEntry={setHasNewLogEntry}
-      />
-      }
-</div>
-
+              <div className="mt-4">
+                {logbookEntries.length == student.duration ? (
+                  <button
+                    className="bg-blue text-white py-2 px-4 rounded"
+                    onClick={() => {
+                      submitLogbook();
+                    }}
+                  >
+                    Submit
+                  </button>
+                ) : (
+                  <button className="bg-background_shade text-white py-2 px-4 rounded">
+                    Submit
+                  </button>
+                )}
               </div>
-            </div>
-          </section>
+            </section>
           </ProtectedRoute>
         </div>
         <MobileNav />
