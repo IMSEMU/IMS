@@ -19,6 +19,7 @@ export const TopNav = () => {
   const t = useTranslations("topnav");
   const router = useRouter();
   const [photo, setPhoto] = useState("");
+  const [notifications, setNotifications] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
   const token = localStorage.getItem("accessToken");
@@ -45,6 +46,28 @@ export const TopNav = () => {
     getPhoto();
   }, []);
 
+  useEffect(() => {
+    const getNotifications = async () => {
+      try {
+        const response = await AuthConnect.get("/getnotifs");
+        setNotifications(response.data);
+        console.log(response.data);
+      } catch (error) {
+        console.error("Error fetching photo:", error);
+      } finally {
+        setIsLoading(false); // Set isLoading to false when done
+      }
+    };
+
+    getNotifications();
+
+    const intervalId = setInterval(() => {
+      getNotifications();
+    }, 2 * 60 * 1000); // 2 minutes in milliseconds
+
+    // Clear the interval when the component unmounts
+    return () => clearInterval(intervalId);
+  }, []);
   const handleLogout = async () => {
     try {
       const response = await AuthConnect.delete("/logout");
@@ -59,22 +82,22 @@ export const TopNav = () => {
     }
   };
 
-  const notification = [
-    { title: "submit Logbook", date: "23/23/12" },
-    { title: "Buy Logbook", date: "23/23/12" },
-    { title: "submit Logbook", date: "23/23/12" },
-    { title: "submit Logbook", date: "23/23/12" },
-    { title: "submit Logbook", date: "23/23/12" },
-    { title: "submit Logbook", date: "23/23/12" },
-    { title: "submit Logbook", date: "23/23/12" },
-    { title: "submit Logbook", date: "23/23/12" },
-    { title: "submit Logbook", date: "23/23/12" },
-    { title: "submit Logbook", date: "23/23/12" },
-    { title: "submit Logbook", date: "23/23/12" },
-    { title: "submit Logbook", date: "23/23/12" },
-    { title: "submit Logbook", date: "23/23/12" },
-    { title: "submit Logbook", date: "23/23/12" },
-  ];
+  // const notification = [
+  //   { title: "submit Logbook", date: "23/23/12" },
+  //   { title: "Buy Logbook", date: "23/23/12" },
+  //   { title: "submit Logbook", date: "23/23/12" },
+  //   { title: "submit Logbook", date: "23/23/12" },
+  //   { title: "submit Logbook", date: "23/23/12" },
+  //   { title: "submit Logbook", date: "23/23/12" },
+  //   { title: "submit Logbook", date: "23/23/12" },
+  //   { title: "submit Logbook", date: "23/23/12" },
+  //   { title: "submit Logbook", date: "23/23/12" },
+  //   { title: "submit Logbook", date: "23/23/12" },
+  //   { title: "submit Logbook", date: "23/23/12" },
+  //   { title: "submit Logbook", date: "23/23/12" },
+  //   { title: "submit Logbook", date: "23/23/12" },
+  //   { title: "submit Logbook", date: "23/23/12" },
+  // ];
 
   const [profileDrop, setProfileDrop] = useState(false);
   const [notificationDrop, setNotificationDrop] = useState(false);
@@ -145,7 +168,7 @@ export const TopNav = () => {
           {/* Notification Dropdown */}
 
           {notificationDrop && (
-            <div className=" from-top overflow-hidden absolute right-4 top-16 w-[18rem] h-fit max-h-[30rem] border dark:border-none rounded bg-white dark:bg-dark_3 text-black">
+            <div className=" from-top overflow-hidden absolute right-4 top-16 w-[20rem] h-fit max-h-[30rem] border dark:border-none rounded bg-white dark:bg-dark_3 text-black">
               {/* clear all notifications */}
               <div className=" py-3 px-2 flex justify-between">
                 <div
@@ -164,7 +187,7 @@ export const TopNav = () => {
 
               {/* notifications */}
               <div className="max-h-[20rem]  overflow-y-scroll">
-                {notification.map((notification, index) => (
+                {notifications.map((notification, index) => (
                   <div key={index} className="m-2">
                     <Link
                       href={""}
@@ -174,10 +197,8 @@ export const TopNav = () => {
                         <HiAnnotation />
                       </div>
 
-                      <div className="truncate">
-                        <p className="truncate font-medium">
-                          {notification.title}
-                        </p>
+                      <div className="">
+                        <p className="font-medium">{notification.message}</p>
                       </div>
 
                       <div className=" w-fit">
@@ -185,7 +206,7 @@ export const TopNav = () => {
                           <div className="flex py-0.5 px-1 gap-0.5">
                             <LuClock2 />
                             <p className="text-xs font-medium ">
-                              {notification.date}
+                              {notification.notifdate.slice(0, 10)}
                             </p>
                           </div>
                         </div>

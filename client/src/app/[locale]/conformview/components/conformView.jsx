@@ -3,6 +3,7 @@ import AuthConnect from "@/auth";
 import { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
 import Modal from "../../globalComponents/modal";
+import PdfViewer from "../../globalComponents/pdfViewer";
 
 export const ConFormView = () => {
   const t = useTranslations("sif");
@@ -21,7 +22,7 @@ export const ConFormView = () => {
   useEffect(() => {
     const fetchStudentById = async () => {
       const response = await AuthConnect.get(
-        `/getInternship/${stdid}/${intid}`
+        `/getinternship/${stdid}/${intid}`
       );
       console.log(response.data);
       setInfo(response.data);
@@ -170,6 +171,12 @@ export const ConFormView = () => {
                   </li>
                 ))}
               </ul>
+            </div>
+            <div className="mt-2 md:mt-4">
+              <p className="font-bold my-4 text-black dark:text-white text-lg">
+                PDF Viewer
+              </p>
+              <PdfViewer docSrc={info.docsrc} />
             </div>
             <div className="flex justify-between mt-2">
               <button

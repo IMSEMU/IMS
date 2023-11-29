@@ -7,7 +7,6 @@ import Modal from "../../globalComponents/modal";
 import ConfirmationSection from "./confimationSection";
 import { CldUploadWidget } from "next-cloudinary";
 import jwtDecode from "jwt-decode";
-import Select from "react-select";
 import countryList from "react-select-country-list";
 
 export const AppForm = () => {
