@@ -41,9 +41,7 @@ export const PcSideNav = () => {
     pathname === "/appForm" ||
     pathname === "/tr/appForm" ||
     pathname === "/insuranceForm" ||
-    pathname === "/tr/insuranceForm" ||
-    pathname === "/confirmationForm" ||
-    pathname === "/tr/confirmationForm"
+    pathname === "/tr/insuranceForm"
   ) {
     navlinks = [
       { name: t("home"), icons: <HomeIcon />, link: "/" },
@@ -74,6 +72,21 @@ export const PcSideNav = () => {
         name: t("dashboard"),
         icons: <DashboardIcon />,
         link: "/departmentDashboard",
+      },
+    ];
+  } //for company supervisor
+  else if (
+    pathname === "/confirmationForm" ||
+    pathname === "/tr/confirmationForm" ||
+    pathname === "/logview" ||
+    pathname === "/tr/logview"
+  ) {
+    navlinks = [
+      { name: t("home"), icons: <HomeIcon />, link: "/" },
+      {
+        name: t("dashboard"),
+        icons: <DashboardIcon />,
+        link: "",
       },
     ];
   }

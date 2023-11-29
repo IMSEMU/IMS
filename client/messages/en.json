@@ -81,6 +81,7 @@
   "logbook": {
     "title": "Daily Logbook",
     "day": "Day",
+    "date": "Date",
     "dept": "Department",
     "desc": "Brief Description of Work Done",
     "add": "Add"

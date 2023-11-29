@@ -290,7 +290,7 @@ export const IafView = () => {
         </Modal>
       )}
       {reject && (
-        <Modal onClose={() => setConfirm(false)}>
+        <Modal onClose={() => setReject(false)}>
           <div className="flex flex-col justify-center items-center">
             <div className="font-bold">
               <p>

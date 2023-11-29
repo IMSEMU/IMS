@@ -59,7 +59,7 @@ export default function LoginSection() {
         router.push("/departmentDashboard");
       }
       if (userrole === 3) {
-        router.push("/confirmationForm");
+        router.push("/logview");
       }
 
       setToastStatus(true);
