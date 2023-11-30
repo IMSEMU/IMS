@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
 import Modal from "../../globalComponents/modal";
 import jwtDecode from "jwt-decode";
+import LogView from "./logview";
 
 export const EvalView = () => {
   const t = useTranslations("iaf");
@@ -16,6 +17,7 @@ export const EvalView = () => {
   const [reject, setReject] = useState(false);
   const [rejected, setRejected] = useState(false);
   const [msg, setMsg] = useState("");
+  const [form, setForm] = useState(false);
 
   const stdid = searchParams.get("stdid");
   const id = searchParams.get("id");
@@ -32,9 +34,9 @@ export const EvalView = () => {
     return null;
   }
 
-  const confirmApplication = async (e) => {
+  const confirmEvaluation = async (e) => {
     try {
-      const response = await AuthConnect.post("/confirmapp", {
+      const response = await AuthConnect.post("/confirmeval", {
         stdid: stdid,
       });
       if (response) {
@@ -52,9 +54,9 @@ export const EvalView = () => {
     router.push("/departmentDashboard");
   };
 
-  const rejectApplication = async (e) => {
+  const rejectEvaluation = async (e) => {
     try {
-      const response = await AuthConnect.post("/rejectapp", {
+      const response = await AuthConnect.post("/rejecteval", {
         stdid: stdid,
       });
       if (response) {
@@ -68,194 +70,277 @@ export const EvalView = () => {
     }
   };
 
+  const formToggle = () => {
+    setForm(!form);
+  };
+
   return (
     <main>
-      <div className="my-1 flex justify-center items-center font-bold pt-5">
-        <div className="border-x-[0.4rem] text-2xl border-yellow">
-          <p className="px-2">{t("title")}</p>
-        </div>
-      </div>
-      <section className="p-2 bg-white dark:bg-dark_1 flex items-center justify-center px-4 sm:px-12 md:px-20">
-        <div className="from-left bg-white dark:bg-dark_2 p-5 rounded shadow-xl dark:border-none border border-background_shade_2 w-[40rem] lg:w-[40rem] h-fit pb-10">
-          <div className="w-full"></div>
-          <div className=" w-full">
-            <p
-              className={
-                " font-bold my-4 text-black dark:text-white text-sm md:text-md lg:text-lg  inline-flex text-center  border-yellow border-x-[0.4rem] md:border-x-[0.3rem] px-2"
-              }
-            >
-              {t("stdinfo")}
-            </p>
-            <div className="w-full flex justify-center mt-1">
-              <Image
-                src={info.photo}
-                width={1000}
-                height={1000}
-                alt=""
-                priority
-                className="h-[7rem] w-[7rem] rounded-2xl"
-              />
-            </div>
-            <div>
-              <div className="mt-2 md:mt-4 relative flex space-x-2">
-                <div className="w-1/2">
-                  <span>
-                    {t("name")}: {info.stdfname} {info.stdlname}
-                  </span>
-                </div>
-
-                <div className="w-1/2">
-                  <span>
-                    {t("stdid")}: {stdid}{" "}
-                  </span>
-                </div>
-              </div>
-
-              <div className="mt-2 md:mt-4 relative flex space-x-2">
-                <div className="w-1/2">
-                  <span>
-                    {t("email")}: {info.stdemail}
-                  </span>
-                </div>
-
-                <div className="w-1/2">
-                  <span>
-                    {t("phone")}: {info.stdphone}
-                  </span>
-                </div>
-              </div>
-
-              <div className="mt-2 md:mt-4 relative flex space-x-2">
-                <span>
-                  {t("address")}: {info.stdaddress}
-                </span>
-              </div>
-            </div>
-            <div className={"pt-10"}>
-              <p
-                className={
-                  " font-bold my-4 text-black dark:text-white text-sm md:text-md lg:text-lg  inline-flex text-center  border-yellow border-x-[0.4rem] md:border-x-[0.3rem] px-2"
-                }
-              >
-                {t("compinfo")}
-              </p>
-            </div>
-            <div>
-              <div className="mt-2 md:mt-4 relative flex space-x-2">
-                <span>
-                  {t("compname")}: {info.compname}
-                </span>
-              </div>
-              <div className="mt-2 md:mt-4 relative flex space-x-2">
-                <span>
-                  {t("work")}: {info.fields}
-                </span>
-              </div>
-
-              <div className="mt-2 md:mt-4 relative flex space-x-2">
-                <span>
-                  {t("website")}: {info.website}
-                </span>
-              </div>
-
-              <div className="mt-2 md:mt-4 relative flex space-x-2">
-                <span>
-                  {t("orgemail")}: {info.compemail}
-                </span>
-              </div>
-
-              <div className="mt-2 md:mt-4 relative flex space-x-2">
-                <span>
-                  {t("address")}: {info.compaddress}
-                </span>
-              </div>
-
-              <div className="mt-2 md:mt-4 relative flex space-x-2">
-                <div className="w-1/2">
-                  <span>
-                    {t("phone")}: {info.compphone}
-                  </span>
-                </div>
-                {info.compfax != "" ? (
-                  <div className="w-1/2">
-                    <span>
-                      {t("fax")}: {info.compfax}
-                    </span>
-                  </div>
-                ) : (
-                  <div></div>
-                )}
-              </div>
-
-              <div className="mt-2 md:mt-4 relative flex space-x-2">
-                <div className="w-full">
-                  <span>
-                    {t("desc")}: {info.workdesc}
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div className={"pt-10"}>
-              <p
-                className={
-                  " font-bold my-4 text-black dark:text-white text-sm md:text-md lg:text-lg  inline-flex text-center  border-yellow border-x-[0.4rem] md:border-x-[0.3rem] px-2"
-                }
-              >
-                {t("cis")}
-              </p>
-            </div>
-
-            <div>
-              <div className="mt-2 md:mt-4 relative flex space-x-2">
-                <div className="w-1/2">
-                  <span>
-                    {t("fname")}: {info.supfname}{" "}
-                  </span>
-                </div>
-                <div className="w-1/2">
-                  <span>
-                    {t("lname")}: {info.suplname}
-                  </span>
-                </div>
-              </div>
-
-              <div className="mt-2 md:mt-4 relative flex space-x-2">
-                <div className="w-1/2">
-                  <span>
-                    {t("email")}: {info.supemail}
-                  </span>
-                </div>
-                <div className="w-1/2">
-                  <span>
-                    {t("pos")}: {info.position}
-                  </span>
-                </div>
-              </div>
-              <div className="flex justify-between mt-2">
-                <button
-                  className="bg-red text-white px-3 py-1 mt-2 justify-start rounded"
-                  onClick={() => setReject(true)}
-                >
-                  Reject
-                </button>
-                <button
-                  className="bg-blue text-white px-3 py-1 mt-2 justify-end rounded"
-                  onClick={() => setConfirm(true)}
-                >
-                  Confirm
-                </button>
-              </div>
+      {form ? (
+        <div>
+          <div className="my-1 flex justify-center items-center font-bold pt-5">
+            <div className="border-x-[0.4rem] text-2xl border-yellow dark:text-white">
+              <p className="px-2">Trainee Evaluation Form by Supervisor</p>
             </div>
           </div>
+          <section className="p-2 bg-white dark:bg-dark_1 flex items-center justify-center px-4 sm:px-12 md:px-20">
+            <div className="bg-white dark:bg-dark_2 p-3.5 flex rounded shadow-xl dark:border-none border border-background_shade_2 w-[40rem] lg:w-[50rem] h-fit pb-10">
+              <div className=" w-full    ">
+                <p
+                  className={
+                    " font-bold my-4 text-black dark:text-white text-sm md:text-md lg:text-lg  inline-flex text-center  border-yellow border-x-[0.3rem] md:border-x-[0.3rem] px-2"
+                  }
+                >
+                  Evaluation of the intern
+                </p>
+
+                <form>
+                  <div class=" max-[300px]:w-screen px-1  grid grid-cols-6 lg:grid-cols-10   font-medium  lg:mx-4 py-1 text-xs lg:text-lg rounded dark:border-yellow">
+                    <div class=" col-span-2  lg:col-span-6 pl-1 dark:text-white">
+                      Evaluation criteria
+                    </div>
+                    <div class="  flex justify-center dark:text-white">
+                      Poor
+                    </div>
+                    <div class=" flex justify-center dark:text-white">
+                      Fair{" "}
+                    </div>
+                    <div class="dark:text-white flex justify-center">Good</div>
+                    <div class=" flex justify-center dark:text-white ">
+                      Excellent
+                    </div>
+                  </div>
+
+                  <div class=" grid grid-cols-6 lg:grid-cols-10   font-medium  lg:mx-4 py-1 text-xs lg:text-lg rounded dark:border-yellow ">
+                    <div class="col-span-2  lg:col-span-6 pl-1 dark:text-white">
+                      Interest
+                    </div>
+                    <div class="flex justify-center">
+                      <input
+                        type={"radio"}
+                        name="interest"
+                        id="1"
+                        checked={info.interest === 1}
+                      />
+                    </div>
+                    <div class="flex justify-center">
+                      <input
+                        type={"radio"}
+                        name="interest"
+                        id="2"
+                        checked={info.interest === 2}
+                      />
+                    </div>
+                    <div class=" flex justify-center">
+                      <input
+                        type={"radio"}
+                        name="interest"
+                        id="3"
+                        checked={info.interest === 3}
+                      />
+                    </div>
+                    <div class="flex justify-center">
+                      <input
+                        type={"radio"}
+                        name="interest"
+                        id="4"
+                        checked={info.interest === 4}
+                      />
+                    </div>
+                  </div>
+
+                  <div class=" grid grid-cols-6 lg:grid-cols-10   font-medium  lg:mx-4 py-1 text-xs lg:text-lg rounded dark:border-yellow">
+                    <div class=" col-span-2  lg:col-span-6 pl-1 dark:text-white">
+                      Attendance
+                    </div>
+                    <div class="flex justify-center">
+                      <input
+                        type={"radio"}
+                        name="attendance"
+                        id="1"
+                        checked={info.attendance === 1}
+                      />
+                    </div>
+                    <div class="flex justify-center">
+                      <input
+                        type={"radio"}
+                        name="attendance"
+                        id="2"
+                        checked={info.attendance === 2}
+                      />
+                    </div>
+                    <div class=" flex justify-center">
+                      <input
+                        type={"radio"}
+                        name="attendance"
+                        id="3"
+                        checked={info.attendance === 3}
+                      />
+                    </div>
+                    <div class=" flex justify-center">
+                      <input
+                        type={"radio"}
+                        name="attendance"
+                        id="4"
+                        checked={info.attendance === 4}
+                      />
+                    </div>
+                  </div>
+                  <div class=" grid grid-cols-6 lg:grid-cols-10   font-medium  lg:mx-4 py-1 text-xs lg:text-lg rounded dark:border-yellow">
+                    <div class="col-span-2  lg:col-span-6 pl-1 dark:text-white">
+                      Technical Ability and Knowledge
+                    </div>
+                    <div class="flex justify-center">
+                      <input
+                        type={"radio"}
+                        name="technicalAbility"
+                        id="1"
+                        checked={info.technicalablilty === 1}
+                      />
+                    </div>
+                    <div class="flex justify-center">
+                      <input
+                        type={"radio"}
+                        name="technicalAbility"
+                        id="2"
+                        checked={info.technicalablilty === 2}
+                      />
+                    </div>
+                    <div class=" flex justify-center">
+                      <input
+                        type={"radio"}
+                        name="technicalAbility"
+                        id="3"
+                        checked={info.technicalablilty === 3}
+                      />
+                    </div>
+                    <div class="  flex justify-center">
+                      <input
+                        type={"radio"}
+                        name="technicalAbility"
+                        id="4"
+                        checked={info.technicalablilty === 4}
+                      />
+                    </div>
+                  </div>
+                  <div class=" grid grid-cols-6 lg:grid-cols-10   font-medium  lg:mx-4 py-1 text-xs lg:text-lg rounded dark:border-yellow">
+                    <div class="col-span-2  lg:col-span-6 pl-1 dark:text-white">
+                      General Behavior
+                    </div>
+                    <div class="flex justify-center">
+                      <input
+                        type={"radio"}
+                        name="generalBehavior"
+                        id="1"
+                        checked={info.generalbehaviour === 1}
+                      />
+                    </div>
+                    <div class="flex justify-center">
+                      <input
+                        type={"radio"}
+                        name="generalBehavior"
+                        id="2"
+                        checked={info.generalbehaviour === 2}
+                      />
+                    </div>
+                    <div class=" flex justify-center">
+                      <input
+                        type={"radio"}
+                        name="generalBehavior"
+                        id="3"
+                        checked={info.generalbehaviour === 3}
+                      />
+                    </div>
+                    <div class=" flex justify-center">
+                      <input
+                        type={"radio"}
+                        name="generalBehavior"
+                        id="4"
+                        checked={info.generalbehaviour === 4}
+                      />
+                    </div>
+                  </div>
+                  <div class=" grid grid-cols-6 lg:grid-cols-10  font-medium  lg:mx-4 py-1 text-xs lg:text-lg rounded ">
+                    <div class="col-span-2  lg:col-span-6 pl-1 dark:text-white">
+                      Overall Evaluation Result
+                    </div>
+                    <div class="flex justify-center">
+                      <input
+                        type={"radio"}
+                        name="overallEvaluation"
+                        id="1"
+                        checked={info.overalleval === 1}
+                      />
+                    </div>
+                    <div class="flex justify-center">
+                      <input
+                        type={"radio"}
+                        name="overallEvaluation"
+                        id="2"
+                        checked={info.overalleval === 2}
+                      />
+                    </div>
+                    <div class=" flex justify-center">
+                      <input
+                        type={"radio"}
+                        name="overallEvaluation"
+                        id="3"
+                        checked={info.overalleval === 3}
+                      />
+                    </div>
+                    <div class=" flex justify-center">
+                      <input
+                        type={"radio"}
+                        name="overallEvaluation"
+                        id="4"
+                        checked={info.overalleval === 4}
+                      />
+                    </div>
+                  </div>
+                  <div class="font-medium  lg:mx-4 py-3 text-xs lg:text-lg rounded">
+                    <div class="pl-1 dark:text-white">
+                      Summary of the work done during the Internship:
+                    </div>
+
+                    <div class="pl-1 dark:text-white">{info.summary}</div>
+                  </div>
+                  <div class="font-medium  lg:mx-4 py-3 text-xs lg:text-lg rounded">
+                    <div class="pl-1 dark:text-white">General Comments:</div>
+
+                    <div class="pl-1 dark:text-white">
+                      {info.generalcomments}
+                    </div>
+                  </div>
+                  <div className="flex justify-between mt-2">
+                    <button
+                      type="button"
+                      className="bg-red text-white px-3 py-1 mt-2 justify-start rounded"
+                      onClick={() => setReject(true)}
+                    >
+                      Reject
+                    </button>
+                    <button
+                      type="button"
+                      className="bg-blue text-white px-3 py-1 mt-2 justify-end rounded"
+                      onClick={() => setConfirm(true)}
+                    >
+                      Confirm
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </section>
         </div>
-      </section>
+      ) : (
+        <LogView formToggle={formToggle} stdid={stdid} />
+      )}
+
       {confirm && (
         <Modal onClose={() => setConfirm(false)}>
           <div className="flex flex-col justify-center items-center">
             <div className="font-bold">
-              <p>
-                Are you sure you want to confirm this Internship Application?
-              </p>
+              <p>Are you sure you want to confirm this Trainee Evaluation?</p>
             </div>
             <div className="flex justify-between mt-2 w-10/12">
               <button
@@ -266,7 +351,7 @@ export const EvalView = () => {
               </button>
               <button
                 className="bg-blue text-white px-3 py-1 mt-2 justify-end rounded"
-                onClick={confirmApplication}
+                onClick={confirmEvaluation}
               >
                 Yes
               </button>
@@ -278,7 +363,7 @@ export const EvalView = () => {
         <Modal onClose={() => push()}>
           <div className="flex flex-col justify-center items-center">
             <div className="font-bold">
-              <p>Internship Application Confirmed</p>
+              <p>Evaluation Confirmed</p>
             </div>
             <button
               className="bg-blue text-white px-3 py-1 mt-2 justify-start rounded"
@@ -293,9 +378,7 @@ export const EvalView = () => {
         <Modal onClose={() => setReject(false)}>
           <div className="flex flex-col justify-center items-center">
             <div className="font-bold">
-              <p>
-                Are you sure you want to reject this Internship Application?
-              </p>
+              <p>Are you sure you want to reject this Trainee Evaluatiom?</p>
             </div>
             <div className="flex justify-between mt-2 w-10/12">
               <button
@@ -306,7 +389,7 @@ export const EvalView = () => {
               </button>
               <button
                 className="bg-red text-white px-3 py-1 mt-2 justify-end rounded"
-                onClick={rejectApplication}
+                onClick={rejectEvaluation}
               >
                 Yes
               </button>
@@ -318,7 +401,7 @@ export const EvalView = () => {
         <Modal onClose={() => push()}>
           <div className="flex flex-col justify-center items-center">
             <div className="font-bold">
-              <p>Internship Application Rejected</p>
+              <p>Evaluation Rejected</p>
             </div>
             <button
               className="bg-blue text-white px-3 py-1 mt-2 justify-start rounded"
