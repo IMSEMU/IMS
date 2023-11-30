@@ -269,7 +269,7 @@ export const Dashboard = () => {
                               ? `/logview?id=${submission.internshipid}&stdid=${submission.stdid}`
                               : submission.compEvalFilled &&
                                 !submission.compEvalConfirmed
-                              ? `/compevalview?id=${submission.internshipid}&stdid=${submission.stdid}`
+                              ? `/evalview?id=${submission.internshipid}&stdid=${submission.stdid}`
                               : submission.reportComplete &&
                                 !submission.reportConfirmed
                               ? `/reportview?id=${submission.internshipid}&stdid=${submission.stdid}`

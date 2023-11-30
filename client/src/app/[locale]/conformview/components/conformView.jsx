@@ -79,105 +79,10 @@ export const ConFormView = () => {
       <section className="p-2 bg-white dark:bg-dark_1 flex items-center justify-center px-4 sm:px-12 md:px-20">
         <div className="from-left bg-white dark:bg-dark_2 p-5 rounded shadow-xl dark:border-none border border-background_shade_2 w-[40rem] lg:w-[40rem] h-fit pb-10">
           <div className=" w-full">
-            <p
-              className={
-                " font-bold my-4 text-black dark:text-white text-sm md:text-md lg:text-lg  inline-flex text-center  border-yellow border-x-[0.3rem] md:border-x-[0.3rem] px-2"
-              }
-            >
-              Information about the Company and Trainee
-            </p>
-            <div>
-              <div className="mt-2 md:mt-4 relative flex space-x-2">
-                <div className="w-1/2">
-                  <span>Company Name: {info.compname}</span>
-                </div>
-
-                <div className="w-1/2">
-                  <span>Working Fields: {info.fields}</span>
-                </div>
-              </div>
-
-              <div className="mt-2 md:mt-4 relative flex space-x-2">
-                <span>Postal Address: {info.compaddress}</span>
-              </div>
-
-              <div className="mt-2 md:mt-4 relative flex space-x-2">
-                <span className="w-1/2">City: {info.city}</span>
-
-                <div className="w-1/2">
-                  <span>Country: {info.country}</span>
-                </div>
-              </div>
-
-              <div className="mt-2 md:mt-4 relative flex space-x-2">
-                <span className="w-1/2">Fax: {info.fax}</span>
-
-                <div className="w-1/2">
-                  <span>Telephone Number: {info.compphone}</span>
-                </div>
-              </div>
-
-              <div className="mt-2 md:mt-4 relative flex space-x-2">
-                <span className="w-1/2">
-                  Organisational Email: {info.compemail}
-                </span>
-
-                <div className="w-1/2">
-                  <span>Organisational website: {info.website}</span>
-                </div>
-              </div>
-
-              <div className="mt-2 md:mt-4 relative flex space-x-2">
-                <span className="w-1/2">
-                  Name and Surname of Trainee: {info.stdfname} {info.stdlname}
-                </span>
-
-                <div className="w-1/2">
-                  <span>
-                    Internship Start Date: {info.startdate.split("T")[0]}
-                  </span>
-                </div>
-              </div>
-
-              <div className="mt-2 md:mt-4 relative flex space-x-2">
-                <span className="w-1/2">
-                  Internship End Date: {info.enddate.split("T")[0]}
-                </span>
-
-                <div className="w-1/2">
-                  <span>Working Days: {info.duration}</span>
-                </div>
-              </div>
-            </div>
-            <div className={"pt-10"}>
-              <p
-                className={
-                  " font-bold my-4 text-black dark:text-white text-sm md:text-md lg:text-lg  inline-flex text-center  border-yellow border-x-[0.4rem] md:border-x-[0.3rem] px-2"
-                }
-              >
-                The Work to be done by the Student
-              </p>
-              <ul className="py-1">
-                {info.intwork.map((iwork) => (
-                  <li
-                    key={iwork.intworkid} // Assuming value is unique
-                    className="px-4 py-2"
-                  >
-                    {iwork.work !== null
-                      ? iwork.work
-                      : iwork.other !== null
-                      ? iwork.other
-                      : null}
-                  </li>
-                ))}
-              </ul>
-            </div>
             <div className="mt-2 md:mt-4">
-              <p className="font-bold my-4 text-black dark:text-white text-lg">
-                PDF Viewer
-              </p>
               <PdfViewer docSrc={info.docsrc} />
             </div>
+
             <div className="flex justify-between mt-2">
               <button
                 className="bg-red text-white px-3 py-1 mt-2 justify-start rounded"
