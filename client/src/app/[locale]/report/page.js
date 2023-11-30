@@ -1,13 +1,15 @@
-import { ReportSubmit } from "./components/reportSubmit";
-import { Navbar } from "../globalComponents/Navbar";
+import { Report } from "./components/formPage";
 
-const Report = () => {
-    return (
-      <main className="bg-white dark:bg-dark_1 h-screen">
-        <Navbar />
-        <ReportSubmit/>
-      </main>
-    );
-  };
-  
-  export default Report;
+export const metadata = {
+  title: "Report | I.M.S.",
+};
+
+const ReportSubmit = () => {
+  return (
+    <main className="bg-white dark:bg-dark_1 h-screen">
+      <Report />
+    </main>
+  );
+};
+
+export default ReportSubmit;
