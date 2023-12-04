@@ -3,10 +3,6 @@ import { useTranslations } from "next-intl";
 import { useRouter, useSearchParams } from "next/navigation";
 import AuthConnect from "@/auth";
 
-// const LogView = ({ submitToggle, formData, submitApplication }) => {
-//   const t = useTranslations("iaf");
-// };
-
 export const LogView = ({ formToggle, stdid }) => {
   const t = useTranslations("logbook");
   const router = useRouter();
@@ -116,82 +112,6 @@ export const LogView = ({ formToggle, stdid }) => {
           </div>
         </div>
       </section>
-      {/* {confirm && (
-        <Modal onClose={() => setConfirm(false)}>
-          <div className="flex flex-col justify-center items-center">
-            <div className="font-bold">
-              <p>Are you sure you want to approve this Logbook?</p>
-            </div>
-            <div className="flex justify-between mt-2 w-10/12">
-              <button
-                className="bg-red text-white px-3 py-1 mt-2 justify-start rounded"
-                onClick={() => setConfirm(false)}
-              >
-                No
-              </button>
-              <button
-                className="bg-blue text-white px-3 py-1 mt-2 justify-end rounded"
-                onClick={approveLogbook}
-              >
-                Yes
-              </button>
-            </div>
-          </div>
-        </Modal>
-      )}
-      {confirmed && (
-        <Modal onClose={() => push()}>
-          <div className="flex flex-col justify-center items-center">
-            <div className="font-bold">
-              <p>Logbook Approved</p>
-            </div>
-            <button
-              className="bg-blue text-white px-3 py-1 mt-2 justify-start rounded"
-              onClick={() => push()}
-            >
-              Close
-            </button>
-          </div>
-        </Modal>
-      )}
-      {reject && (
-        <Modal onClose={() => setReject(false)}>
-          <div className="flex flex-col justify-center items-center">
-            <div className="font-bold">
-              <p>Are you sure you want to reject this Logbook?</p>
-            </div>
-            <div className="flex justify-between mt-2 w-10/12">
-              <button
-                className="bg-blue text-white px-3 py-1 mt-2 justify-start rounded"
-                onClick={() => setReject(false)}
-              >
-                No
-              </button>
-              <button
-                className="bg-red text-white px-3 py-1 mt-2 justify-end rounded"
-                onClick={rejectLogbook}
-              >
-                Yes
-              </button>
-            </div>
-          </div>
-        </Modal>
-      )}
-      {rejected && (
-        <Modal onClose={() => push()}>
-          <div className="flex flex-col justify-center items-center">
-            <div className="font-bold">
-              <p>Logbook Rejected</p>
-            </div>
-            <button
-              className="bg-blue text-white px-3 py-1 mt-2 justify-start rounded"
-              onClick={() => push()}
-            >
-              Close
-            </button>
-          </div>
-        </Modal>
-      )} */}
     </main>
   );
 };

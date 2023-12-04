@@ -48,7 +48,7 @@ export const ReportSubmit = () => {
                 " font-bold my-4 text-black dark:text-white text-sm md:text-md lg:text-lg  inline-flex text-center px-2"
               }
             >
-              Please upload your report here(.pdf, .doc, .docx)
+              Please upload your report here(.doc, .docx)
             </h2>
           </div>
           <div className="w-full">
