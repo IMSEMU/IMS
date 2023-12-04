@@ -10,14 +10,22 @@ import AuthConnect from "@/auth";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import jwtDecode from "jwt-decode";
-import { DisplayAnnouncement } from "../../deptAnnouncement/components/displayAnnouncement";
+import { DisplayAnnouncement } from "./displayAnnouncement";
 import { StudentList } from "../../studentInformation/components/studentsList";
 import { DeptInternshipDisplay } from "../../deptInternshipPosition/components/deptInternshipDisplay";
+import Modal from "../../globalComponents/modal";
 
 export const Dashboard = () => {
   const t = useTranslations("logbook");
   const [stdInfoSearch, setStdInfoSearch] = useState(false);
   const [submissions, setSubmissions] = useState([]);
+  const [showAddAnnouncements, setShowAddAnnouncements] = useState(false);
+  const [announcementTitle, setAnnouncementTitle] = useState("");
+  const [announcementContent, setAnnouncementContent] = useState("");
+  const [announcementAdded, setAnnouncementAdded] = useState(false);
+  const [msg, setMsg] = useState("");
+  const [announcements, setAnnouncements] = useState([]);
+  const [hasNewAnnouncement, setHasNewAnnouncement] = useState(false);
 
   const token = localStorage.getItem("accessToken");
   let decodedToken, firstname;
@@ -39,6 +47,65 @@ export const Dashboard = () => {
 
     fetchSubmissions();
   }, []);
+  useEffect(() => {
+    const fetchAnnouncements = async () => {
+      try {
+        const response = await AuthConnect.get("/getannouncements");
+        setAnnouncements(response.data);
+        console.log(response.data);
+      } catch (error) {
+        console.error("Error fetching announcements:", error);
+      }
+    };
+
+    fetchAnnouncements();
+  }, []);
+
+  useEffect(() => {
+    if (hasNewAnnouncement) {
+      const fetchAnnouncements = async () => {
+        try {
+          const response = await AuthConnect.get("/getannouncements");
+          setAnnouncements(response.data);
+          console.log(response.data);
+        } catch (error) {
+          console.error("Error fetching announcements:", error);
+        }
+      };
+
+      fetchAnnouncements();
+      setHasNewAnnouncement(false);
+    }
+  }, [hasNewAnnouncement]);
+
+  const updateAnnouncements = (newAnnouncement) => {
+    setAnnouncements((prevAnnouncments) => [
+      ...prevAnnouncments,
+      newAnnouncement,
+    ]);
+  };
+
+  const AddAnnouncement = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await AuthConnect.post("/addannouncement", {
+        title: announcementTitle,
+        content: announcementContent,
+      });
+      if (response) {
+        const newAnnouncement = response.data;
+        updateAnnouncements(newAnnouncement);
+        setHasNewAnnouncement(true);
+        setShowAddAnnouncements(false);
+        setAnnouncementAdded(true);
+      }
+    } catch (error) {
+      if (error.response) {
+        setMsg(error.response.data.msg);
+      }
+      alert("Application Error");
+    }
+  };
 
   return (
     <main className="w-full">
@@ -109,21 +176,22 @@ export const Dashboard = () => {
                     {"Announcements"}
                   </p>
 
-                  <button className="flex gap-1 items-center p-1 rounded bg-blue text-white">
-                    <BiPlus className="text-xl" />
-                    <p className="text-sm md:text-md xl:text-lg ">Add</p>
+                  <button
+                    className={
+                      "px-2 py-1 bg-blue text-white rounded inline-flex items-center justify-center gap-1"
+                    }
+                    onClick={() => {
+                      setShowAddAnnouncements(true);
+                    }}
+                  >
+                    <BiPlus className={"text-white text-xl"} />
+                    <div>Add</div>
                   </button>
                 </div>
 
                 {/*section container*/}
                 <div className={"h-[15rem] overflow-y-auto"}>
-                  {/* <div
-                    className={
-                      "mx-auto max-w-[90%]  my-2 bg-background_shade_2 hover:bg-dark_4 rounded"
-                    }
-                  > */}
-                  <DisplayAnnouncement />
-                  {/* </div> */}
+                  <DisplayAnnouncement announcements={announcements} />
                 </div>
               </div>
             </div>
@@ -194,8 +262,6 @@ export const Dashboard = () => {
             {/* internship opportunities */}
 
             <div className=" col-span-6 md:col-span-3">
-              {/*Announcement Card*/}
-
               <div
                 className={
                   "bg-background_shade  col-span-6 md:col-span-3 lg:col-span-2 h-[19rem] rounded"
@@ -212,9 +278,13 @@ export const Dashboard = () => {
                     {"Internship Positions"}
                   </p>
 
-                  <button className="flex gap-1 items-center p-1 text-sm md:text-md xl:text-lg rounded bg-blue text-white">
-                    <BiPlus className="text-xl" />
-                    <p>Add</p>
+                  <button
+                    className={
+                      "px-2 py-1 bg-blue text-white rounded inline-flex items-center justify-center gap-1"
+                    }
+                  >
+                    <BiPlus className={"text-white text-xl"} />
+                    <div>Add</div>
                   </button>
                 </div>
 
@@ -359,6 +429,72 @@ export const Dashboard = () => {
           </div>
         </div>
       </div>
+      {showAddAnnouncements && (
+        <Modal onClose={() => setShowAddAnnouncements(false)}>
+          <div className="flex flex-col justify-center items-center">
+            <div>
+              <div className={"hidden lg:block w-full mb-3"}>
+                <p
+                  className={
+                    " font-bold m-3 text-black dark:text-white text-sm md:text-md lg:text-lg  inline-flex text-center  border-yellow border-x-[0.4rem] md:border-x-[0.3rem] px-2"
+                  }
+                >
+                  Add Announcements
+                </p>
+              </div>
+              <div className="flex gap-3 justify-center py-2 items-center">
+                <div className="flex flex-wrap gap-3 justify-center items-center">
+                  {/* Department input section */}
+                  <div className="w-[90%]">
+                    <input
+                      placeholder={"Title"}
+                      type="text"
+                      id=""
+                      className="rounded p-3 outline-none w-full border border-dark_4 dark:border-none dark:bg-background_shade_2 text-dark_2 placeholder:text-dark_2"
+                      onChange={(e) => setAnnouncementTitle(e.target.value)}
+                    />
+                  </div>
+                  {/*  description section */}
+                  <div className="w-[90%]">
+                    <textarea
+                      placeholder={"Announcement Content"}
+                      id=""
+                      className=" resize-none rounded p-3 outline-none w-full border border-dark_4 dark:border-none h-[10rem] dark:bg-background_shade_2 text-dark_2 placeholder:text-dark_2"
+                      onChange={(e) => setAnnouncementContent(e.target.value)}
+                    />
+                  </div>
+                  <div className=" flex justify-end mx-4 w-full">
+                    <button
+                      className={
+                        "px-2 py-1 bg-blue text-white rounded inline-flex items-center justify-center gap-1"
+                      }
+                      onClick={AddAnnouncement}
+                    >
+                      <BiPlus className={"text-white text-xl"} />
+                      <div>Add</div>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Modal>
+      )}
+      {announcementAdded && (
+        <Modal onClose={() => setAnnouncementAdded(false)}>
+          <div className="flex flex-col justify-center items-center">
+            <div className="font-bold">
+              <p>Announcement Added Successfully!</p>
+            </div>
+            <button
+              onClick={() => setAnnouncementAdded(false)}
+              className="bg-blue text-white px-3 py-1 mt-2"
+            >
+              Close
+            </button>
+          </div>
+        </Modal>
+      )}
     </main>
   );
 };
