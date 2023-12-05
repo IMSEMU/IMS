@@ -117,13 +117,9 @@ export const Dashboard = () => {
 
                 {/*section container*/}
                 <div className={"h-[15rem] overflow-y-auto"}>
-                  {/* <div
-                    className={
-                      "mx-auto max-w-[90%]  my-2 bg-background_shade_2 hover:bg-dark_4 rounded"
-                    }
-                  > */}
+
                   <DisplayAnnouncement />
-                  {/* </div> */}
+
                 </div>
               </div>
             </div>
@@ -220,9 +216,9 @@ export const Dashboard = () => {
 
                 {/*section container*/}
                 <div className={"h-[15rem] overflow-y-auto"}>
-                  <div className={"mx-auto max-w-[95%]  my-2"}>
+
                     <DeptInternshipDisplay />
-                  </div>
+
                 </div>
               </div>
             </div>

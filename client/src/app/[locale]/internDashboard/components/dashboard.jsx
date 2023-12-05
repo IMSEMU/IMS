@@ -16,6 +16,7 @@ import { FaBriefcase, FaRegCalendarCheck } from "react-icons/fa";
 import { RiVerifiedBadgeFill } from "react-icons/ri";
 import { useTranslations } from "next-intl";
 import jwtDecode from "jwt-decode";
+import { Announcement } from "../../internDashboard/components/Announcement";
 
 export const Dashboard = () => {
   const t = useTranslations("dash");
@@ -242,43 +243,7 @@ export const Dashboard = () => {
 
           {/*section container*/}
           <div className={"h-[15rem] overflow-y-auto"}>
-            <div
-              className={
-                "mx-auto max-w-[90%]  my-2 bg-background_shade_2 hover:bg-dark_4 rounded"
-              }
-            >
-              <Link
-                href={""}
-                className={
-                  "flex justify-between items-center w-full py-3 px-2 w gap-3"
-                }
-              >
-                <Image
-                  src={"/envelope.png"}
-                  width={1000}
-                  height={1000}
-                  className={"w-[3rem] h-[3rem]"}
-                  alt={""}
-                />
-
-                <div
-                  className={
-                    "truncate flex flex-wrap justify-start items-center  gap-1"
-                  }
-                >
-                  <p className={"font-semibold capitalize "}>Title</p>
-                  <span className={"truncate text-sm lg:text-md"}>
-                    Announcement contentfffffffff
-                  </span>
-                </div>
-
-                <div
-                  className={"flex items-center justify-center text-sm w-fit"}
-                >
-                  <p>21/21/21</p>
-                </div>
-              </Link>
-            </div>
+            <Announcement />
           </div>
         </div>
 
@@ -308,7 +273,7 @@ export const Dashboard = () => {
               {!student.filled_iaf ? (
                 <div
                   className={
-                    " p-2 rounded w-full  gap-2 bg-background_shade_2 dark:bg-dark_2 text-black hover:bg-blue hover:text-white"
+                    " p-2 rounded w-full  gap-2 bg-white drop-shadow-md border-background_shade_2 dark:bg-dark_2 text-black hover:bg-background_shade "
                   }
                 >
                   <Link
@@ -350,7 +315,7 @@ export const Dashboard = () => {
               (country === "Turkey" || country === "North Cyprus (KKTC)") ? (
                 <div
                   className={
-                    " p-2 rounded w-full  gap-2 bg-background_shade_2 dark:bg-dark_2 text-black hover:bg-blue hover:text-white"
+                    " p-2 rounded w-full   gap-2 bg-white drop-shadow-md border-background_shade_2 dark:bg-dark_2 text-black hover:bg-background_shade"
                   }
                 >
                   <Link
@@ -397,7 +362,7 @@ export const Dashboard = () => {
                 (country === "Turkey" || country === "North Cyprus (KKTC)")) ? (
                 <div
                   className={
-                    " p-2 rounded w-full  gap-2 bg-background_shade_2 dark:bg-dark_2 text-black hover:bg-blue hover:text-white"
+                    " p-2 rounded w-full   gap-2 bg-white drop-shadow-md border-background_shade_2 dark:bg-dark_2 text-black hover:bg-background_shade"
                   }
                 >
                   <Link
@@ -434,7 +399,7 @@ export const Dashboard = () => {
               {student.logComplete && !student.reportComplete ? (
                 <div
                   className={
-                    " p-2 rounded w-full  gap-2 bg-background_shade_2 dark:bg-dark_2 text-black hover:bg-blue hover:text-white"
+                    " p-2 rounded w-full   gap-2 bg-white drop-shadow-md border-background_shade_2 dark:bg-dark_2 text-black hover:bg-background_shade"
                   }
                 >
                   <Link

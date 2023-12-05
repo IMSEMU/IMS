@@ -44,7 +44,7 @@ export const ConForm = () => {
     const getCompany = async (e) => {
       try {
         const response = await AuthConnect.post("/getstdcomp", {
-          stdid: "22702906",
+          stdid: "45678",
         });
         console.log(response.data);
         setCompany(response.data.company);
@@ -84,7 +84,7 @@ export const ConForm = () => {
       const url = result.info.secure_url;
       try {
         const response = AuthConnect.post("/saveconform", {
-          stdid: "22702906",
+          stdid: "45678",
           docSrc: url,
         });
         if (response) {
@@ -129,7 +129,7 @@ export const ConForm = () => {
     });
     try {
       const response = await AuthConnect.post("/submitconform", {
-        stdid: "22702906",
+        stdid: "45678",
         startDate: startDate,
         endDate: endDate,
         duration: days,
