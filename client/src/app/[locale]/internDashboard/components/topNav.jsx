@@ -179,10 +179,6 @@ export const TopNav = () => {
                   <p>{t("notif")}</p>
                 </div>
 
-                {/* <button className="capitalize gap-0.5 flex text-sm item-center bg-blue text-white py-1 px-1.5 rounded">
-                                <HiOutlineTrash className="text-lg" />
-                                <p>Clear All</p>
-                            </button> */}
               </div>
 
               {/* notifications */}
@@ -243,7 +239,7 @@ export const TopNav = () => {
                     height={2000}
                     width={2000}
                     priority
-                    className={"w-[3.3rem] h-[3.3rem] rounded-full"}
+                    className={"w-[3rem] h-[3rem] rounded-full"}
                   />
                 </div>
 
@@ -267,16 +263,6 @@ export const TopNav = () => {
 
               {/*    options*/}
               <div className={"p-3"}>
-                <div
-                  className={
-                    "flex justify-start items-center gap-2 capitalize py-1 my-1 cursor-pointer"
-                  }
-                >
-                  <div className=" bg-background_shade dark:bg-white p-1.5 rounded-full">
-                    <GiPencil className={"text-2xl text-blue"} />
-                  </div>
-                  <p className={""}>{t("edit")}</p>
-                </div>
 
                 <div
                   className={

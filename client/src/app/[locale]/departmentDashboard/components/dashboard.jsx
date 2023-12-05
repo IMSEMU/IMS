@@ -293,9 +293,9 @@ export const Dashboard = () => {
 
                 {/*section container*/}
                 <div className={"h-[15rem] overflow-y-auto"}>
-                  <div className={"mx-auto max-w-[95%]  my-2"}>
+
                     <DeptInternshipDisplay />
-                  </div>
+
                 </div>
               </div>
             </div>
