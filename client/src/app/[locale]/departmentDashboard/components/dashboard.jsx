@@ -191,7 +191,10 @@ export const Dashboard = () => {
 
                 {/*section container*/}
                 <div className={"h-[15rem] overflow-y-auto"}>
-                  <DisplayAnnouncement announcements={announcements} />
+                  <DisplayAnnouncement
+                    announcements={announcements}
+                    updateAnnouncements={setAnnouncements}
+                  />
                 </div>
               </div>
             </div>
