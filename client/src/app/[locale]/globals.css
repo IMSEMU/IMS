@@ -3,98 +3,113 @@
 @tailwind utilities;
 
 body {
-margin: 0;
+  margin: 0;
   padding: 0;
 }
 
 ::-webkit-scrollbar {
-    width: 8px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-    background: rgba(0,0,0,0.1);
+  background: rgba(0, 0, 0, 0.1);
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #888;
-    border-radius: 5px;
+  background: #888;
+  border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #555;
+  background: #555;
 }
 
-.remove-highlight{
-    -webkit-tap-highlight-color: transparent;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+.remove-highlight {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
-.skeleton-loader{
-    animation: skeleton 3s ease-in-out 2s infinite alternate;
+.skeleton-loader {
+  animation: skeleton 3s ease-in-out 2s infinite alternate;
 }
 
 @keyframes skeleton {
-  0%   {opacity: 0.3}
-  25%  {opacity: 1}
-  50%  {opacity: 0.3}
-  75%  {opacity: 1}
-  100% {opacity: 0.3}
+  0% {
+    opacity: 0.3;
+  }
+  25% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+  75% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.3;
+  }
 }
 
-.from-left
-    {
-        opacity:1;
-        animation: slideLeft 500ms ease-out;
-        transition: transform 0.5s, display 0.5s opacity 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
-    }
+.from-left {
+  opacity: 1;
+  animation: slideLeft 500ms ease-out;
+  transition: transform 0.5s,
+    display 0.5s opacity 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
 
 @keyframes slideLeft {
-    from{
-        opacity:0;
-        transform: translateX(2rem);
-    }
-    to{
-        opacity:1;
-        transform:translateX(0rem);
-    }
+  from {
+    opacity: 0;
+    transform: translateX(2rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0rem);
+  }
 }
 
-.from-bottom
-    {
-        opacity:1;
-        animation: slideUp 500ms ease-out;
-        transition: transform 0.5s, display 0.5s opacity 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
-    }
+.from-bottom {
+  opacity: 1;
+  animation: slideUp 500ms ease-out;
+  transition: transform 0.5s,
+    display 0.5s opacity 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
 
 @keyframes slideUp {
-    from{
-        opacity:0;
-        transform: translateY(2rem);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0rem);
-    }
+  from {
+    opacity: 0;
+    transform: translateY(2rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0rem);
+  }
 }
 
-.from-top
-    {
-        opacity:1;
-        animation: slideDowm 500ms ease-out;
-        transition: transform 0.5s, display 0.5s opacity 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
-    }
+.from-top {
+  opacity: 1;
+  animation: slideDowm 500ms ease-out;
+  transition: transform 0.5s,
+    display 0.5s opacity 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
 
 @keyframes slideDowm {
-    from{
-        opacity:0;
-        transform: translateY(-2rem);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0rem);
-    }
+  from {
+    opacity: 0;
+    transform: translateY(-2rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0rem);
+  }
+}
+
+.textLayer,
+.annotationLayer {
+  display: none !important;
 }

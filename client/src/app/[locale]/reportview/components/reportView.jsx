@@ -3,9 +3,11 @@ import AuthConnect from "@/auth";
 import { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
 import Modal from "../../globalComponents/modal";
+import DocumentViewer from "../../globalComponents/docViewer";
 import PdfViewer from "../../globalComponents/pdfViewer";
+import { CoordinatorEvaluation } from "./coordinatorEvaluation";
 
-export const ConFormView = () => {
+export const ReportView = () => {
   const t = useTranslations("sif");
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -15,6 +17,7 @@ export const ConFormView = () => {
   const [reject, setReject] = useState(false);
   const [rejected, setRejected] = useState(false);
   const [msg, setMsg] = useState("");
+  const [form, setForm] = useState(true);
 
   const stdid = searchParams.get("stdid");
   const intid = searchParams.get("id");
@@ -32,23 +35,6 @@ export const ConFormView = () => {
   if (!info) {
     return null;
   }
-
-  const confirmConfirmation = async (e) => {
-    try {
-      const response = await AuthConnect.post("/confirmcon", {
-        stdid: stdid,
-      });
-      if (response) {
-        setConfirmed(true);
-      }
-    } catch (error) {
-      if (error.response) {
-        setMsg(error.response.data.msg);
-      }
-      alert("Application Error"); // You can add a generic error message here
-    }
-  };
-
   const push = () => {
     router.push("/departmentDashboard");
   };
@@ -69,37 +55,59 @@ export const ConFormView = () => {
     }
   };
 
+  const downloadFile = (src) => {
+    const link = document.createElement("a");
+    link.href = src;
+    const filename = src.substring(src.lastIndexOf("/") + 1);
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  const formToggle = () => {
+    setForm(!form);
+  };
+
   return (
     <main>
-      <div className="my-1 flex justify-center items-center font-bold pt-5">
-        <div className="border-x-[0.4rem] text-2xl border-yellow">
-          <p className="px-2">Internship Confirmation Form</p>
-        </div>
-      </div>
-      <section className="p-2 bg-white dark:bg-dark_1 flex items-center justify-center px-4 sm:px-12 md:px-20">
-        <div className="from-left bg-white dark:bg-dark_2 p-5 rounded shadow-xl dark:border-none border border-background_shade_2 w-[40rem] lg:w-[40rem] h-fit pb-10">
-          <div className=" w-full">
-            <div className="mt-2 md:mt-4">
-              <PdfViewer docSrc={info.docsrc} />
-            </div>
-
-            <div className="flex justify-between mt-2">
-              <button
-                className="bg-red text-white px-3 py-1 mt-2 justify-start rounded"
-                onClick={() => setReject(true)}
-              >
-                Reject
-              </button>
-              <button
-                className="bg-blue text-white px-3 py-1 mt-2 justify-end rounded"
-                onClick={() => setConfirm(true)}
-              >
-                Confirm
-              </button>
+      {form ? (
+        <div>
+          <div className="my-1 flex justify-center items-center font-bold pt-5">
+            <div className="border-x-[0.4rem] text-2xl border-yellow">
+              <p className="px-2">Report</p>
             </div>
           </div>
+          <section className="p-2 bg-white dark:bg-dark_1 flex items-center justify-center px-4 sm:px-12 md:px-20">
+            <div className="from-left bg-white dark:bg-dark_2 p-5 rounded shadow-xl dark:border-none border border-background_shade_2 w-[45rem] lg:w-[45rem] h-fit pb-10">
+              <div className=" w-full ">
+                <div className="mt-2 md:mt-4 justify-center pl-4">
+                  <DocumentViewer docSrc={info.reportDocSrc} />
+                </div>
+
+                <div className="flex justify-end">
+                  <button
+                    onClick={() => downloadFile(info.reportDocSrc)}
+                    className="bg-blue text-white px-3 py-1 mt-2 justify-end rounded"
+                  >
+                    Download
+                  </button>
+                </div>
+                <div className="flex justify-end">
+                  <button
+                    className="bg-blue text-white px-3 py-1 mt-2 justify-end rounded"
+                    onClick={formToggle}
+                  >
+                    Department Evaluation Form
+                  </button>
+                </div>
+              </div>
+            </div>
+          </section>
         </div>
-      </section>
+      ) : (
+        <CoordinatorEvaluation formToggle={formToggle} stdid={stdid} />
+      )}
       {confirm && (
         <Modal onClose={() => setConfirm(false)}>
           <div className="flex flex-col justify-center items-center">

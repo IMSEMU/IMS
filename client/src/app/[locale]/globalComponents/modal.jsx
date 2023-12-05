@@ -9,10 +9,7 @@ const Modal = ({ children, onClose }) => {
       ></div>
       <div className="bg-white dark:bg-dark_2 w-1/3 p-4 rounded shadow-md relative">
         <div className="flex justify-end">
-          <button
-            onClick={onClose}
-            className="text-gray-400 hover:text-gray-800"
-          >
+          <button onClick={onClose} className="text-gray-400 hover:text-red">
             &times;
           </button>
         </div>

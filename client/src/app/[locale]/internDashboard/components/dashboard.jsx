@@ -403,7 +403,7 @@ export const Dashboard = () => {
                   }
                 >
                   <Link
-                    href={""}
+                    href={"/report"}
                     className={
                       "flex items-center justify-center py-1.5 gap-2 px-1"
                     }
