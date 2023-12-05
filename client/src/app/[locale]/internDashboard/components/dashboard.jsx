@@ -11,17 +11,22 @@ import {
   BsBuildings,
   BsExclamationTriangleFill,
   BsPatchCheckFill,
+  BsMegaphoneFill,
 } from "react-icons/bs";
 import { FaBriefcase, FaRegCalendarCheck } from "react-icons/fa";
 import { RiVerifiedBadgeFill } from "react-icons/ri";
 import { useTranslations } from "next-intl";
 import jwtDecode from "jwt-decode";
+import { Empty } from "antd";
+import Modal from "../../globalComponents/modal";
 
 export const Dashboard = () => {
   const t = useTranslations("dash");
   const [student, setStudent] = useState([]);
   const [country, setCountry] = useState("");
   const [logbookEntries, setLogbookEntries] = useState([]);
+  const [announcements, setAnnouncements] = useState([]);
+  const [selectedAnnouncement, setSelectedAnnouncement] = useState(null);
 
   const token = localStorage.getItem("accessToken");
   let decodedToken, firstname;
@@ -58,6 +63,32 @@ export const Dashboard = () => {
     // Fetch initial logbook entries when the page loads
     fetchLogbookEntries();
   }, []);
+
+  useEffect(() => {
+    const fetchAnnouncements = async () => {
+      try {
+        const response = await AuthConnect.get("/getannouncements");
+        setAnnouncements(response.data);
+        console.log(response.data);
+      } catch (error) {
+        console.error("Error fetching announcements:", error);
+      }
+    };
+
+    fetchAnnouncements();
+
+    const intervalId = setInterval(() => {
+      fetchAnnouncements();
+    }, 5 * 60 * 1000); // 2 minutes in milliseconds
+
+    // Clear the interval when the component unmounts
+    return () => clearInterval(intervalId);
+  }, []);
+
+  const DisplayAnnouncement = (announcement) => {
+    setSelectedAnnouncement(announcement);
+  };
+
   return (
     <main className={"m-5 bg-white dark:bg-dark_2 "}>
       <div
@@ -244,40 +275,55 @@ export const Dashboard = () => {
           <div className={"h-[15rem] overflow-y-auto"}>
             <div
               className={
-                "mx-auto max-w-[90%]  my-2 bg-background_shade_2 hover:bg-dark_4 rounded"
+                "mx-auto max-w-[90%] my-2 rounded flex justify-center flex-wrap"
               }
             >
-              <Link
-                href={""}
-                className={
-                  "flex justify-between items-center w-full py-3 px-2 w gap-3"
-                }
-              >
-                <Image
-                  src={"/envelope.png"}
-                  width={1000}
-                  height={1000}
-                  className={"w-[3rem] h-[3rem]"}
-                  alt={""}
-                />
-
-                <div
-                  className={
-                    "truncate flex flex-wrap justify-start items-center  gap-1"
-                  }
-                >
-                  <p className={"font-semibold capitalize "}>Title</p>
-                  <span className={"truncate text-sm lg:text-md"}>
-                    Announcement contentfffffffff
-                  </span>
+              {announcements.length === 0 ? (
+                <div className=" font-semibold text-lg text-center text-white">
+                  <Empty />
                 </div>
+              ) : (
+                announcements.map((announcement) => (
+                  <div
+                    key={announcement.announcementid}
+                    className="cursor-pointer mx-1 py-2 my-1 bg-white drop-shadow-md border-background_shade_2 hover:bg-blue hover:text-white border text-black dark:bg-dark_4 dark:text-black w-full flex items-center justify-between rounded"
+                    onClick={() => {
+                      DisplayAnnouncement(announcement);
+                    }}
+                  >
+                    <div className="ml-2  flex flex-wrap gap-1 w-fit">
+                      <div className="p-3 text-white bg-blue text-xl rounded">
+                        <BsMegaphoneFill />
+                      </div>
+                    </div>
 
-                <div
-                  className={"flex items-center justify-center text-sm w-fit"}
-                >
-                  <p>21/21/21</p>
-                </div>
-              </Link>
+                    <div
+                      className={
+                        "truncate flex flex-wrap justify-start items-center gap-1 pl-3"
+                      }
+                    >
+                      <p
+                        className={
+                          "font-semibold capitalize justify-start w-[40%]"
+                        }
+                      >
+                        {announcement.title}
+                      </p>
+
+                      <span className={"truncate text-sm lg:text-md"}>
+                        {announcement.content}
+                      </span>
+                    </div>
+                    <div
+                      className={
+                        "flex items-center justify-center text-sm pr-2"
+                      }
+                    >
+                      <span>{announcement.createdAt.split("T")[0]}</span>
+                    </div>
+                  </div>
+                ))
+              )}
             </div>
           </div>
         </div>
@@ -469,6 +515,43 @@ export const Dashboard = () => {
           </div>
         </div>
       </div>
+      {selectedAnnouncement && (
+        <Modal onClose={() => setSelectedAnnouncement(null)}>
+          <div className="flex flex-col justify-center items-center">
+            <div>
+              <div className={"hidden lg:block w-full mb-3"}>
+                <p
+                  className={
+                    " font-bold m-3 text-black dark:text-white text-sm md:text-md lg:text-lg  inline-flex text-center  border-yellow border-x-[0.4rem] md:border-x-[0.3rem] px-2"
+                  }
+                >
+                  {selectedAnnouncement.title}
+                </p>
+              </div>
+              <div className="flex gap-3 justify-center py-2 items-center">
+                <div className="flex flex-wrap gap-3 justify-center items-center">
+                  {/*  description section */}
+                  <div className="w-[90%]">
+                    <p className="rounded p-3 outline-none w-full border border-dark_4 dark:bg-background_shade_2 text-dark_2">
+                      {selectedAnnouncement.content}
+                    </p>
+                  </div>
+                  <div className=" flex justify-end mx-4 w-full">
+                    <button
+                      className={
+                        "px-2 py-1 bg-blue text-white rounded inline-flex items-center justify-center gap-1"
+                      }
+                      onClick={() => setSelectedAnnouncement(null)}
+                    >
+                      <div>Close</div>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Modal>
+      )}
     </main>
   );
 };

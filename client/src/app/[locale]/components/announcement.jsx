@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { FaExclamationTriangle } from "react-icons/fa";
 import { TfiAnnouncement } from "react-icons/tfi";
 import { AnnouncementSkeleton } from "../skeletonLoader";
-import { getAnnouncements } from "../../../../utils/dataFetching";
+import AuthConnect from "@/auth";
 import { useTranslations } from "next-intl";
 
 export const Announcement = () => {
@@ -15,11 +15,17 @@ export const Announcement = () => {
 
   // Fetch card data
   useEffect(() => {
-    const fetchData = async () => {
-      const data = await getAnnouncements();
-      setCards(data);
+    const fetchAnnouncements = async () => {
+      try {
+        const response = await AuthConnect.get("/getannouncements");
+        setCards(response.data);
+        console.log(response.data);
+      } catch (error) {
+        console.error("Error fetching announcements:", error);
+      }
     };
-    fetchData();
+
+    fetchAnnouncements();
   }, []);
 
   // Click handler for opening announcements
@@ -55,17 +61,17 @@ export const Announcement = () => {
             }
           >
             {cards &&
-              cards.map((message) => {
+              cards.map((announcement) => {
                 return (
                   <div
-                    key={message.id}
+                    key={announcement.announcementid}
                     className={
                       "text-[0.9rem] sm:text-sm w-full sm:w-full flex items-start justify-center"
                     }
                   >
                     <div
                       onClick={() => {
-                        handleCardClick(message);
+                        handleCardClick(announcement);
                         setClose(true);
                       }}
                       className={
@@ -79,7 +85,7 @@ export const Announcement = () => {
                             "rounded bg-yellow text-black m-1 px-1.5 py-1"
                           }
                         >
-                          {message.date}
+                          {announcement.updatedAt.split("T")[0]}
                         </em>
 
                         {/* Subject of announcement */}
@@ -88,12 +94,9 @@ export const Announcement = () => {
                             "text-black dark:text-white text-sm md:text-md lg:text-lg xl:text-xl font-semibold py-1 m-1"
                           }
                         >
-                          {message.subject}
+                          {announcement.title}
                         </h1>
                       </div>
-
-                      {/* Important Announcement identifier */}
-                      {/* {message.important ? <FaExclamationTriangle className={"mr-3 text-md xl:text-xl 2xl:text-2xl text-[red] cursor-pointer"}/> : ""} */}
                     </div>
                   </div>
                 );
@@ -128,10 +131,10 @@ export const Announcement = () => {
                       }
                     >
                       <div className={"font-bold text-center"}>
-                        <h2>{selectedCard.subject}</h2>
+                        <h2>{selectedCard.title}</h2>
                       </div>
                     </div>
-                    <p className={"p-3"}>{selectedCard.body}</p>
+                    <p className={"p-3"}>{selectedCard.content}</p>
                   </div>
                 )
               )}
@@ -164,11 +167,11 @@ export const Announcement = () => {
                   <div className={" z-50"}>
                     <div className={" p-3 "}>
                       <div className={"font-bold text-center"}>
-                        <h2>{selectedCard.subject}</h2>
+                        <h2>{selectedCard.title}</h2>
                       </div>
                     </div>
                     <div className="overflow-y-auto">
-                      <p className={"p-3"}>{selectedCard.body}</p>
+                      <p className={"p-3"}>{selectedCard.content}</p>
                     </div>
                   </div>
                 )}
