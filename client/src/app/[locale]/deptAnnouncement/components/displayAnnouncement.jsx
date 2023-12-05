@@ -4,8 +4,7 @@ import { BiChevronsRight } from "react-icons/bi";
 import { BsMegaphone, BsMegaphoneFill, BsSpeaker } from "react-icons/bs";
 import { FaEllipsisV } from "react-icons/fa";
 import { GiPencil, GiSoundOn, GiTrashCan } from "react-icons/gi";
-import { RiSpeaker3Fill } from "react-icons/ri";
-import { TfiAnnouncement } from "react-icons/tfi";
+
 
 export const DisplayAnnouncement = () => {
   const [hideOption, SetHideOption] = useState(false);

@@ -28,7 +28,7 @@ export const PcSideNav = () => {
     lastname = decodedToken.lastname;
     userrole = decodedToken.userrole;
   }
-  if (pathname === "/internDashboard" || pathname === "/tr/internDashboard") {
+  if (pathname === "/companyDashboard" || pathname === "/internDashboard" || pathname === "/tr/internDashboard") {
     navlinks = [
       { name: t("home"), icons: <HomeIcon />, link: "/" },
       { name: t("chat"), icons: <ChatIcon />, link: "" },
