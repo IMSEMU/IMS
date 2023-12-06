@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import AuthConnect from "@/auth";
 import Modal from "../../globalComponents/modal";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export const SupervisorEvaluation = () => {
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const [interest, setInterest] = useState(null);
   const [attendance, setAttendance] = useState(null);
   const [technicalAbility, setTechnicalAbility] = useState(null);
@@ -12,12 +15,15 @@ export const SupervisorEvaluation = () => {
   const [generalComments, setGeneralComments] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
+  const stdid = searchParams.get("stdid");
+  const id = searchParams.get("id");
+
   const submitEval = async (e) => {
     e.preventDefault();
     console.log(generalBehavior);
     try {
       const response = await AuthConnect.post("/submitcompeval", {
-        stdid: "22702906",
+        stdid: stdid,
         interest: interest,
         attendance: attendance,
         technicalAbility: technicalAbility,
@@ -35,6 +41,10 @@ export const SupervisorEvaluation = () => {
         alert("Application Error"); // You can add a generic error message here
       }
     }
+  };
+
+  const push = () => {
+    router.push("/companyDashboard");
   };
   return (
     <main>

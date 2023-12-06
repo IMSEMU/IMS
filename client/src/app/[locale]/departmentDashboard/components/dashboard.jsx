@@ -335,9 +335,6 @@ export const Dashboard = () => {
                               : submission.filledSocial &&
                                 !submission.sifConfirmed
                               ? `/sifview?id=${submission.internshipid}&stdid=${submission.stdid}`
-                              : submission.logComplete &&
-                                !submission.logConfirmed
-                              ? `/logview?id=${submission.internshipid}&stdid=${submission.stdid}`
                               : submission.compEvalFilled &&
                                 !submission.compEvalConfirmed
                               ? `/evalview?id=${submission.internshipid}&stdid=${submission.stdid}`
@@ -394,11 +391,6 @@ export const Dashboard = () => {
                                     <span className="text-md">
                                       Social Insurance Form
                                     </span>
-                                  </div>
-                                ) : submission.logComplete &&
-                                  !submission.logConfirmed ? (
-                                  <div className="flex">
-                                    <span className="text-md">Logbook</span>
                                   </div>
                                 ) : submission.compEvalFilled &&
                                   !submission.compEvalConfirmed ? (

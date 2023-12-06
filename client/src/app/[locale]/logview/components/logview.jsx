@@ -17,13 +17,13 @@ export const LogView = () => {
   const [rejected, setRejected] = useState(false);
   const [msg, setMsg] = useState("");
 
-  // const stdid = searchParams.get("stdid");
-  // const id = searchParams.get("id");
+  const stdid = searchParams.get("stdid");
+  const id = searchParams.get("id");
 
   useEffect(() => {
     const fetchStudentLogbook = async () => {
       const response = await AuthConnect.post("/viewsubmittedlog", {
-        stdid: "22702906",
+        stdid: stdid,
       });
       console.log(response.data);
       setLogbook(response.data);
@@ -37,7 +37,7 @@ export const LogView = () => {
   const approveLogbook = async (e) => {
     try {
       const response = await AuthConnect.post("/approvelog", {
-        stdid: "22702906",
+        stdid: stdid,
       });
       if (response) {
         setConfirmed(true);
@@ -51,13 +51,13 @@ export const LogView = () => {
   };
 
   const push = () => {
-    router.push("");
+    router.push("/companyDashboard");
   };
 
   const rejectLogbook = async (e) => {
     try {
       const response = await AuthConnect.post("/rejectlog", {
-        stdid: "22702906",
+        stdid: stdid,
       });
       if (response) {
         setRejected(true);

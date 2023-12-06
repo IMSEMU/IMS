@@ -17,6 +17,7 @@ export const Dashboard = () => {
   const [announcements, setAnnouncements] = useState([]);
   const [selectedAnnouncement, setSelectedAnnouncement] = useState(null);
   const [stdInfoSearch, setStdInfoSearch] = useState(false);
+  const [todos, setTodos] = useState([]);
 
   const token = localStorage.getItem("accessToken");
   let decodedToken, firstname;
@@ -24,6 +25,20 @@ export const Dashboard = () => {
     decodedToken = jwtDecode(token);
     firstname = decodedToken.firstname;
   }
+
+  useEffect(() => {
+    const fetchTodos = async () => {
+      try {
+        const response = await AuthConnect.get("/gettodos");
+        setTodos(response.data);
+        console.log(response.data);
+      } catch (error) {
+        console.error("Error fetching Todos:", error);
+      }
+    };
+
+    fetchTodos();
+  }, []);
 
   useEffect(() => {
     const fetchAnnouncements = async () => {
@@ -296,6 +311,78 @@ export const Dashboard = () => {
               <div className={"h-fit overflow-y-auto"}>
                 <div className={"mx-auto max-w-[90%] my-2 rounded"}>
                   <div className=" rounded h-fit"></div>
+                  {todos.length === 0 ? (
+                    <div className=" font-semibold text-lg text-center text-white">
+                      <Empty />
+                    </div>
+                  ) : (
+                    todos.map((todo) => (
+                      <Link
+                        href={
+                          todo.iafConfirmed && !todo.filledConForm
+                            ? `/confirmationForm?id=${todo.internshipid}&stdid=${todo.stdid}`
+                            : todo.logComplete && !todo.logConfirmed
+                            ? `/logview?id=${todo.internshipid}&stdid=${todo.stdid}`
+                            : todo.logConfirmed && !todo.compEvalFilled
+                            ? `/companyEval?id=${todo.internshipid}&stdid=${todo.stdid}`
+                            : ""
+                        }
+                      >
+                        <div
+                          key={todo.internshipid}
+                          className=" flex justify-center flex-wrap"
+                        >
+                          <div className="cursor-pointer mx-1 py-2 my-1 bg-white drop-shadow-md border-background_shade_2 hover:bg-blue hover:text-white border text-black dark:bg-dark_4 dark:text-black w-full flex items-center justify-between rounded">
+                            <div
+                              className={
+                                "w-2/12 flex justify-center items-center"
+                              }
+                            >
+                              <Image
+                                src={"/avatar.png"}
+                                alt={"Profile Picture"}
+                                height={1000}
+                                width={1000}
+                                priority
+                                className={
+                                  "w-[2rem] h-[2rem] rounded-full hidden lg:inline-block"
+                                }
+                              />
+                            </div>
+                            <div className={"w-10/12 ml-5"}>
+                              <div className=" flex flex-wrap">
+                                <p className="font-semibold"></p>
+                              </div>
+                              {todo.iafConfirmed && !todo.filledConForm ? (
+                                <div className="flex">
+                                  <span className="text-md font-semibold">
+                                    Fill Confirmation Form for {todo.stdid}
+                                  </span>
+                                </div>
+                              ) : todo.logComplete && !todo.logConfirmed ? (
+                                <div className="flex">
+                                  <span className="text-md font-semibold">
+                                    Approve Logbook for {todo.stdid}
+                                  </span>
+                                </div>
+                              ) : todo.logConfirmed && !todo.compEvalFilled ? (
+                                <div className="flex">
+                                  <span className="text-md font-semibold">
+                                    Fill Trainee Evaluation Form for{" "}
+                                    {todo.stdid}
+                                  </span>
+                                </div>
+                              ) : (
+                                <div className="flex">
+                                  <span className="text-md">Problem</span>
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                      </Link>
+                    ))
+                  )}
                 </div>
               </div>
             </div>

@@ -1,4 +1,4 @@
-import { useRouter } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import AuthConnect from "@/auth";
 import { useState, useEffect, useRef } from "react";
 import { useTranslations } from "next-intl";
@@ -9,6 +9,8 @@ import { PrintConfirmation } from "../../globalComponents/printConfirmation";
 import UploadConForm from "./uploadConForm";
 
 export const ConForm = () => {
+  const searchParams = useSearchParams();
+  const router = useRouter();
   const [company, setCompany] = useState(null);
   const [student, setStudent] = useState(null);
   const [startDate, setStartDate] = useState(null);
@@ -40,11 +42,14 @@ export const ConForm = () => {
     other: "",
   });
 
+  const stdid = searchParams.get("stdid");
+  const id = searchParams.get("id");
+
   useEffect(() => {
     const getCompany = async (e) => {
       try {
         const response = await AuthConnect.post("/getstdcomp", {
-          stdid: "45678",
+          stdid: stdid,
         });
         console.log(response.data);
         setCompany(response.data.company);
@@ -84,7 +89,7 @@ export const ConForm = () => {
       const url = result.info.secure_url;
       try {
         const response = await AuthConnect.post("/saveconform", {
-          stdid: "22702906",
+          stdid: stdid,
           docSrc: url,
         });
         if (response) {
@@ -146,6 +151,10 @@ export const ConForm = () => {
         alert("Application Error"); // You can add a generic error message here
       }
     }
+  };
+
+  const push = () => {
+    router.push("/companyDashboard");
   };
 
   if (!company) {
