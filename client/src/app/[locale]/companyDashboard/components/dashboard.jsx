@@ -1,237 +1,344 @@
 import Image from "next/image";
 import Link from "next/link";
-import { TopNav } from "../../internDashboard/components/topNav";
-import { HiAnnotation } from "react-icons/hi";
-import { LuClock2 } from "react-icons/lu";
+import jwtDecode from "jwt-decode";
 import { Empty } from "antd";
-import { BsMegaphoneFill, BsReceipt } from "react-icons/bs";
+import { BsMegaphoneFill, BsReceipt, BsBuildings } from "react-icons/bs";
 import { FaEllipsisV } from "react-icons/fa";
+import { FaUserGroup } from "react-icons/fa6";
+import { BiPlus, BiX } from "react-icons/bi";
+import { useEffect, useState } from "react";
+import { HiMagnifyingGlass } from "react-icons/hi2";
+import { StudentList } from "../../studentInformation/components/studentsList";
+import { DeptInternshipDisplay } from "../../deptInternshipPosition/components/deptInternshipDisplay";
+import AuthConnect from "@/auth";
+import Modal from "../../globalComponents/modal";
 
 export const Dashboard = () => {
-  const notifications = [
-    { title: "submit Logbook", date: "23/23/12" },
-    { title: "Buy Logbook", date: "23/23/12" },
-    { title: "submit Logbook", date: "23/23/12" },
-    { title: "submit Logbook", date: "23/23/12" },
-    { title: "submit Logbook", date: "23/23/12" },
-    { title: "submit Logbook", date: "23/23/12" },
-    { title: "submit Logbook", date: "23/23/12" },
-    { title: "submit Logbook", date: "23/23/12" },
-    { title: "submit Logbook", date: "23/23/12" },
-    { title: "submit Logbook", date: "23/23/12" },
-    { title: "submit Logbook", date: "23/23/12" },
-    { title: "submit Logbook", date: "23/23/12" },
-    { title: "submit Logbook", date: "23/23/12" },
-    { title: "submit Logbook", date: "23/23/12" },
-  ];
+  const [announcements, setAnnouncements] = useState([]);
+  const [selectedAnnouncement, setSelectedAnnouncement] = useState(null);
+  const [stdInfoSearch, setStdInfoSearch] = useState(false);
+
+  const token = localStorage.getItem("accessToken");
+  let decodedToken, firstname;
+  if (token) {
+    decodedToken = jwtDecode(token);
+    firstname = decodedToken.firstname;
+  }
+
+  useEffect(() => {
+    const fetchAnnouncements = async () => {
+      try {
+        const response = await AuthConnect.get("/getannouncements");
+        setAnnouncements(response.data);
+        console.log(response.data);
+      } catch (error) {
+        console.error("Error fetching announcements:", error);
+      }
+    };
+
+    fetchAnnouncements();
+
+    const intervalId = setInterval(() => {
+      fetchAnnouncements();
+    }, 5 * 60 * 1000); // 2 minutes in milliseconds
+
+    // Clear the interval when the component unmounts
+    return () => clearInterval(intervalId);
+  }, []);
+
+  const DisplayAnnouncement = (announcement) => {
+    setSelectedAnnouncement(announcement);
+  };
 
   return (
-    <main className="my-2">
-      <TopNav />
-      {/*first grid cards */}
-
-      <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mb-3 mx-4">
-        {/* search and help section */}
-
-        <div className="bg-background_shade_2 rounded md:h-[20rem] grid grid-cols-6 col-span-1 md:col-span-2">
-          {/* search section */}
-
-          <div className="col-span-6 md:col-span-4 my-3 mx-4 h-full">
-            <div className=" w-full flex no-wrap rounded overflow-hidden text-center bg-white drop-shadow-md border-background_shade_2">
-              <input
-                className="outline-none mx-2 my-1 w-full"
-                placeholder="search for student"
-              />
-              <button className="mr-2 ml-0.5 my-1 bg-blue px-2 py-1 rounded">
-                search
-              </button>
-            </div>
-
-            {/* search display section */}
-            <div className="w-full mt-3 h-[15rem] rounded bg-white drop-shadow-md border-background_shade_2">
-              {/* list of students */}
-
-              <div className="flex items-start  rounded m-2 overflow-visible h-full ">
-                {/* student */}
-
-                <div className="max-w-[19rem] w-full mx-auto rounded mt-3 bg-white drop-shadow-md border border-background_shade_2 ">
-                  <div className="p-1.5  flex justify-between items-center gap-2">
-                    {/* profile photo */}
-                    <div className="">
-                      <Image
-                        src={"/avatar.png"}
-                        width={100}
-                        height={100}
-                        className={"h-[3rem] w-[3rem] rounded-full"}
-                        alt={""}
-                      />
-                    </div>
-
-                    {/* student name */}
-                    <div className="truncate text-md w-fit">
-                      <p className="truncate">Joel Ikenga Inyama</p>
-                    </div>
-
-                    {/* status */}
-                    <div className="">ied</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* help section */}
-          <div className="col-span-6 md:col-span-2 w-full my-3 px-4 h-full">
-            <div className=" w-full rounded bg-white drop-shadow-md border-background_shade_2 h-[18.2rem]">
-              <div className=" m-2 font-semibold text-black dark:text-white text-sm md:text-md xl:text-lg  inline-flex text-center  border-yellow border-x-[0.3rem] px-2">
-                Help
-              </div>
-
-              {/* contacts */}
-
-              <div className="h-[15.5rem] overflow-y-auto  w-full">
-                <div className="flex p-1 flex-wrap w-full mt-1 justify-start border-b border-yellow">
-                  <div className="text-semibold text-md w-full">
-                    Zafer Akile
-                  </div>
-                  <div className="text-light text-blue text-sm w-full">
-                    Internship Whahever
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+    <main className="w-full">
+      <div className="m-4 mb-20 md:mb-4">
+        <div
+          className={
+            "text-md lg:text-xl xl:text-2xl py-1 md:py-2 w-full max-w-[1300px] xl:mx-auto mx-2 font-bold"
+          }
+        >
+          <p>Welcome {firstname}</p>
         </div>
 
-        {/* notification section */}
+        <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-6 col-span-3 lg:col-span-2  justify-between items-center  gap-4 w-full max-w-[1300px] self-center px-4 sm:px-10 lg:px-0">
+            {/* display card */}
+            <div className=" col-span-6 md:col-span-3  flex items-center justify-center">
+              <div
+                className={
+                  "min-h-[12rem] lg:h-[12rem] xl:h-[14rem] flex flex-wrap items-center gap-2 content-center justify-around col-span-6 md:col-span-3 lg:col-span-2 bg-white shadow-lg border border-background_shade_2 rounded"
+                }
+              >
+                <div className="flex justify-end w-full gap- items-center mx-10 my-2">
+                  <div className="inline-flex justify-end w-fit px-1.5 py-0.5 rounded bg-white gap-2 items-center  border border-dark_4 ">
+                    <BsBuildings className="text-[green] text-xl" />
+                    <p>40</p>
+                  </div>
+                </div>
 
-        <div className="bg-background_shade_2 rounded h-full col-span-1">
-          <div className=" mx-4 my-3 h-[18.2rem] rounded bg-white drop-shadow-md border-background_shade_2">
-            <div className=" m-2 font-semibold text-black dark:text-white text-sm md:text-md xl:text-lg  inline-flex text-center  border-yellow border-x-[0.3rem] px-2">
-              Notification
+                <div className="flex w-full items-center justify-center ">
+                  <div className={"p-2 flex items-center w-1/4"}>
+                    <span
+                      className={
+                        "text-4xl rounded p-4 my-1 bg-dark_3 text-white"
+                      }
+                    >
+                      <FaUserGroup />
+                    </span>
+                  </div>
+
+                  <div
+                    className={
+                      "flex flex-wrap justify-center text-center items-center gap-2 text-md xl:text-lg p-2"
+                    }
+                  >
+                    <div className="w-full text-2xl md:text-4xl font-bold">
+                      23
+                    </div>
+                    <div className="w-full text-xs">Total students</div>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            {/* notifications */}
+            {/*Announcement Card*/}
+            <div className=" col-span-6 md:col-span-3">
+              <div
+                className={
+                  "bg-background_shade  col-span-6 md:col-span-3 lg:col-span-2 h-[19rem] rounded"
+                }
+              >
+                {/*section Name*/}
+                <p
+                  className={
+                    " font-semibold m-3 text-black dark:text-white  text-sm md:text-md xl:text-lg  inline-flex text-center  border-yellow border-x-[0.3rem] px-2"
+                  }
+                >
+                  Announcements
+                </p>
 
-            {/* notifications */}
-            <div className=" h-[15rem] overflow-y-scroll">
-              {notifications.map((notification, index) => (
-                <div key={index} className="m-2">
-                  <Link
-                    href={""}
-                    className="p-2 flex items-center justify-between gap-4 bg-background_shade_2 dark:bg-dark_4 rounded"
+                {/*section container*/}
+                <div className={"h-[15rem] overflow-y-auto"}>
+                  <div
+                    className={
+                      "mx-auto max-w-[90%] my-2 rounded flex justify-center flex-wrap"
+                    }
                   >
-                    <div className="p-1.5 text-2xl text-yellow bg-dark_2 rounded">
-                      <HiAnnotation />
-                    </div>
+                    {announcements.length === 0 ? (
+                      <div className=" font-semibold text-lg text-center text-white">
+                        <Empty />
+                      </div>
+                    ) : (
+                      announcements.map((announcement) => (
+                        <div
+                          key={announcement.announcementid}
+                          className="cursor-pointer mx-1 py-2 my-1 bg-white drop-shadow-md border-background_shade_2 hover:bg-blue hover:text-white border text-black dark:bg-dark_4 dark:text-black w-full flex items-center justify-between rounded"
+                          onClick={() => {
+                            DisplayAnnouncement(announcement);
+                          }}
+                        >
+                          <div className="ml-2  flex flex-wrap gap-1 w-fit">
+                            <div className="p-3 text-white bg-blue text-xl rounded">
+                              <BsMegaphoneFill />
+                            </div>
+                          </div>
 
-                    <div className="">
-                      <p className="font-medium">{notification.message}</p>
-                    </div>
+                          <div
+                            className={
+                              "truncate flex flex-wrap justify-start items-center gap-1 pl-3"
+                            }
+                          >
+                            <p
+                              className={
+                                "font-semibold capitalize justify-start w-[40%]"
+                              }
+                            >
+                              {announcement.title}
+                            </p>
 
-                    <div className=" w-fit">
-                      <div className="flex bg-yellow rounded">
-                        <div className="flex py-0.5 px-1 gap-0.5">
-                          <LuClock2 />
-                          <p className="text-xs font-medium ">
-                            {/* {notification.slice(0, 10)} */}
-                          </p>
+                            <span className={"truncate text-sm lg:text-md"}>
+                              {announcement.content}
+                            </span>
+                          </div>
+                          <div
+                            className={
+                              "flex items-center justify-center text-sm pr-2"
+                            }
+                          >
+                            <span>{announcement.createdAt.split("T")[0]}</span>
+                          </div>
                         </div>
+                      ))
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Students Information */}
+
+            <div className=" col-span-6 md:col-span-3  overflow-hidden">
+              {/*body*/}
+
+              <div
+                className={
+                  "bg-background_shade  col-span-6 md:col-span-3 lg:col-span-2 h-[19rem] rounded"
+                }
+              >
+                {/*section Name and button*/}
+                <div className="flex justify-between capitalize p-3 items-center relative">
+                  <p
+                    className={
+                      " font-semibold  text-black dark:text-white text-sm md:text-md xl:text-lg  inline-flex text-center  border-yellow border-x-[0.3rem] px-2"
+                    }
+                  >
+                    {"Students Info"}
+                  </p>
+
+                  <button
+                    onClick={() => {
+                      setStdInfoSearch(true);
+                    }}
+                    className="flex gap-1 items-center px-2.5 py-1.5 rounded bg-blue text-white "
+                  >
+                    <HiMagnifyingGlass className="text-lg" />
+                  </button>
+
+                  {/* search section */}
+                  {stdInfoSearch && (
+                    <div className=" from-top rounded  w-full h-full absolute items-center flex justify-center right-0 top-0 bg-background_shade_2">
+                      <div className="flex flex-nowrap w-[75%] justify-center items-center bg-white rounded m-0">
+                        <input
+                          placeholder="search by Id or name"
+                          id=""
+                          className="outline-none w-full text-center my-0.5 px-2"
+                          type="text"
+                        />
+                        <button
+                          onClick={() => {
+                            setStdInfoSearch(false);
+                          }}
+                          className="bg-blue text-white px-2 py-1 rounded m-1 "
+                        >
+                          <BiX className="text-lg" />
+                        </button>
                       </div>
                     </div>
-                  </Link>
+                  )}
                 </div>
-              ))}
+
+                {/*section container*/}
+                <div className={"h-[15rem] overflow-y-auto"}>
+                  <div
+                    className={"mx-auto my-2 flex justify-center items-center"}
+                  >
+                    <StudentList />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* internship opportunities */}
+
+            <div className=" col-span-6 md:col-span-3">
+              <div
+                className={
+                  "bg-background_shade  col-span-6 md:col-span-3 lg:col-span-2 h-[19rem] rounded"
+                }
+              >
+                {/*section Name and button*/}
+                {/*section Name and button*/}
+                <div className="flex justify-between capitalize p-3 items-center">
+                  <p
+                    className={
+                      " font-semibold  text-black dark:text-white text-sm md:text-md xl:text-lg  inline-flex text-center  border-yellow border-x-[0.3rem] px-2"
+                    }
+                  >
+                    {"Internship Positions"}
+                  </p>
+
+                  <button
+                    className={
+                      "px-2 py-1 bg-blue text-white rounded inline-flex items-center justify-center gap-1"
+                    }
+                  >
+                    <BiPlus className={"text-white text-xl"} />
+                    <div>Add</div>
+                  </button>
+                </div>
+
+                {/*section container*/}
+                <div className={"h-[15rem] overflow-y-auto"}>
+                  <DeptInternshipDisplay />
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      
 
-      {/* second grid cards */}
+          {/*  */}
+          <div className=" col-span-3 lg:col-span-1 grid grid-rows-2">
+            {/* Submitted Forms */}
 
-        {/* forms section */}
-        <div className="bg-background_shade_2 h-[20rem] col-span-1 rounded">
-          <div className="bg-white drop-shadow-md h-[18rem] m-4 rounded border-background_shade_2">
-            <div className=" m-2 font-semibold text-black dark:text-white text-sm md:text-md xl:text-lg  inline-flex text-center  border-yellow border-x-[0.3rem] px-2">
-              Forms
-            </div>
-            <div className=" overflow-y-auto h-[15.7rem]">
-              {/*  */}
-              <div className="mx-2 bg-white drop-shadow-md border-background_shade_2 border h-fit rounded gap-2 my-2 p-1 flex justify-between items-center ">
-                {/*  */}
-                <div className="flex flex-wrap justify-center text-center items-center gap-0 rounded w-full truncate">
-                  <p className="font-semibold truncate w-[80%]">
-                    Fill Company details
-                  </p>
+            <div className=" row-span-2 bg-background_shade rounded">
+              {/*section Name and button*/}
+              <div className="capitalize p-3 items-center">
+                <p
+                  className={
+                    " font-semibold  text-black dark:text-white text-sm md:text-md xl:text-lg  inline-flex text-center  border-yellow border-x-[0.3rem] px-2"
+                  }
+                >
+                  To-Do
+                </p>
+              </div>
+
+              {/*section container*/}
+              <div className={"h-fit overflow-y-auto"}>
+                <div className={"mx-auto max-w-[90%] my-2 rounded"}>
+                  <div className=" rounded h-fit"></div>
                 </div>
-
-                {/* icon */}
-
-                <div className="">dd</div>
               </div>
             </div>
           </div>
         </div>
-
-        {/* Announcement section */}
-        <div className="bg-background_shade_2 h-[20rem] col-span-1 rounded">
-          <div className="bg-white drop-shadow-md h-[18rem] m-4 rounded border-background_shade_2">
-            <div className=" m-2 font-semibold text-black dark:text-white text-sm md:text-md xl:text-lg  inline-flex text-center  border-yellow border-x-[0.3rem] px-2">
-              Announcement
-            </div>
-            {/* submission data display */}
-
-            <div className=" overflow-y-auto h-[15.7rem]">
-              <div className="mx-2 bg-white drop-shadow-md border-background_shade_2 border h-fit rounded gap-2 my-2 p-1 flex justify-between items-center ">
-                {/*  */}
-                <div className="p-2.5 bg-black rounded">
-                  <BsMegaphoneFill className="text-xl text-yellow" />
-                </div>
-                {/*  */}
-                <div className="flex flex-wrap justify-center text-center items-center gap-0 rounded w-full truncate">
-                  <p className="font-semibold truncate w-[80%]">
-                    Pay Internship Fee
-                  </p>
-                  <p className=" text-black rounded truncate text-sm w-[60%]">
-                    lorem ipsum dolorfddfdfdgdgd
-                  </p>
+      </div>
+      {selectedAnnouncement && (
+        <Modal onClose={() => setSelectedAnnouncement(null)}>
+          <div className="flex flex-col justify-center items-center">
+            <div>
+              <div className={"hidden lg:block w-full mb-3"}>
+                <p
+                  className={
+                    " font-bold m-3 text-black dark:text-white text-sm md:text-md lg:text-lg  inline-flex text-center  border-yellow border-x-[0.4rem] md:border-x-[0.3rem] px-2"
+                  }
+                >
+                  {selectedAnnouncement.title}
+                </p>
+              </div>
+              <div className="flex gap-3 justify-center py-2 items-center">
+                <div className="flex flex-wrap gap-3 justify-center items-center">
+                  {/*  description section */}
+                  <div className="w-[90%]">
+                    <p className="rounded p-3 outline-none w-full border border-dark_4 dark:bg-background_shade_2 text-dark_2">
+                      {selectedAnnouncement.content}
+                    </p>
+                  </div>
+                  <div className=" flex justify-end mx-4 w-full">
+                    <button
+                      className={
+                        "px-2 py-1 bg-blue text-white rounded inline-flex items-center justify-center gap-1"
+                      }
+                      onClick={() => setSelectedAnnouncement(null)}
+                    >
+                      <div>Close</div>
+                    </button>
+                  </div>
                 </div>
               </div>
-              <Empty />
             </div>
           </div>
-        </div>
-
-        {/* Submissions section */}
-        <div className="bg-background_shade_2 h-[20rem] col-span-1 rounded">
-          <div className="bg-white drop-shadow-md h-[18rem] m-4 rounded border-background_shade_2">
-            <div className=" m-2 font-semibold text-black dark:text-white text-sm md:text-md xl:text-lg  inline-flex text-center  border-yellow border-x-[0.3rem] px-2">
-              Submissions
-            </div>
-
-            {/* submission data display */}
-
-            <div className=" overflow-y-auto h-[15.7rem]">
-              <div className="mx-2 bg-white drop-shadow-md border-background_shade_2 border h-fit rounded gap-2 my-2 p-1 flex justify-between items-center ">
-                {/*  */}
-                <div className="p-2.5 bg-black rounded">
-                  <BsReceipt className="text-xl text-yellow" />
-                </div>
-                {/*  */}
-                <div className="flex flex-wrap justify-center text-center items-center gap-0 rounded w-full truncate">
-                  <p className="font-semibold truncate w-[80%]">
-                    Pay Internship Fee
-                  </p>
-                  <p className=" text-black rounded truncate text-sm w-[60%]">
-                    lorem ipsum dolorfddfdfdgdgd
-                  </p>
-                </div>
-              </div>
-              <Empty />
-            </div>
-          </div>
-        </div>
-                </div>
+        </Modal>
+      )}
     </main>
   );
 };

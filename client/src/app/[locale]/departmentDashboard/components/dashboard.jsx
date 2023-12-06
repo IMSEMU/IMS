@@ -115,7 +115,7 @@ export const Dashboard = () => {
             "text-md lg:text-xl xl:text-2xl py-1 md:py-2 w-full max-w-[1300px] xl:mx-auto mx-2 font-bold"
           }
         >
-          <p>welcome {firstname}</p>
+          <p>Welcome {firstname}</p>
         </div>
 
         <div className="grid grid-cols-3 gap-4">
@@ -293,9 +293,7 @@ export const Dashboard = () => {
 
                 {/*section container*/}
                 <div className={"h-[15rem] overflow-y-auto"}>
-
-                    <DeptInternshipDisplay />
-
+                  <DeptInternshipDisplay />
                 </div>
               </div>
             </div>

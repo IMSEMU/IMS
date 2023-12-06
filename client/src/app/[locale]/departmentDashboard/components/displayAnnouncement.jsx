@@ -1,9 +1,9 @@
 "use client";
 import { useState } from "react";
 import { BiChevronsRight } from "react-icons/bi";
-import { BsMegaphone, BsMegaphoneFill, BsSpeaker } from "react-icons/bs";
+import { BsMegaphoneFill } from "react-icons/bs";
 import { FaEllipsisV } from "react-icons/fa";
-import { GiPencil, GiSoundOn, GiTrashCan } from "react-icons/gi";
+import { GiPencil, GiTrashCan } from "react-icons/gi";
 import { Empty } from "antd";
 import Modal from "../../globalComponents/modal";
 import AuthConnect from "@/auth";

@@ -57,7 +57,9 @@ export const PcSideNav = () => {
   } //for department Dashboard
   else if (
     pathname === "/departmentDashboard" ||
-    pathname === "/tr/departmentDashboard"
+    pathname === "/tr/departmentDashboard" ||
+    pathname === "/companyDashboard" ||
+    pathname === "/tr/companyDashboard"
   ) {
     navlinks = [{ name: t("home"), icons: <HomeIcon />, link: "/" }];
   } else if (
@@ -94,7 +96,7 @@ export const PcSideNav = () => {
       {
         name: t("dashboard"),
         icons: <DashboardIcon />,
-        link: "",
+        link: "/companyDashboard",
       },
     ];
   }

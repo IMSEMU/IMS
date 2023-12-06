@@ -161,7 +161,7 @@ export const Announcement = () => {
                   }}
                   className={"flex justify-end items-center p-2"}
                 >
-                  xx
+                  x
                 </div>
                 {selectedCard && (
                   <div className={" z-50"}>
