@@ -1,10 +1,8 @@
-import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import AuthConnect from "@/auth";
 import { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
 import Modal from "../../globalComponents/modal";
-import jwtDecode from "jwt-decode";
 import LogView from "./logview";
 
 export const EvalView = () => {
@@ -314,18 +312,27 @@ export const EvalView = () => {
                   <div className="flex justify-between mt-2">
                     <button
                       type="button"
-                      className="bg-red text-white px-3 py-1 mt-2 justify-start rounded"
-                      onClick={() => setReject(true)}
+                      className="bg-blue text-white px-3 py-1 mt-2 justify-start rounded"
+                      onClick={() => formToggle()}
                     >
-                      Reject
+                      Back
                     </button>
-                    <button
-                      type="button"
-                      className="bg-blue text-white px-3 py-1 mt-2 justify-end rounded"
-                      onClick={() => setConfirm(true)}
-                    >
-                      Confirm
-                    </button>
+                    <div>
+                      <button
+                        type="button"
+                        className="bg-red text-white px-3 py-1 mt-2 mr-5 justify-start rounded"
+                        onClick={() => setReject(true)}
+                      >
+                        Reject
+                      </button>
+                      <button
+                        type="button"
+                        className="bg-blue text-white px-3 py-1 mt-2 justify-end rounded"
+                        onClick={() => setConfirm(true)}
+                      >
+                        Confirm
+                      </button>
+                    </div>
                   </div>
                 </form>
               </div>

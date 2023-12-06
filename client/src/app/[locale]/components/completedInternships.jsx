@@ -2,9 +2,9 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { CompletedInternshipSkeleton } from "../skeletonLoader";
-import { getCompletedInternship } from "../../../../utils/dataFetching";
 import { AnimatedButton } from "../globalComponents/animatedButton";
 import { useTranslations } from "next-intl";
+import AuthConnect from "@/auth";
 
 export const CompletedInternships = () => {
   const t = useTranslations("Completed Internships");
@@ -12,13 +12,18 @@ export const CompletedInternships = () => {
 
   // Fetching table data
   useEffect(() => {
-    const fetchData = async () => {
-      const data = await getCompletedInternship();
-      setTableContent(data);
+    const fetchCompanies = async () => {
+      try {
+        const response = await AuthConnect.get("/getcompletedint");
+        setTableContent(response.data);
+        console.log(response.data);
+      } catch (error) {
+        console.error("Error fetching announcements:", error);
+      }
     };
-    fetchData();
-  }, []);
 
+    fetchCompanies();
+  }, []);
   return (
     <>
       <main
@@ -74,16 +79,20 @@ export const CompletedInternships = () => {
                   key={index}
                 >
                   <td className={"text-center p-[0.875rem] truncate"}>
-                    {table.companyName}
-                  </td>
-                  <td className={"text-center p-[0.875rem]"}>{table.city}</td>
-                  <td className={"text-center p-[0.875rem]"}>
-                    {table.country}
+                    {table.company.name}
                   </td>
                   <td className={"text-center p-[0.875rem]"}>
-                    {table.workfield}
+                    {table.company.city}
                   </td>
-                  <td className={"text-center p-[0.875rem]"}>{table.year}</td>
+                  <td className={"text-center p-[0.875rem]"}>
+                    {table.company.country}
+                  </td>
+                  <td className={"text-center p-[0.875rem]"}>
+                    {table.company.fields}
+                  </td>
+                  <td className={"text-center p-[0.875rem]"}>
+                    {table.year.split("-")[0]}
+                  </td>
                 </tr>
               ))}
             {tableContent.length === 0 &&
