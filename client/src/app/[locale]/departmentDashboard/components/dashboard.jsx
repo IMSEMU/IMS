@@ -4,20 +4,18 @@ import { FaUserGroup } from "react-icons/fa6";
 import { BsBuildings } from "react-icons/bs";
 import { BiPlus, BiX } from "react-icons/bi";
 import { useState, useEffect } from "react";
-import { HiMagnifyingGlass } from "react-icons/hi2";
 import { Empty } from "antd";
 import AuthConnect from "@/auth";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import jwtDecode from "jwt-decode";
 import { DisplayAnnouncement } from "./displayAnnouncement";
-import { StudentList } from "../../studentInformation/components/studentsList";
 import { DeptInternshipDisplay } from "../../deptInternshipPosition/components/deptInternshipDisplay";
 import Modal from "../../globalComponents/modal";
+import { StudentInformation } from "../../globalComponents/studentInfo";
 
 export const Dashboard = () => {
   const t = useTranslations("logbook");
-  const [stdInfoSearch, setStdInfoSearch] = useState(false);
   const [submissions, setSubmissions] = useState([]);
   const [showAddAnnouncements, setShowAddAnnouncements] = useState(false);
   const [announcementTitle, setAnnouncementTitle] = useState("");
@@ -26,6 +24,7 @@ export const Dashboard = () => {
   const [msg, setMsg] = useState("");
   const [announcements, setAnnouncements] = useState([]);
   const [hasNewAnnouncement, setHasNewAnnouncement] = useState(false);
+  const [students, setStudents] = useState([]);
 
   const token = localStorage.getItem("accessToken");
   let decodedToken, firstname;
@@ -33,6 +32,20 @@ export const Dashboard = () => {
     decodedToken = jwtDecode(token);
     firstname = decodedToken.firstname;
   }
+
+  useEffect(() => {
+    const getStudents = async () => {
+      try {
+        const response = await AuthConnect.get("/getstd");
+        setStudents(response.data);
+        console.log(response.data);
+      } catch (error) {
+        console.error("Error fetching student:", error);
+      }
+    };
+
+    getStudents();
+  }, []);
 
   useEffect(() => {
     const fetchSubmissions = async () => {
@@ -200,66 +213,8 @@ export const Dashboard = () => {
             </div>
 
             {/* Students Information */}
-
-            <div className=" col-span-6 md:col-span-3  overflow-hidden">
-              {/*body*/}
-
-              <div
-                className={
-                  "bg-background_shade  col-span-6 md:col-span-3 lg:col-span-2 h-[19rem] rounded"
-                }
-              >
-                {/*section Name and button*/}
-                <div className="flex justify-between capitalize p-3 items-center relative">
-                  <p
-                    className={
-                      " font-semibold  text-black dark:text-white text-sm md:text-md xl:text-lg  inline-flex text-center  border-yellow border-x-[0.3rem] px-2"
-                    }
-                  >
-                    {"Students Info"}
-                  </p>
-
-                  <button
-                    onClick={() => {
-                      setStdInfoSearch(true);
-                    }}
-                    className="flex gap-1 items-center px-2.5 py-1.5 rounded bg-blue text-white "
-                  >
-                    <HiMagnifyingGlass className="text-lg" />
-                  </button>
-
-                  {/* search section */}
-                  {stdInfoSearch && (
-                    <div className=" from-top rounded  w-full h-full absolute items-center flex justify-center right-0 top-0 bg-background_shade_2">
-                      <div className="flex flex-nowrap w-[75%] justify-center items-center bg-white rounded m-0">
-                        <input
-                          placeholder="search by Id or name"
-                          id=""
-                          className="outline-none w-full text-center my-0.5 px-2"
-                          type="text"
-                        />
-                        <button
-                          onClick={() => {
-                            setStdInfoSearch(false);
-                          }}
-                          className="bg-blue text-white px-2 py-1 rounded m-1 "
-                        >
-                          <BiX className="text-lg" />
-                        </button>
-                      </div>
-                    </div>
-                  )}
-                </div>
-
-                {/*section container*/}
-                <div className={"h-[15rem] overflow-y-auto"}>
-                  <div
-                    className={"mx-auto my-2 flex justify-center items-center"}
-                  >
-                    <StudentList />
-                  </div>
-                </div>
-              </div>
+            <div className=" col-span-6 md:col-span-3 overflow-hidden">
+              <StudentInformation students={students} usage={"dept"} />
             </div>
 
             {/* internship opportunities */}

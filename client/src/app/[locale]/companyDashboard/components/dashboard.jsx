@@ -2,13 +2,11 @@ import Image from "next/image";
 import Link from "next/link";
 import jwtDecode from "jwt-decode";
 import { Empty } from "antd";
-import { BsMegaphoneFill, BsReceipt, BsBuildings } from "react-icons/bs";
-import { FaEllipsisV } from "react-icons/fa";
+import { BsMegaphoneFill, BsBuildings } from "react-icons/bs";
 import { FaUserGroup } from "react-icons/fa6";
-import { BiPlus, BiX } from "react-icons/bi";
+import { BiPlus } from "react-icons/bi";
 import { useEffect, useState } from "react";
-import { HiMagnifyingGlass } from "react-icons/hi2";
-import { StudentList } from "../../studentInformation/components/studentsList";
+import { StudentInformation } from "../../globalComponents/studentInfo";
 import { DeptInternshipDisplay } from "../../deptInternshipPosition/components/deptInternshipDisplay";
 import AuthConnect from "@/auth";
 import Modal from "../../globalComponents/modal";
@@ -16,8 +14,8 @@ import Modal from "../../globalComponents/modal";
 export const Dashboard = () => {
   const [announcements, setAnnouncements] = useState([]);
   const [selectedAnnouncement, setSelectedAnnouncement] = useState(null);
-  const [stdInfoSearch, setStdInfoSearch] = useState(false);
   const [todos, setTodos] = useState([]);
+  const [students, setStudents] = useState([]);
 
   const token = localStorage.getItem("accessToken");
   let decodedToken, firstname;
@@ -25,6 +23,20 @@ export const Dashboard = () => {
     decodedToken = jwtDecode(token);
     firstname = decodedToken.firstname;
   }
+
+  useEffect(() => {
+    const getStudents = async () => {
+      try {
+        const response = await AuthConnect.get("/compgetstd");
+        setStudents(response.data);
+        console.log(response.data);
+      } catch (error) {
+        console.error("Error fetching students:", error);
+      }
+    };
+
+    getStudents();
+  }, []);
 
   useEffect(() => {
     const fetchTodos = async () => {
@@ -181,7 +193,7 @@ export const Dashboard = () => {
                               "flex items-center justify-center text-sm pr-2"
                             }
                           >
-                            <span>{announcement.createdAt.split("T")[0]}</span>
+                            <span>{announcement.updatedAt.split("T")[0]}</span>
                           </div>
                         </div>
                       ))
@@ -192,66 +204,8 @@ export const Dashboard = () => {
             </div>
 
             {/* Students Information */}
-
-            <div className=" col-span-6 md:col-span-3  overflow-hidden">
-              {/*body*/}
-
-              <div
-                className={
-                  "bg-background_shade  col-span-6 md:col-span-3 lg:col-span-2 h-[19rem] rounded"
-                }
-              >
-                {/*section Name and button*/}
-                <div className="flex justify-between capitalize p-3 items-center relative">
-                  <p
-                    className={
-                      " font-semibold  text-black dark:text-white text-sm md:text-md xl:text-lg  inline-flex text-center  border-yellow border-x-[0.3rem] px-2"
-                    }
-                  >
-                    {"Students Info"}
-                  </p>
-
-                  <button
-                    onClick={() => {
-                      setStdInfoSearch(true);
-                    }}
-                    className="flex gap-1 items-center px-2.5 py-1.5 rounded bg-blue text-white "
-                  >
-                    <HiMagnifyingGlass className="text-lg" />
-                  </button>
-
-                  {/* search section */}
-                  {stdInfoSearch && (
-                    <div className=" from-top rounded  w-full h-full absolute items-center flex justify-center right-0 top-0 bg-background_shade_2">
-                      <div className="flex flex-nowrap w-[75%] justify-center items-center bg-white rounded m-0">
-                        <input
-                          placeholder="search by Id or name"
-                          id=""
-                          className="outline-none w-full text-center my-0.5 px-2"
-                          type="text"
-                        />
-                        <button
-                          onClick={() => {
-                            setStdInfoSearch(false);
-                          }}
-                          className="bg-blue text-white px-2 py-1 rounded m-1 "
-                        >
-                          <BiX className="text-lg" />
-                        </button>
-                      </div>
-                    </div>
-                  )}
-                </div>
-
-                {/*section container*/}
-                <div className={"h-[15rem] overflow-y-auto"}>
-                  <div
-                    className={"mx-auto my-2 flex justify-center items-center"}
-                  >
-                    <StudentList />
-                  </div>
-                </div>
-              </div>
+            <div className=" col-span-6 md:col-span-3 overflow-hidden">
+              <StudentInformation students={students} usage={"comp"} />
             </div>
 
             {/* internship opportunities */}
