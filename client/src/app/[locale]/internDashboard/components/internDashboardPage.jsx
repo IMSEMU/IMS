@@ -1,7 +1,7 @@
 "use client";
 import { PcSideNav } from "../../globalComponents/pcSideNav";
 import { MobileNav } from "../../globalComponents/mobileNav";
-import { TopNav } from "../../internDashboard/components/topNav";
+import { TopNav } from "../../globalComponents/topNav";
 import { Dashboard } from "../../internDashboard/components/dashboard";
 import AuthConnect from "@/auth";
 import { useRouter } from "next/navigation";

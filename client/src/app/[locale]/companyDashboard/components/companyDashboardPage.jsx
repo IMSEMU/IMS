@@ -3,7 +3,7 @@ import { ProtectedRoute } from "../../globalComponents/compProtectedRoute";
 import { MobileNav } from "../../globalComponents/mobileNav";
 import { PcSideNav } from "../../globalComponents/pcSideNav";
 import { Dashboard } from "./dashboard";
-import { TopNav } from "../../internDashboard/components/topNav";
+import { TopNav } from "../../globalComponents/topNav";
 
 export const CompanyDashboardPage = () => {
   return (

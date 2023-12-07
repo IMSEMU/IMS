@@ -4,12 +4,12 @@ import Image from "next/image";
 import { GiPencil } from "react-icons/gi";
 import { VscSignOut } from "react-icons/vsc";
 import { RiSunFoggyFill } from "react-icons/ri";
-import { DarkModeButton } from "../../globalComponents/darkModeButton";
-import { NotificationIcon } from "../../svg_Icons";
+import { DarkModeButton } from "./darkModeButton";
+import { NotificationIcon } from "../svg_Icons";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import AuthConnect from "@/auth";
-import { LanguageToggle } from "../../globalComponents/languageToggle";
+import { LanguageToggle } from "./languageToggle";
 import { HiAnnotation } from "react-icons/hi";
 import { LuClock2 } from "react-icons/lu";
 import { useTranslations } from "next-intl";
@@ -178,7 +178,6 @@ export const TopNav = () => {
                 >
                   <p>{t("notif")}</p>
                 </div>
-
               </div>
 
               {/* notifications */}
@@ -263,7 +262,6 @@ export const TopNav = () => {
 
               {/*    options*/}
               <div className={"p-3"}>
-
                 <div
                   className={
                     "flex justify-between items-center gap-2 capitalize py-1 my-1 cursor-pointer"

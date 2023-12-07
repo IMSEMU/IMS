@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { MobileNav } from "../../globalComponents/mobileNav";
 import { PcSideNav } from "../../globalComponents/pcSideNav";
-import { TopNav } from "../../internDashboard/components/topNav";
+import { TopNav } from "../../globalComponents/topNav";
 import { ProtectedRoute } from "../../globalComponents/stdProtectedRoute";
 import jwtDecode from "jwt-decode";
 

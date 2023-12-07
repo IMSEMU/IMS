@@ -4,7 +4,7 @@ import { ReportSubmit } from "./reportSubmit";
 import AuthConnect from "@/auth";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { TopNav } from "../../internDashboard/components/topNav";
+import { TopNav } from "../../globalComponents/topNav";
 import { PcSideNav } from "../../globalComponents/pcSideNav";
 import { MobileNav } from "../../globalComponents/mobileNav";
 import { ProtectedRoute } from "../../globalComponents/stdProtectedRoute";

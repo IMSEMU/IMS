@@ -1,5 +1,5 @@
 "use client";
-import { TopNav } from "../../internDashboard/components/topNav";
+import { TopNav } from "../../globalComponents/topNav";
 import { AddAdmin } from "./addAdmin";
 import { DisplayAdmin } from "./displayAdmin";
 import { useState } from "react";
