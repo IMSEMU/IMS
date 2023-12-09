@@ -7,7 +7,6 @@ import { FaUserGroup } from "react-icons/fa6";
 import { BiPlus } from "react-icons/bi";
 import { useEffect, useState } from "react";
 import { StudentInformation } from "../../globalComponents/studentInfo";
-import { DeptInternshipDisplay } from "../../deptInternshipPosition/components/deptInternshipDisplay";
 import AuthConnect from "@/auth";
 import Modal from "../../globalComponents/modal";
 
@@ -210,14 +209,14 @@ export const Dashboard = () => {
 
             {/* internship opportunities */}
 
-            <div className=" col-span-6 md:col-span-3">
+            {/* <div className=" col-span-6 md:col-span-3">
               <div
                 className={
                   "bg-background_shade  col-span-6 md:col-span-3 lg:col-span-2 h-[19rem] rounded"
                 }
               >
-                {/*section Name and button*/}
-                {/*section Name and button*/}
+                {/*section Name and button
+                {/*section Name and button
                 <div className="flex justify-between capitalize p-3 items-center">
                   <p
                     className={
@@ -237,12 +236,12 @@ export const Dashboard = () => {
                   </button>
                 </div>
 
-                {/*section container*/}
+                {/*section container*
                 <div className={"h-[15rem] overflow-y-auto"}>
                   <DeptInternshipDisplay />
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
 
           {/*  */}

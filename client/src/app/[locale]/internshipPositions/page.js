@@ -1,6 +1,6 @@
 import { Navbar } from "../globalComponents/Navbar";
-import { AvailableInternship } from "./component/availableInternship";
 import { HomeFooter } from "../components/homeFooter";
+import { InternshipCards } from "./component/internships";
 
 export const metadata = {
   title: "Available Internships | I.M.S.",
@@ -10,7 +10,7 @@ export default function InternshipPositions() {
     <main className={"bg-white dark:bg-dark_2 min-h-full"}>
       <div className={""}>
         <Navbar />
-        <AvailableInternship />
+        <InternshipCards />
         <HomeFooter />
       </div>
     </main>

@@ -354,7 +354,7 @@ export const Dashboard = () => {
               {!student.filled_iaf ? (
                 <div
                   className={
-                    " p-2 rounded w-full  gap-2 bg-white drop-shadow-md border-background_shade_2 dark:bg-dark_2 text-black hover:bg-background_shade "
+                    " p-2 rounded w-full  gap-2 bg-white drop-shadow-md border-background_shade_2 dark:bg-dark_2 text-black hover:bg-blue hover:text-white "
                   }
                 >
                   <Link
@@ -396,7 +396,7 @@ export const Dashboard = () => {
               (country === "Turkey" || country === "North Cyprus (KKTC)") ? (
                 <div
                   className={
-                    " p-2 rounded w-full   gap-2 bg-white drop-shadow-md border-background_shade_2 dark:bg-dark_2 text-black hover:bg-background_shade"
+                    " p-2 rounded w-full   gap-2 bg-white drop-shadow-md border-background_shade_2 dark:bg-dark_2 text-black hover:bg-blue hover:text-white"
                   }
                 >
                   <Link
@@ -443,7 +443,7 @@ export const Dashboard = () => {
                 (country === "Turkey" || country === "North Cyprus (KKTC)")) ? (
                 <div
                   className={
-                    " p-2 rounded w-full   gap-2 bg-white drop-shadow-md border-background_shade_2 dark:bg-dark_2 text-black hover:bg-background_shade"
+                    " p-2 rounded w-full   gap-2 bg-white drop-shadow-md border-background_shade_2 dark:bg-dark_2 text-black hover:bg-blue hover:text-white"
                   }
                 >
                   <Link
@@ -480,7 +480,7 @@ export const Dashboard = () => {
               {student.logComplete && !student.reportComplete ? (
                 <div
                   className={
-                    " p-2 rounded w-full   gap-2 bg-white drop-shadow-md border-background_shade_2 dark:bg-dark_2 text-black hover:bg-background_shade"
+                    " p-2 rounded w-full   gap-2 bg-white drop-shadow-md border-background_shade_2 dark:bg-dark_2 text-black hover:bg-blue hover:text-white"
                   }
                 >
                   <Link
