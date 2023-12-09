@@ -5,9 +5,14 @@ import { LanguageToggle } from "./languageToggle";
 import Link from "next/link";
 import { DarkModeButton } from "../globalComponents/darkModeButton";
 import { useTranslations } from "next-intl";
+import { DashboardIcon } from "../svg_Icons";
 
 export const Navbar = () => {
   const t = useTranslations("Loginbtn");
+  const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+  const user = JSON.parse(localStorage.getItem("user"));
+  const userrole = user.userrole;
+
   return (
     <>
       {/*homepage navbar*/}
@@ -43,16 +48,34 @@ export const Navbar = () => {
             {/*language toogle*/}
             <LanguageToggle />
             <DarkModeButton />
-
-            <Link
-              href={"/login"}
-              className={
-                "text-sm md:text-md font-semibold flex items-center bg-blue rounded py-1 px-2 sm:py-2 sm:px-4 text-white"
-              }
-            >
-              <BiLogIn className={"mr-1"} />
-              {t("login")}
-            </Link>
+            {!isLoggedIn ? (
+              <Link
+                href={"/login"}
+                className={
+                  "text-sm md:text-md font-semibold flex items-center bg-blue rounded py-1 px-2 sm:py-2 sm:px-4 text-white"
+                }
+              >
+                <BiLogIn className={"mr-1"} />
+                {t("login")}
+              </Link>
+            ) : (
+              <Link
+                href={
+                  userrole === 1
+                    ? "/internDashboard"
+                    : userrole === 2
+                    ? "/departmentDashboard"
+                    : userrole === 3
+                    ? "/companyDashboard"
+                    : ""
+                }
+                className={
+                  "text-sm md:text-md font-semibold flex items-center bg-blue rounded py-1 px-2 sm:py-2 sm:px-4 text-white"
+                }
+              >
+                Dashboard
+              </Link>
+            )}
           </div>
         </nav>
       </main>

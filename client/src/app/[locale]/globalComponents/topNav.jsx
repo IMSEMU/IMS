@@ -71,7 +71,8 @@ export const TopNav = () => {
   const handleLogout = async () => {
     try {
       const response = await AuthConnect.delete("/logout");
-      console.log(response);
+
+      localStorage.setItem("isLoggedIn", "true");
 
       router.push("/");
     } catch (error) {
@@ -81,23 +82,6 @@ export const TopNav = () => {
       }
     }
   };
-
-  // const notification = [
-  //   { title: "submit Logbook", date: "23/23/12" },
-  //   { title: "Buy Logbook", date: "23/23/12" },
-  //   { title: "submit Logbook", date: "23/23/12" },
-  //   { title: "submit Logbook", date: "23/23/12" },
-  //   { title: "submit Logbook", date: "23/23/12" },
-  //   { title: "submit Logbook", date: "23/23/12" },
-  //   { title: "submit Logbook", date: "23/23/12" },
-  //   { title: "submit Logbook", date: "23/23/12" },
-  //   { title: "submit Logbook", date: "23/23/12" },
-  //   { title: "submit Logbook", date: "23/23/12" },
-  //   { title: "submit Logbook", date: "23/23/12" },
-  //   { title: "submit Logbook", date: "23/23/12" },
-  //   { title: "submit Logbook", date: "23/23/12" },
-  //   { title: "submit Logbook", date: "23/23/12" },
-  // ];
 
   const [profileDrop, setProfileDrop] = useState(false);
   const [notificationDrop, setNotificationDrop] = useState(false);

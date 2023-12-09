@@ -6,6 +6,8 @@ import { Dashboard } from "./dashboard";
 import { TopNav } from "../../globalComponents/topNav";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import AuthConnect from "@/auth";
+import jwtDecode from "jwt-decode";
 
 export const DepartmentDashboardPage = () => {
   const router = useRouter();

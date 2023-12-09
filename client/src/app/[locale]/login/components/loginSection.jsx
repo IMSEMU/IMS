@@ -42,15 +42,12 @@ export default function LoginSection() {
         email: email,
         password: password,
       });
-
-      console.log(response);
       localStorage.setItem("accessToken", response.data.accessToken);
       localStorage.setItem("user", JSON.stringify(response.data.user));
+      localStorage.setItem("isLoggedIn", "true");
 
       const user = JSON.parse(localStorage.getItem("user"));
       const userrole = user.userrole;
-
-      console.log(response);
 
       if (userrole === 1) {
         router.push("/internDashboard");

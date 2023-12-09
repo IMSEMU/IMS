@@ -122,7 +122,8 @@ export const PcSideNav = () => {
   const handleLogout = async () => {
     try {
       const response = await AuthConnect.delete("/logout");
-      console.log(response);
+
+      localStorage.setItem("isLoggedIn", "false");
 
       router.push("/");
     } catch (error) {
