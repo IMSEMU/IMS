@@ -54,15 +54,18 @@ export const PcSideNav = () => {
       },
       { name: t("chat"), icons: <ChatIcon />, link: "" },
     ];
-  } //for department Dashboard
+  } //other dashboards
   else if (
     pathname === "/departmentDashboard" ||
     pathname === "/tr/departmentDashboard" ||
     pathname === "/companyDashboard" ||
-    pathname === "/tr/companyDashboard"
+    pathname === "/tr/companyDashboard" ||
+    pathname === "/adminDashboard" ||
+    pathname === "/tr/adminDashboard"
   ) {
     navlinks = [{ name: t("home"), icons: <HomeIcon />, link: "/" }];
   } else if (
+    //for department Dashboard
     pathname === "/iafview" ||
     pathname === "/tr/iafview" ||
     pathname === "/conformview" ||
@@ -230,10 +233,12 @@ export const PcSideNav = () => {
                   <span className={"hidden lg:block text-sm w-full"}>
                     Company Supervisor
                   </span>
-                ) : (
+                ) : userrole === 4 ? (
                   <span className={"hidden lg:block text-sm w-full"}>
-                    problem
+                    Administrator
                   </span>
+                ) : (
+                  <span className={"hidden lg:block text-sm w-full"}></span>
                 )}
               </div>
               <div

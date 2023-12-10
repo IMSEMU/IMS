@@ -58,6 +58,9 @@ export default function LoginSection() {
       if (userrole === 3) {
         router.push("/companyDashboard");
       }
+      if (userrole === 4) {
+        router.push("/adminDashboard");
+      }
 
       setToastStatus(true);
     } catch (error) {

@@ -115,7 +115,9 @@ export const StudentInformation = ({ students, usage }) => {
                     <Image
                       height="480"
                       width="480"
-                      src={std.student.photo}
+                      src={
+                        std.student.photo ? std.student.photo : "/avatar.png"
+                      }
                       priority
                       className="w-[3rem] h-[3rem] m-1 rounded-full"
                     />
