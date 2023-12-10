@@ -141,8 +141,6 @@ export const DisplayInternshipPositions = ({
             : internship
         );
 
-        console.log(updatedPositions);
-
         updateInternships(updatedPositions);
         setEditPosition(false);
         setPositionToShow(null);

@@ -3,18 +3,20 @@ import Link from "next/link";
 import jwtDecode from "jwt-decode";
 import { Empty } from "antd";
 import { BsMegaphoneFill, BsBuildings } from "react-icons/bs";
-import { FaUserGroup } from "react-icons/fa6";
-import { BiPlus } from "react-icons/bi";
+import { FaWpforms } from "react-icons/fa6";
 import { useEffect, useState } from "react";
 import { StudentInformation } from "../../globalComponents/studentInfo";
 import AuthConnect from "@/auth";
 import Modal from "../../globalComponents/modal";
+import CalendarComponent from "../../internDashboard/components/calendar";
 
 export const Dashboard = () => {
   const [announcements, setAnnouncements] = useState([]);
   const [selectedAnnouncement, setSelectedAnnouncement] = useState(null);
   const [todos, setTodos] = useState([]);
   const [students, setStudents] = useState([]);
+  const [dueDates, setDueDates] = useState([]);
+  const [upcomingEvents, setUpcomingEvents] = useState([]);
 
   const token = localStorage.getItem("accessToken");
   let decodedToken, firstname;
@@ -35,6 +37,24 @@ export const Dashboard = () => {
     };
 
     getStudents();
+  }, []);
+
+  useEffect(() => {
+    const getDueDates = async () => {
+      try {
+        const response = await AuthConnect.get("/getcompduedates");
+        setDueDates(response.data);
+        console.log("duedate", response.data);
+        const today = new Date();
+        setUpcomingEvents(
+          response.data.filter((duedate) => duedate.date > today.toISOString())
+        );
+      } catch (error) {
+        console.error("Error fetching due dates:", error);
+      }
+    };
+
+    getDueDates();
   }, []);
 
   useEffect(() => {
@@ -89,43 +109,9 @@ export const Dashboard = () => {
 
         <div className="grid grid-cols-3 gap-4">
           <div className="grid grid-cols-6 col-span-3 lg:col-span-2  justify-between items-center  gap-4 w-full max-w-[1300px] self-center px-4 sm:px-10 lg:px-0">
-            {/* display card */}
+            {/* Calendar */}
             <div className=" col-span-6 md:col-span-3  flex items-center justify-center">
-              <div
-                className={
-                  "min-h-[12rem] lg:h-[12rem] xl:h-[14rem] flex flex-wrap items-center gap-2 content-center justify-around col-span-6 md:col-span-3 lg:col-span-2 bg-white shadow-lg border border-background_shade_2 rounded"
-                }
-              >
-                <div className="flex justify-end w-full gap- items-center mx-10 my-2">
-                  <div className="inline-flex justify-end w-fit px-1.5 py-0.5 rounded bg-white gap-2 items-center  border border-dark_4 ">
-                    <BsBuildings className="text-[green] text-xl" />
-                    <p>40</p>
-                  </div>
-                </div>
-
-                <div className="flex w-full items-center justify-center ">
-                  <div className={"p-2 flex items-center w-1/4"}>
-                    <span
-                      className={
-                        "text-4xl rounded p-4 my-1 bg-dark_3 text-white"
-                      }
-                    >
-                      <FaUserGroup />
-                    </span>
-                  </div>
-
-                  <div
-                    className={
-                      "flex flex-wrap justify-center text-center items-center gap-2 text-md xl:text-lg p-2"
-                    }
-                  >
-                    <div className="w-full text-2xl md:text-4xl font-bold">
-                      23
-                    </div>
-                    <div className="w-full text-xs">Total students</div>
-                  </div>
-                </div>
-              </div>
+              <CalendarComponent eventsList={dueDates} />
             </div>
 
             {/*Announcement Card*/}
@@ -202,52 +188,67 @@ export const Dashboard = () => {
               </div>
             </div>
 
+            {/* Upcoming Events*/}
+            <div className="bg-background_shade col-span-6 md:col-span-3 overflow-hidden">
+              <p
+                className={
+                  " font-semibold m-3 text-black dark:text-white  text-sm md:text-md xl:text-lg  inline-flex text-center  border-yellow border-x-[0.3rem] px-2"
+                }
+              >
+                Upcoming Events
+              </p>
+
+              {/*section Container*/}
+              <div className={"h-[15rem] overflow-y-auto"}>
+                <div
+                  className={
+                    "mx-auto max-w-[90%] my-2 rounded flex justify-center flex-wrap"
+                  }
+                >
+                  {upcomingEvents.length === 0 ? (
+                    <div className=" font-semibold text-lg text-center text-white">
+                      <Empty />
+                    </div>
+                  ) : (
+                    upcomingEvents.map((duedate) => (
+                      <div
+                        key={duedate.formid}
+                        className="mx-1 py-2 my-1 bg-white drop-shadow-md border-background_shade_2 border text-black dark:bg-dark_4 dark:text-black w-full flex items-center rounded"
+                      >
+                        <div className="ml-2  flex flex-wrap gap-1 w-fit">
+                          <div className="p-3 text-white bg-blue text-xl rounded">
+                            <FaWpforms />
+                          </div>
+                        </div>
+
+                        <div
+                          className={
+                            "justify-start items-center gap-1 pl-3 pr-2"
+                          }
+                        >
+                          <p className={"font-semibold justify-start"}>
+                            {duedate.name} is due
+                          </p>
+
+                          <span className={"text-sm lg:text-md"}>
+                            {duedate.date.split("T")[0]}
+                          </span>
+                        </div>
+                      </div>
+                    ))
+                  )}
+                </div>
+              </div>
+            </div>
+
             {/* Students Information */}
             <div className=" col-span-6 md:col-span-3 overflow-hidden">
               <StudentInformation students={students} usage={"comp"} />
             </div>
-
-            {/* internship opportunities */}
-
-            {/* <div className=" col-span-6 md:col-span-3">
-              <div
-                className={
-                  "bg-background_shade  col-span-6 md:col-span-3 lg:col-span-2 h-[19rem] rounded"
-                }
-              >
-                {/*section Name and button
-                {/*section Name and button
-                <div className="flex justify-between capitalize p-3 items-center">
-                  <p
-                    className={
-                      " font-semibold  text-black dark:text-white text-sm md:text-md xl:text-lg  inline-flex text-center  border-yellow border-x-[0.3rem] px-2"
-                    }
-                  >
-                    {"Internship Positions"}
-                  </p>
-
-                  <button
-                    className={
-                      "px-2 py-1 bg-blue text-white rounded inline-flex items-center justify-center gap-1"
-                    }
-                  >
-                    <BiPlus className={"text-white text-xl"} />
-                    <div>Add</div>
-                  </button>
-                </div>
-
-                {/*section container*
-                <div className={"h-[15rem] overflow-y-auto"}>
-                  <DeptInternshipDisplay />
-                </div>
-              </div>
-            </div> */}
           </div>
 
-          {/*  */}
+          {/* Todo */}
           <div className=" col-span-3 lg:col-span-1 grid grid-rows-2">
-            {/* Submitted Forms */}
-
             <div className=" row-span-2 bg-background_shade rounded">
               {/*section Name and button*/}
               <div className="capitalize p-3 items-center">

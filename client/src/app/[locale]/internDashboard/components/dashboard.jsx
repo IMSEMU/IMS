@@ -6,19 +6,18 @@ import Link from "next/link";
 import { LogbookDisplay } from "../../logbook/components/logbookDisplay";
 import { useEffect, useState } from "react";
 import AuthConnect from "@/auth";
-// import { BsExclamationTriangleFill, BsPatchCheckFill } from "react-icons/bs";
+import { FaWpforms } from "react-icons/fa6";
 import {
-  BsBuildings,
   BsExclamationTriangleFill,
   BsPatchCheckFill,
   BsMegaphoneFill,
 } from "react-icons/bs";
-import { FaBriefcase, FaRegCalendarCheck } from "react-icons/fa";
-import { RiVerifiedBadgeFill } from "react-icons/ri";
+import { FaRegCalendarCheck } from "react-icons/fa";
 import { useTranslations } from "next-intl";
 import jwtDecode from "jwt-decode";
 import { Empty } from "antd";
 import Modal from "../../globalComponents/modal";
+import CalendarComponent from "../../internDashboard/components/calendar";
 
 export const Dashboard = () => {
   const t = useTranslations("dash");
@@ -27,6 +26,8 @@ export const Dashboard = () => {
   const [logbookEntries, setLogbookEntries] = useState([]);
   const [announcements, setAnnouncements] = useState([]);
   const [selectedAnnouncement, setSelectedAnnouncement] = useState(null);
+  const [dueDates, setDueDates] = useState([]);
+  const [upcomingEvents, setUpcomingEvents] = useState([]);
 
   const token = localStorage.getItem("accessToken");
   let decodedToken, firstname;
@@ -34,6 +35,24 @@ export const Dashboard = () => {
     decodedToken = jwtDecode(token);
     firstname = decodedToken.firstname;
   }
+
+  useEffect(() => {
+    const getDueDates = async () => {
+      try {
+        const response = await AuthConnect.get("/getstdduedates");
+        setDueDates(response.data);
+        console.log(response.data);
+        const today = new Date();
+        setUpcomingEvents(
+          response.data.filter((duedate) => duedate.date > today.toISOString())
+        );
+      } catch (error) {
+        console.error("Error fetching due dates:", error);
+      }
+    };
+
+    getDueDates();
+  }, []);
 
   useEffect(() => {
     const getStudent = async () => {
@@ -96,7 +115,7 @@ export const Dashboard = () => {
           "text-md lg:text-xl xl:text-2xl py-1 md:py-2 w-full max-w-[1300px] xl:mx-auto mx-2 font-bold"
         }
       >
-        <p>
+        <p className="capitalize">
           {t("welcome")} {firstname}{" "}
         </p>
       </div>
@@ -140,47 +159,80 @@ export const Dashboard = () => {
           </div>
         </div>
 
-        {/*orgaization name*/}
+        {/*oAnnouncements*/}
         <div
           className={
-            "min-h-[12rem] lg:h-[12rem] xl:h-[14rem] flex flex-wrap items-center gap-2 content-center justify-around col-span-6 md:col-span-3 lg:col-span-2 bg-white shadow-lg border border-background_shade_2 rounded"
+            "bg-background_shade  col-span-6 md:col-span-3 lg:col-span-2 h-[19rem] rounded"
           }
         >
-          <div className="flex justify-end w-full gap- items-center mx-10 my-2">
-            <div className="inline-flex justify-end w-fit px-1.5 py-0.5 rounded bg-white gap-2 items-center  border border-dark_4 ">
-              <RiVerifiedBadgeFill className="text-[green] text-xl" />
-              <p>Verified</p>
-            </div>
-          </div>
+          {/*section Name*/}
+          <p
+            className={
+              " font-semibold m-3 text-black dark:text-white  text-sm md:text-md xl:text-lg  inline-flex text-center  border-yellow border-x-[0.3rem] px-2"
+            }
+          >
+            {t("Announcements")}
+          </p>
 
-          <div className="flex w-full items-center justify-center ">
-            <div className={"p-2 flex items-center w-1/4"}>
-              <span
-                className={"text-4xl rounded p-4 my-1 bg-dark_3 text-white"}
-              >
-                <BsBuildings />
-              </span>
-            </div>
-
+          {/*section container*/}
+          <div className={"h-[15rem] overflow-y-auto"}>
             <div
               className={
-                "w-1/2 flex flex-wrap justify-center text-center items-center gap-2 text-md xl:text-lg p-2"
+                "mx-auto max-w-[90%] my-2 rounded flex justify-center flex-wrap"
               }
             >
-              <div className=" text-xl truncate font-bold mx-1 max-w-[100%]">
-                <p className="truncate">Eastern Meditrannean</p>
-              </div>
-              <div className="w-full text-xs">company Name</div>
+              {announcements.length === 0 ? (
+                <div className=" font-semibold text-lg text-center text-white">
+                  <Empty />
+                </div>
+              ) : (
+                announcements.map((announcement) => (
+                  <div
+                    key={announcement.announcementid}
+                    className="cursor-pointer mx-1 py-2 my-1 bg-white drop-shadow-md border-background_shade_2 hover:bg-blue hover:text-white border text-black dark:bg-dark_4 dark:text-black w-full flex items-center justify-between rounded"
+                    onClick={() => {
+                      DisplayAnnouncement(announcement);
+                    }}
+                  >
+                    <div className="ml-2  flex flex-wrap gap-1 w-fit">
+                      <div className="p-3 text-white bg-blue text-xl rounded">
+                        <BsMegaphoneFill />
+                      </div>
+                    </div>
+
+                    <div
+                      className={
+                        "truncate flex flex-wrap justify-start items-center gap-1 pl-3"
+                      }
+                    >
+                      <p className={"font-semibold justify-start w-[40%]"}>
+                        {announcement.title}
+                      </p>
+
+                      <span className={"truncate text-sm lg:text-md"}>
+                        {announcement.content}
+                      </span>
+                    </div>
+                    <div
+                      className={
+                        "flex items-center justify-center text-sm pr-2"
+                      }
+                    >
+                      <span>{announcement.createdAt.split("T")[0]}</span>
+                    </div>
+                  </div>
+                ))
+              )}
             </div>
           </div>
         </div>
-
+        {/* calendar */}
         <div
           className={
             " col-span-6 md:col-span-3 lg:col-span-2 flex items-center justify-center"
           }
         >
-          <Calendar />
+          <CalendarComponent eventsList={dueDates} />
         </div>
 
         {/*logbook Card*/}
@@ -256,79 +308,7 @@ export const Dashboard = () => {
           )}
         </div>
 
-        {/*Announcement Card*/}
-        <div
-          className={
-            "bg-background_shade  col-span-6 md:col-span-3 lg:col-span-2 h-[19rem] rounded"
-          }
-        >
-          {/*section Name*/}
-          <p
-            className={
-              " font-semibold m-3 text-black dark:text-white  text-sm md:text-md xl:text-lg  inline-flex text-center  border-yellow border-x-[0.3rem] px-2"
-            }
-          >
-            {t("Announcements")}
-          </p>
-
-          {/*section container*/}
-          <div className={"h-[15rem] overflow-y-auto"}>
-            <div
-              className={
-                "mx-auto max-w-[90%] my-2 rounded flex justify-center flex-wrap"
-              }
-            >
-              {announcements.length === 0 ? (
-                <div className=" font-semibold text-lg text-center text-white">
-                  <Empty />
-                </div>
-              ) : (
-                announcements.map((announcement) => (
-                  <div
-                    key={announcement.announcementid}
-                    className="cursor-pointer mx-1 py-2 my-1 bg-white drop-shadow-md border-background_shade_2 hover:bg-blue hover:text-white border text-black dark:bg-dark_4 dark:text-black w-full flex items-center justify-between rounded"
-                    onClick={() => {
-                      DisplayAnnouncement(announcement);
-                    }}
-                  >
-                    <div className="ml-2  flex flex-wrap gap-1 w-fit">
-                      <div className="p-3 text-white bg-blue text-xl rounded">
-                        <BsMegaphoneFill />
-                      </div>
-                    </div>
-
-                    <div
-                      className={
-                        "truncate flex flex-wrap justify-start items-center gap-1 pl-3"
-                      }
-                    >
-                      <p
-                        className={
-                          "font-semibold capitalize justify-start w-[40%]"
-                        }
-                      >
-                        {announcement.title}
-                      </p>
-
-                      <span className={"truncate text-sm lg:text-md"}>
-                        {announcement.content}
-                      </span>
-                    </div>
-                    <div
-                      className={
-                        "flex items-center justify-center text-sm pr-2"
-                      }
-                    >
-                      <span>{announcement.createdAt.split("T")[0]}</span>
-                    </div>
-                  </div>
-                ))
-              )}
-            </div>
-          </div>
-        </div>
-
-        {/*Todo Card*/}
+        {/*TODO Card*/}
         <div
           className={
             "bg-background_shade col-span-6 md:col-span-3 lg:col-span-2 h-[19rem] rounded"
@@ -510,6 +490,62 @@ export const Dashboard = () => {
                     <BsPatchCheckFill className="text-[green] text-xl " />
                   )}
                 </div>
+              )}
+            </div>
+          </div>
+        </div>
+
+        {/*Upcoming events Card*/}
+        <div
+          className={
+            "bg-background_shade col-span-6 md:col-span-3 lg:col-span-2 h-[19rem] rounded"
+          }
+        >
+          {/*section Name*/}
+          <p
+            className={
+              " font-semibold m-3 text-black dark:text-white  text-sm md:text-md xl:text-lg  inline-flex text-center  border-yellow border-x-[0.3rem] px-2"
+            }
+          >
+            Upcoming Events
+          </p>
+
+          {/*section Container*/}
+          <div className={"h-[15rem] overflow-y-auto"}>
+            <div
+              className={
+                "mx-auto max-w-[90%] my-2 rounded flex justify-center flex-wrap"
+              }
+            >
+              {upcomingEvents.length === 0 ? (
+                <div className=" font-semibold text-lg text-center text-white">
+                  <Empty />
+                </div>
+              ) : (
+                upcomingEvents.map((duedate) => (
+                  <div
+                    key={duedate.formid}
+                    className="mx-1 py-2 my-1 bg-white drop-shadow-md border-background_shade_2 border text-black dark:bg-dark_4 dark:text-black w-full flex items-center rounded"
+                  >
+                    <div className="ml-2  flex flex-wrap gap-1 w-fit">
+                      <div className="p-3 text-white bg-blue text-xl rounded">
+                        <FaWpforms />
+                      </div>
+                    </div>
+
+                    <div
+                      className={"justify-start items-center gap-1 pl-3 pr-2"}
+                    >
+                      <p className={"font-semibold justify-start"}>
+                        {duedate.name} is due
+                      </p>
+
+                      <span className={"text-sm lg:text-md"}>
+                        {duedate.date.split("T")[0]}
+                      </span>
+                    </div>
+                  </div>
+                ))
               )}
             </div>
           </div>

@@ -2,7 +2,7 @@
 import Image from "next/image";
 import { FaUserGroup } from "react-icons/fa6";
 import { BsBuildings } from "react-icons/bs";
-import { BiPlus, BiX } from "react-icons/bi";
+import { BiPencil, BiPlus, BiX } from "react-icons/bi";
 import { useState, useEffect, useMemo } from "react";
 import { Empty } from "antd";
 import AuthConnect from "@/auth";
@@ -16,6 +16,8 @@ import { CldUploadWidget } from "next-cloudinary";
 import { DateInput } from "../../globalComponents/dateInput";
 import countryList from "react-select-country-list";
 import { DisplayInternshipPositions } from "./displayIntPos";
+import CalendarComponent from "../../internDashboard/components/calendar";
+import { GiPencil } from "react-icons/gi";
 
 export const Dashboard = () => {
   const t = useTranslations("logbook");
@@ -27,6 +29,7 @@ export const Dashboard = () => {
   const [msg, setMsg] = useState("");
   const [announcements, setAnnouncements] = useState([]);
   const [hasNewAnnouncement, setHasNewAnnouncement] = useState(false);
+  const [datesEdited, setDatesEdited] = useState(false);
   const [students, setStudents] = useState([]);
   const [showAddIntPosition, setShowAddIntPosition] = useState(false);
   const [compName, setCompName] = useState("");
@@ -42,6 +45,21 @@ export const Dashboard = () => {
   const [intPosAdded, setIntPosAdded] = useState(false);
   const [hasNewPosition, setHasNewPosition] = useState(false);
   const [intPositions, setIntPositions] = useState([]);
+  const [editDueDates, setEditDueDates] = useState(false);
+  const [iaf, setIAF] = useState("");
+  const [iafText, setIafText] = useState("");
+  const [conForm, setConForm] = useState("");
+  const [conFormText, setConFormText] = useState("");
+  const [sif, setSIF] = useState("");
+  const [sifText, setSifText] = useState("");
+  const [logbook, setLogbook] = useState("");
+  const [logbookText, setLogbookText] = useState("");
+  const [compEval, setCompEval] = useState("");
+  const [compEvalText, setCompEvalText] = useState("");
+  const [report, setReport] = useState("");
+  const [reportText, setReportText] = useState("");
+  const [dueDates, setDueDates] = useState([]);
+  const [edited, setEdited] = useState(false);
 
   const originalOptions = useMemo(() => countryList().getData(), []);
   const additionalOption = { value: "KKTC", label: "North Cyprus (KKTC)" };
@@ -68,6 +86,89 @@ export const Dashboard = () => {
 
     getStudents();
   }, []);
+
+  useEffect(() => {
+    const getDueDates = async () => {
+      try {
+        const response = await AuthConnect.get("/getdeptduedates");
+        setDueDates(response.data);
+        console.log(response.data);
+        initDueDates(response.data);
+      } catch (error) {
+        console.error("Error fetching due dates:", error);
+      }
+    };
+
+    getDueDates();
+  }, []);
+
+  useEffect(() => {
+    if (datesEdited) {
+      const getDueDates = async () => {
+        try {
+          const response = await AuthConnect.get("/getdeptduedates");
+          setDueDates(response.data);
+          console.log(response.data);
+          initDueDates(response.data);
+        } catch (error) {
+          console.error("Error fetching due dates:", error);
+        }
+      };
+
+      getDueDates();
+      setHasNewPosition(false);
+    }
+  }, [datesEdited]);
+
+  const initDueDates = (duedates) => {
+    const findiaf = duedates.filter((duedate) =>
+      duedate.name.toLowerCase().includes("internship application form")
+    );
+    if (findiaf.length != 0) {
+      setIAF(findiaf[0].date);
+      setIafText(findiaf[0].date);
+    }
+
+    const findconform = duedates.filter((duedate) =>
+      duedate.name.toLowerCase().includes("internship confirmation form")
+    );
+    if (findconform.length != 0) {
+      setConForm(findconform[0].date);
+      setConFormText(findconform[0].date);
+    }
+
+    const findsif = duedates.filter((duedate) =>
+      duedate.name.toLowerCase().includes("social insurance form")
+    );
+    if (findsif.length != 0) {
+      setSIF(findsif[0].date);
+      setSifText(findsif[0].date);
+    }
+
+    const findlogbook = duedates.filter((duedate) =>
+      duedate.name.toLowerCase().includes("logbook")
+    );
+    if (findlogbook.length != 0) {
+      setLogbook(findlogbook[0].date);
+      setLogbookText(findlogbook[0].date);
+    }
+
+    const findcompeval = duedates.filter((duedate) =>
+      duedate.name.toLowerCase().includes("company evaluation form")
+    );
+    if (findcompeval.length != 0) {
+      setCompEval(findcompeval[0].date);
+      setCompEvalText(findcompeval[0].date);
+    }
+
+    const findreport = duedates.filter((duedate) =>
+      duedate.name.toLowerCase().includes("report")
+    );
+    if (findreport.length != 0) {
+      setReport(findreport[0].date);
+      setReportText(findreport[0].date);
+    }
+  };
 
   useEffect(() => {
     const fetchSubmissions = async () => {
@@ -142,7 +243,7 @@ export const Dashboard = () => {
       fetchPositions();
       setHasNewPosition(false);
     }
-  }, [hasNewAnnouncement]);
+  }, [hasNewPosition]);
 
   const updateAnnouncements = (newAnnouncement) => {
     setAnnouncements((prevAnnouncments) => [
@@ -206,6 +307,32 @@ export const Dashboard = () => {
     }
   };
 
+  const EditDueDates = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await AuthConnect.post("/editduedates", {
+        iaf: iaf,
+        conform: conForm,
+        sif: sif,
+        logbook: logbook,
+        compeval: compEval,
+        report: report,
+      });
+      if (response) {
+        setDueDates(response.data);
+        initDueDates(response.data);
+        setDatesEdited(true);
+        setEditDueDates(false);
+        setEdited(true);
+      }
+    } catch (error) {
+      if (error.response) {
+        setMsg(error.response.data.msg);
+      }
+      alert("Application Error");
+    }
+  };
+
   const toggleCountryDropdown = () => {
     setIsCountryDropdownOpen(!isCountryDropdownOpen);
   };
@@ -241,41 +368,21 @@ export const Dashboard = () => {
         <div className="grid grid-cols-3 gap-4">
           <div className="grid grid-cols-6 col-span-3 lg:col-span-2  justify-between items-center  gap-4 w-full max-w-[1300px] self-center px-4 sm:px-10 lg:px-0">
             {/* display card */}
-            <div className=" col-span-6 md:col-span-3  flex items-center justify-center">
-              <div
-                className={
-                  "min-h-[12rem] lg:h-[12rem] xl:h-[14rem] flex flex-wrap items-center gap-2 content-center justify-around col-span-6 md:col-span-3 lg:col-span-2 bg-white shadow-lg border border-background_shade_2 rounded"
-                }
+            <div className="relative col-span-6 md:col-span-3">
+              {/* Add button */}
+              <button
+                className="absolute top-0 right-0 px-2 py-1 bg-blue text-white inline-flex rounded items-center justify-center gap-1"
+                onClick={() => {
+                  setEditDueDates(true);
+                }}
               >
-                <div className="flex justify-end w-full gap- items-center mx-10 my-2">
-                  <div className="inline-flex justify-end w-fit px-1.5 py-0.5 rounded bg-white gap-2 items-center  border border-dark_4 ">
-                    <BsBuildings className="text-[green] text-xl" />
-                    <p>40</p>
-                  </div>
-                </div>
+                <BiPencil className="text-white text-xl" />
+                <div>Edit Due Dates</div>
+              </button>
 
-                <div className="flex w-full items-center justify-center ">
-                  <div className={"p-2 flex items-center w-1/4"}>
-                    <span
-                      className={
-                        "text-4xl rounded p-4 my-1 bg-dark_3 text-white"
-                      }
-                    >
-                      <FaUserGroup />
-                    </span>
-                  </div>
-
-                  <div
-                    className={
-                      "flex flex-wrap justify-center text-center items-center gap-2 text-md xl:text-lg p-2"
-                    }
-                  >
-                    <div className="w-full text-2xl md:text-4xl font-bold">
-                      23
-                    </div>
-                    <div className="w-full text-xs">Total students</div>
-                  </div>
-                </div>
+              {/* Calendar */}
+              <div className="flex items-center justify-center w-[340px] mt-7">
+                <CalendarComponent eventsList={dueDates} />
               </div>
             </div>
 
@@ -733,6 +840,133 @@ export const Dashboard = () => {
             </div>
             <button
               onClick={() => setIntPosAdded(false)}
+              className="bg-blue text-white px-3 py-1 mt-2"
+            >
+              Close
+            </button>
+          </div>
+        </Modal>
+      )}
+      {editDueDates && (
+        <Modal onClose={() => setEditDueDates(false)}>
+          <div className="flex flex-col justify-center items-center">
+            <div>
+              <div className={"hidden lg:block w-full mb-3"}>
+                <p
+                  className={
+                    " font-bold m-3 text-black dark:text-white text-sm md:text-md lg:text-lg  inline-flex text-center  border-yellow border-x-[0.4rem] md:border-x-[0.3rem] px-2"
+                  }
+                >
+                  Edit Due Dates
+                </p>
+              </div>
+              <div className="flex gap-3 justify-center py-2 items-center">
+                <div className="flex flex-wrap gap-3 justify-center items-center">
+                  <div className="w-[90%] flex">
+                    <p className="w-[80%]">Internship Application Form</p>
+                    <DateInput
+                      placeholder={
+                        iafText
+                          ? iafText.split("T")[0]
+                          : "Internship Application Form"
+                      }
+                      onDateChange={(iaf) => setIAF(iaf)}
+                      value={iaf}
+                      min={new Date().toISOString().split("T")[0]}
+                      className="rounded p-3 outline-none w-full border border-dark_4 dark:border-none dark:bg-background_shade_2 text-dark_2 placeholder:text-dark_2"
+                    />
+                  </div>
+                  <div className="w-[90%] flex">
+                    <p className="w-[80%]">Internship Confirmation Form</p>
+                    <DateInput
+                      placeholder={
+                        conFormText
+                          ? conFormText.split("T")[0]
+                          : "Internship Confirmation Form"
+                      }
+                      onDateChange={(conForm) => setConForm(conForm)}
+                      value={conForm}
+                      min={new Date().toISOString().split("T")[0]}
+                      className="rounded p-3 outline-none w-full border border-dark_4 dark:border-none dark:bg-background_shade_2 text-dark_2 placeholder:text-dark_2"
+                    />
+                  </div>
+                  <div className="w-[90%] flex">
+                    <p className="w-[80%]">Social Insurance Form</p>
+                    <DateInput
+                      placeholder={
+                        sifText
+                          ? sifText.split("T")[0]
+                          : "Social Insurance Form"
+                      }
+                      onDateChange={(sif) => setSIF(sif)}
+                      value={sif}
+                      min={new Date().toISOString().split("T")[0]}
+                      className="rounded p-3 outline-none w-full border border-dark_4 dark:border-none dark:bg-background_shade_2 text-dark_2 placeholder:text-dark_2"
+                    />
+                  </div>
+                  <div className="w-[90%] flex">
+                    <p className="w-[80%]">Logbook</p>
+                    <DateInput
+                      placeholder={
+                        logbookText ? logbookText.split("T")[0] : "Logbook"
+                      }
+                      onDateChange={(logbook) => setLogbook(logbook)}
+                      value={logbook}
+                      min={new Date().toISOString().split("T")[0]}
+                      className="rounded p-3 outline-none w-full border border-dark_4 dark:border-none dark:bg-background_shade_2 text-dark_2 placeholder:text-dark_2"
+                    />
+                  </div>
+                  <div className="w-[90%] flex">
+                    <p className="w-[80%]">Company Trainee Evaluation Form</p>
+                    <DateInput
+                      placeholder={
+                        compEvalText
+                          ? compEvalText.split("T")[0]
+                          : "Company Trainee Evaluation Form"
+                      }
+                      onDateChange={(compEval) => setCompEval(compEval)}
+                      value={compEval}
+                      min={new Date().toISOString().split("T")[0]}
+                      className="rounded p-3 outline-none w-full border border-dark_4 dark:border-none dark:bg-background_shade_2 text-dark_2 placeholder:text-dark_2"
+                    />
+                  </div>
+                  <div className="w-[90%] flex">
+                    <p className="w-[80%]">Report</p>
+                    <DateInput
+                      placeholder={
+                        reportText ? reportText.split("T")[0] : "Report"
+                      }
+                      onDateChange={(report) => setReport(report)}
+                      value={report}
+                      min={new Date().toISOString().split("T")[0]}
+                      className="rounded p-3 outline-none w-full border border-dark_4 dark:border-none dark:bg-background_shade_2 text-dark_2 placeholder:text-dark_2"
+                    />
+                  </div>
+                  <div className=" flex justify-end mx-4 w-full">
+                    <button
+                      className={
+                        "px-2 py-1 bg-blue text-white rounded inline-flex items-center justify-center gap-1"
+                      }
+                      onClick={EditDueDates}
+                    >
+                      <GiPencil className="text-xl text-yellow" />
+                      <div>Save</div>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Modal>
+      )}
+      {edited && (
+        <Modal onClose={() => setEdited(false)}>
+          <div className="flex flex-col justify-center items-center">
+            <div className="font-bold">
+              <p>Due Dates Edited Successfully!</p>
+            </div>
+            <button
+              onClick={() => setEdited(false)}
               className="bg-blue text-white px-3 py-1 mt-2"
             >
               Close

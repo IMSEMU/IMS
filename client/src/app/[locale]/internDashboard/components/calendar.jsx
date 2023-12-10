@@ -1,18 +1,35 @@
-'use client'
-import dayjs from 'dayjs';
-import { DemoContainer, DemoItem } from '@mui/x-date-pickers/internals/demo';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
+// import React from "react";
+// import Calendar from "react-calendar";
+// import "react-calendar/dist/Calendar.css";
+// import "./calendar.css";
 
-export default function Calendar() {
-  return (
-    <LocalizationProvider dateAdapter={AdapterDayjs}>
+// const CalendarComponent = ({ eventsList }) => {
+//   const tileClassName = ({ date }) => {
+//     const event = eventsList.find(
+//       (x) => new Date(x.date).toDateString() === date.toDateString()
+//     );
+//     return event ? "highlight1" : "";
+//   };
 
-        <DemoItem>
-          <DateCalendar views={['day']}/>
-        </DemoItem>
+//   return <Calendar tileClassName={tileClassName} className="react-calendar" />;
+// };
 
-    </LocalizationProvider>
-  );
-}
+// export default CalendarComponent;
+
+import React from "react";
+import Calendar from "react-calendar";
+import "react-calendar/dist/Calendar.css";
+import "./calendar.css";
+
+const CalendarComponent = ({ eventsList }) => {
+  const tileClassName = ({ date }) => {
+    const event = eventsList.find(
+      (x) => new Date(x.date).toDateString() === date.toDateString()
+    );
+    return event ? "highlight1" : "";
+  };
+
+  return <Calendar tileClassName={tileClassName} className="react-calendar" />;
+};
+
+export default CalendarComponent;
