@@ -7,6 +7,7 @@ import { DateInput } from "../../globalComponents/dateInput";
 import { useReactToPrint } from "react-to-print";
 import { PrintConfirmation } from "../../globalComponents/printConfirmation";
 import UploadConForm from "./uploadConForm";
+import Loading from "../../globalComponents/loading";
 
 export const ConForm = () => {
   const searchParams = useSearchParams();
@@ -23,6 +24,8 @@ export const ConForm = () => {
   const [form, setForm] = useState(true);
   const [msg, setMsg] = useState("");
   const [docSrc, setDocSrc] = useState("");
+
+  const [loading, setLoading] = useState(false);
 
   const [formData, setFormData] = useState({
     stdfname: "",
@@ -134,7 +137,7 @@ export const ConForm = () => {
     });
     try {
       const response = await AuthConnect.post("/submitconform", {
-        stdid: "45678",
+        stdid: stdid,
         startDate: startDate,
         endDate: endDate,
         duration: days,
@@ -159,6 +162,10 @@ export const ConForm = () => {
 
   if (!company) {
     return null;
+  }
+
+  if (loading) {
+    return <Loading />;
   }
 
   return (
@@ -492,12 +499,8 @@ export const ConForm = () => {
             </div>
           </div>
         ) : (
-          <UploadConForm
-            submitToggle={submitToggle}
-            handleDocUploadSuccess={handleDocUploadSuccess}
-          />
+          <UploadConForm handleDocUploadSuccess={handleDocUploadSuccess} />
         )}
-        ;
       </section>
       {hasValidationError && (
         <Modal onClose={() => setHasValidationError(false)}>

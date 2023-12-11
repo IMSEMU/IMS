@@ -1,10 +1,9 @@
-import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import AuthConnect from "@/auth";
 import { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
 import Modal from "../../globalComponents/modal";
-import jwtDecode from "jwt-decode";
+import Loading from "../../globalComponents/loading";
 
 export const SifView = () => {
   const t = useTranslations("sif");
@@ -14,6 +13,7 @@ export const SifView = () => {
   const [confirm, setConfirm] = useState(false);
   const [confirmed, setConfirmed] = useState(false);
   const [msg, setMsg] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const stdid = searchParams.get("stdid");
   const id = searchParams.get("id");
@@ -31,14 +31,17 @@ export const SifView = () => {
   }
 
   const confirmInsurance = async (e) => {
+    setLoading(true);
     try {
       const response = await AuthConnect.post("/confirmins", {
         stdid: stdid,
       });
       if (response) {
+        setLoading(false);
         setConfirmed(true);
       }
     } catch (error) {
+      setLoading(false);
       if (error.response) {
         setMsg(error.response.data.msg);
       }
@@ -49,6 +52,10 @@ export const SifView = () => {
   const push = () => {
     router.push("/departmentDashboard");
   };
+
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <main>

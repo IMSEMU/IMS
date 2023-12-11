@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import AuthConnect from "@/auth";
 import Modal from "../../globalComponents/modal";
 import { useRouter, useSearchParams } from "next/navigation";
+import Loading from "../../globalComponents/loading";
 
 export const SupervisorEvaluation = () => {
   const router = useRouter();
@@ -15,12 +16,18 @@ export const SupervisorEvaluation = () => {
   const [generalComments, setGeneralComments] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
+  const [loading, setLoading] = useState(false);
+
+  if (loading) {
+    return <Loading />;
+  }
+
   const stdid = searchParams.get("stdid");
   const id = searchParams.get("id");
 
   const submitEval = async (e) => {
+    setLoading(true);
     e.preventDefault();
-    console.log(generalBehavior);
     try {
       const response = await AuthConnect.post("/submitcompeval", {
         stdid: stdid,
@@ -33,9 +40,11 @@ export const SupervisorEvaluation = () => {
         generalComments: generalComments,
       });
       if (response) {
+        setLoading(false);
         setSubmitted(true);
       }
     } catch (error) {
+      setLoading(false);
       if (error.response) {
         setMsg(error.response.data.msg);
         alert("Application Error"); // You can add a generic error message here

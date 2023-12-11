@@ -28,8 +28,8 @@ export const SignupSection = ({ loginToogle }) => {
         password: password,
         confPassword: confPassword,
       });
-      console.log(response.data);
-      if (response.data.status === "success") {
+      console.log(response);
+      if (response) {
         alert("Registration Successful");
         router.push("/login");
       }
@@ -44,7 +44,7 @@ export const SignupSection = ({ loginToogle }) => {
   return (
     <>
       <main className="w-full md:w-1/2 px-8 md:px-6 ">
-        {/* Form section */}
+        {/* div section */}
         <div className="from-left">
           <div className={"flex justify-center items-center"}>
             <Image
@@ -60,7 +60,7 @@ export const SignupSection = ({ loginToogle }) => {
             {t("title")}
           </h2>
 
-          <form className="mt-2  text-sm md:text-md" onSubmit={signupnewuser}>
+          <div className="mt-2  text-sm md:text-md">
             <div className="mt-2 md:mt-4 relative flex space-x-2">
               <div className="w-1/2">
                 <input
@@ -173,13 +173,14 @@ export const SignupSection = ({ loginToogle }) => {
               </button>
 
               <button
-                type="submit"
+                type="button"
                 className="flex items-center justify-center gap-2 w-full md:w-fit  bg-blue hover:bg-blue-400 focus:bg-blue-400 text-white font-semibold rounded px-3 py-2 mt-5"
+                onClick={signupnewuser}
               >
                 <span>{t("Register")}</span>
               </button>
             </div>
-          </form>
+          </div>
 
           <div className={"flex justify-center my-3 text-"}>
             <button

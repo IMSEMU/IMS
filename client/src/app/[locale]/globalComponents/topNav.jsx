@@ -72,7 +72,9 @@ export const TopNav = () => {
     try {
       const response = await AuthConnect.delete("/logout");
 
-      localStorage.setItem("isLoggedIn", "true");
+      localStorage.setItem("isLoggedIn", "false");
+      localStorage.removeItem("accessToken");
+      localStorage.removeItem("user");
 
       router.push("/");
     } catch (error) {

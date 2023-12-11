@@ -127,6 +127,8 @@ export const PcSideNav = () => {
       const response = await AuthConnect.delete("/logout");
 
       localStorage.setItem("isLoggedIn", "false");
+      localStorage.removeItem("accessToken");
+      localStorage.removeItem("user");
 
       router.push("/");
     } catch (error) {

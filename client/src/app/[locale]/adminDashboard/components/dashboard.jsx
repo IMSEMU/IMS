@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { Empty } from "antd";
 import AuthConnect from "@/auth";
 import { useTranslations } from "next-intl";
-import Link from "next/link";
+import Loading from "../../globalComponents/loading";
 import Modal from "../../globalComponents/modal";
 import Image from "next/image";
 
@@ -22,6 +22,7 @@ export const Dashboard = () => {
   const [deptsupname, setDeptSupname] = useState("");
   const [isDeptDropdownOpen, setIsDeptDropdownOpen] = useState(false);
   const [assigned, setAssigned] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const getStudents = async () => {
@@ -52,6 +53,7 @@ export const Dashboard = () => {
   }, []);
 
   const AddNewAdmin = async () => {
+    setLoading(true);
     try {
       const response = await AuthConnect.post("/addadmin", {
         firstname: firstname,
@@ -59,10 +61,12 @@ export const Dashboard = () => {
         email: email,
       });
       if (response) {
+        setLoading(false);
         setAdminAdded(true);
       }
     } catch (error) {
       if (error.response) {
+        setLoading(false);
         setMsg(error.response.data.msg);
       }
       alert("Application Error");
@@ -70,6 +74,7 @@ export const Dashboard = () => {
   };
 
   const AddNewDeptSup = async () => {
+    setLoading(true);
     try {
       const response = await AuthConnect.post("/adddeptsup", {
         firstname: firstname,
@@ -78,9 +83,11 @@ export const Dashboard = () => {
         dept: dept,
       });
       if (response) {
+        setLoading(false);
         setDeptSupAdded(true);
       }
     } catch (error) {
+      setLoading(false);
       if (error.response) {
         setMsg(error.response.data.msg);
       }
@@ -89,16 +96,19 @@ export const Dashboard = () => {
   };
 
   const AssignStudent = async () => {
+    setLoading(true);
     try {
       const response = await AuthConnect.post("/assigndept", {
         stdid: assignStudent.student.stdid,
         deptsupid: deptsup,
       });
       if (response) {
+        setLoading(false);
         setAssigned(true);
         setAssignStudent(null);
       }
     } catch (error) {
+      setLoading(false);
       if (error.response) {
         setMsg(error.response.data.msg);
       }
@@ -120,6 +130,10 @@ export const Dashboard = () => {
     setDeptSupname(event.target.value);
     setIsDeptDropdownOpen(true);
   };
+
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <main className="w-full h-fit">

@@ -289,17 +289,17 @@ export const Dashboard = () => {
                           <div className="cursor-pointer mx-1 py-2 my-1 bg-white drop-shadow-md border-background_shade_2 hover:bg-blue hover:text-white border text-black dark:bg-dark_4 dark:text-black w-full flex items-center justify-between rounded">
                             <div
                               className={
-                                "w-2/12 flex justify-center items-center"
+                                "w-2/12 flex justify-center items-center ml-3"
                               }
                             >
                               <Image
-                                src={"/avatar.png"}
+                                src={todo.photo ? todo.photo : "/avatar.png"}
                                 alt={"Profile Picture"}
                                 height={1000}
                                 width={1000}
                                 priority
                                 className={
-                                  "w-[2rem] h-[2rem] rounded-full hidden lg:inline-block"
+                                  "w-[3rem] h-[3rem] rounded-full hidden lg:inline-block "
                                 }
                               />
                             </div>
@@ -310,25 +310,27 @@ export const Dashboard = () => {
                               {todo.iafConfirmed && !todo.filledConForm ? (
                                 <div className="flex">
                                   <span className="text-md font-semibold">
-                                    Fill Confirmation Form for {todo.stdid}
+                                    Fill Confirmation Form for {todo.firstname}{" "}
+                                    {todo.lastname}
                                   </span>
                                 </div>
                               ) : todo.logComplete && !todo.logConfirmed ? (
                                 <div className="flex">
                                   <span className="text-md font-semibold">
-                                    Approve Logbook for {todo.stdid}
+                                    Approve Logbook for {todo.firstname}{" "}
+                                    {todo.lastname}
                                   </span>
                                 </div>
                               ) : todo.logConfirmed && !todo.compEvalFilled ? (
                                 <div className="flex">
                                   <span className="text-md font-semibold">
                                     Fill Trainee Evaluation Form for{" "}
-                                    {todo.stdid}
+                                    {todo.firstname} {todo.lastname}
                                   </span>
                                 </div>
                               ) : (
                                 <div className="flex">
-                                  <span className="text-md">Problem</span>
+                                  <span className="text-md"></span>
                                 </div>
                               )}
                             </div>

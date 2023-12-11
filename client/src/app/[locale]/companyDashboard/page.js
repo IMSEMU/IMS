@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 import { CompanyDashboardPage } from "./components/companyDashboardPage";
+import Loading from "../globalComponents/loading";
 
 export const metadata = {
   title: "Organization Dashboard | I.M.S.",

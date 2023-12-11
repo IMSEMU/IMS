@@ -1,5 +1,4 @@
 import { Table } from "./components/table";
-import { Navbar } from "../globalComponents/Navbar";
 import { Suspense } from "react";
 import Loading from "../globalComponents/loading";
 
@@ -10,10 +9,7 @@ export default function CompletedInternship() {
   return (
     <Suspense fallback={<Loading />}>
       <div className={"min-h-screen dark:bg-dark_2 bg-white"}>
-        <div className={""}>
-          <Navbar />
-          <Table />
-        </div>
+        <Table />
       </div>
     </Suspense>
   );

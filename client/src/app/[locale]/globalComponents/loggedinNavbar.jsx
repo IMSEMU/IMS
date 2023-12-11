@@ -6,7 +6,7 @@ import Link from "next/link";
 import { DarkModeButton } from "../globalComponents/darkModeButton";
 import { useTranslations } from "next-intl";
 
-export const Navbar = () => {
+export const LoggedInNavbar = ({ userrole }) => {
   const t = useTranslations("Loginbtn");
 
   return (
@@ -45,13 +45,20 @@ export const Navbar = () => {
             <LanguageToggle />
             <DarkModeButton />
             <Link
-              href={"/login"}
+              href={
+                userrole === 1
+                  ? "/internDashboard"
+                  : userrole === 2
+                  ? "/departmentDashboard"
+                  : userrole === 3
+                  ? "/companyDashboard"
+                  : ""
+              }
               className={
                 "text-sm md:text-md font-semibold flex items-center bg-blue rounded py-1 px-2 sm:py-2 sm:px-4 text-white"
               }
             >
-              <BiLogIn className={"mr-1"} />
-              {t("login")}
+              Dashboard
             </Link>
           </div>
         </nav>

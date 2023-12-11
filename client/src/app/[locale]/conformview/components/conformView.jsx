@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
 import Modal from "../../globalComponents/modal";
 import PdfViewer from "../../globalComponents/pdfViewer";
+import Loading from "../../globalComponents/loading";
 
 export const ConFormView = () => {
   const t = useTranslations("sif");
@@ -15,6 +16,7 @@ export const ConFormView = () => {
   const [reject, setReject] = useState(false);
   const [rejected, setRejected] = useState(false);
   const [msg, setMsg] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const stdid = searchParams.get("stdid");
   const intid = searchParams.get("id");
@@ -34,14 +36,17 @@ export const ConFormView = () => {
   }
 
   const confirmConfirmation = async (e) => {
+    setLoading(true);
     try {
       const response = await AuthConnect.post("/confirmcon", {
         stdid: stdid,
       });
       if (response) {
+        setLoading(false);
         setConfirmed(true);
       }
     } catch (error) {
+      setLoading(false);
       if (error.response) {
         setMsg(error.response.data.msg);
       }
@@ -54,20 +59,27 @@ export const ConFormView = () => {
   };
 
   const rejectConfirmation = async (e) => {
+    setLoading(true);
     try {
       const response = await AuthConnect.post("/rejectcon", {
         stdid: stdid,
       });
       if (response) {
+        setLoading(false);
         setRejected(true);
       }
     } catch (error) {
+      setLoading(false);
       if (error.response) {
         setMsg(error.response.data.msg);
       }
       alert("Application Error"); // You can add a generic error message here
     }
   };
+
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <main>

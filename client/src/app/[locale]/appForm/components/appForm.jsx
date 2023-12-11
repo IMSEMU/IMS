@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import AuthConnect from "@/auth";
@@ -9,6 +9,7 @@ import ConfirmationSection from "./confimationSection";
 import { CldUploadWidget } from "next-cloudinary";
 import jwtDecode from "jwt-decode";
 import countryList from "react-select-country-list";
+import Loading from "../../globalComponents/loading";
 
 export const AppForm = () => {
   const t = useTranslations("iaf");
@@ -37,6 +38,9 @@ export const AppForm = () => {
   const [hasValidationError, setHasValidationError] = useState(false);
   const [student, setStudent] = useState([]);
   const [companies, setCompanies] = useState([]);
+  const [successful, setSuccessful] = useState(false);
+
+  const [loading, setLoading] = useState(false);
 
   const [formData, setFormData] = useState({
     fname: "",
@@ -80,6 +84,7 @@ export const AppForm = () => {
       try {
         const response = await AuthConnect.get("/getstudent");
         setStudent(response.data);
+        console.log(response.data);
       } catch (error) {
         console.error("Error fetching student:", error);
       }
@@ -98,7 +103,6 @@ export const AppForm = () => {
       }
     };
 
-    // Fetch initial logbook entries when the page loads
     getCompanies();
   }, []);
 
@@ -212,6 +216,7 @@ export const AppForm = () => {
   };
 
   const submitApplication = async (e) => {
+    setLoading(true);
     e.preventDefault();
     try {
       const response = await AuthConnect.post("/createapp", {
@@ -234,15 +239,27 @@ export const AppForm = () => {
         supemail: supemail,
         position: position,
       });
-      alert("Application Successful");
-      router.push("/internDashboard");
+      if (response) {
+        setLoading(false);
+        setSuccessful(true);
+      }
     } catch (error) {
+      setLoading(false);
       if (error.response) {
         setMsg(error.response.data.msg);
       }
       alert("Application Error"); // You can add a generic error message here
     }
   };
+
+  const push = () => {
+    router.push("/internDashboard");
+  };
+
+  if (loading) {
+    return <Loading />;
+  }
+
   return (
     <main>
       <div className="my-1 flex justify-center items-center font-bold pt-5">
@@ -667,6 +684,21 @@ export const AppForm = () => {
             </div>
             <button
               onClick={() => setHasValidationError(false)}
+              className="bg-blue text-white px-3 py-1 mt-2"
+            >
+              Close
+            </button>
+          </div>
+        </Modal>
+      )}
+      {successful && (
+        <Modal onClose={() => push()}>
+          <div className="flex flex-col justify-center items-center">
+            <div className="font-bold">
+              <p>Application Submitted Successfully!</p>
+            </div>
+            <button
+              onClick={() => push()}
               className="bg-blue text-white px-3 py-1 mt-2"
             >
               Close

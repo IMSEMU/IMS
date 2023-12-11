@@ -1,6 +1,4 @@
 "use client";
-
-import { AppForm } from "./appForm";
 import AuthConnect from "@/auth";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -9,6 +7,7 @@ import { PcSideNav } from "../../globalComponents/pcSideNav";
 import { MobileNav } from "../../globalComponents/mobileNav";
 import { ProtectedRoute } from "../../globalComponents/stdProtectedRoute";
 import jwtDecode from "jwt-decode";
+import { AppForm } from "./appForm";
 
 export const ApplicationForm = () => {
   const router = useRouter();

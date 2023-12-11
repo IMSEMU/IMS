@@ -276,12 +276,16 @@ export const StudentInformation = ({ students, usage }) => {
                     <div className="w-full flex">
                       <div className="w-1/2 text-sm">
                         Start Date:{" "}
-                        {internship.internshipdtl.startDate.split("T")[0]}
+                        {internship.internshipdtl.startDate
+                          ? internship.internshipdtl.startDate.split("T")[0]
+                          : ""}
                       </div>
 
                       <div className="w-1/2 text-sm">
                         End Date:{" "}
-                        {internship.internshipdtl.endDate.split("T")[0]}
+                        {internship.internshipdtl.endDate
+                          ? internship.internshipdtl.endDate.split("T")[0]
+                          : ""}
                       </div>
                     </div>
                   </div>

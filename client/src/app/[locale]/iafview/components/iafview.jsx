@@ -4,7 +4,7 @@ import AuthConnect from "@/auth";
 import { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
 import Modal from "../../globalComponents/modal";
-import jwtDecode from "jwt-decode";
+import Loading from "../../globalComponents/loading";
 
 export const IafView = () => {
   const t = useTranslations("iaf");
@@ -16,6 +16,8 @@ export const IafView = () => {
   const [reject, setReject] = useState(false);
   const [rejected, setRejected] = useState(false);
   const [msg, setMsg] = useState("");
+
+  const [loading, setLoading] = useState(false);
 
   const stdid = searchParams.get("stdid");
   const id = searchParams.get("id");
@@ -33,14 +35,17 @@ export const IafView = () => {
   }
 
   const confirmApplication = async (e) => {
+    setLoading(true);
     try {
       const response = await AuthConnect.post("/confirmapp", {
         stdid: stdid,
       });
       if (response) {
+        setLoading(false);
         setConfirmed(true);
       }
     } catch (error) {
+      setLoading(false);
       if (error.response) {
         setMsg(error.response.data.msg);
       }
@@ -53,20 +58,27 @@ export const IafView = () => {
   };
 
   const rejectApplication = async (e) => {
+    setLoading(true);
     try {
       const response = await AuthConnect.post("/rejectapp", {
         stdid: stdid,
       });
       if (response) {
+        setLoading(false);
         setRejected(true);
       }
     } catch (error) {
       if (error.response) {
+        setLoading(false);
         setMsg(error.response.data.msg);
       }
       alert("Application Error"); // You can add a generic error message here
     }
   };
+
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <main>

@@ -1,9 +1,4 @@
-import { Navbar } from "../[locale]/globalComponents/Navbar";
-import { Jumbotron } from "../[locale]/components/jumbotron";
-import { Announcement } from "../[locale]/components/announcement";
-import { CompletedInternships } from "../[locale]/components/completedInternships";
-import { InternshipPositions } from "../[locale]/internshipPositions/component/internshipPositions";
-import { HomeFooter } from "../[locale]/components/homeFooter";
+import HomePage from "./components/homepage";
 
 export const metadata = {
   title: "Home | I.M.S.",
@@ -11,12 +6,7 @@ export const metadata = {
 export default function Home() {
   return (
     <main className={"bg-white dark:bg-dark_2"}>
-      <Navbar />
-      <Jumbotron />
-      <Announcement />
-      <CompletedInternships />
-      <InternshipPositions />
-      <HomeFooter />
+      <HomePage />
     </main>
   );
 }

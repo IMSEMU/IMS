@@ -1,4 +1,3 @@
-import { Navbar } from "../globalComponents/Navbar";
 import { HomeFooter } from "../components/homeFooter";
 import { InternshipCards } from "./component/internships";
 import { Suspense } from "react";
@@ -12,7 +11,6 @@ export default function InternshipPositions() {
     <Suspense fallback={<Loading />}>
       <main className={"bg-white dark:bg-dark_2 min-h-full"}>
         <div className={""}>
-          <Navbar />
           <InternshipCards />
           <HomeFooter />
         </div>
