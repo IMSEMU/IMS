@@ -10,10 +10,11 @@ import Modal from "../../globalComponents/modal";
 export const InternshipCards = () => {
   const [cards, setCards] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
-  const [currentDate, setCurrentDate] = useState(Date());
   const [openIntPosition, setOpenIntPosition] = useState(null);
   const [fullScreen, setFullScreen] = useState(false);
   const [intPosDup, setIntPosDup] = useState(null);
+
+  const currentDate = new Date();
 
   const openFullScreen = () => {
     setIntPosDup(openIntPosition);
@@ -145,7 +146,7 @@ export const InternshipCards = () => {
                   </div>
 
                   <div className={"flex justify-end px-2 pb-3 items-center"}>
-                    {card.applyby > currentDate ? (
+                    {card.applyby < currentDate.toISOString() ? (
                       <div
                         className={
                           "text-black bg-red p-1 gap-2 rounded inline-flex items-center"

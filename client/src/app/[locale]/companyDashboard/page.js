@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { CompanyDashboardPage } from "./components/companyDashboardPage";
 
 export const metadata = {
@@ -6,9 +7,11 @@ export const metadata = {
 
 const Forms = () => {
   return (
-    <main className="">
-      <CompanyDashboardPage />
-    </main>
+    <Suspense fallback={<Loading />}>
+      <main className="">
+        <CompanyDashboardPage />
+      </main>
+    </Suspense>
   );
 };
 

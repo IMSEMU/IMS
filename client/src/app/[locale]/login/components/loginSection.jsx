@@ -5,7 +5,7 @@ import Image from "next/image";
 import { RxEyeClosed, RxEyeOpen } from "react-icons/rx";
 import { BiPencil } from "react-icons/bi";
 import { FaHome } from "react-icons/fa";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { DarkModeButton } from "../../globalComponents/darkModeButton";
 import { SignupSection } from "../../login/components/signupSection";
 import AuthConnect from "@/auth";
@@ -16,6 +16,7 @@ import {
   FailedToast,
   SuccessToast,
 } from "../../globalComponents/toastNotifications";
+import Loading from "../../globalComponents/loading";
 
 export default function LoginSection() {
   const t = useTranslations("Login Page");
@@ -27,6 +28,12 @@ export default function LoginSection() {
   const [toastStatus, setToastStatus] = useState();
   const router = useRouter();
 
+  const [loading, setLoading] = useState(false);
+
+  if (loading) {
+    return <Loading />;
+  }
+
   const showPassword = () => {
     setVisibility(!visibility);
   };
@@ -37,6 +44,7 @@ export default function LoginSection() {
 
   const Auth = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       const response = await AuthConnect.post("/login", {
         email: email,
@@ -68,6 +76,7 @@ export default function LoginSection() {
       if (error.response) {
         setMsg(error.response.data.msg);
       }
+      setLoading(false);
       setToastStatus(false);
     }
   };

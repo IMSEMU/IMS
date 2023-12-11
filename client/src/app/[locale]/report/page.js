@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { Report } from "./components/formPage";
 
 export const metadata = {
@@ -6,9 +7,11 @@ export const metadata = {
 
 const ReportSubmit = () => {
   return (
-    <main className="bg-white dark:bg-dark_1 h-screen">
-      <Report />
-    </main>
+    <Suspense fallback={<Loading />}>
+      <main className="bg-white dark:bg-dark_1 h-screen">
+        <Report />
+      </main>
+    </Suspense>
   );
 };
 

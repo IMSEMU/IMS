@@ -1,4 +1,6 @@
+import { Suspense } from "react";
 import { ViewPage } from "./components/viewPage";
+import Loading from "../globalComponents/loading";
 
 export const metadata = {
   title: "Social Insurance Form | I.M.S.",
@@ -6,9 +8,11 @@ export const metadata = {
 
 const Form = () => {
   return (
-    <main className="bg-white dark:bg-dark_1 h-screen">
-      <ViewPage />
-    </main>
+    <Suspense fallback={<Loading />}>
+      <main className="bg-white dark:bg-dark_1 h-screen">
+        <ViewPage />
+      </main>
+    </Suspense>
   );
 };
 

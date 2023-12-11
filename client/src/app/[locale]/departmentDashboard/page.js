@@ -1,4 +1,6 @@
+import { Suspense } from "react";
 import { DepartmentDashboardPage } from "./components/departmentDashboard";
+import Loading from "../globalComponents/loading";
 
 export const metadata = {
   title: "Dashboard | I.M.S.",
@@ -6,9 +8,11 @@ export const metadata = {
 
 const SupervisorsDashboard = () => {
   return (
-    <main>
-      <DepartmentDashboardPage />
-    </main>
+    <Suspense fallback={<Loading />}>
+      <main>
+        <DepartmentDashboardPage />
+      </main>
+    </Suspense>
   );
 };
 

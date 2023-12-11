@@ -108,7 +108,7 @@ export const InternshipPositions = () => {
                 </div>
 
                 <div className={"flex justify-end px-2 pb-3 items-center"}>
-                  {card.applyby > currentDate.toISOString() ? (
+                  {card.applyby < currentDate.toISOString() ? (
                     <div
                       className={
                         "text-black bg-red p-1 gap-2 rounded inline-flex items-center"

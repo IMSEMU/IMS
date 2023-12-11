@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { ConfirmationForm } from "./components/formPage";
 
 export const metadata = {
@@ -6,10 +7,12 @@ export const metadata = {
 
 const Form = () => {
   return (
-    <main className="bg-white dark:bg-dark_1 h-screen">
-      {/* <Navbar /> */}
-      <ConfirmationForm />
-    </main>
+    <Suspense fallback={<Loading />}>
+      <main className="bg-white dark:bg-dark_1 h-screen">
+        {/* <Navbar /> */}
+        <ConfirmationForm />
+      </main>
+    </Suspense>
   );
 };
 

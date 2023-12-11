@@ -1,4 +1,6 @@
+import Loading from "../globalComponents/loading";
 import { CompanyEval } from "./components/formPage";
+import { Suspense } from "react";
 
 export const metadata = {
   title: "Company Internship Supervisor Evaluation| I.M.S.",
@@ -6,9 +8,11 @@ export const metadata = {
 
 const Evaluation = () => {
   return (
-    <main className="bg-white dark:bg-dark_1 h-screen">
-      <CompanyEval />
-    </main>
+    <Suspense fallback={<Loading />}>
+      <main className="bg-white dark:bg-dark_1 h-screen">
+        <CompanyEval />
+      </main>
+    </Suspense>
   );
 };
 

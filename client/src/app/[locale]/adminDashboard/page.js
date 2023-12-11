@@ -1,4 +1,6 @@
+import { Suspense } from "react";
 import { AdminDashboardPage } from "./components/adminDashboard";
+import Loading from "../globalComponents/loading";
 
 export const metadata = {
   title: "Dashboard | I.M.S.",
@@ -6,9 +8,11 @@ export const metadata = {
 
 const AdminDashboard = () => {
   return (
-    <main>
-      <AdminDashboardPage />
-    </main>
+    <Suspense fallback={<Loading />}>
+      <main>
+        <AdminDashboardPage />
+      </main>
+    </Suspense>
   );
 };
 
