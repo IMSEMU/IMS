@@ -28,6 +28,10 @@ export const Post = () => {
           </span>
         </div>
       </div>
+      
+      <div className="my-2 px-3 flex justify-start w-full" >
+        <p className="w-full">You could be crazy</p>
+      </div>
 
       {/* post image */}
       <div className="w-full flex items-center overflow-hidden">
@@ -39,6 +43,8 @@ export const Post = () => {
           className=" w-full  min-h-[20rem] h-fit hover:scale-110  duration-500 ease-in-out"
         />
       </div>
+
+
 
       {/* like and comments section */}
       <div className="flex justify-start md:gap-1.5 px-3 py-2 text-2xl md:text-3xl">
