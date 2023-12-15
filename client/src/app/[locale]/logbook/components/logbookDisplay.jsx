@@ -6,16 +6,36 @@ import { GiTrashCan, GiPencil } from "react-icons/gi";
 import { Empty } from "antd";
 import { useTranslations, useFormatter } from "next-intl";
 
-export const LogbookDisplay = ({ logbookEntries }) => {
+export const LogbookDisplay = ({ logbookEntries, setEdit }) => {
   const t = useTranslations("logbook");
   const format = useFormatter();
-  const [options, setOptions] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
+  const [hideOptions, setHideOptions] = useState(
+    Array(logbookEntries.length).fill(false)
+  );
 
-  const optionToogle = (logid) => {
-    setSelectedItem(logid);
-    setOptions(!options);
+  const toggleOptions = (index) => {
+    setHideOptions((prevHideOptions) => {
+      const newHideOptions = [...prevHideOptions];
+      newHideOptions[index] = !newHideOptions[index];
+      return newHideOptions;
+    });
+
+    setSelectedItem(hideOptions[index] ? null : index);
   };
+
+  const closeOptions = () => {
+    if (selectedItem !== null) {
+      setHideOptions((prevHideOptions) => {
+        const newHideOptions = [...prevHideOptions];
+        newHideOptions[selectedItem] = false;
+        return newHideOptions;
+      });
+
+      setSelectedItem(null);
+    }
+  };
+
   const formatDate = (fullDate) => {
     const date = new Date(fullDate);
     const formattedDate = date.toLocaleDateString("en-GB", {
@@ -33,7 +53,7 @@ export const LogbookDisplay = ({ logbookEntries }) => {
           <Empty />
         </div>
       ) : (
-        logbookEntries.map((entry) => (
+        logbookEntries.map((entry, index) => (
           <div key={entry.logid} className=" flex justify-center flex-wrap">
             {/* Render each logbook entry */}
             <div className="my-2 mx-1 py-2 bg-blue text-white dark:bg-dark_4 dark:text-black w-full max-w-[30rem] flex items-center justify-between rounded">
@@ -58,10 +78,10 @@ export const LogbookDisplay = ({ logbookEntries }) => {
               <div className="relative mr-3">
                 <FaEllipsisV
                   className=" cursor-pointer"
-                  onClick={() => optionToogle(entry.logid)}
+                  onClick={() => toggleOptions(index)}
                 />
 
-                {options && (
+                {hideOptions[index] && (
                   <div className="from-left absolute text-white -left-10 -top-[1.4rem] h-fit rounded w-[5rem] bg-dark_3">
                     <div className="relative">
                       <div className="m-0.5 p-1 rounded flex text-sm font-medium items-center cursor-pointer gap-0.5 hover:bg-b dark:hover:bg-background_shade">
@@ -69,12 +89,21 @@ export const LogbookDisplay = ({ logbookEntries }) => {
                         <p className="">Delete</p>
                       </div>
 
-                      <div className="m-0.5  p-1 rounded flex text-sm font-medium items-center cursor-pointer gap-0.5  hover:bg-background_shade">
+                      <div
+                        className="m-0.5  p-1 rounded flex text-sm font-medium items-center cursor-pointer gap-0.5  hover:bg-background_shade"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setEdit(entry);
+                          closeOptions();
+                        }}
+                      >
                         <GiPencil className="text-xl text-yellow" />
                         <p>edit</p>
                       </div>
                       <span
-                        onClick={optionToogle}
+                        onClick={() => {
+                          closeOptions();
+                        }}
                         className="absolute p-[0.1rem] cursor-pointer text-lg top-[1.3rem] bg-dark_3 rounded -left-6"
                       >
                         <BiChevronsRight className="text-yellow" />

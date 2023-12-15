@@ -1,75 +1,16 @@
-"use client";
-import { BiPlus } from "react-icons/bi";
-import { useEffect, useState } from "react";
-import AuthConnect from "@/auth";
 import { useTranslations } from "next-intl";
-import Modal from "../../globalComponents/modal";
+import { useState } from "react";
 import { DateInput } from "../../globalComponents/dateInput";
-import Loading from "../../globalComponents/loading";
+import { BiPlus } from "react-icons/bi";
+import Modal from "../../globalComponents/modal";
 
-export const AddLogData = ({
-  updateLogbookEntries,
-  setHasNewLogEntry,
-  startdate,
-  enddate,
-  duration,
-}) => {
+export const EditLog = ({ entry, startdate, enddate, duration }) => {
   const t = useTranslations("logbook");
-  const [day, setDay] = useState("");
-  const [date, setDate] = useState(new Date());
-  const [department, setDepartment] = useState("");
-  const [description, setDescription] = useState("");
-  const [error, setError] = useState(null);
+  const [day, setDay] = useState(entry.day);
+  const [date, setDate] = useState(entry.date);
+  const [department, setDepartment] = useState(entry.department);
+  const [description, setDescription] = useState(entry.description);
   const [showErrorModal, setShowErrorModal] = useState(false);
-  const [loading, setLoading] = useState(false);
-
-  const createLogEntry = async (e) => {
-    setLoading(true);
-    e.preventDefault();
-
-    if (day > duration) {
-      setLoading(false);
-      setError("Invalid Day. Day cannot be more than Internship Duration");
-      setShowErrorModal(true);
-    } else {
-      try {
-        const response = await AuthConnect.post("/createlog", {
-          day: day,
-          date: date,
-          department: department,
-          description: description,
-        });
-
-        if (response) {
-          setLoading(false);
-          const newLogEntry = response.data;
-          updateLogbookEntries(newLogEntry);
-          setHasNewLogEntry(true);
-          setDay("");
-          setDate(null);
-          setDepartment("");
-          setDescription("");
-        }
-      } catch (error) {
-        console.error("Error:", error);
-        if (error.response) {
-          if (error.response.status === 400) {
-            setLoading(false);
-            // Handle 400 Bad Request error
-            setError(error.response.data.msg);
-            setShowErrorModal(true);
-          }
-        }
-      }
-    }
-  };
-  const closeModal = () => {
-    setShowErrorModal(false);
-  };
-
-  if (loading) {
-    return <Loading />;
-  }
 
   return (
     <div className="w-full from-left">
@@ -82,14 +23,11 @@ export const AddLogData = ({
           {t("title")}
         </p>
       </div>
-      <form
-        onSubmit={createLogEntry}
-        className="flex gap-3 justify-center py-2 items-center"
-      >
+      <div className="flex gap-3 justify-center py-2 items-center">
         <div className="flex flex-wrap gap-3 justify-center items-center">
           <div className="w-[90%]">
             <input
-              placeholder={t("day")}
+              placeholder="Day"
               type="number"
               min={0}
               value={day}
@@ -99,7 +37,7 @@ export const AddLogData = ({
           </div>
           <div className="w-[90%]">
             <DateInput
-              placeholder="Date"
+              placeholder={date.split("T")[0]}
               onDateChange={(date) => setDate(date)}
               value={date}
               min={new Date(startdate).toISOString().split("T")[0]}
@@ -111,7 +49,7 @@ export const AddLogData = ({
           {/* Department input section */}
           <div className="w-[90%]">
             <input
-              placeholder={t("dept")}
+              placeholder="Department"
               type="text"
               value={department}
               onChange={(e) => setDepartment(e.target.value)}
@@ -121,7 +59,7 @@ export const AddLogData = ({
           {/* work description section */}
           <div className="w-[90%]">
             <textarea
-              placeholder={t("desc")}
+              placeholder="Description"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               className=" resize-none rounded p-3 outline-none w-full border border-dark_4 dark:border-none h-[10rem] dark:bg-background_shade_2 text-dark_2 placeholder:text-dark_2"
@@ -129,17 +67,17 @@ export const AddLogData = ({
           </div>
           <div className=" flex justify-end mx-4 w-full">
             <button
-              type="submit"
+              type="button"
               className={
                 "px-2 py-1 bg-blue text-white rounded inline-flex items-center justify-center gap-1"
               }
             >
               <BiPlus className={"text-white text-xl"} />
-              <div>{t("add")}</div>
+              <div>Save</div>
             </button>
           </div>
         </div>
-      </form>
+      </div>
       {/* Error Modal */}
       {showErrorModal && (
         <Modal onClose={closeModal}>

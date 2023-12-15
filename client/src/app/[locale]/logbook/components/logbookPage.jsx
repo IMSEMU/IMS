@@ -9,6 +9,7 @@ import { PcSideNav } from "../../globalComponents/pcSideNav";
 import { TopNav } from "../../globalComponents/topNav";
 import { ProtectedRoute } from "../../globalComponents/stdProtectedRoute";
 import jwtDecode from "jwt-decode";
+import { EditLog } from "./editLog";
 
 export const LogbookPage = () => {
   const router = useRouter();
@@ -18,6 +19,7 @@ export const LogbookPage = () => {
   const [mobileLogAdd, setMobileLogAdd] = useState(true);
   const [student, setStudent] = useState(null);
   const [error, setError] = useState(null);
+  const [edit, setEdit] = useState(null);
 
   useEffect(() => {
     const getToken = async () => {
@@ -126,20 +128,32 @@ export const LogbookPage = () => {
                 {/* LOgbook Add section */}
                 <div className="hidden lg:block lg:w-1/2">
                   <div className=" flex items-center h-full">
-                    <AddLogData
-                      updateLogbookEntries={updateLogbookEntries}
-                      setHasNewLogEntry={setHasNewLogEntry}
-                      startdate={student.startdate}
-                      enddate={student.enddate}
-                      duration={student.duration}
-                    />
+                    {edit ? (
+                      <EditLog
+                        entry={edit}
+                        startdate={student.startdate}
+                        enddate={student.enddate}
+                        duration={student.duration}
+                      />
+                    ) : (
+                      <AddLogData
+                        updateLogbookEntries={updateLogbookEntries}
+                        setHasNewLogEntry={setHasNewLogEntry}
+                        startdate={student.startdate}
+                        enddate={student.enddate}
+                        duration={student.duration}
+                      />
+                    )}
                   </div>
                 </div>
 
                 {/* Logbook Display section */}
                 <div className=" w-full lg:w-1/2 bg-background_shade dark:bg-dark_3 rounded overflow-x-auto">
                   <div className="hidden lg:block">
-                    <LogbookDisplay logbookEntries={logbookEntries} />
+                    <LogbookDisplay
+                      logbookEntries={logbookEntries}
+                      setEdit={setEdit}
+                    />
                   </div>
 
                   {/* mobile screen view */}
@@ -166,7 +180,10 @@ export const LogbookPage = () => {
                     </div>
 
                     {mobileLogAdd ? (
-                      <LogbookDisplay logbookEntries={logbookEntries} />
+                      <LogbookDisplay
+                        logbookEntries={logbookEntries}
+                        setEdit={setEdit}
+                      />
                     ) : (
                       <AddLogData
                         updateLogbookEntries={updateLogbookEntries}
