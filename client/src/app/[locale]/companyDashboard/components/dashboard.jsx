@@ -9,8 +9,10 @@ import { StudentInformation } from "../../globalComponents/studentInfo";
 import AuthConnect from "@/auth";
 import Modal from "../../globalComponents/modal";
 import CalendarComponent from "../../internDashboard/components/calendar";
+import { useTranslations } from "next-intl";
 
 export const Dashboard = () => {
+  const t = useTranslations("companyDashboard");
   const [announcements, setAnnouncements] = useState([]);
   const [selectedAnnouncement, setSelectedAnnouncement] = useState(null);
   const [todos, setTodos] = useState([]);
@@ -104,7 +106,7 @@ export const Dashboard = () => {
             "text-md lg:text-xl xl:text-2xl py-1 md:py-2 w-full max-w-[1300px] xl:mx-auto mx-2 font-bold"
           }
         >
-          <p>Welcome {firstname}</p>
+          <p>{t("welcome")} {firstname}</p>
         </div>
 
         <div className="grid grid-cols-3 gap-4">
@@ -127,7 +129,7 @@ export const Dashboard = () => {
                     " font-semibold m-3 text-black dark:text-white  text-sm md:text-md xl:text-lg  inline-flex text-center  border-yellow border-x-[0.3rem] px-2"
                   }
                 >
-                  Announcements
+                  {t("Announcements")}
                 </p>
 
                 {/*section container*/}
@@ -195,7 +197,7 @@ export const Dashboard = () => {
                   " font-semibold m-3 text-black dark:text-white  text-sm md:text-md xl:text-lg  inline-flex text-center  border-yellow border-x-[0.3rem] px-2"
                 }
               >
-                Upcoming Events
+                {t("UpcomingEvents")}
               </p>
 
               {/*section Container*/}
@@ -227,7 +229,7 @@ export const Dashboard = () => {
                           }
                         >
                           <p className={"font-semibold justify-start"}>
-                            {duedate.name} is due
+                            {duedate.name} {t("isdue")}
                           </p>
 
                           <span className={"text-sm lg:text-md"}>
@@ -257,7 +259,7 @@ export const Dashboard = () => {
                     " font-semibold  text-black dark:text-white text-sm md:text-md xl:text-lg  inline-flex text-center  border-yellow border-x-[0.3rem] px-2"
                   }
                 >
-                  To-Do
+                  {t("ToDo")}
                 </p>
               </div>
 
@@ -310,21 +312,21 @@ export const Dashboard = () => {
                               {todo.iafConfirmed && !todo.filledConForm ? (
                                 <div className="flex">
                                   <span className="text-md font-semibold">
-                                    Fill Confirmation Form for {todo.firstname}{" "}
+                                  {t("FillForm")} {todo.firstname}{" "}
                                     {todo.lastname}
                                   </span>
                                 </div>
                               ) : todo.logComplete && !todo.logConfirmed ? (
                                 <div className="flex">
                                   <span className="text-md font-semibold">
-                                    Approve Logbook for {todo.firstname}{" "}
+                                  {t("ApproveLogbook")} {todo.firstname}{" "}
                                     {todo.lastname}
                                   </span>
                                 </div>
                               ) : todo.logConfirmed && !todo.compEvalFilled ? (
                                 <div className="flex">
                                   <span className="text-md font-semibold">
-                                    Fill Trainee Evaluation Form for{" "}
+                                  {t("FillEvaluationForm")}{" "}
                                     {todo.firstname} {todo.lastname}
                                   </span>
                                 </div>
@@ -373,7 +375,7 @@ export const Dashboard = () => {
                       }
                       onClick={() => setSelectedAnnouncement(null)}
                     >
-                      <div>Close</div>
+                      <div>{t("Close")}</div>
                     </button>
                   </div>
                 </div>

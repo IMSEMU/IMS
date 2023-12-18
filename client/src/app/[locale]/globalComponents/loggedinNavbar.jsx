@@ -58,7 +58,7 @@ export const LoggedInNavbar = ({ userrole }) => {
                 "text-sm md:text-md font-semibold flex items-center bg-blue rounded py-1 px-2 sm:py-2 sm:px-4 text-white"
               }
             >
-              Dashboard
+              {t("Dashboard")}
             </Link>
           </div>
         </nav>

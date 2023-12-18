@@ -174,46 +174,46 @@ export const InternshipPositions = () => {
                 {/* Department input section */}
                 <div className="w-[90%]">
                   <p className="rounded p-3 outline-none w-full  dark:border-none dark:bg-background_shade_2 text-dark_2">
-                    Company Name: {openIntPosition.compname}
+                  {t("CompanyName")} {openIntPosition.compname}
                   </p>
                 </div>
                 <div className="w-[90%]">
                   <p className="rounded p-3 outline-none w-full  dark:border-none dark:bg-background_shade_2 text-dark_2">
-                    Position Available: {openIntPosition.position}
+                  {t("PositionAvailable")}: {openIntPosition.position}
                   </p>
                 </div>
                 <div className="w-[44%]">
                   <p className="rounded p-3 outline-none w-full  dark:border-none dark:bg-background_shade_2 text-dark_2">
-                    City: {openIntPosition.city}
+                  {t("City")}: {openIntPosition.city}
                   </p>
                 </div>
                 <div className="w-[44%]">
                   <p className="rounded p-3 outline-none w-full  dark:border-none dark:bg-background_shade_2 text-dark_2">
-                    Country: {openIntPosition.country}
+                  {t("Country")}: {openIntPosition.country}
                   </p>
                 </div>
 
                 {/*  description section */}
                 <div className="w-[90%]">
                   <p className="rounded p-3 outline-none w-full  dark:border-none  dark:bg-background_shade_2 text-dark_2">
-                    Description: {openIntPosition.desc}
+                  {t("Description")}: {openIntPosition.desc}
                   </p>
                 </div>
 
                 <div className="w-[90%]">
                   <p className="rounded p-3 outline-none w-full  dark:border-none dark:bg-background_shade_2 text-dark_2">
-                    Requirments: {openIntPosition.requirements}
+                  {t("Requirments")}: {openIntPosition.requirements}
                   </p>
                 </div>
                 <div className="w-[90%]">
                   <p className="rounded p-3 outline-none w-full  dark:border-none dark:bg-background_shade_2 text-dark_2">
-                    Applications close on{" "}
+                  {t("ACloseOn")}{" "}
                     {openIntPosition.applyby.split("T")[0]}
                   </p>
                 </div>
                 <div className="w-[90%]">
                   <p className="rounded p-3 outline-none w-full  dark:border-none dark:bg-background_shade_2 text-dark_2">
-                    Contact: {openIntPosition.contact}
+                  {t("Contact")}: {openIntPosition.contact}
                   </p>
                 </div>
               </div>
@@ -237,7 +237,7 @@ export const InternshipPositions = () => {
                 className="absolute top-7 right-2 text-white text-xl hover:text-red"
                 onClick={closeFullScreen}
               >
-                Close
+                {t("Close")}
               </button>
             </div>
           </div>

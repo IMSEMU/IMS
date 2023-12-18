@@ -3,21 +3,35 @@
     "title": "Hello world!"
   },
   "Loginbtn": {
-    "login": "Login"
+    "login": "Login",
+    "Dashboard": "Dashboard"
   },
   "Announcement": {
-    "title": "News and Announcements"
+    "title": "News and Announcements",
+    "viewAnn": "Click to view announcement"
+
   },
   "Completed Internships": {
     "title": "Completed Internships",
     "Company Name": "Company Name",
     "City": "City",
+    "Search": "Search by Name, City, Country or Work Field",
     "Country": "Country",
     "Work Fields": "Work Fields",
     "Year": "Year"
   },
   "Available Internship Positions": {
-    "title": "Available Internship Positions"
+    "title": "Available Internship Positions",
+    "CompanyName": " Company Name:",
+    "PositionAvailable": "Position Available",
+    "City": "City",
+    "Country": "Country",
+    "Description": "Description",
+    "Requirments": "Requirments",
+    "ACloseOn": "Applications close on",
+    "Contact": "Contact",
+    "Search": "Search for Internships positions ...",
+    "Close": "Close"
   },
   "Home Footer": {
     "sitemap": "Sitemap",
@@ -59,6 +73,9 @@
     "home": "Home",
     "chat": "Discussion Forum",
     "dashboard": "Dashboard",
+    "DepartmentSupervisor": "Department Supervisor",
+    "CompanySupervisor": "Company Supervisor",
+    "Administrator": "Administrator",
     "student": "Student"
   },
   "topnav": {
@@ -76,7 +93,60 @@
     "iaf": "Fill Internship Application Form",
     "sif": "Fill Social Insurance Form",
     "filllg": "Fill Logbook",
+    "events": "Upcoming Events",
+    "Close": "Close",
     "report": "Write Report"
+
+  },
+  "dashDep": {
+    "welcome": "Welcome",
+    "add": "Add",
+    "Title": "Title",
+    "AnnouncementContent": "Announcement Content",
+    "Position": "Position",
+    "CompanyName": "Company Name",
+    "Country": "Country",
+    "City": "City",
+    "Description": "Description",
+    "Requirements": "Requirements",
+    "StudentsApply": "Students must apply by",
+    "Contact": "Contact",
+    "subFor": "Submitted Forms ",
+    "editDue": "Edit Due Date",
+    "iaForm": "Internship Application Form",
+    "icForm": "Internship Confirmation Form",
+    "siForm": "Social Insurance Form",
+    "ceForm": "Company Evaluation Form",
+    "Report": "Report",
+    "Problem": "Problem",
+    "addAnn": "Add Announcements",
+    "addAnnMsg": "Announcement Added Successfully!",
+    "Close": "Close",
+    "addIP": "Add Internship Positions",
+    "addCL": "Add Company Logo or Internship Information Flyer",
+    "UploadImage": "Upload Image",
+    "addIPMsg": "Internship Position Added Successfully!",
+    "Logbook": "Logbook",
+    "cteForm": "Company Trainee Evaluation Form",
+    "Save": "Save",
+    "editDueMsg": "Due Dates Edited Successfully!",
+    "Delete": "Delete",
+    "Edit": "Edit",
+    "EditAnnouncement": "Edit Announcement",
+    "EditAnnouncementMsg": "Announcement Edited Successfully!",
+    "delAnn": "Are you sure you want to delete this Announcement?",
+    "No": "No",
+    "Yes": "Yes",
+    "delAnnMsg": "Announcement Deleted Successfully!",
+    "editIP": "Edit Internship Position",
+    "editCL": "Edit Company Logo or Internship Information Flyer",
+    "editIPMsg": "Internship Position Edited Successfully!",
+    "delIP": "Are you sure you want to delete this Internship Position?",
+    "delIPMsg": "Internship Position Deleted Successfully!"
+
+    
+    
+
   },
   "logbook": {
     "title": "Daily Logbook",
@@ -84,7 +154,23 @@
     "date": "Date",
     "dept": "Department",
     "desc": "Brief Description of Work Done",
-    "add": "Add"
+    "add": "Add",
+    "CSEval": "Company Supervisor Evaluation",
+    "Close": "Close",
+    "Delete": "Delete",
+    "edit": "edit",
+    "Submit": "Submit",
+    "Reject": "Reject",
+    "Approve": "Approve",
+    "ApproveLogbook": "Are you sure you want to approve this Logbook?",
+    "No": "No",
+    "Yes": "Yes",
+    "Date": "Date",
+    "LogbookApproved": "Logbook Approved",
+    "rejectLogbook": "Are you sure you want to reject this Logbook?",
+    "LogbookRejected": "Logbook Rejected"
+    
+    
   },
   "iaf": {
     "title": "Internship Application Form",
@@ -108,10 +194,57 @@
     "lname": "Last Name",
     "pos": "Position in the Company",
     "submit": "Submit",
+    "photo": "photo",
+    "fillAllMsg": "Please fill in all required fields",
+    "upimg": "Upload an Image",
+    "back": "back",
+    "Reject": "Reject",
+    "Confirm": "Confirm",
+    "confirmIA": "Are you sure you want to confirm this Internship Application?",
+    "No": "No",
+    "Yes": "Yes",
+    "IAConfirmed": "Internship Application Confirmed",
+    "Close": "Close",
+    "rejectIA": "Are you sure you want to reject this Internship Application?",
+    "IARejected": "Internship Application Rejected",
     "submitform": "Are you sure you want to submit?"
   },
   "LocaleSwitcher": {
     "label": "EN"
+  },
+  "confirmation": {
+    "title": "Internship Confirmation Form",
+    "sTitle": "Information about the Company and Trainee",
+    "cName": "Company Name ",
+    "Field": "Working Field",
+    "Address": "Postal Address",
+    "City": "City",
+    "Country": "Country",
+    "Fax": "Fax",
+    "Telephone": "Telephone number",
+    "cEmail": "Organizational E-mail",
+    "cLink": "Organizational website",
+    "sName": "Name and Surname of the Trainee",
+    "sDate": "Planned Training Start Date ",
+    "eDate": "Planned Training End Date ",
+    "Duration": "Duration(Working Days)",
+    "workDone": "The work to be done by the student ",
+    "workDone1": "Developing Software ",
+    "workDone2": "Operating System Installation and Maintenance ",
+    "workDone3": "Working as part of a team in a large software project ",
+    "workDone4": "Hardware fault diagnosis and repairs ",
+    "workDone5": "Designing WEB pages ",
+    "workDone6": "Developing a WEB application using ASP, .NET, PHP etc. ",
+    "workDone7": "Designing/working with Databases",
+    "workDone8": "Learning to use complex company software ",
+    "workDone9": "Network Installation and Maintenance ",
+    "workDone10": "Other (please state in the box below) ",
+    "submit": "Submit",
+    "StartDate": "Internship Start Date",
+    "EndDate": "Internship End Date",
+    "fillAllMsg": "Please fill in all required fields",
+    "submitted": "Internship Confirmation Form Submitted",
+    "close": "close"
   },
   "sif": {
     "title": "Social Insurance Form",
@@ -144,6 +277,159 @@
     "pos": "Position in the Company",
     "date": "Date",
     "submit": "Submit",
+    "Back": "Back",
+    "fillAllFields": "Please fill in all required fields",
+    "Close": "Close",
+    "Confirm": "Confirm",
+    "recievedHardCopy": "Have you recieved the hard copy of this form and all necessary attached documents?",
+    "No": "No",
+    "Yes": "Yes",
+    "SIConfirmed": "Social Insurance Confirmed",
     "submitform": "Are you sure you want to submit?"
+  },
+  "upConForm": {
+    "sign": "Please sign the form and upload it here",
+    "Upload": "Upload Signed Confirmation Form"
+  },
+  "conformview": {
+    "title": "Internship Confirmation Form",
+    "Reject": "Reject",
+    "Confirm": "Confirm",
+    "ConfirmMsg": "Are you sure you want to confirm this Internship Confirmation?",
+    "No": "No",
+    "Yes": "Yes",
+    "Confirmed": "Internship Confirmation Confirmed",
+    "Close": "Close",
+    "RejectMsg": "Are you sure you want to reject this Internship Confirmation?",
+    "Rejected": "Internship Confirmation Rejected"
+    
+    
+  },
+  "evalview": {
+    "title": "Trainee Evaluation Form by Supervisor",
+    "evalOfINtern": "Evaluation of the intern",
+    "EvaluationCriteria": "Evaluation criteria",
+    "Poor": "Poor",
+    "Fair": "Fair",
+    "Good": "Good",
+    "Excellent": "Excellent",
+    "Interest": "Interest",
+    "Attendance": "Attendance",
+    "TechAK": " Technical Ability and Knowledge",
+    "GeneralBehavior": " General Behavior",
+    "OverEvalResult": "Overall Evaluation Result",
+    "Summaryofwork": "Summary of the work done during the Internship",
+    "GeneralComments": "General Comments",
+    "Submit": "Submit",
+    "EvaluationSubmitted": "Company Supervisor Evaluation Submitted",
+    "Back": "Back",
+    "Reject": "Reject",
+    "Confirm": "Confirm",
+    "evalCon": "Are you sure you want to confirm this Trainee Evaluation?",
+    "No": "No",
+    "Yes": "Yes",
+    "EvaluationConfirmed": "Evaluation Confirmed",
+    "Close": "Close",
+    "evalReject": "Are you sure you want to reject this Trainee Evaluatiom?",
+    "EvaluationRejected": "Evaluation Rejected"
+    
+  }
+  ,
+  "globalComponents": {
+    "Forbidden": "Forbidden",
+    "ForbiddenMsg": "You are not authorized to access this page",
+    "ShowMore": "Show More"
+    
+  },
+  "newPassword": {
+    "ResetPassword": "Reset your Password",
+    "ChangePassword": "Change Password",
+    "GoToLogin": "Go to Login",
+    "Close": "Close",
+    "ConfirmPassword": "Confirm Password",
+    "Password": "Password",
+    "SuccessfullReset": "Password Successfully Reset"
+    
+  },
+  "report": {
+    "ReportSubmission": "Report Submission",
+    "uploadReport": "Please upload your report here(.doc, .docx)",
+    "Report": "Report",
+    "UploadReportbtn": "Upload Report",
+    "ReportSubmitted": "Report Submitted",
+    "Close": "Close"
+    
+  },
+  "reportview": {
+    "title": "Trainee Evaluation Form by Coordinator",
+    "evalOfINtern": "Evaluation of the intern",
+    "EvaluationCriteria": "Evaluation criteria",
+    "Poor": "Poor",
+    "Fair": "Fair",
+    "Good": "Good",
+    "Excellent": "Excellent",
+    "Q1": "Quality of the report and the compatibility of the work done with the logbook",
+    "q2": "The student has done IT related work or applied IT knowledge to some task",
+    "q3": " Knowledge of the student during presentation",
+    "q4": " Answering questions during presentation",
+    "OverEvalResult": "Overall Evaluation Result",
+    "Satisfactory": "Satisfactory",
+    "Unsatisfactory": "Unsatisfactory",
+    "Submit": "Submit",
+    "EvaluationSubmitted": "Department Supervisor Evaluation Submitted",
+    "Back": "Back",
+    "Report": "Report",
+    "Download": "Download",
+    "DEvaluationForm": "Department Evaluation Form",
+    "InternshipConfirmation": "Are you sure you want to confirm this Internship Confirmation?",
+    "No": "No",
+    "Yes": "Yes",
+    "InternshipConfirmed": "Internship Confirmation Confirmed",
+    "Close": "Close",
+    "GeneralComments": "General Comments",
+    "rejectIC": "Are you sure you want to reject this Internship Confirmation?",
+    "ICRejected": "Internship Confirmation Rejected"
+    
+  },
+  "resetpassword": {
+    "ResetPassword": "Reset your Password",
+    "SendResetLink": "Send Reset Link",
+    "linksent": "Reset link sent to email",
+    "Close": "Close",
+    "emailexa": "address@provider.com"
+    
+  },
+  "adminDashboard": {
+    "welcome": "Welcome",
+    "AddSupervisor": "Add New Department Supervisor",
+    "AddNewAdmin": "Add New Admin",
+    "add": "Add",
+    "AssignStudents": "Assign Students to Department Supervisors",
+    "NewAdminAdded": "New Admin Added Successfully!",
+    "NewSupervisorAdded": "New Department Supervisor Added Successfully!",
+    "Name": "Name",
+    "Email": "Email",
+    "Faculty": "Faculty",
+    "Close": "Close",
+    "Department": "Department",
+    "AssignSupervisor": "Assign Department Supervisor",
+    "Save": "Save",
+    "FirstName": "First Name",
+    "LastName": "Last Name",
+    "DepartmentSupervisor": "Department Supervisor",
+    "SupervisorAssigned!": "Department Supervisor Assigned!"
+
+  },
+  "companyDashboard": {
+    "welcome": "Welcome",
+    "Announcements": "Announcements",
+    "UpcomingEvents": "Upcoming Events",
+    "isdue": "is due",
+    "ToDo": "To-Do",
+    "FillForm": "Fill Confirmation Form for",
+    "ApproveLogbook": "Approve Logbook for",
+    "FillEvaluationForm": "Fill Trainee Evaluation Form for",
+    "Close": "Close"
+
   }
 }

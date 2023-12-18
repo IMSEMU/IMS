@@ -486,13 +486,13 @@ export const InsForm = () => {
         <Modal onClose={() => setHasValidationError(false)}>
           <div className="flex flex-col justify-center items-center">
             <div className="font-bold">
-              <p>Please fill in all required fields.</p>
+              <p>{t("fillAllFields")}.</p>
             </div>
             <button
               onClick={() => setHasValidationError(false)}
               className="bg-blue text-white px-3 py-1 mt-2"
             >
-              Close
+              {t("Close")}
             </button>
           </div>
         </Modal>

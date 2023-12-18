@@ -1,8 +1,10 @@
 'use client'
 import {FaArrowRight} from "react-icons/fa6";
 import {motion} from "framer-motion";
+import { useTranslations } from "next-intl";
 
 export const AnimatedButton = () => {
+  const t = useTranslations("globalComponents");
   return(
       <main className={'inline-flex'}>
 
@@ -14,7 +16,7 @@ export const AnimatedButton = () => {
               transition={{duration:.6}}
           >
             <motion.span initial={{opacity:0}} whileInView={{opacity:1}} viewport={{ once: true }} transition={{delay:.8,duration:.9,}} className={'text-sm md:text-md text-white dark:text-background_shade_2 font-semibold'}>
-                Show More
+            {t("ShowMore")}
             </motion.span>
 
             <motion.button

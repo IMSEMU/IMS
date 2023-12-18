@@ -10,6 +10,7 @@ import UploadConForm from "./uploadConForm";
 import Loading from "../../globalComponents/loading";
 
 export const ConForm = () => {
+  const t = useTranslations("confirmation");
   const searchParams = useSearchParams();
   const router = useRouter();
   const [company, setCompany] = useState(null);
@@ -175,7 +176,7 @@ export const ConForm = () => {
           <PrintConfirmation formData={formData} ref={componentRef} />
         </div>
         <div className="border-x-[0.4rem] text-2xl border-yellow dark:text-white">
-          <p className="px-2">Internship Confirmation Form</p>
+          <p className="px-2">{t("title")}</p>
         </div>
       </div>
       <section className="p-2 bg-white dark:bg-dark_1 flex items-center justify-center px-4 sm:px-12 md:px-20">
@@ -187,18 +188,18 @@ export const ConForm = () => {
                   " font-bold my-4 text-black dark:text-white text-sm md:text-md lg:text-lg  inline-flex text-center  border-yellow border-x-[0.3rem] md:border-x-[0.3rem] px-2"
                 }
               >
-                Information about the Company and Trainee
+                {t("sTitle")}
               </p>
 
               <form>
                 <div className="mx-4 lg:mx-16">
                   <div className="   mt-2 relative  md:mt-1  lg:flex  lg:space-x-5   ">
                     <div className=" max-lg:md:mx-12 lg:w-1/2">
-                      <span>Company Name: {company.name}</span>
+                      <span>{t("cName")}: {company.name}</span>
                     </div>
 
                     <div className=" max-lg:md:mx-12 lg:w-1/2">
-                      <span>Working Fields: {company.fields}</span>
+                      <span>{t("Field")}: {company.fields}</span>
                     </div>
                   </div>
                 </div>
@@ -206,42 +207,42 @@ export const ConForm = () => {
                 <div className="mx-4 lg:mx-16">
                   <div className="mt-2 relative  md:mt-1  lg:flex  lg:space-x-5">
                     <div className="max-lg:md:mx-12 lg:w-1/2">
-                      <span>Postal Address: {company.address}</span>
+                      <span>{t("Address")}: {company.address}</span>
                     </div>
 
                     <div className=" max-lg:md:mx-12 lg:w-1/2">
-                      <span>City: {company.city}</span>
+                      <span>{t("City")}: {company.city}</span>
                     </div>
                   </div>
 
                   <div className="mt-2 relative  md:mt-1  lg:flex  lg:space-x-5">
                     <div className="max-lg:md:mx-12 lg:w-1/2">
-                      <span>Country: {company.country} </span>
+                      <span>{t("Country")}: {company.country} </span>
                     </div>
 
                     <div className="max-lg:md:mx-12 lg:w-1/2">
-                      <span>Fax: {company.fax}</span>
-                    </div>
-                  </div>
-
-                  <div className="mt-2 relative  md:mt-1  lg:flex  lg:space-x-5">
-                    <div className="max-lg:md:mx-12 lg:w-1/2">
-                      <span>Telephone Number: {company.phoneno}</span>
-                    </div>
-
-                    <div className="max-lg:md:mx-12 lg:w-1/2">
-                      <span>Organisation email: {company.email}</span>
+                      <span>{t("Fax")}: {company.fax}</span>
                     </div>
                   </div>
 
                   <div className="mt-2 relative  md:mt-1  lg:flex  lg:space-x-5">
                     <div className="max-lg:md:mx-12 lg:w-1/2">
-                      <span>Organisational website: {company.website}</span>
+                      <span>{t("Telephone")}: {company.phoneno}</span>
+                    </div>
+
+                    <div className="max-lg:md:mx-12 lg:w-1/2">
+                      <span>{t("cEmail")}: {company.email}</span>
+                    </div>
+                  </div>
+
+                  <div className="mt-2 relative  md:mt-1  lg:flex  lg:space-x-5">
+                    <div className="max-lg:md:mx-12 lg:w-1/2">
+                      <span>{t("cLink")}: {company.website}</span>
                     </div>
 
                     <div className="max-lg:md:mx-12 lg:w-1/2">
                       <span>
-                        Name and Surname of Trainee: {student.firstname}{" "}
+                        {t("sName")}: {student.firstname}{" "}
                         {student.lastname}
                       </span>
                     </div>
@@ -250,7 +251,7 @@ export const ConForm = () => {
                   <div className="mt-2 relative  md:mt-1  lg:flex  lg:space-x-5">
                     <div className="max-lg:md:mx-12 lg:w-1/2">
                       <DateInput
-                        placeholder="Internship Start Date"
+                        placeholder={t("StartDate")}
                         onDateChange={(date) => setStartDate(date)}
                         value={startDate}
                         min={new Date().toISOString().split("T")[0]}
@@ -258,7 +259,7 @@ export const ConForm = () => {
                     </div>
                     <div className="max-lg:md:mx-12 lg:w-1/2">
                       <DateInput
-                        placeholder="Internship End Date"
+                        placeholder={t("EndDate")}
                         onDateChange={(date) => setEndDate(date)}
                         value={endDate}
                         min={new Date().toISOString().split("T")[0]}
@@ -280,7 +281,7 @@ export const ConForm = () => {
                           selected
                           className="text-dark_2 dark:text-yellow"
                         >
-                          Duration(Working Days)
+                          {t("Duration")}
                         </option>
                         <option value="20">20</option>
                         <option value="40">40</option>
@@ -294,7 +295,7 @@ export const ConForm = () => {
                     " font-bold my-6 text-black dark:text-white text-sm md:text-md lg:text-lg  inline-flex text-center  border-yellow border-x-[0.4rem] md:border-x-[0.3rem] px-2"
                   }
                 >
-                  The Work To Be Done By The Student
+                  {t("workDone")}
                 </p>
                 <div className="mx-4 lg:mx-16 space-y-2 ">
                   <div className=" flex ">
@@ -311,7 +312,7 @@ export const ConForm = () => {
                       <div>
                         <label className=" dark:text-yellow">
                           {" "}
-                          Developing Software{" "}
+                          {t("workDone1")}{" "}
                         </label>
                       </div>
                     </div>
@@ -330,7 +331,7 @@ export const ConForm = () => {
                       </div>
                       <div>
                         <label className=" dark:text-yellow">
-                          Operating system installation and maintenance{" "}
+                          {t("workDone2")}{" "}
                         </label>
                       </div>
                     </div>
@@ -349,7 +350,7 @@ export const ConForm = () => {
                       </div>
                       <div>
                         <label className=" dark:text-yellow">
-                          Working as part of a team in a large software project{" "}
+                          {t("workDone3")}{" "}
                         </label>
                       </div>
                     </div>
@@ -368,7 +369,7 @@ export const ConForm = () => {
                       </div>
                       <div>
                         <label className=" dark:text-yellow">
-                          Hardware fault diagnosis and repairs{" "}
+                          {t("workDone4")}{" "}
                         </label>
                       </div>
                     </div>
@@ -386,7 +387,7 @@ export const ConForm = () => {
                       </div>
                       <div>
                         <label className=" dark:text-yellow">
-                          Designing WEB pages
+                          {t("workDone5")}
                         </label>
                       </div>
                     </div>
@@ -404,7 +405,7 @@ export const ConForm = () => {
                       </div>
                       <div>
                         <label className=" dark:text-yellow">
-                          Developing a WEB application using ASP, .NET, PHP etc{" "}
+                          {t("workDone6")}{" "}
                         </label>
                       </div>
                     </div>
@@ -422,7 +423,7 @@ export const ConForm = () => {
                       </div>
                       <div>
                         <label className=" dark:text-yellow">
-                          Designing/working with databases{" "}
+                          {t("workDone7")}{" "}
                         </label>
                       </div>
                     </div>
@@ -440,7 +441,7 @@ export const ConForm = () => {
                       </div>
                       <div>
                         <label className=" dark:text-yellow">
-                          Learning to use complex company software{" "}
+                          {t("workDone8")}{" "}
                         </label>
                       </div>
                     </div>
@@ -458,7 +459,7 @@ export const ConForm = () => {
                       </div>
                       <div>
                         <label className=" dark:text-yellow">
-                          Network installation and maintenance
+                          {t("workDone9")}
                         </label>
                       </div>
                     </div>
@@ -468,7 +469,7 @@ export const ConForm = () => {
                     <div className=" inline-flex  space-x-2 ">
                       <div>
                         <label className=" dark:text-yellow ">
-                          Other (please state in the box below){" "}
+                          {t("workDone10")}{" "}
                         </label>
                       </div>
                     </div>
@@ -491,7 +492,7 @@ export const ConForm = () => {
                       className="bg-blue py-2 px-3.5 rounded "
                       onClick={submitConForm}
                     >
-                      Submit
+                      {t("submit")}
                     </button>
                   </div>
                 </div>
@@ -506,7 +507,7 @@ export const ConForm = () => {
         <Modal onClose={() => setHasValidationError(false)}>
           <div className="flex flex-col justify-center items-center">
             <div className="font-bold">
-              <p>Please fill in all required fields.</p>
+              <p>{t("fillAllMsg")}.</p>
             </div>
             <button
               onClick={() => setHasValidationError(false)}
@@ -521,13 +522,13 @@ export const ConForm = () => {
         <Modal onClose={() => push()}>
           <div className="flex flex-col justify-center items-center">
             <div className="font-bold">
-              <p>Internship Confirmation Form Submitted</p>
+              <p>{t("submitted")}</p>
             </div>
             <button
               className="bg-blue text-white px-3 py-1 mt-2 justify-start rounded"
               onClick={() => push()}
             >
-              Close
+              {t("close")}
             </button>
           </div>
         </Modal>

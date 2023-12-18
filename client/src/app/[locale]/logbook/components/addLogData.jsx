@@ -88,7 +88,7 @@ export const AddLogData = ({
           </div>
           <div className="w-[90%]">
             <DateInput
-              placeholder="Date"
+              placeholder={t("Date")}
               onDateChange={(date) => setDate(date)}
               value={date}
               min={new Date(startdate).toISOString().split("T")[0]}
@@ -137,7 +137,7 @@ export const AddLogData = ({
               onClick={closeModal}
               className="bg-blue text-white px-3 py-1 mt-2"
             >
-              Close
+              {t("Close")}
             </button>
           </div>
         </Modal>

@@ -3,6 +3,7 @@ import Image from "next/image";
 import { useState, useMemo } from "react";
 import { BiChevronsRight } from "react-icons/bi";
 import { BsMegaphoneFill } from "react-icons/bs";
+import { useTranslations } from "next-intl";
 import { FaEllipsisV } from "react-icons/fa";
 import { GiPencil, GiTrashCan } from "react-icons/gi";
 import { Empty } from "antd";
@@ -19,6 +20,7 @@ export const DisplayInternshipPositions = ({
   const [hideOptions, setHideOptions] = useState(
     Array(internships.length).fill(false)
   );
+  const t = useTranslations("dashDep");
   const [selectedPostion, setSelectedPostion] = useState(null);
   const [positionToShow, setPositionToShow] = useState(null);
   const [editPosition, setEditPosition] = useState(false);
@@ -239,7 +241,7 @@ export const DisplayInternshipPositions = ({
                           onClick={() => DeletePosition(internship)}
                         >
                           <GiTrashCan className="text-xl text-yellow" />
-                          <p>Delete</p>
+                          <p>{t("Delete")}</p>
                         </div>
 
                         <div
@@ -247,7 +249,7 @@ export const DisplayInternshipPositions = ({
                           onClick={() => EditPosition(internship)}
                         >
                           <GiPencil className="text-xl text-yellow" />
-                          <p>Edit</p>
+                          <p>{t("Edit")}</p>
                         </div>
                         <span
                           className="absolute p-[0.1rem] cursor-pointer text-lg top-[1rem] bg-white rounded -left-6"
@@ -278,7 +280,7 @@ export const DisplayInternshipPositions = ({
                   onClick={() => EditPosition(positionToShow)}
                 >
                   <GiPencil className={"text-white text-md"} />
-                  <div>Edit</div>
+                  <div>{t("Edit")}</div>
                 </button>
                 <button
                   className={
@@ -287,7 +289,7 @@ export const DisplayInternshipPositions = ({
                   onClick={() => DeletePosition(positionToShow)}
                 >
                   <GiTrashCan className="text-md text-white" />
-                  <div>Delete</div>
+                  <div>{t("Delete")}</div>
                 </button>
               </div>
               <div className="flex gap-3 justify-center py-2 items-center">
@@ -362,7 +364,7 @@ export const DisplayInternshipPositions = ({
                     " font-bold m-3 text-black dark:text-white text-sm md:text-md lg:text-lg  inline-flex text-center  border-yellow border-x-[0.4rem] md:border-x-[0.3rem] px-2"
                   }
                 >
-                  Edit Internship Position
+                  {t("editIP")}
                 </p>
               </div>
               <div className="flex gap-3 justify-center py-2 items-center">
@@ -370,7 +372,7 @@ export const DisplayInternshipPositions = ({
                   {/* Department input section */}
                   <div className="w-[90%]">
                     <input
-                      placeholder={"Company Name"}
+                      placeholder={t("CompanyName")}
                       type="text"
                       value={compName}
                       className="rounded p-3 outline-none w-full border border-dark_4 dark:border-none dark:bg-background_shade_2 text-dark_2 placeholder:text-dark_2"
@@ -379,7 +381,7 @@ export const DisplayInternshipPositions = ({
                   </div>
                   <div className="w-[90%]">
                     <input
-                      placeholder={"Position"}
+                      placeholder={t("Position")}
                       type="text"
                       value={position}
                       className="rounded p-3 outline-none w-full border border-dark_4 dark:border-none dark:bg-background_shade_2 text-dark_2 placeholder:text-dark_2"
@@ -389,7 +391,7 @@ export const DisplayInternshipPositions = ({
                   <div className="relative w-[44%]">
                     <div className=" flex border border-dark_4 dark:border-none dark:bg-background_shade_2 rounded">
                       <input
-                        placeholder={"Country"}
+                        placeholder={t("Country")}
                         type="text"
                         value={country}
                         className="rounded p-3 outline-none w-10/12 text-dark_2 placeholder:text-dark_2"
@@ -429,7 +431,7 @@ export const DisplayInternshipPositions = ({
                   </div>
                   <div className="w-[44%]">
                     <input
-                      placeholder={"City"}
+                      placeholder={t("City")}
                       type="text"
                       value={city}
                       className="rounded p-3 outline-none w-full border border-dark_4 dark:border-none dark:bg-background_shade_2 text-dark_2 placeholder:text-dark_2"
@@ -439,7 +441,7 @@ export const DisplayInternshipPositions = ({
                   {/*  description section */}
                   <div className="w-[90%]">
                     <textarea
-                      placeholder={"Description"}
+                      placeholder={t("Description")}
                       value={desc}
                       className="rounded p-3 outline-none w-full border border-dark_4 dark:border-none h-[7rem] dark:bg-background_shade_2 text-dark_2 placeholder:text-dark_2"
                       onChange={(e) => setDesc(e.target.value)}
@@ -465,7 +467,7 @@ export const DisplayInternshipPositions = ({
                   </div>
                   <div className="w-[44%]">
                     <input
-                      placeholder={"Contact"}
+                      placeholder={t("Contact")}
                       type="text"
                       value={contact}
                       className="rounded p-3 outline-none w-full border border-dark_4 dark:border-none dark:bg-background_shade_2 text-dark_2 placeholder:text-dark_2"
@@ -485,7 +487,7 @@ export const DisplayInternshipPositions = ({
                   </div>
                   <div className="w-[90%]">
                     <span className="pt-2">
-                      Edit Company Logo or Internship Information Flyer:
+                    {t("editCL")}:
                     </span>
                     <CldUploadWidget
                       uploadPreset="p5tgbjfx"
@@ -501,7 +503,7 @@ export const DisplayInternshipPositions = ({
                             className="ml-4 bg-blue py-2 px-3.5 rounded text-white"
                             onClick={handleOnClick}
                           >
-                            Upload Image
+                            {t("UploadImage")}
                           </button>
                         );
                       }}
@@ -515,7 +517,7 @@ export const DisplayInternshipPositions = ({
                       onClick={SendEdit}
                     >
                       <GiPencil className="text-xl text-yellow" />
-                      <div>Edit</div>
+                      <div>{t("Edit")}</div>
                     </button>
                   </div>
                 </div>
@@ -528,13 +530,13 @@ export const DisplayInternshipPositions = ({
         <Modal onClose={() => setEdited(false)}>
           <div className="flex flex-col justify-center items-center">
             <div className="font-bold">
-              <p>Internship Position Edited Successfully!</p>
+              <p>{t("editIPMsg")}</p>
             </div>
             <button
               onClick={() => setEdited(false)}
               className="bg-blue text-white px-3 py-1 mt-2"
             >
-              Close
+              {t("Close")}
             </button>
           </div>
         </Modal>
@@ -543,20 +545,20 @@ export const DisplayInternshipPositions = ({
         <Modal onClose={() => setDeletePosition(false)}>
           <div className="flex flex-col justify-center items-center">
             <div className="font-bold">
-              <p>Are you sure you want to delete this Internship Position?</p>
+              <p>{t("delIP")}</p>
             </div>
             <div className="flex justify-between mt-2 w-10/12">
               <button
                 className="bg-blue text-white px-3 py-1 mt-2 justify-start rounded"
                 onClick={() => setDeletePosition(false)}
               >
-                No
+                {t("No")}
               </button>
               <button
                 className="bg-red text-white px-3 py-1 mt-2 justify-end rounded"
                 onClick={SendDelete}
               >
-                Yes
+                 {t("Yes")}
               </button>
             </div>
           </div>
@@ -566,13 +568,13 @@ export const DisplayInternshipPositions = ({
         <Modal onClose={() => setDeleted(false)}>
           <div className="flex flex-col justify-center items-center">
             <div className="font-bold">
-              <p>Internship Position Deleted Successfully!</p>
+              <p>{t("delIPMsg")}</p>
             </div>
             <button
               onClick={() => setDeleted(false)}
               className="bg-blue text-white px-3 py-1 mt-2"
             >
-              Close
+              {t("Close")}
             </button>
           </div>
         </Modal>

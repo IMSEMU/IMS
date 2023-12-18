@@ -66,12 +66,12 @@ export const LogbookDisplay = ({ logbookEntries }) => {
                     <div className="relative">
                       <div className="m-0.5 p-1 rounded flex text-sm font-medium items-center cursor-pointer gap-0.5 hover:bg-b dark:hover:bg-background_shade">
                         <GiTrashCan className="text-xl text-yellow" />
-                        <p className="">Delete</p>
+                        <p className="">{t("Delete")}</p>
                       </div>
 
                       <div className="m-0.5  p-1 rounded flex text-sm font-medium items-center cursor-pointer gap-0.5  hover:bg-background_shade">
                         <GiPencil className="text-xl text-yellow" />
-                        <p>edit</p>
+                        <p>{t("edit")}</p>
                       </div>
                       <span
                         onClick={optionToogle}

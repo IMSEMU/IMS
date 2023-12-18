@@ -342,7 +342,7 @@ export const AppForm = () => {
                     />
                   </div>
                   <div className="mt-2 md:mt-4 relative flex space-x-2">
-                    <span className="pt-2">Photo: </span>
+                    <span className="pt-2">{t("photo")}: </span>
                     <CldUploadWidget
                       uploadPreset="p5tgbjfx"
                       onSuccess={handleImageUploadSuccess}
@@ -357,7 +357,7 @@ export const AppForm = () => {
                             className="bg-blue py-2 px-3.5 rounded text-white"
                             onClick={handleOnClick}
                           >
-                            Upload an Image
+                           {t("upimg")}
                           </button>
                         );
                       }}
@@ -680,7 +680,7 @@ export const AppForm = () => {
         <Modal onClose={() => setHasValidationError(false)}>
           <div className="flex flex-col justify-center items-center">
             <div className="font-bold">
-              <p>Please fill in all required fields.</p>
+              <p>{t("fillAllMsg")}.</p>
             </div>
             <button
               onClick={() => setHasValidationError(false)}

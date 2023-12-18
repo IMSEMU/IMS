@@ -145,13 +145,13 @@ export const LogView = () => {
                 className="bg-red text-white px-3 py-1 mt-2 justify-start rounded"
                 onClick={() => setReject(true)}
               >
-                Reject
+                {t("Reject")}
               </button>
               <button
                 className="bg-blue text-white px-3 py-1 mt-2 justify-end rounded"
                 onClick={() => setConfirm(true)}
               >
-                Approve
+                {t("Approve")}
               </button>
             </div>
           </div>
@@ -161,20 +161,20 @@ export const LogView = () => {
         <Modal onClose={() => setConfirm(false)}>
           <div className="flex flex-col justify-center items-center">
             <div className="font-bold">
-              <p>Are you sure you want to approve this Logbook?</p>
+              <p>{t("ApproveLogbook")}</p>
             </div>
             <div className="flex justify-between mt-2 w-10/12">
               <button
                 className="bg-red text-white px-3 py-1 mt-2 justify-start rounded"
                 onClick={() => setConfirm(false)}
               >
-                No
+                {t("No")}
               </button>
               <button
                 className="bg-blue text-white px-3 py-1 mt-2 justify-end rounded"
                 onClick={approveLogbook}
               >
-                Yes
+                {t("Yes")}
               </button>
             </div>
           </div>
@@ -184,13 +184,13 @@ export const LogView = () => {
         <Modal onClose={() => push()}>
           <div className="flex flex-col justify-center items-center">
             <div className="font-bold">
-              <p>Logbook Approved</p>
+              <p>{t("LogbookApproved")}</p>
             </div>
             <button
               className="bg-blue text-white px-3 py-1 mt-2 justify-start rounded"
               onClick={() => push()}
             >
-              Close
+              {t("Close")}
             </button>
           </div>
         </Modal>
@@ -199,20 +199,20 @@ export const LogView = () => {
         <Modal onClose={() => setReject(false)}>
           <div className="flex flex-col justify-center items-center">
             <div className="font-bold">
-              <p>Are you sure you want to reject this Logbook?</p>
+              <p>{t("rejectLogbook")}</p>
             </div>
             <div className="flex justify-between mt-2 w-10/12">
               <button
                 className="bg-blue text-white px-3 py-1 mt-2 justify-start rounded"
                 onClick={() => setReject(false)}
               >
-                No
+                {t("No")}
               </button>
               <button
                 className="bg-red text-white px-3 py-1 mt-2 justify-end rounded"
                 onClick={rejectLogbook}
               >
-                Yes
+                {t("Yes")}
               </button>
             </div>
           </div>
@@ -222,13 +222,13 @@ export const LogView = () => {
         <Modal onClose={() => push()}>
           <div className="flex flex-col justify-center items-center">
             <div className="font-bold">
-              <p>Logbook Rejected</p>
+              <p>{t("LogbookRejected")}</p>
             </div>
             <button
               className="bg-blue text-white px-3 py-1 mt-2 justify-start rounded"
               onClick={() => push()}
             >
-              Close
+              {t("Close")}
             </button>
           </div>
         </Modal>

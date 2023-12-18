@@ -507,7 +507,7 @@ export const Dashboard = () => {
               " font-semibold m-3 text-black dark:text-white  text-sm md:text-md xl:text-lg  inline-flex text-center  border-yellow border-x-[0.3rem] px-2"
             }
           >
-            Upcoming Events
+            {t("events")}
           </p>
 
           {/*section Container*/}
@@ -579,7 +579,7 @@ export const Dashboard = () => {
                       }
                       onClick={() => setSelectedAnnouncement(null)}
                     >
-                      <div>Close</div>
+                      <div>{t("Close")}</div>
                     </button>
                   </div>
                 </div>

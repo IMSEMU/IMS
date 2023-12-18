@@ -67,7 +67,7 @@ export const Table = () => {
             >
               <input
                 autoFocus
-                placeholder={"Search by Name, City, Country or Work Field"}
+                placeholder={t("Search")}
                 className={
                   "m-1 py-0.5 px-2 outline-0 bg-white  text-blue placeholder:text-blue w-[95%]"
                 }

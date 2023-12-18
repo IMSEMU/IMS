@@ -120,7 +120,7 @@ export const Announcement = () => {
                   }
                 >
                   <TfiAnnouncement className={" mb-2 text-2xl "} />
-                  <strong className="">Click to view announcement</strong>
+                  <strong className="">{t("viewAnn")}</strong>
                 </div>
               ) : (
                 selectedCard && (

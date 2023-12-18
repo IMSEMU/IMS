@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { HiMagnifyingGlass } from "react-icons/hi2";
 import { useState } from "react";
+
 import { Empty } from "antd";
 import Modal from "./modal";
 import { BiX } from "react-icons/bi";
