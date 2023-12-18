@@ -42,9 +42,9 @@ export const Report = () => {
   return (
     <main className="bg-white dark:bg-dark_1 h-screen">
       <div className={"flex flex-nowrap"}>
-        <PcSideNav />
+        <PcSideNav user={user} />
         <div className={"h-full w-full"}>
-          <TopNav />
+          <TopNav user={user} />
           <ProtectedRoute>
             <ReportSubmit />
           </ProtectedRoute>

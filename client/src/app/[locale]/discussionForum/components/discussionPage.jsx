@@ -123,9 +123,9 @@ export const DiscussionPage = () => {
     <main className={"p-0 m-0 bg-white dark:bg-dark_2"}>
       {/*Sidenav and body*/}
       <div className={"flex flex-nowrap"}>
-        <PcSideNav />
+        <PcSideNav user={user} />
         <div className={"h-full w-full"}>
-          <TopNav />
+          <TopNav user={user} />
           <ProtectedRoute>
             <AddPost
               photo={photo}

@@ -13,26 +13,15 @@ import { LanguageToggle } from "./languageToggle";
 import { HiAnnotation } from "react-icons/hi";
 import { LuClock2 } from "react-icons/lu";
 import { useTranslations } from "next-intl";
-import jwtDecode from "jwt-decode";
 import { FaBookmark } from "react-icons/fa6";
 
-export const TopNav = () => {
+export const TopNav = ({ user }) => {
   const t = useTranslations("topnav");
   const router = useRouter();
   const pathname = usePathname();
-  console.log(pathname);
   const [photo, setPhoto] = useState("");
   const [notifications, setNotifications] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-
-  const token = localStorage.getItem("accessToken");
-  let decodedToken, firstname, lastname, email;
-  if (token) {
-    decodedToken = jwtDecode(token);
-    firstname = decodedToken.firstname;
-    lastname = decodedToken.lastname;
-    email = decodedToken.email;
-  }
 
   useEffect(() => {
     const getPhoto = async () => {
@@ -244,14 +233,14 @@ export const TopNav = () => {
                       "truncate text-sm sm:text-md md:text-lg font-semibold"
                     }
                   >
-                    {firstname} {lastname}
+                    {user.firstname} {user.lastname}
                   </p>
                   <p
                     className={
                       "truncate text-sm sm:text-md text-blue dark:text-yellow cursor-pointer"
                     }
                   >
-                    {email}
+                    {user.email}
                   </p>
                 </div>
               </div>

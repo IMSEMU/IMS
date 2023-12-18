@@ -119,9 +119,9 @@ export const LogbookPage = () => {
     <main className={"p-0 m-0 bg-white dark:bg-dark_2"}>
       {/*Sidenav and body*/}
       <div className={"flex flex-nowrap"}>
-        <PcSideNav />
+        <PcSideNav user={user} />
         <div className={"h-full w-full"}>
-          <TopNav />
+          <TopNav user={user} />
           <ProtectedRoute>
             <section className=" bg-white dark:bg-dark_1 flex items-center justify-center w-full pt-5">
               <div className="bg-white dark:bg-dark_2 p-3.5 flex rounded shadow-xl dark:border-none border border-background_shade_2 w-[90%] md:w-[70%] lg:w-[50rem] h-[10%] mb-20 md:mb-4 lg:mb-2 md:h-[32rem]">

@@ -15,19 +15,11 @@ import { useTranslations } from "next-intl";
 import jwtDecode from "jwt-decode";
 import { useState, useEffect } from "react";
 
-export const PcSideNav = () => {
+export const PcSideNav = ({ user }) => {
   const t = useTranslations("sidenav");
   const pathname = usePathname();
   let navlinks;
 
-  const token = localStorage.getItem("accessToken");
-  let decodedToken, firstname, lastname, userrole;
-  if (token) {
-    decodedToken = jwtDecode(token);
-    firstname = decodedToken.firstname;
-    lastname = decodedToken.lastname;
-    userrole = decodedToken.userrole;
-  }
   if (pathname === "/internDashboard" || pathname === "/tr/internDashboard") {
     navlinks = [
       { name: t("home"), icons: <HomeIcon />, link: "/" },
@@ -236,21 +228,21 @@ export const PcSideNav = () => {
                     "hidden lg:block font-semibold text-md l truncate w-full"
                   }
                 >
-                  {firstname} {lastname}
+                  {user.firstname} {user.lastname}
                 </span>
-                {userrole === 1 ? (
+                {user.userrole === 1 ? (
                   <span className={"hidden lg:block text-sm w-full"}>
                     {t("student")}
                   </span>
-                ) : userrole === 2 ? (
+                ) : user.userrole === 2 ? (
                   <span className={"hidden lg:block text-sm w-full"}>
                     Department Supervisor
                   </span>
-                ) : userrole === 3 ? (
+                ) : user.userrole === 3 ? (
                   <span className={"hidden lg:block text-sm w-full"}>
                     Company Supervisor
                   </span>
-                ) : userrole === 4 ? (
+                ) : user.userrole === 4 ? (
                   <span className={"hidden lg:block text-sm w-full"}>
                     Administrator
                   </span>
