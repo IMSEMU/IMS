@@ -31,7 +31,7 @@ export const PcSideNav = () => {
   if (pathname === "/internDashboard" || pathname === "/tr/internDashboard") {
     navlinks = [
       { name: t("home"), icons: <HomeIcon />, link: "/" },
-      { name: t("chat"), icons: <ChatIcon />, link: "" },
+      { name: t("chat"), icons: <ChatIcon />, link: "/discussionForum" },
     ];
   } else if (
     pathname === "/logbook" ||
@@ -43,7 +43,9 @@ export const PcSideNav = () => {
     pathname === "/insuranceForm" ||
     pathname === "/tr/insuranceForm" ||
     pathname === "/report" ||
-    pathname === "/tr/report"
+    pathname === "/tr/report" ||
+    pathname === "/bookmarks" ||
+    pathname === "/tr/bookmarks"
   ) {
     navlinks = [
       { name: t("home"), icons: <HomeIcon />, link: "/" },
@@ -52,9 +54,22 @@ export const PcSideNav = () => {
         icons: <DashboardIcon />,
         link: "/internDashboard",
       },
-      { name: t("chat"), icons: <ChatIcon />, link: "" },
+      { name: t("chat"), icons: <ChatIcon />, link: "/discussionForum" },
     ];
-  } //other dashboards
+  } else if (
+    pathname === "/discussionForum" ||
+    pathname === "/tr/discussionForum"
+  ) {
+    navlinks = [
+      { name: t("home"), icons: <HomeIcon />, link: "/" },
+      {
+        name: t("dashboard"),
+        icons: <DashboardIcon />,
+        link: "/internDashboard",
+      },
+    ];
+  }
+  //other dashboards
   else if (
     pathname === "/departmentDashboard" ||
     pathname === "/tr/departmentDashboard" ||

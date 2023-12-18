@@ -7,17 +7,20 @@ import { RiSunFoggyFill } from "react-icons/ri";
 import { DarkModeButton } from "./darkModeButton";
 import { NotificationIcon } from "../svg_Icons";
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import AuthConnect from "@/auth";
 import { LanguageToggle } from "./languageToggle";
 import { HiAnnotation } from "react-icons/hi";
 import { LuClock2 } from "react-icons/lu";
 import { useTranslations } from "next-intl";
 import jwtDecode from "jwt-decode";
+import { FaBookmark } from "react-icons/fa6";
 
 export const TopNav = () => {
   const t = useTranslations("topnav");
   const router = useRouter();
+  const pathname = usePathname();
+  console.log(pathname);
   const [photo, setPhoto] = useState("");
   const [notifications, setNotifications] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -131,9 +134,16 @@ export const TopNav = () => {
 
         {/*left navgations*/}
         <div className="flex flex-wrap justify-center items-center gap-5">
+          {(pathname === "/discussionForum" ||
+            pathname === "/tr/discussionForum") && (
+            <Link href={"/bookmarks"}>
+              <FaBookmark className="text-xl text-yellow cursor-pointer" />
+            </Link>
+          )}
+
           <LanguageToggle />
           {/* notification */}
-          <div onClick={notificationDropToggle} className="">
+          <div onClick={notificationDropToggle} className="cursor-pointer">
             <NotificationIcon />
           </div>
 

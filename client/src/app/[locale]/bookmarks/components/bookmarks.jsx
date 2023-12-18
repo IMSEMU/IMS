@@ -1,6 +1,5 @@
 "use client";
-import { AddPost } from "./addPost";
-import { Posts } from "./post";
+import { Posts } from "../../discussionForum/components/post";
 import { ProtectedRoute } from "../../globalComponents/stdProtectedRoute";
 import { PcSideNav } from "../../globalComponents/pcSideNav";
 import { TopNav } from "../../globalComponents/topNav";
@@ -11,7 +10,7 @@ import jwtDecode from "jwt-decode";
 import AuthConnect from "@/auth";
 import Loading from "../../globalComponents/loading";
 
-export const DiscussionPage = () => {
+export const BookmarksPage = () => {
   const router = useRouter();
   const [user, setUser] = useState(null);
   const [photo, setPhoto] = useState(null);
@@ -58,7 +57,7 @@ export const DiscussionPage = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await AuthConnect.get("/getfeed");
+        const response = await AuthConnect.get("/getbookmarks");
         setPosts(response.data);
         console.log(response.data);
       } catch (error) {
@@ -67,19 +66,13 @@ export const DiscussionPage = () => {
     };
 
     fetchPosts();
-
-    const intervalId = setInterval(() => {
-      fetchPosts();
-    }, 5 * 60 * 1000);
-
-    return () => clearInterval(intervalId);
   }, []);
 
   useEffect(() => {
     if (hasNewPost) {
       const fetchPosts = async () => {
         try {
-          const response = await AuthConnect.get("/getfeed");
+          const response = await AuthConnect.get("/getbookmarks");
           setPosts(response.data);
           console.log(response.data);
         } catch (error) {
@@ -107,10 +100,6 @@ export const DiscussionPage = () => {
     getPhoto();
   }, []);
 
-  const updatePosts = (newPost) => {
-    setPosts((prevPosts) => [newPost, ...prevPosts]);
-  };
-
   if (posts) {
     checkLikesandBookmarks();
   }
@@ -127,12 +116,6 @@ export const DiscussionPage = () => {
         <div className={"h-full w-full"}>
           <TopNav />
           <ProtectedRoute>
-            <AddPost
-              photo={photo}
-              updatePosts={updatePosts}
-              setHasNewPost={setHasNewPost}
-              user={user}
-            />
             <Posts
               posts={posts}
               photo={photo}
