@@ -7,11 +7,10 @@ import { useTranslations } from "next-intl";
 import Modal from "../../globalComponents/modal";
 import ConfirmationSection from "./confimationSection";
 import { CldUploadWidget } from "next-cloudinary";
-import jwtDecode from "jwt-decode";
 import countryList from "react-select-country-list";
 import Loading from "../../globalComponents/loading";
 
-export const AppForm = () => {
+export const AppForm = ({ user }) => {
   const t = useTranslations("iaf");
   const [stdphoneno, setStdPhone] = useState("");
   const [stdaddress, setStdAddress] = useState("");
@@ -70,15 +69,6 @@ export const AppForm = () => {
 
   const updatedOptions = originalOptions.concat(additionalOption);
 
-  const token = localStorage.getItem("accessToken");
-  let decodedToken, firstname, lastname, email;
-  if (token) {
-    decodedToken = jwtDecode(token);
-    firstname = decodedToken.firstname;
-    lastname = decodedToken.lastname;
-    email = decodedToken.email;
-  }
-
   useEffect(() => {
     const getStudent = async () => {
       try {
@@ -136,9 +126,9 @@ export const AppForm = () => {
     }
 
     setFormData({
-      fname: firstname,
-      lname: lastname,
-      email: email,
+      fname: user.firstname,
+      lname: user.lastname,
+      email: user.email,
       stdid: student.stdid,
       stdphoneno: stdphoneno,
       stdaddress: stdaddress,
@@ -297,7 +287,7 @@ export const AppForm = () => {
                   <div className="mt-2 md:mt-4 relative flex space-x-2">
                     <div className="w-1/2">
                       <span>
-                        {t("name")}: {firstname} {lastname}{" "}
+                        {t("name")}: {user.firstname} {user.lastname}{" "}
                       </span>
                     </div>
 
@@ -311,7 +301,7 @@ export const AppForm = () => {
                   <div className="mt-2 md:mt-4 relative flex space-x-2">
                     <div>
                       <span>
-                        {t("email")}: {email}{" "}
+                        {t("email")}: {user.email}{" "}
                       </span>
                     </div>
                   </div>

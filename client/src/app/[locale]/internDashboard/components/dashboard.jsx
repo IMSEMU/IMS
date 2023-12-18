@@ -1,5 +1,4 @@
 import { HiMiniCalendarDays } from "react-icons/hi2";
-import Calendar from "../../internDashboard/components/calendar";
 import { BiPlus } from "react-icons/bi";
 import Image from "next/image";
 import Link from "next/link";
@@ -19,7 +18,7 @@ import { Empty } from "antd";
 import Modal from "../../globalComponents/modal";
 import CalendarComponent from "../../internDashboard/components/calendar";
 
-export const Dashboard = () => {
+export const Dashboard = ({ user }) => {
   const t = useTranslations("dash");
   const [student, setStudent] = useState([]);
   const [country, setCountry] = useState("");
@@ -28,13 +27,6 @@ export const Dashboard = () => {
   const [selectedAnnouncement, setSelectedAnnouncement] = useState(null);
   const [dueDates, setDueDates] = useState([]);
   const [upcomingEvents, setUpcomingEvents] = useState([]);
-
-  const token = localStorage.getItem("accessToken");
-  let decodedToken, firstname;
-  if (token) {
-    decodedToken = jwtDecode(token);
-    firstname = decodedToken.firstname;
-  }
 
   useEffect(() => {
     const getDueDates = async () => {
@@ -116,7 +108,7 @@ export const Dashboard = () => {
         }
       >
         <p className="capitalize">
-          {t("welcome")} {firstname}{" "}
+          {t("welcome")} {user.firstname}{" "}
         </p>
       </div>
 

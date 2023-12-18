@@ -46,7 +46,7 @@ export const InsuranceForm = () => {
         <div className={"h-full w-full"}>
           <TopNav user={user} />
           <ProtectedRoute>
-            <InsForm />
+            <InsForm user={user} />
           </ProtectedRoute>
         </div>
         <MobileNav />

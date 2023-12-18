@@ -8,7 +8,7 @@ import Loading from "../../globalComponents/loading";
 import Modal from "../../globalComponents/modal";
 import Image from "next/image";
 
-export const Dashboard = () => {
+export const Dashboard = ({ user }) => {
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [email, setEmail] = useState("");
@@ -143,7 +143,7 @@ export const Dashboard = () => {
             "text-md lg:text-xl xl:text-2xl py-1 md:py-2 w-full max-w-[1300px] xl:mx-auto mx-2 font-bold"
           }
         >
-          <p>Welcome </p>
+          <p>Welcome {user.firstname}</p>
         </div>
 
         <div className="grid grid-cols-2 grid-rows-2 gap-4">

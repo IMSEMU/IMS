@@ -1,8 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import jwtDecode from "jwt-decode";
 import { Empty } from "antd";
-import { BsMegaphoneFill, BsBuildings } from "react-icons/bs";
+import { BsMegaphoneFill } from "react-icons/bs";
 import { FaWpforms } from "react-icons/fa6";
 import { useEffect, useState } from "react";
 import { StudentInformation } from "../../globalComponents/studentInfo";
@@ -10,20 +9,13 @@ import AuthConnect from "@/auth";
 import Modal from "../../globalComponents/modal";
 import CalendarComponent from "../../internDashboard/components/calendar";
 
-export const Dashboard = () => {
+export const Dashboard = ({ user }) => {
   const [announcements, setAnnouncements] = useState([]);
   const [selectedAnnouncement, setSelectedAnnouncement] = useState(null);
   const [todos, setTodos] = useState([]);
   const [students, setStudents] = useState([]);
   const [dueDates, setDueDates] = useState([]);
   const [upcomingEvents, setUpcomingEvents] = useState([]);
-
-  const token = localStorage.getItem("accessToken");
-  let decodedToken, firstname;
-  if (token) {
-    decodedToken = jwtDecode(token);
-    firstname = decodedToken.firstname;
-  }
 
   useEffect(() => {
     const getStudents = async () => {
@@ -104,7 +96,7 @@ export const Dashboard = () => {
             "text-md lg:text-xl xl:text-2xl py-1 md:py-2 w-full max-w-[1300px] xl:mx-auto mx-2 font-bold"
           }
         >
-          <p>Welcome {firstname}</p>
+          <p>Welcome {user.firstname}</p>
         </div>
 
         <div className="grid grid-cols-3 gap-4">

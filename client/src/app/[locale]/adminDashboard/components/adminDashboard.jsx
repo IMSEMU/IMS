@@ -45,7 +45,7 @@ export const AdminDashboardPage = () => {
         <div className={"h-full w-full"}>
           <TopNav user={user} />
           <ProtectedRoute>
-            <Dashboard />
+            <Dashboard user={user} />
           </ProtectedRoute>
         </div>
 

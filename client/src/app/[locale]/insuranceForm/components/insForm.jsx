@@ -9,7 +9,7 @@ import Modal from "../../globalComponents/modal";
 import ConfirmationSection from "./confimationSection";
 import { useRouter } from "next/navigation";
 
-export const InsForm = () => {
+export const InsForm = ({ user }) => {
   const t = useTranslations("sif");
   const router = useRouter();
   const [student, setStudent] = useState([]);
@@ -60,14 +60,6 @@ export const InsForm = () => {
     sgk: "",
   });
 
-  const token = localStorage.getItem("accessToken");
-  let decodedToken, firstname, lastname, email;
-  if (token) {
-    decodedToken = jwtDecode(token);
-    firstname = decodedToken.firstname;
-    lastname = decodedToken.lastname;
-    email = decodedToken.email;
-  }
   useEffect(() => {
     const getStudent = async () => {
       try {
@@ -122,9 +114,9 @@ export const InsForm = () => {
 
     setFormData({
       stdid: student.stdid,
-      stdfname: firstname,
-      stdlname: lastname,
-      stdemail: email,
+      stdfname: user.firstname,
+      stdlname: user.lastname,
+      stdemail: user.email,
       stdphoneno: student.phoneno,
       stdaddress: student.address,
       idpassno: idpassno,
@@ -213,7 +205,7 @@ export const InsForm = () => {
                 <div className="   mt-2 relative  md:mt-1  lg:flex  lg:space-x-5   ">
                   <div className=" max-lg:md:mx-12 lg:w-1/2">
                     <span>
-                      {t("name")}: {firstname} {lastname}{" "}
+                      {t("name")}: {user.firstname} {user.lastname}{" "}
                     </span>
                   </div>
                   <div className=" max-lg:md:mx-12 lg:w-1/2">
@@ -225,7 +217,7 @@ export const InsForm = () => {
                 <div className="mt-2 relative  md:mt-1  lg:flex  lg:space-x-5">
                   <div className="max-lg:md:mx-12 lg:w-1/2">
                     <span>
-                      {t("email")}: {email}{" "}
+                      {t("email")}: {user.email}{" "}
                     </span>
                   </div>
 

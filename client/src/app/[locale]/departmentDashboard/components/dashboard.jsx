@@ -8,7 +8,6 @@ import { Empty } from "antd";
 import AuthConnect from "@/auth";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
-import jwtDecode from "jwt-decode";
 import { DisplayAnnouncement } from "./displayAnnouncement";
 import Modal from "../../globalComponents/modal";
 import { StudentInformation } from "../../globalComponents/studentInfo";
@@ -19,7 +18,7 @@ import { DisplayInternshipPositions } from "./displayIntPos";
 import CalendarComponent from "../../internDashboard/components/calendar";
 import { GiPencil } from "react-icons/gi";
 
-export const Dashboard = () => {
+export const Dashboard = ({ user }) => {
   const t = useTranslations("logbook");
   const [submissions, setSubmissions] = useState([]);
   const [showAddAnnouncements, setShowAddAnnouncements] = useState(false);
@@ -65,13 +64,6 @@ export const Dashboard = () => {
   const additionalOption = { value: "KKTC", label: "North Cyprus (KKTC)" };
 
   const updatedOptions = originalOptions.concat(additionalOption);
-
-  const token = localStorage.getItem("accessToken");
-  let decodedToken, firstname;
-  if (token) {
-    decodedToken = jwtDecode(token);
-    firstname = decodedToken.firstname;
-  }
 
   useEffect(() => {
     const getStudents = async () => {
@@ -362,7 +354,7 @@ export const Dashboard = () => {
             "text-md lg:text-xl xl:text-2xl py-1 md:py-2 w-full max-w-[1300px] xl:mx-auto mx-2 font-bold"
           }
         >
-          <p>Welcome {firstname}</p>
+          <p>Welcome {user.firstname}</p>
         </div>
 
         <div className="grid grid-cols-3 gap-4">

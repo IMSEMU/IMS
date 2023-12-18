@@ -45,7 +45,7 @@ export const ApplicationForm = () => {
         <div className={"h-full w-full"}>
           <TopNav user={user} />
           <ProtectedRoute>
-            <AppForm />
+            <AppForm user={user} />
           </ProtectedRoute>
         </div>
 
