@@ -7,7 +7,7 @@ import { useTranslations } from "next-intl";
 import Loading from "../../globalComponents/loading";
 import Modal from "../../globalComponents/modal";
 import Image from "next/image";
-
+// usestate components
 export const Dashboard = ({ user }) => {
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
@@ -23,7 +23,7 @@ export const Dashboard = ({ user }) => {
   const [isDeptDropdownOpen, setIsDeptDropdownOpen] = useState(false);
   const [assigned, setAssigned] = useState(false);
   const [loading, setLoading] = useState(false);
-
+// get students id
   useEffect(() => {
     const getStudents = async () => {
       try {
@@ -37,7 +37,7 @@ export const Dashboard = ({ user }) => {
 
     getStudents();
   }, []);
-
+// get deptSup
   useEffect(() => {
     const getDeptSups = async () => {
       try {
@@ -51,7 +51,8 @@ export const Dashboard = ({ user }) => {
 
     getDeptSups();
   }, []);
-
+  
+// add new admin
   const AddNewAdmin = async () => {
     setLoading(true);
     try {
@@ -73,6 +74,7 @@ export const Dashboard = ({ user }) => {
     }
   };
 
+  // add new departmemt supervisor
   const AddNewDeptSup = async () => {
     setLoading(true);
     try {
@@ -95,6 +97,8 @@ export const Dashboard = ({ user }) => {
     }
   };
 
+  // assign student
+
   const AssignStudent = async () => {
     setLoading(true);
     try {
@@ -116,16 +120,17 @@ export const Dashboard = ({ user }) => {
     }
   };
 
+  // toogle dept dropdown
   const toggleDeptDropdown = () => {
     setIsDeptDropdownOpen(!isDeptDropdownOpen);
   };
-
+// select dept sup function
   const handleSelectDeptSup = (deptsup, deptsupid) => {
     setDeptSupname(deptsup);
     setDeptSup(deptsupid);
     setIsDeptDropdownOpen(false);
   };
-
+// handle department change
   const handleDeptChange = (event) => {
     setDeptSupname(event.target.value);
     setIsDeptDropdownOpen(true);
@@ -135,6 +140,7 @@ export const Dashboard = ({ user }) => {
     return <Loading />;
   }
 
+  //
   return (
     <main className="w-full h-fit">
       <div className="m-4 mb-20 md:mb-4">
@@ -156,6 +162,7 @@ export const Dashboard = ({ user }) => {
               >
                 Add New Department Supervisor
               </p>
+{/*               forms */}
               <div className="flex gap-3 justify-center py-2 items-center m-3 rounded drop-shadow-md">
                 <div className="flex flex-wrap gap-3 justify-center items-center">
                   {/* Department input section */}
@@ -350,6 +357,7 @@ export const Dashboard = ({ user }) => {
           </div>
         </Modal>
       )}
+{/*       conditional rendering */}
       {assignStudent && (
         <Modal onClose={() => setAssignStudent(null)}>
           <div className="flex gap-3 justify-center py-2 items-center">
