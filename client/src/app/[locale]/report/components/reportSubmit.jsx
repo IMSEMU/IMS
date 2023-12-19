@@ -3,8 +3,10 @@ import AuthConnect from "@/auth";
 import { useState } from "react";
 import Modal from "../../globalComponents/modal";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 export const ReportSubmit = () => {
+  const t = useTranslations("report");
   const router = useRouter();
   const [confirmed, setConfirmed] = useState(false);
   const [msg, setMsg] = useState("");
@@ -36,7 +38,7 @@ export const ReportSubmit = () => {
     <main className=" bg-white justify-center dark:bg-dark_1  ">
       <div className="justify-center flex my-5">
         <p className=" text-center border-x-[0.4rem] px-2 font-bold border-yellow justify-center text-2xl dark:text-white ">
-          Report Submission
+        {t("ReportSubmission")}
         </p>
       </div>
 
@@ -48,12 +50,12 @@ export const ReportSubmit = () => {
                 " font-bold my-4 text-black dark:text-white text-sm md:text-md lg:text-lg  inline-flex text-center px-2"
               }
             >
-              Please upload your report here(.doc, .docx)
+              {t("uploadReport")}
             </h2>
           </div>
           <div className="w-full">
             <div className="mt-2 md:mt-4 relative flex space-x-2">
-              <span className="pt-2">Report: </span>
+              <span className="pt-2">{t("Report")}: </span>
               <CldUploadWidget
                 uploadPreset="p5tgbjfx"
                 onSuccess={handleDocUploadSuccess}
@@ -69,7 +71,7 @@ export const ReportSubmit = () => {
                       className="bg-blue py-2 px-3.5 rounded text-white"
                       onClick={handleOnClick}
                     >
-                      Upload Report
+                      {t("UploadReportbtn")}
                     </button>
                   );
                 }}
@@ -82,13 +84,13 @@ export const ReportSubmit = () => {
         <Modal onClose={() => push()}>
           <div className="flex flex-col justify-center items-center">
             <div className="font-bold">
-              <p>Report Submitted</p>
+              <p>{t("ReportSubmitted")}</p>
             </div>
             <button
               className="bg-blue text-white px-3 py-1 mt-2 justify-start rounded"
               onClick={() => push()}
             >
-              Close
+              {t("Close")}
             </button>
           </div>
         </Modal>

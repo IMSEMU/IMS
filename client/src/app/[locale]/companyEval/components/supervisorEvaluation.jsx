@@ -3,8 +3,10 @@ import AuthConnect from "@/auth";
 import Modal from "../../globalComponents/modal";
 import { useRouter, useSearchParams } from "next/navigation";
 import Loading from "../../globalComponents/loading";
+import { useTranslations } from "next-intl";
 
 export const SupervisorEvaluation = () => {
+  const t = useTranslations("evalview");
   const router = useRouter();
   const searchParams = useSearchParams();
   const [interest, setInterest] = useState(null);
@@ -59,7 +61,7 @@ export const SupervisorEvaluation = () => {
     <main>
       <div className="my-1 flex justify-center items-center font-bold pt-5">
         <div className="border-x-[0.4rem] text-2xl border-yellow dark:text-white">
-          <p className="px-2">Trainee Evaluation Form by Supervisor</p>
+          <p className="px-2">{t("title")}</p>
         </div>
       </div>
       <section className="p-2 bg-white dark:bg-dark_1 flex items-center justify-center px-4 sm:px-12 md:px-20">
@@ -70,25 +72,25 @@ export const SupervisorEvaluation = () => {
                 " font-bold my-4 text-black dark:text-white text-sm md:text-md lg:text-lg  inline-flex text-center  border-yellow border-x-[0.3rem] md:border-x-[0.3rem] px-2"
               }
             >
-              Evaluation of the intern
+              {t("evalOfINtern")}
             </p>
 
             <form>
               <div class=" max-[300px]:w-screen px-1  grid grid-cols-6 lg:grid-cols-10   font-medium  lg:mx-4 py-1 text-xs lg:text-lg rounded dark:border-yellow">
                 <div class=" col-span-2  lg:col-span-6 pl-1 dark:text-white">
-                  Evaluation criteria
+                {t("EvaluationCriteria")}
                 </div>
-                <div class="  flex justify-center dark:text-white">Poor</div>
-                <div class=" flex justify-center dark:text-white">Fair </div>
-                <div class="dark:text-white flex justify-center">Good</div>
+                <div class="  flex justify-center dark:text-white">{t("Poor")}</div>
+                <div class=" flex justify-center dark:text-white">{t("Fair")} </div>
+                <div class="dark:text-white flex justify-center">{t("Good")}</div>
                 <div class=" flex justify-center dark:text-white ">
-                  Excellent
+                {t("Excellent")}
                 </div>
               </div>
 
               <div class=" grid grid-cols-6 lg:grid-cols-10   font-medium  lg:mx-4 py-1 text-xs lg:text-lg rounded dark:border-yellow ">
                 <div class="col-span-2  lg:col-span-6 pl-1 dark:text-white">
-                  Interest
+                {t("Interest")}
                 </div>
                 <div class="flex justify-center">
                   <input
@@ -126,7 +128,7 @@ export const SupervisorEvaluation = () => {
 
               <div class=" grid grid-cols-6 lg:grid-cols-10   font-medium  lg:mx-4 py-1 text-xs lg:text-lg rounded dark:border-yellow">
                 <div class=" col-span-2  lg:col-span-6 pl-1 dark:text-white">
-                  Attendance
+                {t("Attendance")}
                 </div>
                 <div class="flex justify-center">
                   <input
@@ -163,7 +165,7 @@ export const SupervisorEvaluation = () => {
               </div>
               <div class=" grid grid-cols-6 lg:grid-cols-10   font-medium  lg:mx-4 py-1 text-xs lg:text-lg rounded dark:border-yellow">
                 <div class="col-span-2  lg:col-span-6 pl-1 dark:text-white">
-                  Technical Ability and Knowledge
+                {t("TechAK")}
                 </div>
                 <div class="flex justify-center">
                   <input
@@ -200,7 +202,7 @@ export const SupervisorEvaluation = () => {
               </div>
               <div class=" grid grid-cols-6 lg:grid-cols-10   font-medium  lg:mx-4 py-1 text-xs lg:text-lg rounded dark:border-yellow">
                 <div class="col-span-2  lg:col-span-6 pl-1 dark:text-white">
-                  General Behavior
+                {t("GeneralBehavior")}
                 </div>
                 <div class="flex justify-center">
                   <input
@@ -237,7 +239,7 @@ export const SupervisorEvaluation = () => {
               </div>
               <div class=" grid grid-cols-6 lg:grid-cols-10  font-medium  lg:mx-4 py-1 text-xs lg:text-lg rounded ">
                 <div class="col-span-2  lg:col-span-6 pl-1 dark:text-white">
-                  Overall Evaluation Result
+                {t("OverEvalResult")}
                 </div>
                 <div class="flex justify-center">
                   <input
@@ -278,7 +280,7 @@ export const SupervisorEvaluation = () => {
                     type={"text"}
                     name=""
                     id=""
-                    placeholder="Summary of the work done during the internship"
+                    placeholder={t("Summaryofwork")}
                     className=" w-full font-medium text-dark_2 dark:text-yellow placeholder:text-dark_2 dark:placeholder:text-white bg-white dark:bg-dark_2 px-2  border-b-dark_2 dark:border-b-yellow rounded mt-1 border-2  h-[8rem]"
                     onChange={(e) => setSummary(e.target.value)}
                   />
@@ -289,7 +291,7 @@ export const SupervisorEvaluation = () => {
                     type={"text"}
                     name=""
                     id=""
-                    placeholder="General comments"
+                    placeholder={t("GeneralComments")}
                     className=" w-full text-dark_2 dark:text-yellow placeholder:text-dark_2 dark:placeholder:text-white bg-white dark:bg-dark_2 px-2  border-b-dark_2 dark:border-b-yellow rounded mt-1 border-2  h-[8rem]"
                     onChange={(e) => setGeneralComments(e.target.value)}
                   />
@@ -301,7 +303,7 @@ export const SupervisorEvaluation = () => {
                     className="bg-blue py-2 px-3.5 rounded "
                     onClick={submitEval}
                   >
-                    Submit
+                    {t("Submit")}
                   </button>
                 </div>
               </div>
@@ -313,13 +315,13 @@ export const SupervisorEvaluation = () => {
         <Modal onClose={() => push()}>
           <div className="flex flex-col justify-center items-center">
             <div className="font-bold">
-              <p>Company Supervisor Evaluation Submitted</p>
+              <p>{t("EvaluationSubmitted")}</p>
             </div>
             <button
               className="bg-blue text-white px-3 py-1 mt-2 justify-start rounded"
               onClick={() => push()}
             >
-              Close
+              {t("Close")}
             </button>
           </div>
         </Modal>

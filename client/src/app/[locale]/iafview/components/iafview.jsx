@@ -248,13 +248,13 @@ export const IafView = () => {
                   className="bg-red text-white px-3 py-1 mt-2 justify-start rounded"
                   onClick={() => setReject(true)}
                 >
-                  Reject
+                  {t("Reject")}
                 </button>
                 <button
                   className="bg-blue text-white px-3 py-1 mt-2 justify-end rounded"
                   onClick={() => setConfirm(true)}
                 >
-                  Confirm
+                  {t("Confirm")}
                 </button>
               </div>
             </div>
@@ -266,7 +266,7 @@ export const IafView = () => {
           <div className="flex flex-col justify-center items-center">
             <div className="font-bold">
               <p>
-                Are you sure you want to confirm this Internship Application?
+              {t("confirmIA")}
               </p>
             </div>
             <div className="flex justify-between mt-2 w-10/12">
@@ -274,13 +274,13 @@ export const IafView = () => {
                 className="bg-red text-white px-3 py-1 mt-2 justify-start rounded"
                 onClick={() => setConfirm(false)}
               >
-                No
+                {t("No")}
               </button>
               <button
                 className="bg-blue text-white px-3 py-1 mt-2 justify-end rounded"
                 onClick={confirmApplication}
               >
-                Yes
+                {t("Yes")}
               </button>
             </div>
           </div>
@@ -290,13 +290,13 @@ export const IafView = () => {
         <Modal onClose={() => push()}>
           <div className="flex flex-col justify-center items-center">
             <div className="font-bold">
-              <p>Internship Application Confirmed</p>
+              <p>{t("IAConfirmed")}</p>
             </div>
             <button
               className="bg-blue text-white px-3 py-1 mt-2 justify-start rounded"
               onClick={() => push()}
             >
-              Close
+              {t("Close")}
             </button>
           </div>
         </Modal>
@@ -306,7 +306,7 @@ export const IafView = () => {
           <div className="flex flex-col justify-center items-center">
             <div className="font-bold">
               <p>
-                Are you sure you want to reject this Internship Application?
+              {t("rejectIA")}
               </p>
             </div>
             <div className="flex justify-between mt-2 w-10/12">
@@ -314,13 +314,13 @@ export const IafView = () => {
                 className="bg-blue text-white px-3 py-1 mt-2 justify-start rounded"
                 onClick={() => setReject(false)}
               >
-                No
+                {t("No")}
               </button>
               <button
                 className="bg-red text-white px-3 py-1 mt-2 justify-end rounded"
                 onClick={rejectApplication}
               >
-                Yes
+                {t("Yes")}
               </button>
             </div>
           </div>
@@ -330,13 +330,13 @@ export const IafView = () => {
         <Modal onClose={() => push()}>
           <div className="flex flex-col justify-center items-center">
             <div className="font-bold">
-              <p>Internship Application Rejected</p>
+              <p>{t("IARejected")}</p>
             </div>
             <button
               className="bg-blue text-white px-3 py-1 mt-2 justify-start rounded"
               onClick={() => push()}
             >
-              Close
+              {t("Close")}
             </button>
           </div>
         </Modal>

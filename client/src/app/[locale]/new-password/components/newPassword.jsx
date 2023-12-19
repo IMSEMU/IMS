@@ -9,8 +9,10 @@ import AuthConnect from "@/auth";
 import Modal from "../../globalComponents/modal";
 import { MdVerifiedUser } from "react-icons/md";
 import { useSearchParams, useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 export default function NewPassword() {
+  const t = useTranslations("newPassword");
   const [password, setPassword] = useState("");
   const [confPassword, setConfPassword] = useState("");
   const searchParams = useSearchParams();
@@ -81,7 +83,7 @@ export default function NewPassword() {
             </div>
 
             <h2 className="text-sm md:text-md lg:text-lg xl:text-xl font-bold text-center text-black dark:text-white">
-              Reset your Password
+            {t("ResetPassword")}
             </h2>
 
             <form className="mt-2 md:mt-6 text-sm md:text-md" onSubmit={Auth}>
@@ -90,7 +92,7 @@ export default function NewPassword() {
                   type={"password"}
                   name=""
                   id=""
-                  placeholder="Password"
+                  placeholder={t("Password")}
                   className="input w-full text-dark_2 dark:text-yellow placeholder:text-dark_2 dark:placeholder:text-yellow bg-white dark:bg-dark_2 px-4 py-2.5 border-b-dark_2 dark:border-b-yellow  border-x-0 border-t-0 mt-1 border-2  focus:outline-none"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
@@ -103,7 +105,7 @@ export default function NewPassword() {
                   type={"password"}
                   name=""
                   id=""
-                  placeholder="Confirm Passwod"
+                  placeholder={t("ConfirmPassword")}
                   className="input w-full text-dark_2 dark:text-yellow placeholder:text-dark_2 dark:placeholder:text-yellow bg-white dark:bg-dark_2 px-4 py-2.5 border-b-dark_2 dark:border-b-yellow  border-x-0 border-t-0 mt-1 border-2  focus:outline-none"
                   value={confPassword}
                   onChange={(e) => setConfPassword(e.target.value)}
@@ -132,7 +134,7 @@ export default function NewPassword() {
                   type="submit"
                   className="flex items-center gap-2 w-fit  bg-blue hover:bg-blue-400 focus:bg-blue-400 text-white font-semibold rounded px-3 py-2 mt-7"
                 >
-                  <span>Change Password</span>
+                  <span>{t("ChangePassword")}</span>
                 </button>
               </div>
             </form>
@@ -143,13 +145,13 @@ export default function NewPassword() {
         <Modal onClick={() => push()}>
           <div className="flex flex-col justify-center items-center">
             <div className="font-bold">
-              <p>Password Successfully Reset</p>
+              <p>{t("SuccessfullReset")}</p>
             </div>
             <button
               onClick={() => push()}
               className="bg-blue text-white px-3 py-1 mt-2"
             >
-              Go to Login
+              {t("GoToLogin")}
             </button>
           </div>
         </Modal>
@@ -164,7 +166,7 @@ export default function NewPassword() {
               onClick={() => setFailure(false)}
               className="bg-blue text-white px-3 py-1 mt-2"
             >
-              Close
+              {t("Close")}
             </button>
           </div>
         </Modal>

@@ -106,7 +106,7 @@ export const LogView = ({ formToggle, stdid }) => {
                 className="bg-blue text-white px-3 py-1 mt-2 justify-right rounded ml-auto"
                 onClick={formToggle}
               >
-                Company Supervisor Evaluation
+                {t("CSEval")}
               </button>
             </div>
           </div>

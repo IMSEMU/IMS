@@ -7,8 +7,10 @@ import { useState } from "react";
 import { DarkModeButton } from "../../globalComponents/darkModeButton";
 import AuthConnect from "@/auth";
 import Modal from "../../globalComponents/modal";
+import { useTranslations } from "next-intl";
 
 export default function ResetPassword() {
+  const t = useTranslations("resetpassword");
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
@@ -70,7 +72,7 @@ export default function ResetPassword() {
             </div>
 
             <h2 className="text-sm md:text-md lg:text-lg xl:text-xl font-bold text-center text-black dark:text-white">
-              Reset your Password
+            {t("ResetPassword")}
             </h2>
 
             <form className="mt-2 md:mt-6 text-sm md:text-md" onSubmit={Auth}>
@@ -78,7 +80,7 @@ export default function ResetPassword() {
                 <input
                   type="email"
                   id="email"
-                  placeholder="address@provider.com"
+                  placeholder={t("emailexa")}
                   className="input w-full text-dark_2 dark:text-yellow placeholder:text-dark_2 dark:placeholder:text-yellow bg-white dark:bg-dark_2 px-4 py-2.5 border-b-dark_2 dark:border-b-yellow  border-x-0 border-t-0 mt-2 border-2  focus:outline-none"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -95,7 +97,7 @@ export default function ResetPassword() {
                   type="submit"
                   className="flex items-center gap-2 w-fit  bg-blue hover:bg-blue-400 focus:bg-blue-400 text-white font-semibold rounded px-3 py-2 mt-7"
                 >
-                  <span>Send Reset Link</span>
+                  <span>{t("SendResetLink")}</span>
                 </button>
               </div>
             </form>
@@ -107,13 +109,13 @@ export default function ResetPassword() {
         <Modal onClose={() => setSuccess(false)}>
           <div className="flex flex-col justify-center items-center">
             <div className="font-bold">
-              <p>Reset link sent to email</p>
+              <p>{t("linksent")}</p>
             </div>
             <button
               onClick={() => setSuccess(false)}
               className="bg-blue text-white px-3 py-1 mt-2"
             >
-              Close
+              {t("Close")}
             </button>
           </div>
         </Modal>
@@ -128,7 +130,7 @@ export default function ResetPassword() {
               onClick={() => setFailure(false)}
               className="bg-blue text-white px-3 py-1 mt-2"
             >
-              Close
+              {t("Close")}
             </button>
           </div>
         </Modal>

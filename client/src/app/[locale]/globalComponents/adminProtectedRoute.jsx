@@ -2,6 +2,7 @@ import jwt_decode from "jwt-decode";
 import { useEffect, useState } from "react";
 
 export const ProtectedRoute = ({ children }) => {
+  const t = useTranslations("globalComponents");
   const [userPrivilege, setUserPrivilege] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -27,8 +28,8 @@ export const ProtectedRoute = ({ children }) => {
       <>
         <div className="flex h-screen overflow-hidden">
           <div className="w-[100%] h-[100vh] flex flex-col items-center justify-start pt-[100px]">
-            <h1 className="text-4xl font-extrabold">Forbidden</h1>
-            <small>You are not authorized to access this page</small>
+            <h1 className="text-4xl font-extrabold">{t("Forbidden")}</h1>
+            <small>{t("ForbiddenMsg")}</small>
           </div>
         </div>
       </>

@@ -14,7 +14,7 @@ const UploadConForm = ({ handleDocUploadSuccess }) => {
               " font-bold my-4 text-black dark:text-white text-sm md:text-md lg:text-lg  inline-flex text-center px-2"
             }
           >
-            Please sign the form and upload it here
+            {t("sign")}
           </h2>
         </div>
         <div className="w-full">
@@ -34,7 +34,7 @@ const UploadConForm = ({ handleDocUploadSuccess }) => {
                     className="bg-blue py-2 px-3.5 rounded text-white"
                     onClick={handleOnClick}
                   >
-                    Upload Signed Confirmation Form
+                    {t("Upload")}
                   </button>
                 );
               }}

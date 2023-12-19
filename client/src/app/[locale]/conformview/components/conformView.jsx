@@ -7,7 +7,7 @@ import PdfViewer from "../../globalComponents/pdfViewer";
 import Loading from "../../globalComponents/loading";
 
 export const ConFormView = () => {
-  const t = useTranslations("sif");
+  const t = useTranslations("conformview");
   const router = useRouter();
   const searchParams = useSearchParams();
   const [info, setInfo] = useState(null);
@@ -85,7 +85,7 @@ export const ConFormView = () => {
     <main>
       <div className="my-1 flex justify-center items-center font-bold pt-5">
         <div className="border-x-[0.4rem] text-2xl border-yellow">
-          <p className="px-2">Internship Confirmation Form</p>
+          <p className="px-2">{t("title")}</p>
         </div>
       </div>
       <section className="p-2 bg-white dark:bg-dark_1 flex items-center justify-center px-4 sm:px-12 md:px-20">
@@ -100,13 +100,13 @@ export const ConFormView = () => {
                 className="bg-red text-white px-3 py-1 mt-2 justify-start rounded"
                 onClick={() => setReject(true)}
               >
-                Reject
+                {t("Reject")}
               </button>
               <button
                 className="bg-blue text-white px-3 py-1 mt-2 justify-end rounded"
                 onClick={() => setConfirm(true)}
               >
-                Confirm
+                {t("Confirm")}
               </button>
             </div>
           </div>
@@ -117,7 +117,7 @@ export const ConFormView = () => {
           <div className="flex flex-col justify-center items-center">
             <div className="font-bold">
               <p>
-                Are you sure you want to confirm this Internship Confirmation?
+                {t("ConfirmMsg")}
               </p>
             </div>
             <div className="flex justify-between mt-2 w-10/12">
@@ -125,13 +125,13 @@ export const ConFormView = () => {
                 className="bg-red text-white px-3 py-1 mt-2 justify-start rounded"
                 onClick={() => setConfirm(false)}
               >
-                No
+                {t("No")}
               </button>
               <button
                 className="bg-blue text-white px-3 py-1 mt-2 justify-end rounded"
                 onClick={confirmConfirmation}
               >
-                Yes
+                {t("Yes")}
               </button>
             </div>
           </div>
@@ -141,13 +141,13 @@ export const ConFormView = () => {
         <Modal onClose={() => push()}>
           <div className="flex flex-col justify-center items-center">
             <div className="font-bold">
-              <p>Internship Confirmation Confirmed</p>
+              <p>{t("Confirmed")}</p>
             </div>
             <button
               className="bg-blue text-white px-3 py-1 mt-2 justify-start rounded"
               onClick={() => push()}
             >
-              Close
+              {t("Close")}
             </button>
           </div>
         </Modal>
@@ -157,7 +157,7 @@ export const ConFormView = () => {
           <div className="flex flex-col justify-center items-center">
             <div className="font-bold">
               <p>
-                Are you sure you want to reject this Internship Confirmation?
+                {t("RejectMsg")}
               </p>
             </div>
             <div className="flex justify-between mt-2 w-10/12">
@@ -165,13 +165,13 @@ export const ConFormView = () => {
                 className="bg-blue text-white px-3 py-1 mt-2 justify-start rounded"
                 onClick={() => setReject(false)}
               >
-                No
+                 {t("No")}
               </button>
               <button
                 className="bg-red text-white px-3 py-1 mt-2 justify-end rounded"
                 onClick={rejectConfirmation}
               >
-                Yes
+                {t("Yes")}
               </button>
             </div>
           </div>
@@ -181,13 +181,13 @@ export const ConFormView = () => {
         <Modal onClose={() => push()}>
           <div className="flex flex-col justify-center items-center">
             <div className="font-bold">
-              <p>Internship Confirmation Rejected</p>
+              <p>{t("Rejected")}</p>
             </div>
             <button
               className="bg-blue text-white px-3 py-1 mt-2 justify-start rounded"
               onClick={() => push()}
             >
-              Close
+              {t("Close")}
             </button>
           </div>
         </Modal>

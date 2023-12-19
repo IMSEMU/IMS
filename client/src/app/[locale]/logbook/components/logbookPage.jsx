@@ -10,8 +10,10 @@ import { TopNav } from "../../globalComponents/topNav";
 import { ProtectedRoute } from "../../globalComponents/stdProtectedRoute";
 import jwtDecode from "jwt-decode";
 import { EditLog } from "./editLog";
+import { useTranslations } from "next-intl";
 
 export const LogbookPage = () => {
+  const t = useTranslations("logbook");
   const router = useRouter();
   const [logbookEntries, setLogbookEntries] = useState([]);
   const [hasNewLogEntry, setHasNewLogEntry] = useState(false);
@@ -169,7 +171,7 @@ export const LogbookPage = () => {
                           " font-bold  text-black dark:text-white text-sm md:text-md lg:text-lg  inline-flex text-center  border-yellow border-x-[0.4rem] md:border-x-[0.3rem] px-2"
                         }
                       >
-                        Daily Logbook
+                        {t("title")}
                       </p>
                       <button
                         onClick={() => setMobileLogAdd(!mobileLogAdd)}
@@ -203,11 +205,11 @@ export const LogbookPage = () => {
                       submitLogbook();
                     }}
                   >
-                    Submit
+                    {t("Submit")}
                   </button>
                 ) : (
                   <button className="bg-background_shade text-white py-2 px-4 rounded">
-                    Submit
+                    {t("Submit")}
                   </button>
                 )}
               </div>

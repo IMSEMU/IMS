@@ -4,11 +4,13 @@ import { BiChevronsRight } from "react-icons/bi";
 import { BsMegaphoneFill } from "react-icons/bs";
 import { FaEllipsisV } from "react-icons/fa";
 import { GiPencil, GiTrashCan } from "react-icons/gi";
+import { useTranslations } from "next-intl";
 import { Empty } from "antd";
 import Modal from "../../globalComponents/modal";
 import AuthConnect from "@/auth";
 
 export const DisplayAnnouncement = ({ announcements, updateAnnouncements }) => {
+  const t = useTranslations("dashDep");
   const [hideOptions, setHideOptions] = useState(
     Array(announcements.length).fill(false)
   );
@@ -168,7 +170,7 @@ export const DisplayAnnouncement = ({ announcements, updateAnnouncements }) => {
                           onClick={() => DeleteAnnouncement(announcement)}
                         >
                           <GiTrashCan className="text-xl text-yellow" />
-                          <p>Delete</p>
+                          <p>{t("Delete")}</p>
                         </div>
 
                         <div
@@ -176,7 +178,7 @@ export const DisplayAnnouncement = ({ announcements, updateAnnouncements }) => {
                           onClick={() => EditAnnouncement(announcement)}
                         >
                           <GiPencil className="text-xl text-yellow" />
-                          <p>Edit</p>
+                          <p>{t("Edit")}</p>
                         </div>
                         <span
                           className="absolute p-[0.1rem] cursor-pointer text-lg top-[1rem] bg-white rounded -left-6"
@@ -207,7 +209,7 @@ export const DisplayAnnouncement = ({ announcements, updateAnnouncements }) => {
                   onClick={() => EditAnnouncement(announcementToShow)}
                 >
                   <GiPencil className={"text-white text-md"} />
-                  <div>Edit</div>
+                  <div>{t("Edit")}</div>
                 </button>
                 <button
                   className={
@@ -216,7 +218,7 @@ export const DisplayAnnouncement = ({ announcements, updateAnnouncements }) => {
                   onClick={() => DeleteAnnouncement(announcementToShow)}
                 >
                   <GiTrashCan className="text-md text-white" />
-                  <div>Delete</div>
+                  <div>{t("Delete")}</div>
                 </button>
               </div>
               <div className={"w-full mb-3"}>
@@ -243,7 +245,7 @@ export const DisplayAnnouncement = ({ announcements, updateAnnouncements }) => {
                       }
                       onClick={() => setAnnouncementToShow(null)}
                     >
-                      <div>Close</div>
+                      <div>{t("Close")}</div>
                     </button>
                   </div>
                 </div>
@@ -262,7 +264,7 @@ export const DisplayAnnouncement = ({ announcements, updateAnnouncements }) => {
                     " font-bold m-3 text-black dark:text-white text-sm md:text-md lg:text-lg  inline-flex text-center  border-yellow border-x-[0.4rem] md:border-x-[0.3rem] px-2"
                   }
                 >
-                  Edit Announcement
+                 {t("EditAnnouncement")}
                 </p>
               </div>
               <div className="flex gap-3 justify-center py-2 items-center">
@@ -270,7 +272,7 @@ export const DisplayAnnouncement = ({ announcements, updateAnnouncements }) => {
                   {/* Department input section */}
                   <div className="w-[90%]">
                     <input
-                      placeholder={"Title"}
+                      placeholder={t("Title")}
                       type="text"
                       value={announcementTitle}
                       className="rounded p-3 outline-none w-full border border-dark_4 dark:border-none dark:bg-background_shade_2 text-dark_2 placeholder:text-dark_2"
@@ -280,7 +282,7 @@ export const DisplayAnnouncement = ({ announcements, updateAnnouncements }) => {
                   {/*  description section */}
                   <div className="w-[90%]">
                     <textarea
-                      placeholder={"Announcement Content"}
+                      placeholder={t("AnnouncementContent")}
                       value={announcementContent}
                       className=" resize-none rounded p-3 outline-none w-full border border-dark_4 dark:border-none h-[10rem] dark:bg-background_shade_2 text-dark_2 placeholder:text-dark_2"
                       onChange={(e) => setAnnouncementContent(e.target.value)}
@@ -294,7 +296,7 @@ export const DisplayAnnouncement = ({ announcements, updateAnnouncements }) => {
                       onClick={SendEdit}
                     >
                       <GiPencil className={"text-white text-xl"} />
-                      <div>Edit</div>
+                      <div>{t("Edit")}</div>
                     </button>
                   </div>
                 </div>
@@ -307,13 +309,13 @@ export const DisplayAnnouncement = ({ announcements, updateAnnouncements }) => {
         <Modal onClose={() => setEdited(false)}>
           <div className="flex flex-col justify-center items-center">
             <div className="font-bold">
-              <p>Announcement Edited Successfully!</p>
+              <p>{t("EditAnnouncementMsg")}</p>
             </div>
             <button
               onClick={() => setEdited(false)}
               className="bg-blue text-white px-3 py-1 mt-2"
             >
-              Close
+              {t("Close")}
             </button>
           </div>
         </Modal>
@@ -322,20 +324,20 @@ export const DisplayAnnouncement = ({ announcements, updateAnnouncements }) => {
         <Modal onClose={() => setDeleteAnnouncement(false)}>
           <div className="flex flex-col justify-center items-center">
             <div className="font-bold">
-              <p>Are you sure you want to delete this Announcement?</p>
+              <p>{t("delAnnMsg")}</p>
             </div>
             <div className="flex justify-between mt-2 w-10/12">
               <button
                 className="bg-blue text-white px-3 py-1 mt-2 justify-start rounded"
                 onClick={() => setDeleteAnnouncement(false)}
               >
-                No
+                {t("No")}
               </button>
               <button
                 className="bg-red text-white px-3 py-1 mt-2 justify-end rounded"
                 onClick={SendDelete}
               >
-                Yes
+                {t("Yes")}
               </button>
             </div>
           </div>
@@ -345,13 +347,13 @@ export const DisplayAnnouncement = ({ announcements, updateAnnouncements }) => {
         <Modal onClose={() => setDeleted(false)}>
           <div className="flex flex-col justify-center items-center">
             <div className="font-bold">
-              <p>Announcement Deleted Successfully!</p>
+              <p>{t("delAnnMsg")}</p>
             </div>
             <button
               onClick={() => setDeleted(false)}
               className="bg-blue text-white px-3 py-1 mt-2"
             >
-              Close
+              {t("Close")}
             </button>
           </div>
         </Modal>

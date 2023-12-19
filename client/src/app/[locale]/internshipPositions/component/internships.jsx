@@ -8,8 +8,10 @@ import { Empty } from "antd";
 import Modal from "../../globalComponents/modal";
 import { Navbar } from "../../globalComponents/Navbar";
 import { LoggedInNavbar } from "../../globalComponents/loggedinNavbar";
+import { useTranslations } from "next-intl";
 
 export const InternshipCards = () => {
+  const t = useTranslations("Available Internship Positions");
   const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
   const user = JSON.parse(localStorage.getItem("user"));
   const userrole = user?.userrole;
@@ -92,7 +94,7 @@ export const InternshipCards = () => {
                   className={
                     "my-2 md:my-4 mx-3 px-2 w-[55vw] md:w-[40vw] outline-0 dark:bg-dark_2 bg-white dark:text-white text-black placeholder:text-black dark:placeholder:text-white"
                   }
-                  placeholder={"Search for Internships positions ..."}
+                  placeholder={t("Search")}
                   onChange={(e) => {
                     setSearchQuery(e.target.value);
                   }}
@@ -107,7 +109,7 @@ export const InternshipCards = () => {
                 "text-black dark:text-white text-sm md:text-md xl:text-xl 2xl:text-2xl inline-flex text-center border-yellow border-x-[0.4rem] md:border-x-8 px-2"
               }
             >
-              Available Internship Positions
+               {t("title")}
             </p>
           </div>
 
@@ -210,46 +212,46 @@ export const InternshipCards = () => {
                   {/* Department input section */}
                   <div className="w-[90%]">
                     <p className="rounded p-3 outline-none w-full  dark:border-none dark:bg-background_shade_2 text-dark_2">
-                      Company Name: {openIntPosition.compname}
+                    {t("CompanyName")} {openIntPosition.compname}
                     </p>
                   </div>
                   <div className="w-[90%]">
                     <p className="rounded p-3 outline-none w-full  dark:border-none dark:bg-background_shade_2 text-dark_2">
-                      Position Available: {openIntPosition.position}
+                    {t("PositionAvailable")}: {openIntPosition.position}
                     </p>
                   </div>
                   <div className="w-[44%]">
                     <p className="rounded p-3 outline-none w-full  dark:border-none dark:bg-background_shade_2 text-dark_2">
-                      City: {openIntPosition.city}
+                    {t("City")}: {openIntPosition.city}
                     </p>
                   </div>
                   <div className="w-[44%]">
                     <p className="rounded p-3 outline-none w-full  dark:border-none dark:bg-background_shade_2 text-dark_2">
-                      Country: {openIntPosition.country}
+                    {t("Country")}: {openIntPosition.country}
                     </p>
                   </div>
 
                   {/*  description section */}
                   <div className="w-[90%]">
                     <p className="rounded p-3 outline-none w-full  dark:border-none  dark:bg-background_shade_2 text-dark_2">
-                      Description: {openIntPosition.desc}
+                    {t("Description")}: {openIntPosition.desc}
                     </p>
                   </div>
 
                   <div className="w-[90%]">
                     <p className="rounded p-3 outline-none w-full  dark:border-none dark:bg-background_shade_2 text-dark_2">
-                      Requirments: {openIntPosition.requirements}
+                    {t("Requirments")}: {openIntPosition.requirements}
                     </p>
                   </div>
                   <div className="w-[90%]">
                     <p className="rounded p-3 outline-none w-full  dark:border-none dark:bg-background_shade_2 text-dark_2">
-                      Applications close on{" "}
+                    {t("ACloseOn")}{" "}
                       {openIntPosition.applyby.split("T")[0]}
                     </p>
                   </div>
                   <div className="w-[90%]">
                     <p className="rounded p-3 outline-none w-full  dark:border-none dark:bg-background_shade_2 text-dark_2">
-                      Contact: {openIntPosition.contact}
+                    {t("Contact")}: {openIntPosition.contact}
                     </p>
                   </div>
                 </div>
@@ -273,7 +275,7 @@ export const InternshipCards = () => {
                   className="absolute top-7 right-2 text-white text-xl hover:text-red"
                   onClick={closeFullScreen}
                 >
-                  Close
+                  {t("Close")}
                 </button>
               </div>
             </div>

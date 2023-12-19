@@ -19,7 +19,7 @@ import CalendarComponent from "../../internDashboard/components/calendar";
 import { GiPencil } from "react-icons/gi";
 
 export const Dashboard = ({ user }) => {
-  const t = useTranslations("logbook");
+  const t = useTranslations("dashDep");
   const [submissions, setSubmissions] = useState([]);
   const [showAddAnnouncements, setShowAddAnnouncements] = useState(false);
   const [announcementTitle, setAnnouncementTitle] = useState("");
@@ -354,7 +354,9 @@ export const Dashboard = ({ user }) => {
             "text-md lg:text-xl xl:text-2xl py-1 md:py-2 w-full max-w-[1300px] xl:mx-auto mx-2 font-bold"
           }
         >
-          <p>Welcome {user.firstname}</p>
+          <p>
+            {t("welcome")} {user.firstname}
+          </p>
         </div>
 
         <div className="grid grid-cols-3 gap-4">
@@ -369,7 +371,7 @@ export const Dashboard = ({ user }) => {
                 }}
               >
                 <BiPencil className="text-white text-xl" />
-                <div>Edit Due Dates</div>
+                <div>{t("editDue")}</div>
               </button>
 
               {/* Calendar */}
@@ -404,7 +406,7 @@ export const Dashboard = ({ user }) => {
                     }}
                   >
                     <BiPlus className={"text-white text-xl"} />
-                    <div>Add</div>
+                    <div>{t("add")}</div>
                   </button>
                 </div>
 
@@ -450,7 +452,7 @@ export const Dashboard = ({ user }) => {
                     }}
                   >
                     <BiPlus className={"text-white text-xl"} />
-                    <div>Add</div>
+                    <div>{t("add")}</div>
                   </button>
                 </div>
 
@@ -475,7 +477,7 @@ export const Dashboard = ({ user }) => {
                     " font-semibold  text-black dark:text-white text-sm md:text-md xl:text-lg  inline-flex text-center  border-yellow border-x-[0.3rem] px-2"
                   }
                 >
-                  Submitted Forms
+                  {t("subFor")}
                 </p>
               </div>
 
@@ -539,38 +541,42 @@ export const Dashboard = ({ user }) => {
                                 !submission.iafConfirmed ? (
                                   <div className="flex">
                                     <span className="text-md">
-                                      Internship Application Form
+                                      {t("iaForm")}
                                     </span>
                                   </div>
                                 ) : submission.filledConForm &&
                                   !submission.conFormConfirmed ? (
                                   <div className="flex">
                                     <span className="text-md">
-                                      Internship Confirmation Form
+                                      {t("icForm")}
                                     </span>
                                   </div>
                                 ) : submission.filledSocial &&
                                   !submission.sifConfirmed ? (
                                   <div className="flex">
                                     <span className="text-md">
-                                      Social Insurance Form
+                                      {t("siForm")}
                                     </span>
                                   </div>
                                 ) : submission.compEvalFilled &&
                                   !submission.compEvalConfirmed ? (
                                   <div className="flex">
                                     <span className="text-md">
-                                      Company Evaluation Form
+                                      {t("ceForm")}
                                     </span>
                                   </div>
                                 ) : submission.reportComplete &&
                                   !submission.reportConfirmed ? (
                                   <div className="flex">
-                                    <span className="text-md">Report</span>
+                                    <span className="text-md">
+                                      {t("Report")}
+                                    </span>
                                   </div>
                                 ) : (
                                   <div className="flex">
-                                    <span className="text-md">Problem</span>
+                                    <span className="text-md">
+                                      {t("Problem")}
+                                    </span>
                                   </div>
                                 )}
                               </div>
@@ -596,7 +602,7 @@ export const Dashboard = ({ user }) => {
                     " font-bold m-3 text-black dark:text-white text-sm md:text-md lg:text-lg  inline-flex text-center  border-yellow border-x-[0.4rem] md:border-x-[0.3rem] px-2"
                   }
                 >
-                  Add Announcements
+                  {t("addAnn")}
                 </p>
               </div>
               <div className="flex gap-3 justify-center py-2 items-center">
@@ -604,7 +610,7 @@ export const Dashboard = ({ user }) => {
                   {/* Department input section */}
                   <div className="w-[90%]">
                     <input
-                      placeholder={"Title"}
+                      placeholder={t("Title")}
                       type="text"
                       id=""
                       className="rounded p-3 outline-none w-full border border-dark_4 dark:border-none dark:bg-background_shade_2 text-dark_2 placeholder:text-dark_2"
@@ -614,7 +620,7 @@ export const Dashboard = ({ user }) => {
                   {/*  description section */}
                   <div className="w-[90%]">
                     <textarea
-                      placeholder={"Announcement Content"}
+                      placeholder={t("AnnouncementContent")}
                       id=""
                       className=" resize-none rounded p-3 outline-none w-full border border-dark_4 dark:border-none h-[10rem] dark:bg-background_shade_2 text-dark_2 placeholder:text-dark_2"
                       onChange={(e) => setAnnouncementContent(e.target.value)}
@@ -628,7 +634,7 @@ export const Dashboard = ({ user }) => {
                       onClick={AddAnnouncement}
                     >
                       <BiPlus className={"text-white text-xl"} />
-                      <div>Add</div>
+                      <div>{t("add")}</div>
                     </button>
                   </div>
                 </div>
@@ -641,13 +647,13 @@ export const Dashboard = ({ user }) => {
         <Modal onClose={() => setAnnouncementAdded(false)}>
           <div className="flex flex-col justify-center items-center">
             <div className="font-bold">
-              <p>Announcement Added Successfully!</p>
+              <p>{t("addAnnMsg")}</p>
             </div>
             <button
               onClick={() => setAnnouncementAdded(false)}
               className="bg-blue text-white px-3 py-1 mt-2"
             >
-              Close
+              {t("Close")}
             </button>
           </div>
         </Modal>
@@ -662,7 +668,7 @@ export const Dashboard = ({ user }) => {
                     " font-bold m-3 text-black dark:text-white text-sm md:text-md lg:text-lg  inline-flex text-center  border-yellow border-x-[0.4rem] md:border-x-[0.3rem] px-2"
                   }
                 >
-                  Add Internship Positions
+                  {t("addIP")}
                 </p>
               </div>
               <div className="flex gap-3 justify-center py-2 items-center">
@@ -670,7 +676,7 @@ export const Dashboard = ({ user }) => {
                   {/* Department input section */}
                   <div className="w-[90%]">
                     <input
-                      placeholder={"Company Name"}
+                      placeholder={t("CompanyName")}
                       type="text"
                       id=""
                       className="rounded p-3 outline-none w-full border border-dark_4 dark:border-none dark:bg-background_shade_2 text-dark_2 placeholder:text-dark_2"
@@ -679,7 +685,7 @@ export const Dashboard = ({ user }) => {
                   </div>
                   <div className="w-[90%]">
                     <input
-                      placeholder={"Position"}
+                      placeholder={t("Position")}
                       type="text"
                       id=""
                       className="rounded p-3 outline-none w-full border border-dark_4 dark:border-none dark:bg-background_shade_2 text-dark_2 placeholder:text-dark_2"
@@ -689,7 +695,7 @@ export const Dashboard = ({ user }) => {
                   <div className="relative w-[44%]">
                     <div className=" flex border border-dark_4 dark:border-none dark:bg-background_shade_2 rounded">
                       <input
-                        placeholder={"Country"}
+                        placeholder={t("Country")}
                         type="text"
                         value={country}
                         className="rounded p-3 outline-none w-10/12 text-dark_2 placeholder:text-dark_2"
@@ -729,7 +735,7 @@ export const Dashboard = ({ user }) => {
                   </div>
                   <div className="w-[44%]">
                     <input
-                      placeholder={"City"}
+                      placeholder={t("City")}
                       type="text"
                       id=""
                       className="rounded p-3 outline-none w-full border border-dark_4 dark:border-none dark:bg-background_shade_2 text-dark_2 placeholder:text-dark_2"
@@ -739,7 +745,7 @@ export const Dashboard = ({ user }) => {
                   {/*  description section */}
                   <div className="w-[90%]">
                     <textarea
-                      placeholder={"Description"}
+                      placeholder={t("Description")}
                       id=""
                       className="rounded p-3 outline-none w-full border border-dark_4 dark:border-none h-[7rem] dark:bg-background_shade_2 text-dark_2 placeholder:text-dark_2"
                       onChange={(e) => setDesc(e.target.value)}
@@ -748,7 +754,7 @@ export const Dashboard = ({ user }) => {
 
                   <div className="w-[90%]">
                     <textarea
-                      placeholder={"Requirements"}
+                      placeholder={t("Requirements")}
                       id=""
                       className="rounded p-3 outline-none w-full border border-dark_4 dark:border-none h-[7rem] dark:bg-background_shade_2 text-dark_2 placeholder:text-dark_2"
                       onChange={(e) => setRequirements(e.target.value)}
@@ -756,7 +762,7 @@ export const Dashboard = ({ user }) => {
                   </div>
                   <div className="w-[44%]">
                     <DateInput
-                      placeholder="Students must apply by"
+                      placeholder={t("StudentsApply")}
                       onDateChange={(date) => setDate(date)}
                       value={date}
                       min={new Date().toISOString().split("T")[0]}
@@ -765,7 +771,7 @@ export const Dashboard = ({ user }) => {
                   </div>
                   <div className="w-[44%]">
                     <input
-                      placeholder={"Contact"}
+                      placeholder={t("Contact")}
                       type="text"
                       id=""
                       className="rounded p-3 outline-none w-full border border-dark_4 dark:border-none dark:bg-background_shade_2 text-dark_2 placeholder:text-dark_2"
@@ -784,9 +790,7 @@ export const Dashboard = ({ user }) => {
                     )}
                   </div>
                   <div className="w-[90%]">
-                    <span className="pt-2">
-                      Add Company Logo or Internship Information Flyer:
-                    </span>
+                    <span className="pt-2">{t("addCL")}:</span>
                     <CldUploadWidget
                       uploadPreset="p5tgbjfx"
                       onSuccess={handleImageUploadSuccess}
@@ -801,7 +805,7 @@ export const Dashboard = ({ user }) => {
                             className="ml-4 bg-blue py-2 px-3.5 rounded text-white"
                             onClick={handleOnClick}
                           >
-                            Upload Image
+                            {t("UploadImage")}
                           </button>
                         );
                       }}
@@ -815,7 +819,7 @@ export const Dashboard = ({ user }) => {
                       onClick={AddInternshipPosition}
                     >
                       <BiPlus className={"text-white text-xl"} />
-                      <div>Add</div>
+                      <div>{t("add")}</div>
                     </button>
                   </div>
                 </div>
@@ -828,13 +832,13 @@ export const Dashboard = ({ user }) => {
         <Modal onClose={() => setIntPosAdded(false)}>
           <div className="flex flex-col justify-center items-center">
             <div className="font-bold">
-              <p>Internship Position Added Successfully!</p>
+              <p>{t("addIPMsg")}</p>
             </div>
             <button
               onClick={() => setIntPosAdded(false)}
               className="bg-blue text-white px-3 py-1 mt-2"
             >
-              Close
+              {t("Close")}
             </button>
           </div>
         </Modal>
@@ -849,13 +853,13 @@ export const Dashboard = ({ user }) => {
                     " font-bold m-3 text-black dark:text-white text-sm md:text-md lg:text-lg  inline-flex text-center  border-yellow border-x-[0.4rem] md:border-x-[0.3rem] px-2"
                   }
                 >
-                  Edit Due Dates
+                  {t("editDue")}
                 </p>
               </div>
               <div className="flex gap-3 justify-center py-2 items-center">
                 <div className="flex flex-wrap gap-3 justify-center items-center">
                   <div className="w-[90%] flex">
-                    <p className="w-[80%]">Internship Application Form</p>
+                    <p className="w-[80%]">{t("iaForm")}</p>
                     <DateInput
                       placeholder={
                         iafText
@@ -869,7 +873,7 @@ export const Dashboard = ({ user }) => {
                     />
                   </div>
                   <div className="w-[90%] flex">
-                    <p className="w-[80%]">Internship Confirmation Form</p>
+                    <p className="w-[80%]">{t("icForm")}</p>
                     <DateInput
                       placeholder={
                         conFormText
@@ -883,7 +887,7 @@ export const Dashboard = ({ user }) => {
                     />
                   </div>
                   <div className="w-[90%] flex">
-                    <p className="w-[80%]">Social Insurance Form</p>
+                    <p className="w-[80%]">{t("siForm")}</p>
                     <DateInput
                       placeholder={
                         sifText
@@ -897,7 +901,7 @@ export const Dashboard = ({ user }) => {
                     />
                   </div>
                   <div className="w-[90%] flex">
-                    <p className="w-[80%]">Logbook</p>
+                    <p className="w-[80%]">{t("Logbook")}</p>
                     <DateInput
                       placeholder={
                         logbookText ? logbookText.split("T")[0] : "Logbook"
@@ -909,7 +913,7 @@ export const Dashboard = ({ user }) => {
                     />
                   </div>
                   <div className="w-[90%] flex">
-                    <p className="w-[80%]">Company Trainee Evaluation Form</p>
+                    <p className="w-[80%]">{t("cteForm")}</p>
                     <DateInput
                       placeholder={
                         compEvalText
@@ -923,7 +927,7 @@ export const Dashboard = ({ user }) => {
                     />
                   </div>
                   <div className="w-[90%] flex">
-                    <p className="w-[80%]">Report</p>
+                    <p className="w-[80%]">{t("Report")}</p>
                     <DateInput
                       placeholder={
                         reportText ? reportText.split("T")[0] : "Report"
@@ -942,7 +946,7 @@ export const Dashboard = ({ user }) => {
                       onClick={EditDueDates}
                     >
                       <GiPencil className="text-xl text-yellow" />
-                      <div>Save</div>
+                      <div>{t("Save")}</div>
                     </button>
                   </div>
                 </div>
@@ -955,13 +959,13 @@ export const Dashboard = ({ user }) => {
         <Modal onClose={() => setEdited(false)}>
           <div className="flex flex-col justify-center items-center">
             <div className="font-bold">
-              <p>Due Dates Edited Successfully!</p>
+              <p>{t("editDueMsg")}</p>
             </div>
             <button
               onClick={() => setEdited(false)}
               className="bg-blue text-white px-3 py-1 mt-2"
             >
-              Close
+              {t("Close")}
             </button>
           </div>
         </Modal>

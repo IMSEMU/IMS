@@ -236,15 +236,15 @@ export const PcSideNav = ({ user }) => {
                   </span>
                 ) : user.userrole === 2 ? (
                   <span className={"hidden lg:block text-sm w-full"}>
-                    Department Supervisor
+                    {t("DepartmentSupervisor")}
                   </span>
                 ) : user.userrole === 3 ? (
                   <span className={"hidden lg:block text-sm w-full"}>
-                    Company Supervisor
+                    {t("CompanySupervisor")}
                   </span>
                 ) : user.userrole === 4 ? (
                   <span className={"hidden lg:block text-sm w-full"}>
-                    Administrator
+                    {t("Administrator")}
                   </span>
                 ) : (
                   <span className={"hidden lg:block text-sm w-full"}></span>

@@ -299,7 +299,7 @@ export const SifView = () => {
                   className="bg-blue text-white px-3 py-1 mt-2 rounded"
                   onClick={() => setConfirm(true)}
                 >
-                  Confirm
+                  {t("Confirm")}
                 </button>
               </div>
             </div>
@@ -311,8 +311,7 @@ export const SifView = () => {
           <div className="flex flex-col justify-center items-center">
             <div className="font-bold">
               <p>
-                Have you recieved the hard copy of this form and all necessary
-                attached documents?
+              {t("recievedHardCopy")}
               </p>
             </div>
             <div className="flex justify-between mt-2 w-10/12">
@@ -320,13 +319,13 @@ export const SifView = () => {
                 className="bg-red text-white px-3 py-1 mt-2 justify-start rounded"
                 onClick={() => push()}
               >
-                No
+                {t("No")}
               </button>
               <button
                 className="bg-blue text-white px-3 py-1 mt-2 justify-end rounded"
                 onClick={confirmInsurance}
               >
-                Yes
+                {t("Yes")}
               </button>
             </div>
           </div>
@@ -336,13 +335,13 @@ export const SifView = () => {
         <Modal onClose={() => push()}>
           <div className="flex flex-col justify-center items-center">
             <div className="font-bold">
-              <p>Social Insurance Confirmed</p>
+              <p>{t("SIConfirmed")}</p>
             </div>
             <button
               className="bg-blue text-white px-3 py-1 mt-2 justify-start rounded"
               onClick={() => push()}
             >
-              Close
+              {t("Close")}
             </button>
           </div>
         </Modal>

@@ -7,8 +7,9 @@ import { useTranslations } from "next-intl";
 import Loading from "../../globalComponents/loading";
 import Modal from "../../globalComponents/modal";
 import Image from "next/image";
-// usestate components
-export const Dashboard = ({ user }) => {
+
+export const Dashboard = () => {
+  const t = useTranslations("adminDashboard");
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [email, setEmail] = useState("");
@@ -23,7 +24,7 @@ export const Dashboard = ({ user }) => {
   const [isDeptDropdownOpen, setIsDeptDropdownOpen] = useState(false);
   const [assigned, setAssigned] = useState(false);
   const [loading, setLoading] = useState(false);
-// get students id
+  // get students id
   useEffect(() => {
     const getStudents = async () => {
       try {
@@ -37,7 +38,7 @@ export const Dashboard = ({ user }) => {
 
     getStudents();
   }, []);
-// get deptSup
+  // get deptSup
   useEffect(() => {
     const getDeptSups = async () => {
       try {
@@ -51,8 +52,8 @@ export const Dashboard = ({ user }) => {
 
     getDeptSups();
   }, []);
-  
-// add new admin
+
+  // add new admin
   const AddNewAdmin = async () => {
     setLoading(true);
     try {
@@ -124,13 +125,13 @@ export const Dashboard = ({ user }) => {
   const toggleDeptDropdown = () => {
     setIsDeptDropdownOpen(!isDeptDropdownOpen);
   };
-// select dept sup function
+  // select dept sup function
   const handleSelectDeptSup = (deptsup, deptsupid) => {
     setDeptSupname(deptsup);
     setDeptSup(deptsupid);
     setIsDeptDropdownOpen(false);
   };
-// handle department change
+  // handle department change
   const handleDeptChange = (event) => {
     setDeptSupname(event.target.value);
     setIsDeptDropdownOpen(true);
@@ -149,7 +150,9 @@ export const Dashboard = ({ user }) => {
             "text-md lg:text-xl xl:text-2xl py-1 md:py-2 w-full max-w-[1300px] xl:mx-auto mx-2 font-bold"
           }
         >
-          <p>Welcome {user.firstname}</p>
+          <p>
+            {t("welcome")} {user.firstname}
+          </p>
         </div>
 
         <div className="grid grid-cols-2 grid-rows-2 gap-4">
@@ -160,15 +163,15 @@ export const Dashboard = ({ user }) => {
                   " font-semibold m-3 text-black dark:text-white  text-sm md:text-md xl:text-lg  inline-flex text-center  border-yellow border-x-[0.3rem] px-2"
                 }
               >
-                Add New Department Supervisor
+                {t("AddSupervisor")}
               </p>
-{/*               forms */}
+              {/*               forms */}
               <div className="flex gap-3 justify-center py-2 items-center m-3 rounded drop-shadow-md">
                 <div className="flex flex-wrap gap-3 justify-center items-center">
                   {/* Department input section */}
                   <div className="w-[90%]">
                     <input
-                      placeholder={"First Name"}
+                      placeholder={t("FirstName")}
                       type="text"
                       id=""
                       className="rounded p-3 outline-none w-full border border-dark_4 dark:border-none dark:bg-background_shade_2 text-dark_2 placeholder:text-dark_2"
@@ -177,7 +180,7 @@ export const Dashboard = ({ user }) => {
                   </div>
                   <div className="w-[90%]">
                     <input
-                      placeholder={"Last Name"}
+                      placeholder={t("LastName")}
                       type="text"
                       id=""
                       className="rounded p-3 outline-none w-full border border-dark_4 dark:border-none dark:bg-background_shade_2 text-dark_2 placeholder:text-dark_2"
@@ -186,7 +189,7 @@ export const Dashboard = ({ user }) => {
                   </div>
                   <div className="w-[90%]">
                     <input
-                      placeholder={"Email"}
+                      placeholder={t("Email")}
                       type="text"
                       id=""
                       className="rounded p-3 outline-none w-full border border-dark_4 dark:border-none dark:bg-background_shade_2 text-dark_2 placeholder:text-dark_2"
@@ -195,7 +198,7 @@ export const Dashboard = ({ user }) => {
                   </div>
                   <div className="w-[90%]">
                     <input
-                      placeholder={"Department"}
+                      placeholder={t("Department")}
                       type="text"
                       id=""
                       className="rounded p-3 outline-none w-full border border-dark_4 dark:border-none dark:bg-background_shade_2 text-dark_2 placeholder:text-dark_2"
@@ -210,7 +213,7 @@ export const Dashboard = ({ user }) => {
                       onClick={AddNewDeptSup}
                     >
                       <BiPlus className={"text-white text-xl"} />
-                      <div>Add</div>
+                      <div>{t("add")}</div>
                     </button>
                   </div>
                 </div>
@@ -222,14 +225,14 @@ export const Dashboard = ({ user }) => {
                   " font-semibold m-3 text-black dark:text-white  text-sm md:text-md xl:text-lg  inline-flex text-center  border-yellow border-x-[0.3rem] px-2"
                 }
               >
-                Add New Admin
+                {t("AddNewAdmin")}
               </p>
               <div className="flex gap-3 justify-center py-2 items-center m-3 rounded drop-shadow-md">
                 <div className="flex flex-wrap gap-3 justify-center items-center">
                   {/* Department input section */}
                   <div className="w-[90%]">
                     <input
-                      placeholder={"First Name"}
+                      placeholder={t("FirstName")}
                       type="text"
                       id=""
                       className="rounded p-3 outline-none w-full border border-dark_4 dark:border-none dark:bg-background_shade_2 text-dark_2 placeholder:text-dark_2"
@@ -238,7 +241,7 @@ export const Dashboard = ({ user }) => {
                   </div>
                   <div className="w-[90%]">
                     <input
-                      placeholder={"Last Name"}
+                      placeholder={t("LastName")}
                       type="text"
                       id=""
                       className="rounded p-3 outline-none w-full border border-dark_4 dark:border-none dark:bg-background_shade_2 text-dark_2 placeholder:text-dark_2"
@@ -247,7 +250,7 @@ export const Dashboard = ({ user }) => {
                   </div>
                   <div className="w-[90%]">
                     <input
-                      placeholder={"Email"}
+                      placeholder={t("Email")}
                       type="text"
                       id=""
                       className="rounded p-3 outline-none w-full border border-dark_4 dark:border-none dark:bg-background_shade_2 text-dark_2 placeholder:text-dark_2"
@@ -262,7 +265,7 @@ export const Dashboard = ({ user }) => {
                       onClick={AddNewAdmin}
                     >
                       <BiPlus className={"text-white text-xl"} />
-                      <div>Add</div>
+                      <div>{t("add")}</div>
                     </button>
                   </div>
                 </div>
@@ -331,13 +334,13 @@ export const Dashboard = ({ user }) => {
         <Modal onClose={() => setAdminAdded(false)}>
           <div className="flex flex-col justify-center items-center">
             <div className="font-bold">
-              <p>New Admin Added Successfully!</p>
+              <p>{t("NewAdminAdded")}</p>
             </div>
             <button
               onClick={() => setAdminAdded(false)}
               className="bg-blue text-white px-3 py-1 mt-2"
             >
-              Close
+              {t("Close")}
             </button>
           </div>
         </Modal>
@@ -346,18 +349,18 @@ export const Dashboard = ({ user }) => {
         <Modal onClose={() => setDeptSupAdded(false)}>
           <div className="flex flex-col justify-center items-center">
             <div className="font-bold">
-              <p>New Department Supervisor Added Successfully!</p>
+              <p>{t("NewSupervisorAdded")}</p>
             </div>
             <button
               onClick={() => setDeptSupAdded(false)}
               className="bg-blue text-white px-3 py-1 mt-2"
             >
-              Close
+              {t("Close")}
             </button>
           </div>
         </Modal>
       )}
-{/*       conditional rendering */}
+      {/*       conditional rendering */}
       {assignStudent && (
         <Modal onClose={() => setAssignStudent(null)}>
           <div className="flex gap-3 justify-center py-2 items-center">
@@ -376,34 +379,34 @@ export const Dashboard = ({ user }) => {
               {/* Department input section */}
               <div className="w-[44%]">
                 <p className="rounded p-3 outline-none w-full  dark:border-none dark:bg-background_shade_2 text-dark_2">
-                  Name: {assignStudent.stduser.firstname}{" "}
+                  {t("Name")}: {assignStudent.stduser.firstname}{" "}
                   {assignStudent.stduser.lastname}
                 </p>
               </div>
               <div className="w-[44%]">
                 <p className="rounded p-3 outline-none w-full  dark:border-none dark:bg-background_shade_2 text-dark_2">
-                  Email: {assignStudent.stduser.email}
+                  {t("E-posta")}: {assignStudent.stduser.email}
                 </p>
               </div>
               <div className="w-[90%]">
                 <p className="rounded p-3 outline-none w-full  dark:border-none dark:bg-background_shade_2 text-dark_2">
-                  Faculty: {assignStudent.student.faculty}
+                  {t("Faculty")}: {assignStudent.student.faculty}
                 </p>
               </div>
               <div className="w-[90%]">
                 <p className="rounded p-3 outline-none w-full  dark:border-none dark:bg-background_shade_2 text-dark_2">
-                  Department: {assignStudent.student.dept}
+                  {t("Department")}: {assignStudent.student.dept}
                 </p>
               </div>
               <div className="w-[44%]">
                 <p className="rounded p-3 outline-none w-full  dark:border-none dark:bg-background_shade_2 text-dark_2">
-                  Assign Department Supervisor:
+                  {t("AssignSupervisor")}:
                 </p>
               </div>
               <div className="relative w-[44%]">
                 <div className=" flex border border-dark_4 dark:border-none dark:bg-background_shade_2 rounded">
                   <input
-                    placeholder={"Department Supervisor"}
+                    placeholder={t("DepartmentSupervisor")}
                     type="text"
                     value={deptsupname}
                     className="rounded p-3 outline-none w-10/12 text-dark_2 placeholder:text-dark_2"
@@ -457,7 +460,7 @@ export const Dashboard = ({ user }) => {
                   }
                   onClick={AssignStudent}
                 >
-                  <div>Save</div>
+                  <div>{t("Save")}</div>
                 </button>
               </div>
             </div>
@@ -468,13 +471,13 @@ export const Dashboard = ({ user }) => {
         <Modal onClose={() => setAssigned(false)}>
           <div className="flex flex-col justify-center items-center">
             <div className="font-bold">
-              <p>Department Supervisor Assigned!</p>
+              <p>{t("SupervisorAssigned")}</p>
             </div>
             <button
               onClick={() => setAssigned(false)}
               className="bg-blue text-white px-3 py-1 mt-2"
             >
-              Close
+              {t("Close")}
             </button>
           </div>
         </Modal>

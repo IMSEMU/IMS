@@ -3,8 +3,10 @@ import { useTranslations } from "next-intl";
 import { useRouter, useSearchParams } from "next/navigation";
 import AuthConnect from "@/auth";
 import Modal from "../../globalComponents/modal";
+import { useTranslations } from "next-intl";
 
 export const CoordinatorEvaluation = ({ formToggle, stdid }) => {
+  const t = useTranslations("reportview");
   const router = useRouter();
   const [quality, setQuality] = useState(null);
   const [itwork, setITWork] = useState(null);
@@ -46,7 +48,7 @@ export const CoordinatorEvaluation = ({ formToggle, stdid }) => {
     <main>
       <div className="my-1 flex justify-center items-center font-bold pt-5">
         <div className="border-x-[0.4rem] text-2xl border-yellow dark:text-white">
-          <p className="px-2">Trainee Evaluation Form by Coordinator</p>
+          <p className="px-2">{t("title")}</p>
         </div>
       </div>
       <section className="p-2 bg-white dark:bg-dark_1 flex items-center justify-center px-4 sm:px-12 md:px-20">
@@ -57,28 +59,27 @@ export const CoordinatorEvaluation = ({ formToggle, stdid }) => {
                 " font-bold my-4 text-black dark:text-white text-sm md:text-md lg:text-lg  inline-flex text-center  border-yellow border-x-[0.3rem] md:border-x-[0.3rem] px-2"
               }
             >
-              Evaluation of the intern
+              {t("evalOfINtern")}
             </p>
 
             <form>
               <div class=" max-[300px]:w-screen px-1 font-medium grid grid-cols-6 lg:grid-cols-10  text-black  lg:mx-4 py-1 text-xs lg:text-lg rounded">
                 <div class=" col-span-2  lg:col-span-6 pl-1 dark:text-white font-medium">
-                  Evaluation Criteria
+                {t("EvaluationCriteria")}
                 </div>
                 <div class="   dark:text-white flex justify-center text-black">
-                  Poor
+                {t("Poor")}
                 </div>
-                <div class=" flex justify-center dark:text-white">Fair </div>
-                <div class="dark:text-white flex justify-center">Good</div>
+                <div class=" flex justify-center dark:text-white">{t("Fair")} </div>
+                <div class="dark:text-white flex justify-center">{t("Good")}</div>
                 <div class="  dark:text-white flex justify-center">
-                  Excellent
+                {t("Excellent")}
                 </div>
               </div>
 
               <div class=" grid grid-cols-6 lg:grid-cols-10 px-1   font-medium lg:mx-4 py-1 text-xs lg:text-lg rounded ">
                 <div class="col-span-2  lg:col-span-6 pl-1 dark:text-white">
-                  Quality of the report and the compatibility of the work done
-                  with the logbook
+                {t("QualityOfReport")}
                 </div>
                 <div class="flex justify-center">
                   <input
@@ -116,8 +117,7 @@ export const CoordinatorEvaluation = ({ formToggle, stdid }) => {
 
               <div class=" grid grid-cols-6 lg:grid-cols-10 font-medium px-1 lg:mx-4 py-1 text-xs lg:text-lg rounded">
                 <div class=" col-span-2  lg:col-span-6 pl-1 dark:text-white">
-                  The student has done IT related work or applied IT knowledge
-                  to some task
+                {t("q2")}
                 </div>
                 <div class="flex justify-center">
                   <input
@@ -154,7 +154,7 @@ export const CoordinatorEvaluation = ({ formToggle, stdid }) => {
               </div>
               <div class=" grid grid-cols-6 lg:grid-cols-10 font-medium px-1 lg:mx-4 py-1 text-xs lg:text-lg rounded">
                 <div class="col-span-2  lg:col-span-6 pl-1 dark:text-white">
-                  Knowledge of the student during presentation
+                {t("q3")}
                 </div>
                 <div class="flex justify-center">
                   <input
@@ -191,7 +191,7 @@ export const CoordinatorEvaluation = ({ formToggle, stdid }) => {
               </div>
               <div class=" grid grid-cols-6 lg:grid-cols-10  px-1 font-medium  lg:mx-4 py-1 text-xs lg:text-lg rounded ">
                 <div class="col-span-2  lg:col-span-6 pl-1 dark:text-white">
-                  Answering questions during presentation
+                {t("q4")}
                 </div>
                 <div class="flex justify-center">
                   <input
@@ -228,7 +228,7 @@ export const CoordinatorEvaluation = ({ formToggle, stdid }) => {
               </div>
               <div class=" grid grid-cols-6 lg:grid-cols-10 px-1 font-medium lg:mx-4 py-1 text-xs lg:text-lg rounded">
                 <div class="col-span-2  lg:col-span-6 pl-1 dark:text-white  ">
-                  Overall Evaluation Result
+                {t("OverEvalResult")}
                 </div>
                 <div class=" dark:text-white col-span-2 pl-5 text-xs lg:text-base ">
                   <input
@@ -237,7 +237,7 @@ export const CoordinatorEvaluation = ({ formToggle, stdid }) => {
                     id="S"
                     onChange={() => setOverallResult("S")}
                   />
-                  Satisfactory
+                  {t("Satisfactory")}
                 </div>
                 <div class=" dark:text-white col-span-2 pl-3 text-xs lg:text-base">
                   <input
@@ -247,7 +247,7 @@ export const CoordinatorEvaluation = ({ formToggle, stdid }) => {
                     id="U"
                     onChange={() => setOverallResult("U")}
                   />
-                  Unsatisfactory
+                  {t("Unsatisfactory")}
                 </div>
               </div>
               <div className="mx-4  space-y-2 ">
@@ -256,7 +256,7 @@ export const CoordinatorEvaluation = ({ formToggle, stdid }) => {
                     type={"text"}
                     name=""
                     id=""
-                    placeholder="General Comments"
+                    placeholder={t("GeneralComments")}
                     className=" w-full text-dark_2 dark:text-yellow placeholder:text-dark_2 dark:placeholder:text-white bg-white dark:bg-dark_2 px-2  border-b-dark_2 dark:border-b-yellow rounded mt-1 border-2  h-[8rem]"
                     onChange={(e) => setGeneralComments(e.target.value)}
                   />
@@ -268,14 +268,14 @@ export const CoordinatorEvaluation = ({ formToggle, stdid }) => {
                     className="bg-blue py-2 px-3.5 rounded"
                     onClick={formToggle}
                   >
-                    Back
+                    {t("Back")}
                   </button>
                   <button
                     type="button"
                     className="bg-blue py-2 px-3.5 rounded"
                     onClick={submitEval}
                   >
-                    Submit
+                    {t("Submit")}
                   </button>
                 </div>
               </div>
@@ -287,13 +287,13 @@ export const CoordinatorEvaluation = ({ formToggle, stdid }) => {
         <Modal onClose={() => push()}>
           <div className="flex flex-col justify-center items-center">
             <div className="font-bold">
-              <p>Department Supervisor Evaluation Submitted</p>
+              <p>{t("EvaluationSubmitted")}</p>
             </div>
             <button
               className="bg-blue text-white px-3 py-1 mt-2 justify-start rounded"
               onClick={() => push()}
             >
-              Close
+              {t("Close")}
             </button>
           </div>
         </Modal>
