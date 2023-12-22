@@ -10,7 +10,7 @@ import Modal from "../../globalComponents/modal";
 import CalendarComponent from "../../internDashboard/components/calendar";
 import { useTranslations } from "next-intl";
 
-export const Dashboard = () => {
+export const Dashboard = ({ user }) => {
   const t = useTranslations("companyDashboard");
   const [announcements, setAnnouncements] = useState([]);
   const [selectedAnnouncement, setSelectedAnnouncement] = useState(null);

@@ -1,5 +1,6 @@
 import jwt_decode from "jwt-decode";
 import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
 
 export const ProtectedRoute = ({ children }) => {
   const t = useTranslations("globalComponents");

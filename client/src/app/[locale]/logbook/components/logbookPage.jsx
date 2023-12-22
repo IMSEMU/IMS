@@ -95,7 +95,6 @@ export const LogbookPage = () => {
   };
 
   const submitLogbook = async () => {
-    console.log("here");
     try {
       const response = await AuthConnect.post("/submitlog", {});
       console.log(response);

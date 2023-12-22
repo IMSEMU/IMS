@@ -8,7 +8,7 @@ import Loading from "../../globalComponents/loading";
 import Modal from "../../globalComponents/modal";
 import Image from "next/image";
 
-export const Dashboard = () => {
+export const Dashboard = ({ user }) => {
   const t = useTranslations("adminDashboard");
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");

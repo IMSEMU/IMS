@@ -1,7 +1,5 @@
 "use client";
 import Image from "next/image";
-import { FaUserGroup } from "react-icons/fa6";
-import { BsBuildings } from "react-icons/bs";
 import { BiPencil, BiPlus, BiX } from "react-icons/bi";
 import { useState, useEffect, useMemo } from "react";
 import { Empty } from "antd";
