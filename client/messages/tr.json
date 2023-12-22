@@ -95,7 +95,6 @@
     "events": "Yaklaşan Etkinlikler",
     "Close": "Kapalı",
     "report": "Rapor yazmak"
-
   },
   "dashDep": {
     "welcome": "Hoş geldin",
@@ -142,7 +141,6 @@
     "editIPMsg": "Staj Pozisyonu Başarıyla Düzenlendi!",
     "delIP": "Bu Staj Pozisyonunu silmek istediğinizden emin misiniz?",
     "delIPMsg": "Staj Pozisyonu Başarıyla Silindi!"
-
   },
   "logbook": {
     "title": "Günlük Kayıt Defteri",
@@ -153,7 +151,7 @@
     "CSEval": "Şirket Sorumlusu Değerlendirmesi",
     "Close": "Kapalı",
     "Delete": "Silmek",
-    "edit": "düzenlemek",
+    "edit": "Düzenlemek",
     "Submit": "Göndermek",
     "Reject": "Reddetmek",
     "Approve": "Onaylamak",
@@ -163,7 +161,13 @@
     "Date": "Tarih",
     "LogbookApproved": "Kayıt Defteri Onaylandı",
     "rejectLogbook": "Bu Seyir Defterini reddetmek istediğinizden emin misiniz?",
-    "LogbookRejected": "Kayıt Defteri Reddedildi"
+    "LogbookRejected": "Kayıt Defteri Reddedildi",
+    "error1": "Aynı güne ait seyir defteri girişi zaten mevcut.",
+    "error2": "Aynı tarihli seyir defteri girişi zaten mevcut.",
+    "error3": "Geçersiz Gün. Gün Staj Süresinden Fazla Olamaz.",
+    "generic": "Hoop! Birşeyler yanlış gitti.",
+    "save": "Kaydetmek",
+    "logbook": "Seyir defteri"
   },
   "iaf": {
     "title": "Staj Başvuru Formu",
@@ -295,10 +299,7 @@
     "Close": "kapat",
     "RejectMsg": "Bu Staj Onayını reddetmek istediğinizden emin misiniz?",
     "Rejected": "Staj Onayı Reddedildi"
-    
-    
-  }
-  ,
+  },
   "evalview": {
     "title": "Danışman tarafından Kursiyer Değerlendirme Formu",
     "evalOfINtern": "Stajyerin değerlendirilmesi",
@@ -326,13 +327,11 @@
     "Close": "kapat",
     "evalReject": "Bu Stajyer Değerlendirmesini reddetmek istediğinizden emin misiniz?",
     "EvaluationRejected": "Değerlendirme Reddedildi"
-    
   },
   "globalComponents": {
     "Forbidden": "Yasak",
     "ForbiddenMsg": "Bu sayfaya erişim yetkiniz yok",
     "ShowMore": "Daha Fazla Göster"
-    
   },
   "newPassword": {
     "ResetPassword": "Şifrenizi Sıfırlayın",
@@ -342,7 +341,6 @@
     "ConfirmPassword": "Şifreyi Onayla",
     "Password": "Şifre",
     "SuccessfullReset": "Password Successfully Reset"
-    
   },
   "report": {
     "ReportSubmission": "Rapor Gönderimi",
@@ -351,7 +349,6 @@
     "UploadReportbtn": "Raporu Yükle",
     "ReportSubmitted": "Rapor Gönderildi",
     "Close": "Kapalı"
-    
   },
   "reportview": {
     "title": "Koordinatör Tarafından Stajyer Değerlendirme Formu",
@@ -382,7 +379,6 @@
     "GeneralComments": "Genel yorumlar",
     "rejectIC": "Bu Staj Onayı'nı reddetmek istediğinizden emin misiniz?",
     "ICRejected": "Staj Onayı Reddedildi"
-    
   },
   "resetpassword": {
     "ResetPassword": "Şifrenizi Sıfırlayın",
@@ -390,7 +386,6 @@
     "linksent": "E-postaya gönderilen bağlantıyı sıfırla",
     "Close": "Kapalı",
     "emailexa": "adres@sağlayıcı.com"
-    
   },
   "adminDashboard": {
     "welcome": "Hoş geldin",
@@ -412,7 +407,6 @@
     "DepartmentSupervisor": "Departman Sorumlusu",
     "CloSupervisorAssignedse": "Bölüm Sorumlusu Atandı!",
     "report": "Rapor yazmak"
-
   },
   "companyDashboard": {
     "welcome": "Hoş geldin",

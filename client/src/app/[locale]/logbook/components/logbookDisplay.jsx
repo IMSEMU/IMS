@@ -5,11 +5,22 @@ import { FaEllipsisV, FaTimes } from "react-icons/fa";
 import { GiTrashCan, GiPencil } from "react-icons/gi";
 import { Empty } from "antd";
 import { useTranslations, useFormatter } from "next-intl";
+import AuthConnect from "@/auth";
+import Loading from "../../globalComponents/loading";
 
-export const LogbookDisplay = ({ logbookEntries, setEdit }) => {
+export const LogbookDisplay = ({
+  logbookEntries,
+  setEdit,
+  setHasNewLogEntry,
+  updateEntries,
+  mobileLogAdd,
+  setMobileLogAdd,
+}) => {
   const t = useTranslations("logbook");
   const format = useFormatter();
   const [selectedItem, setSelectedItem] = useState(null);
+  const [loading, setLoading] = useState(null);
+
   const [hideOptions, setHideOptions] = useState(
     Array(logbookEntries.length).fill(false)
   );
@@ -45,6 +56,38 @@ export const LogbookDisplay = ({ logbookEntries, setEdit }) => {
     });
     return formattedDate;
   };
+
+  const DeleteLog = async (logid) => {
+    setLoading(true);
+    try {
+      const response = await AuthConnect.post("/deletelog", {
+        logid: logid,
+      });
+
+      if (response) {
+        const updatedEntries = logbookEntries.filter(
+          (entry) => entry.logid !== logid
+        );
+        updateEntries(updatedEntries);
+        setHasNewLogEntry(true);
+        setLoading(false);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      if (error.response) {
+        if (error.response.status === 400) {
+          setLoading(false);
+          // Handle 400 Bad Request error
+          setError(error.response.data.msg);
+          setShowErrorModal(true);
+        }
+      }
+    }
+  };
+
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <div className="m-4 rounded h-fit from-left">
@@ -84,7 +127,10 @@ export const LogbookDisplay = ({ logbookEntries, setEdit }) => {
                 {hideOptions[index] && (
                   <div className="from-left absolute text-white -left-10 -top-[1.4rem] h-fit rounded w-[5rem] bg-dark_3">
                     <div className="relative">
-                      <div className="m-0.5 p-1 rounded flex text-sm font-medium items-center cursor-pointer gap-0.5 hover:bg-b dark:hover:bg-background_shade">
+                      <div
+                        className="m-0.5  p-1 rounded flex text-sm font-medium items-center cursor-pointer gap-0.5  hover:bg-background_shade"
+                        onClick={() => DeleteLog(entry.logid)}
+                      >
                         <GiTrashCan className="text-xl text-yellow" />
                         <p className="">{t("Delete")}</p>
                       </div>
@@ -95,6 +141,9 @@ export const LogbookDisplay = ({ logbookEntries, setEdit }) => {
                           e.stopPropagation();
                           setEdit(entry);
                           closeOptions();
+                          if (mobileLogAdd) {
+                            setMobileLogAdd(!mobileLogAdd);
+                          }
                         }}
                       >
                         <GiPencil className="text-xl text-yellow" />

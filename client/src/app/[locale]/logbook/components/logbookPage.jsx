@@ -11,6 +11,7 @@ import { ProtectedRoute } from "../../globalComponents/stdProtectedRoute";
 import jwtDecode from "jwt-decode";
 import { EditLog } from "./editLog";
 import { useTranslations } from "next-intl";
+import Loading from "../../globalComponents/loading";
 
 export const LogbookPage = () => {
   const t = useTranslations("logbook");
@@ -79,6 +80,7 @@ export const LogbookPage = () => {
         try {
           const response = await AuthConnect.get("/viewlog");
           setLogbookEntries(response.data);
+          console.log("new log data", response.data);
         } catch (error) {
           console.error("Error fetching logbook entries:", error);
         }
@@ -112,8 +114,11 @@ export const LogbookPage = () => {
     }
   };
 
-  if (!user || !student) {
-    return null; // Prevent rendering the dashboard until token is fetched
+  if (!student) {
+    return <Loading />; // Prevent rendering the dashboard until token is fetched
+  }
+  if (!user) {
+    return <Loading />; // Prevent rendering the dashboard until token is fetched
   }
 
   return (
@@ -135,6 +140,10 @@ export const LogbookPage = () => {
                         startdate={student.startdate}
                         enddate={student.enddate}
                         duration={student.duration}
+                        setEdit={setEdit}
+                        setHasNewLogEntry={setHasNewLogEntry}
+                        updateEntries={setLogbookEntries}
+                        logbookEntries={logbookEntries}
                       />
                     ) : (
                       <AddLogData
@@ -154,6 +163,8 @@ export const LogbookPage = () => {
                     <LogbookDisplay
                       logbookEntries={logbookEntries}
                       setEdit={setEdit}
+                      setHasNewLogEntry={setHasNewLogEntry}
+                      updateEntries={setLogbookEntries}
                     />
                   </div>
 
@@ -176,7 +187,11 @@ export const LogbookPage = () => {
                         onClick={() => setMobileLogAdd(!mobileLogAdd)}
                         className="px-2 py-1 bg-blue rounded text-white"
                       >
-                        {mobileLogAdd ? "Add" : "Logbook"}
+                        {mobileLogAdd
+                          ? edit
+                            ? t("edit")
+                            : t("add")
+                          : t("logbook")}
                       </button>
                     </div>
 
@@ -184,6 +199,23 @@ export const LogbookPage = () => {
                       <LogbookDisplay
                         logbookEntries={logbookEntries}
                         setEdit={setEdit}
+                        setHasNewLogEntry={setHasNewLogEntry}
+                        updateEntries={setLogbookEntries}
+                        mobileLogAdd={mobileLogAdd}
+                        setMobileLogAdd={setMobileLogAdd}
+                      />
+                    ) : edit ? (
+                      <EditLog
+                        entry={edit}
+                        startdate={student.startdate}
+                        enddate={student.enddate}
+                        duration={student.duration}
+                        setEdit={setEdit}
+                        mobileLogAdd={mobileLogAdd}
+                        setMobileLogAdd={setMobileLogAdd}
+                        setHasNewLogEntry={setHasNewLogEntry}
+                        updateEntries={setLogbookEntries}
+                        logbookEntries={logbookEntries}
                       />
                     ) : (
                       <AddLogData
@@ -191,6 +223,7 @@ export const LogbookPage = () => {
                         setHasNewLogEntry={setHasNewLogEntry}
                         startdate={student.startdate}
                         enddate={student.enddate}
+                        duration={student.duration}
                       />
                     )}
                   </div>

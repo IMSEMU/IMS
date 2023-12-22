@@ -9,7 +9,6 @@
   "Announcement": {
     "title": "News and Announcements",
     "viewAnn": "Click to view announcement"
-
   },
   "Completed Internships": {
     "title": "Completed Internships",
@@ -96,7 +95,6 @@
     "events": "Upcoming Events",
     "Close": "Close",
     "report": "Write Report"
-
   },
   "dashDep": {
     "welcome": "Welcome",
@@ -143,10 +141,6 @@
     "editIPMsg": "Internship Position Edited Successfully!",
     "delIP": "Are you sure you want to delete this Internship Position?",
     "delIPMsg": "Internship Position Deleted Successfully!"
-
-    
-    
-
   },
   "logbook": {
     "title": "Daily Logbook",
@@ -158,7 +152,7 @@
     "CSEval": "Company Supervisor Evaluation",
     "Close": "Close",
     "Delete": "Delete",
-    "edit": "edit",
+    "edit": "Edit",
     "Submit": "Submit",
     "Reject": "Reject",
     "Approve": "Approve",
@@ -168,9 +162,13 @@
     "Date": "Date",
     "LogbookApproved": "Logbook Approved",
     "rejectLogbook": "Are you sure you want to reject this Logbook?",
-    "LogbookRejected": "Logbook Rejected"
-    
-    
+    "LogbookRejected": "Logbook Rejected",
+    "error1": "Log entry with the same day already exists.",
+    "error2": "Log entry with the same date already exists.",
+    "error3": "Invalid Day. Day cannot be more than Internship Duration.",
+    "generic": "Oops!! Something went wrong.",
+    "save": "Save",
+    "logbook": "Logbook"
   },
   "iaf": {
     "title": "Internship Application Form",
@@ -302,8 +300,6 @@
     "Close": "Close",
     "RejectMsg": "Are you sure you want to reject this Internship Confirmation?",
     "Rejected": "Internship Confirmation Rejected"
-    
-    
   },
   "evalview": {
     "title": "Trainee Evaluation Form by Supervisor",
@@ -332,14 +328,11 @@
     "Close": "Close",
     "evalReject": "Are you sure you want to reject this Trainee Evaluatiom?",
     "EvaluationRejected": "Evaluation Rejected"
-    
-  }
-  ,
+  },
   "globalComponents": {
     "Forbidden": "Forbidden",
     "ForbiddenMsg": "You are not authorized to access this page",
     "ShowMore": "Show More"
-    
   },
   "newPassword": {
     "ResetPassword": "Reset your Password",
@@ -349,7 +342,6 @@
     "ConfirmPassword": "Confirm Password",
     "Password": "Password",
     "SuccessfullReset": "Password Successfully Reset"
-    
   },
   "report": {
     "ReportSubmission": "Report Submission",
@@ -358,7 +350,6 @@
     "UploadReportbtn": "Upload Report",
     "ReportSubmitted": "Report Submitted",
     "Close": "Close"
-    
   },
   "reportview": {
     "title": "Trainee Evaluation Form by Coordinator",
@@ -389,7 +380,6 @@
     "GeneralComments": "General Comments",
     "rejectIC": "Are you sure you want to reject this Internship Confirmation?",
     "ICRejected": "Internship Confirmation Rejected"
-    
   },
   "resetpassword": {
     "ResetPassword": "Reset your Password",
@@ -397,7 +387,6 @@
     "linksent": "Reset link sent to email",
     "Close": "Close",
     "emailexa": "address@provider.com"
-    
   },
   "adminDashboard": {
     "welcome": "Welcome",
@@ -418,7 +407,6 @@
     "LastName": "Last Name",
     "DepartmentSupervisor": "Department Supervisor",
     "SupervisorAssigned!": "Department Supervisor Assigned!"
-
   },
   "companyDashboard": {
     "welcome": "Welcome",
@@ -430,6 +418,5 @@
     "ApproveLogbook": "Approve Logbook for",
     "FillEvaluationForm": "Fill Trainee Evaluation Form for",
     "Close": "Close"
-
   }
 }

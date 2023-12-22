@@ -26,39 +26,40 @@ export const AddLogData = ({
   const createLogEntry = async (e) => {
     setLoading(true);
     e.preventDefault();
+    try {
+      const response = await AuthConnect.post("/createlog", {
+        day: day,
+        date: date,
+        department: department,
+        description: description,
+      });
 
-    if (day > duration) {
-      setLoading(false);
-      setError("Invalid Day. Day cannot be more than Internship Duration");
-      setShowErrorModal(true);
-    } else {
-      try {
-        const response = await AuthConnect.post("/createlog", {
-          day: day,
-          date: date,
-          department: department,
-          description: description,
-        });
-
-        if (response) {
-          setLoading(false);
-          const newLogEntry = response.data;
-          updateLogbookEntries(newLogEntry);
-          setHasNewLogEntry(true);
-          setDay("");
-          setDate(null);
-          setDepartment("");
-          setDescription("");
-        }
-      } catch (error) {
-        console.error("Error:", error);
-        if (error.response) {
-          if (error.response.status === 400) {
-            setLoading(false);
-            // Handle 400 Bad Request error
-            setError(error.response.data.msg);
-            setShowErrorModal(true);
+      if (response) {
+        setLoading(false);
+        const newLogEntry = response.data;
+        updateLogbookEntries(newLogEntry);
+        setHasNewLogEntry(true);
+        setDay("");
+        setDate(null);
+        setDepartment("");
+        setDescription("");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      if (error.response) {
+        if (error.response.status === 400) {
+          // Handle 400 Bad Request error
+          if (error.response.data.msg === "1") {
+            setError(t("error1"));
+          } else if (error.response.data.msg === "2") {
+            setError(t("error2"));
+          } else if (error.response.data.msg === "3") {
+            setError(t("error3"));
+          } else {
+            setError(t("generic"));
           }
+          setShowErrorModal(true);
+          setLoading(false);
         }
       }
     }
@@ -82,10 +83,7 @@ export const AddLogData = ({
           {t("title")}
         </p>
       </div>
-      <form
-        onSubmit={createLogEntry}
-        className="flex gap-3 justify-center py-2 items-center"
-      >
+      <div className="flex gap-3 justify-center py-2 items-center">
         <div className="flex flex-wrap gap-3 justify-center items-center">
           <div className="w-[90%]">
             <input
@@ -129,17 +127,18 @@ export const AddLogData = ({
           </div>
           <div className=" flex justify-end mx-4 w-full">
             <button
-              type="submit"
+              type="button"
               className={
                 "px-2 py-1 bg-blue text-white rounded inline-flex items-center justify-center gap-1"
               }
+              onClick={createLogEntry}
             >
               <BiPlus className={"text-white text-xl"} />
               <div>{t("add")}</div>
             </button>
           </div>
         </div>
-      </form>
+      </div>
       {/* Error Modal */}
       {showErrorModal && (
         <Modal onClose={closeModal}>
