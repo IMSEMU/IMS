@@ -2,12 +2,13 @@
 import Image from "next/image";
 import { HiMagnifyingGlass } from "react-icons/hi2";
 import { useState } from "react";
-
+import { useTranslations } from "next-intl";
 import { Empty } from "antd";
 import Modal from "./modal";
 import { BiX } from "react-icons/bi";
 
 export const StudentInformation = ({ students, usage }) => {
+  const t = useTranslations("stdinfo");
   const [openStudent, setOpenStudent] = useState(false);
   const [stdInfoSearch, setStdInfoSearch] = useState(false);
   const [selectedStudent, setSelectedStudent] = useState(null);
@@ -55,7 +56,7 @@ export const StudentInformation = ({ students, usage }) => {
               " font-semibold  text-black dark:text-white text-sm md:text-md xl:text-lg  inline-flex text-center  border-yellow border-x-[0.3rem] px-2"
             }
           >
-            {"Students Information"}
+            {t("SI")}
           </p>
 
           <button
@@ -75,9 +76,7 @@ export const StudentInformation = ({ students, usage }) => {
                   value={searchInput}
                   onChange={(e) => setSearchInput(e.target.value)}
                   placeholder={
-                    usage === "dept"
-                      ? "search by id, name, or company name"
-                      : "search by id or name"
+                    usage === "dept" ? t("deptserach") : t("compsearch")
                   }
                   id=""
                   className="outline-none w-full text-center my-0.5 pl-2 placeholder:text-xs"
@@ -165,125 +164,125 @@ export const StudentInformation = ({ students, usage }) => {
               <div className="w-full mx-3 mt-3">
                 <div className="w-full flex">
                   <div className="w-1/2 text-sm">
-                    Phone Number: {selectedStudent.student.phoneno}
+                    {t("phoneno")}: {selectedStudent.student.phoneno}
                   </div>
                   <div className="w-1/2 text-sm">
-                    Address: {selectedStudent.student.address}
-                  </div>
-                </div>
-                <div className="w-full flex">
-                  <div className="w-1/2 text-sm">
-                    Faculty: {selectedStudent.student.faculty}
-                  </div>
-                  <div className="w-1/2 text-sm">
-                    Department: {selectedStudent.student.dept}
+                    {t("address")}: {selectedStudent.student.address}
                   </div>
                 </div>
                 <div className="w-full flex">
                   <div className="w-1/2 text-sm">
-                    Academic Year: {selectedStudent.student.academicYear}
+                    {t("faculty")}: {selectedStudent.student.faculty}
+                  </div>
+                  <div className="w-1/2 text-sm">
+                    {t("dept")}: {selectedStudent.student.dept}
+                  </div>
+                </div>
+                <div className="w-full flex">
+                  <div className="w-1/2 text-sm">
+                    {t("ayear")}: {selectedStudent.student.academicYear}
                   </div>
                 </div>
               </div>
               <div className="w-full justify-center mx-3 mt-3">
-                <div className="text-start font-semibold my-3">Internships</div>
+                <div className="text-start font-semibold my-3">{t("ints")}</div>
                 {selectedStudent.internships.map((internship, index) => (
                   <div
                     key={index}
                     className="border border-background_shade_2 rounded mb-3 p-2"
                   >
                     <div className="text-start font-semibold">
-                      Company Details
+                      {t("compdets")}
                     </div>
                     <div className="w-full flex">
                       <div className="w-1/2 text-sm">
-                        Name: {internship.company.name}
+                        {t("name")}: {internship.company.name}
                       </div>
 
                       <div className="w-1/2 text-sm">
-                        Address: {internship.company.address}
-                      </div>
-                    </div>
-
-                    <div className="w-full flex">
-                      <div className="w-1/2 text-sm">
-                        City: {internship.company.city}
-                      </div>
-
-                      <div className="w-1/2 text-sm">
-                        Country: {internship.company.country}
+                        {t("address")}: {internship.company.address}
                       </div>
                     </div>
 
                     <div className="w-full flex">
                       <div className="w-1/2 text-sm">
-                        Phone number: {internship.company.phoneno}
+                        {t("city")}: {internship.company.city}
                       </div>
 
                       <div className="w-1/2 text-sm">
-                        Email: {internship.company.email}
-                      </div>
-                    </div>
-
-                    <div className="w-full flex">
-                      <div className="w-1/2 text-sm">
-                        Website: {internship.company.website}
-                      </div>
-
-                      <div className="w-1/2 text-sm">
-                        Working Fields: {internship.company.fields}
+                        {t("country")}: {internship.company.country}
                       </div>
                     </div>
 
                     <div className="w-full flex">
                       <div className="w-1/2 text-sm">
-                        Fax: {internship.company.fax}
+                        {t("phoneno")}: {internship.company.phoneno}
+                      </div>
+
+                      <div className="w-1/2 text-sm">
+                        {t("email")}: {internship.company.email}
+                      </div>
+                    </div>
+
+                    <div className="w-full flex">
+                      <div className="w-1/2 text-sm">
+                        {t("website")}: {internship.company.website}
+                      </div>
+
+                      <div className="w-1/2 text-sm">
+                        {t("fields")}: {internship.company.fields}
+                      </div>
+                    </div>
+
+                    <div className="w-full flex">
+                      <div className="w-1/2 text-sm">
+                        {t("fax")}: {internship.company.fax}
                       </div>
                     </div>
 
                     <div className="text-start font-semibold">
-                      Supervisor Details
+                      {t("supdets")}
                     </div>
                     <div className="w-full flex">
                       <div className="w-1/2 text-sm">
-                        Name: {internship.compsup.firstname}{" "}
+                        {t("name")}: {internship.compsup.firstname}{" "}
                         {internship.compsup.lastname}
                       </div>
 
                       <div className="w-1/2 text-sm">
-                        Position: {internship.compsup.position}
+                        {t("position")}: {internship.compsup.position}
                       </div>
                     </div>
 
                     <div className="w-full flex">
                       <div className=" text-sm">
-                        Email: {internship.compsup.email}
+                        {t("email")}: {internship.compsup.email}
                       </div>
                     </div>
 
                     <div className="text-start font-semibold">
-                      Internship Details
+                      {t("compdets")}
                     </div>
                     <div className="w-full flex">
                       <div className="w-1/2 text-sm">
-                        Duration: {internship.internshipdtl.workingDays}
+                        {t("duration")}: {internship.internshipdtl.workingDays}
                       </div>
 
                       <div className="w-1/2 text-sm">
-                        Grade: {internship.internshipdtl.overallresult}
+                        {t("grade")}: {internship.internshipdtl.overallresult}
                       </div>
                     </div>
 
                     <div className="w-full flex">
                       <div className="w-1/2 text-sm">
-                        Start Date:{" "}
+                        {t("start")}:{" "}
                         {internship.internshipdtl.startDate
                           ? internship.internshipdtl.startDate.split("T")[0]
                           : ""}
                       </div>
 
                       <div className="w-1/2 text-sm">
-                        End Date:{" "}
+                        {t("end")}:{" "}
                         {internship.internshipdtl.endDate
                           ? internship.internshipdtl.endDate.split("T")[0]
                           : ""}
@@ -325,70 +324,70 @@ export const StudentInformation = ({ students, usage }) => {
               <div className="w-full mx-3 mt-3">
                 <div className="w-full flex">
                   <div className="w-1/2 text-sm">
-                    Phone Number: {selectedStudent.student.phoneno}
+                    {t("phoneno")}: {selectedStudent.student.phoneno}
                   </div>
                   <div className="w-1/2 text-sm">
-                    Address: {selectedStudent.student.address}
-                  </div>
-                </div>
-                <div className="w-full flex">
-                  <div className="w-1/2 text-sm">
-                    Faculty: {selectedStudent.student.faculty}
-                  </div>
-                  <div className="w-1/2 text-sm">
-                    Department: {selectedStudent.student.dept}
+                    {t("address")}: {selectedStudent.student.address}
                   </div>
                 </div>
                 <div className="w-full flex">
                   <div className="w-1/2 text-sm">
-                    Academic Year: {selectedStudent.student.academicYear}
+                    {t("faculty")}: {selectedStudent.student.faculty}
+                  </div>
+                  <div className="w-1/2 text-sm">
+                    {t("dept")}: {selectedStudent.student.dept}
+                  </div>
+                </div>
+                <div className="w-full flex">
+                  <div className="w-1/2 text-sm">
+                    {t("ayear")}: {selectedStudent.student.academicYear}
                   </div>
                 </div>
               </div>
               <div className="w-full justify-center mx-3 mt-3">
-                <div className="text-start font-semibold my-3">Internships</div>
+                <div className="text-start font-semibold my-3">{t("ints")}</div>
                 {selectedStudent.internships.map((internship, index) => (
                   <div
                     key={index}
                     className="border border-background_shade_2 rounded mb-3 p-2"
                   >
                     <div className="text-start font-semibold">
-                      Coordinator Details
+                      {t("codets")}
                     </div>
                     <div className="w-full flex">
                       <div className="w-1/2 text-sm">
-                        Name: {internship.deptsup.firstname}{" "}
+                        {t("name")}: {internship.deptsup.firstname}{" "}
                         {internship.deptsup.lastname}
                       </div>
 
                       <div className="w-1/2 text-sm">
-                        Email: {internship.deptsup.email}
+                        {t("email")}: {internship.deptsup.email}
                       </div>
                     </div>
 
                     <div className="text-start font-semibold">
-                      Internship Details
+                      {t("intdets")}
                     </div>
                     <div className="w-full flex">
                       <div className="w-1/2 text-sm">
-                        Duration: {internship.internshipdtl.workingDays}
+                        {t("duration")}: {internship.internshipdtl.workingDays}
                       </div>
 
                       <div className="w-1/2 text-sm">
-                        Grade: {internship.internshipdtl.overallresult}
+                        {t("grade")}: {internship.internshipdtl.overallresult}
                       </div>
                     </div>
 
                     <div className="w-full flex">
                       <div className="w-1/2 text-sm">
-                        Start Date:{" "}
+                        {t("start")}:{" "}
                         {internship.internshipdtl.startDate
                           ? internship.internshipdtl.startDate.split("T")[0]
                           : ""}
                       </div>
 
                       <div className="w-1/2 text-sm">
-                        End Date:{" "}
+                        {t("end")}:{" "}
                         {internship.internshipdtl.endDate
                           ? internship.internshipdtl.endDate.split("T")[0]
                           : ""}

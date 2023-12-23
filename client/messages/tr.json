@@ -70,11 +70,11 @@
   },
   "sidenav": {
     "home": "Ev",
-    "chat": "Tartışma forumu",
+    "chat": "Tartışma Forumu",
     "dashboard": "Gösterge Paneli",
     "DepartmentSupervisor": "Departman Sorumlusu",
-    "CompanySupervisor": "şirket sorumlusu",
-    "Administrator": "yönetici",
+    "CompanySupervisor": "Sirket Sorumlusu",
+    "Administrator": "Yönetici",
     "student": "Öğrenci"
   },
   "topnav": {
@@ -94,11 +94,18 @@
     "filllg": "Kayıt Defterini Doldur",
     "events": "Yaklaşan Etkinlikler",
     "Close": "Kapalı",
-    "report": "Rapor yazmak"
+    "report": "Rapor yazmak",
+    "rdays": "Kalan Gün",
+    "iafdue": "Staj Başvuru Formu son teslim tarihi",
+    "sifdue": "Sosyal Sigorta Formu doldurulmalı",
+    "conform": "Staj Onay Formu'nun teslim tarihi",
+    "logdue": "Seyir defterinin vadesi doluyor",
+    "compeval": "Şirket Değerlendirme Formu teslim tarihi",
+    "reportdue": "Raporun zamanı geldi"
   },
   "dashDep": {
     "welcome": "Hoş geldin",
-    "add": "ekle",
+    "add": "Eklemek",
     "Title": "Başlık",
     "AnnouncementContent": "Duyuru İçeriği",
     "Position": "Konum",
@@ -140,7 +147,9 @@
     "editCL": "Şirket Logosunu veya Staj Bilgi El İlanını Düzenleyin",
     "editIPMsg": "Staj Pozisyonu Başarıyla Düzenlendi!",
     "delIP": "Bu Staj Pozisyonunu silmek istediğinizden emin misiniz?",
-    "delIPMsg": "Staj Pozisyonu Başarıyla Silindi!"
+    "delIPMsg": "Staj Pozisyonu Başarıyla Silindi!",
+    "Announcements": "Duyurular",
+    "IP": "Staj Pozisyonları"
   },
   "logbook": {
     "title": "Günlük Kayıt Defteri",
@@ -208,6 +217,9 @@
   },
   "LocaleSwitcher": {
     "label": "TR"
+  },
+  "calendar": {
+    "locale": "tr"
   },
   "confirmation": {
     "title": "Staj Onay Formu",
@@ -405,7 +417,7 @@
     "FirstName": "İlk adı",
     "LastName": "Soy isim",
     "DepartmentSupervisor": "Departman Sorumlusu",
-    "CloSupervisorAssignedse": "Bölüm Sorumlusu Atandı!",
+    "SupervisorAssigned": "Bölüm Sorumlusu Atandı!",
     "report": "Rapor yazmak"
   },
   "companyDashboard": {
@@ -418,5 +430,41 @@
     "ApproveLogbook": "Kayıt defterini onayla",
     "FillEvaluationForm": "Stajyer Değerlendirme Formunu Doldurun",
     "Close": "Kapalı"
+  },
+  "discussion": {
+    "like": "Beğenmek",
+    "likes": "Beğeni",
+    "comment": "Yorum",
+    "comments": "Yorumlar",
+    "newComment": "Yeni bir yorum ekle",
+    "newPost": "Aklında ne var",
+    "post": "Postalamak"
+  },
+  "stdinfo": {
+    "phoneno": "Telefon numarası",
+    "SI": "Öğrenci Bilgileri",
+    "address": "Posta adresi",
+    "faculty": "Fakülte",
+    "dept": "Departman",
+    "ayear": "Akademik yıl",
+    "ints": "Stajlar",
+    "compdets": "Şirket Detayları",
+    "name": "İsim",
+    "city": "Şehir",
+    "country": "Ülke",
+    "email": " E-posta Adresi",
+    "website": "İnternet sitesi",
+    "fields": "Çalışma Alanları",
+    "fax": "Faks",
+    "supdets": "Süpervizör Detayları",
+    "position": "Konum",
+    "intdets": "Internship Details",
+    "grade": "Seviye",
+    "start": "Staj Başlangıç Tarihi",
+    "end": "Staj Bitiş Tarihi",
+    "duration": "Süre",
+    "codets": "Koordinatör Detayları",
+    "deptserach": "kimliğe, isme veya şirket adına göre arayın",
+    "compsearch": "kimliğe veya isme göre ara"
   }
 }

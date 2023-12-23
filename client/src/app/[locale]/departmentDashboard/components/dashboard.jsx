@@ -344,6 +344,14 @@ export const Dashboard = ({ user }) => {
     }
   };
 
+  const capitalizeFirstLetter = (word) => {
+    if (typeof word !== "string" || word.length === 0) {
+      return word;
+    }
+
+    return word.charAt(0).toUpperCase() + word.slice(1);
+  };
+
   return (
     <main className="w-full">
       <div className="m-4 mb-20 md:mb-4">
@@ -353,7 +361,7 @@ export const Dashboard = ({ user }) => {
           }
         >
           <p>
-            {t("welcome")} {user.firstname}
+            {t("welcome")} {capitalizeFirstLetter(user.firstname)}
           </p>
         </div>
 
@@ -392,7 +400,7 @@ export const Dashboard = ({ user }) => {
                       " font-semibold  text-black dark:text-white text-sm md:text-md xl:text-lg  inline-flex text-center  border-yellow border-x-[0.3rem] px-2"
                     }
                   >
-                    {"Announcements"}
+                    {t("Announcements")}
                   </p>
 
                   <button
@@ -438,7 +446,7 @@ export const Dashboard = ({ user }) => {
                       " font-semibold  text-black dark:text-white text-sm md:text-md xl:text-lg  inline-flex text-center  border-yellow border-x-[0.3rem] px-2"
                     }
                   >
-                    {"Internship Positions"}
+                    {t("IP")}
                   </p>
 
                   <button
@@ -572,9 +580,7 @@ export const Dashboard = ({ user }) => {
                                   </div>
                                 ) : (
                                   <div className="flex">
-                                    <span className="text-md">
-                                      {t("Problem")}
-                                    </span>
+                                    <span className="text-md"></span>
                                   </div>
                                 )}
                               </div>

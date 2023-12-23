@@ -1,6 +1,5 @@
 import { HiMiniCalendarDays } from "react-icons/hi2";
 import { BiPlus } from "react-icons/bi";
-import Image from "next/image";
 import Link from "next/link";
 import { LogbookDisplay } from "../../logbook/components/logbookDisplay";
 import { useEffect, useState } from "react";
@@ -13,7 +12,6 @@ import {
 } from "react-icons/bs";
 import { FaRegCalendarCheck } from "react-icons/fa";
 import { useTranslations } from "next-intl";
-import jwtDecode from "jwt-decode";
 import { Empty } from "antd";
 import Modal from "../../globalComponents/modal";
 import CalendarComponent from "../../internDashboard/components/calendar";
@@ -27,6 +25,8 @@ export const Dashboard = ({ user }) => {
   const [selectedAnnouncement, setSelectedAnnouncement] = useState(null);
   const [dueDates, setDueDates] = useState([]);
   const [upcomingEvents, setUpcomingEvents] = useState([]);
+
+  const today = new Date();
 
   useEffect(() => {
     const getDueDates = async () => {
@@ -100,6 +100,25 @@ export const Dashboard = ({ user }) => {
     setSelectedAnnouncement(announcement);
   };
 
+  function countWeekdays(startDate, endDate) {
+    const currentDate = new Date(startDate);
+    const targetDate = new Date(endDate);
+
+    let weekdaysCount = 0;
+
+    while (currentDate <= targetDate) {
+      // Check if the current day is a weekday (Monday to Friday)
+      if (currentDate.getDay() >= 1 && currentDate.getDay() <= 5) {
+        weekdaysCount++;
+      }
+
+      // Move to the next day
+      currentDate.setDate(currentDate.getDate() + 1);
+    }
+
+    return weekdaysCount;
+  }
+
   return (
     <main className={"m-5 bg-white dark:bg-dark_2 "}>
       <div
@@ -127,7 +146,7 @@ export const Dashboard = ({ user }) => {
           <div className="flex justify-end w-full gap- items-center mx-10 my-2">
             <div className="inline-flex justify-end w-fit px-1.5 py-0.5 rounded bg-white gap-2 items-center  border border-dark_4 ">
               <FaRegCalendarCheck className="text-[green] text-xl" />
-              <p>40</p>
+              <p>{student.duration}</p>
             </div>
           </div>
 
@@ -145,13 +164,15 @@ export const Dashboard = ({ user }) => {
                 "flex flex-wrap justify-center text-center items-center gap-2 text-md xl:text-lg p-2"
               }
             >
-              <div className="w-full text-4xl font-bold">23</div>
-              <div className="w-full text-xs">Remaining Days</div>
+              <div className="w-full text-4xl font-bold">
+                {countWeekdays(today, student.enddate)}
+              </div>
+              <div className="w-full text-sm">{t("rdays")}</div>
             </div>
           </div>
         </div>
 
-        {/*oAnnouncements*/}
+        {/*Announcements*/}
         <div
           className={
             "bg-background_shade  col-span-6 md:col-span-3 lg:col-span-2 h-[19rem] rounded"
@@ -529,7 +550,19 @@ export const Dashboard = ({ user }) => {
                       className={"justify-start items-center gap-1 pl-3 pr-2"}
                     >
                       <p className={"font-semibold justify-start"}>
-                        {duedate.name} is due
+                        {duedate.name === "Internship Application Form"
+                          ? t("iafdue")
+                          : duedate.name === "Internship Confirmation Form"
+                          ? t("conform")
+                          : duedate.name === "Social Insurance Form"
+                          ? t("sifdue")
+                          : duedate.name === "Logbook"
+                          ? t("logdue")
+                          : duedate.name === "Company Evaluation Form"
+                          ? t("compeval")
+                          : duedate.name === "Report"
+                          ? t("reportdue")
+                          : ""}
                       </p>
 
                       <span className={"text-sm lg:text-md"}>

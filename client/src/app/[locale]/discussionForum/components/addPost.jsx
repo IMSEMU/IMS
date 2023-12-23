@@ -4,9 +4,11 @@ import AuthConnect from "@/auth";
 import { CldUploadWidget } from "next-cloudinary";
 import { useState } from "react";
 import Loading from "../../globalComponents/loading";
+import { useTranslations } from "next-intl";
 
 // add post display section
 export const AddPost = ({ photo, updatePosts, setHasNewPost, user }) => {
+  const t = useTranslations("discussion");
   const [media, setMedia] = useState(null);
   const [text, setText] = useState("");
   const [loading, setLoading] = useState("");
@@ -81,9 +83,9 @@ export const AddPost = ({ photo, updatePosts, setHasNewPost, user }) => {
           {/* text display */}
           <div className="cursor-pointer bg-background_shade border border-background_shade_2 flex items-center rounded-md w-full">
             <textarea
-              placeholder={`What's on your mind ${capitalizeFirstLetter(
-                user.firstname
-              )}?`}
+              placeholder={
+                t("newPost") + " " + capitalizeFirstLetter(user.firstname) + "?"
+              }
               className="p-2 w-full h-full outline-none text-xs sm:text-base text-black font-semi-bold"
               value={text}
               onChange={(e) => setText(e.target.value)}
@@ -127,7 +129,7 @@ export const AddPost = ({ photo, updatePosts, setHasNewPost, user }) => {
             className="px-4 cursor-pointer py-1.5 font-normal bg-blue text-white rounded "
             onClick={addPost}
           >
-            Post
+            {t("post")}
           </button>
         </div>
       </div>

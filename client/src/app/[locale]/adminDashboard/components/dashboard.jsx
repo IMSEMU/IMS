@@ -24,6 +24,8 @@ export const Dashboard = ({ user }) => {
   const [isDeptDropdownOpen, setIsDeptDropdownOpen] = useState(false);
   const [assigned, setAssigned] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [changeinList, setChangeinList] = useState(false);
+
   // get students id
   useEffect(() => {
     const getStudents = async () => {
@@ -38,6 +40,24 @@ export const Dashboard = ({ user }) => {
 
     getStudents();
   }, []);
+
+  useEffect(() => {
+    if (changeinList) {
+      const getStudents = async () => {
+        try {
+          const response = await AuthConnect.get("/getstdtoassign");
+          console.log(response.data);
+          setStudents(response.data);
+        } catch (error) {
+          console.error("Error fetching students:", error);
+        }
+      };
+
+      getStudents();
+      setChangeinList(false);
+    }
+  }, [changeinList]);
+
   // get deptSup
   useEffect(() => {
     const getDeptSups = async () => {
@@ -108,9 +128,17 @@ export const Dashboard = ({ user }) => {
         deptsupid: deptsup,
       });
       if (response) {
-        setLoading(false);
+        const updatedStudents = students.filter(
+          (std) => std.student.stdid !== assignStudent.student.stdid
+        );
+
+        setStudents(updatedStudents);
+        setChangeinList(true);
         setAssigned(true);
         setAssignStudent(null);
+        setDeptSup("");
+        setDeptSupname("");
+        setLoading(false);
       }
     } catch (error) {
       setLoading(false);
@@ -278,7 +306,7 @@ export const Dashboard = ({ user }) => {
                 " font-semibold m-3 text-black dark:text-white  text-sm md:text-md xl:text-lg  inline-flex text-center  border-yellow border-x-[0.3rem] px-2"
               }
             >
-              Assign Students to Department Supervisors
+              {t("AssignStudents")}
             </p>
             <div className={"h-[37rem] overflow-y-auto"}>
               <div
@@ -385,7 +413,7 @@ export const Dashboard = ({ user }) => {
               </div>
               <div className="w-[44%]">
                 <p className="rounded p-3 outline-none w-full  dark:border-none dark:bg-background_shade_2 text-dark_2">
-                  {t("E-posta")}: {assignStudent.stduser.email}
+                  {t("Email")}: {assignStudent.stduser.email}
                 </p>
               </div>
               <div className="w-[90%]">

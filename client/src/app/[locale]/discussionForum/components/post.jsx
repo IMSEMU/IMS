@@ -8,8 +8,10 @@ import { CldUploadWidget } from "next-cloudinary";
 import AuthConnect from "@/auth";
 import Loading from "../../globalComponents/loading";
 import { GiTrashCan } from "react-icons/gi";
+import { useTranslations } from "next-intl";
 
 export const Posts = ({ posts, photo, setHasNewPost, user }) => {
+  const t = useTranslations("discussion");
   const [commentsState, setCommentsState] = useState({});
   const [text, setText] = useState("");
   const [media, setMedia] = useState(null);
@@ -277,7 +279,7 @@ export const Posts = ({ posts, photo, setHasNewPost, user }) => {
             {/* like and comments section */}
             <div className="justify-between flex">
               <div className="flex justify-start md:gap-1.5 px-3 py-2 text-2xl md:text-3xl">
-                <div className="cursor-pointer flex items-center justify-center flex-wrap w-[4rem]">
+                <div className="cursor-pointer flex items-center justify-center flex-wrap w-fit">
                   {feed.isLikedByUser ? (
                     <div className="text-red">
                       <FaHeart
@@ -293,19 +295,21 @@ export const Posts = ({ posts, photo, setHasNewPost, user }) => {
                       />
                     </div>
                   )}
-                  <p className="text-xs sm:text-sm w-full text-black text-center">
+                  <p className="text-xs sm:text-sm w-full text-black justify-center text-center">
                     {feed.post.likesCount}{" "}
-                    {feed.post.likesCount === 1 ? "Like" : "Likes"}
+                    {feed.post.likesCount === 1 ? t("like") : t("likes")}
                   </p>
                 </div>
                 <div
                   onClick={() => toggleComments(feed.post.postid)}
-                  className="cursor-pointer flex items-center justify-center flex-wrap w-[6rem]"
+                  className="cursor-pointer flex items-center justify-center flex-wrap w-fit"
                 >
                   <FaCommentDots />
-                  <p className="text-xs sm:text-sm w-full">
+                  <p className="text-xs sm:text-sm w-full justify-center text-center">
                     {feed.post.commentsCount}{" "}
-                    {feed.post.commentsCount === 1 ? "Comment" : "Comments"}
+                    {feed.post.commentsCount === 1
+                      ? t("comment")
+                      : t("comments")}
                   </p>
                 </div>
               </div>
@@ -399,7 +403,7 @@ export const Posts = ({ posts, photo, setHasNewPost, user }) => {
                         {/* comment input */}
                         <div className="border-2 border-background_shade_2 rounded w-full">
                           <textarea
-                            placeholder="Add a comment"
+                            placeholder={t("newComment")}
                             className="p-2 w-full h-full outline-none text-xs sm:text-base text-black font-semi-bold"
                             value={text}
                             onChange={(e) => setText(e.target.value)}
@@ -431,7 +435,7 @@ export const Posts = ({ posts, photo, setHasNewPost, user }) => {
                           className="text-white bg-blue rounded px-4 py-1.5"
                           onClick={() => addComment(feed.post.postid, index)}
                         >
-                          Post
+                          {t("post")}
                         </button>
                       </div>
                     </div>
