@@ -74,7 +74,15 @@ export default function LoginSection() {
     } catch (error) {
       console.error("Error:", error);
       if (error.response) {
-        setMsg(error.response.data.msg);
+        if (error.response.data.msg === "1") {
+          setMsg(t("err1"));
+        }
+        if (error.response.data.msg === "2") {
+          setMsg(t("err2"));
+        }
+        if (error.response.data.msg === "3") {
+          setMsg(t("err3"));
+        }
       }
       setLoading(false);
       setToastStatus(false);

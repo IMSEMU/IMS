@@ -54,7 +54,10 @@
     "microsoft": "Microsoft'la oturum açın",
     "email-placeholder": "adres@sağlayıcı.com",
     "Password": "Şifre",
-    "Register": "Kayıt olmak"
+    "Register": "Kayıt olmak",
+    "err1": "Geçersiz Kimlik Bilgileri",
+    "err2": "Yanlış Şifre",
+    "err3": "Giriş İstisnası Ortaya Çıktı"
   },
   "Signup Page": {
     "title": "Staj Kaydı",
@@ -68,7 +71,11 @@
     "Register": "Kayıt olmak",
     "Loginbtn": "Giriş yapmak",
     "success": "Kayıt başarılı",
-    "GoToLogin": "Giriş Yap'a git"
+    "GoToLogin": "Giriş Yap'a git",
+    "err1": "Şifre gerekli",
+    "err2": "Şifre ve Şifreyi Onayla eşleşmiyor",
+    "err3": "E-posta zaten mevcut",
+    "err4": "Kayıt Hatası"
   },
   "sidenav": {
     "home": "Ev",

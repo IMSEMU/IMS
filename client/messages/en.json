@@ -54,7 +54,10 @@
     "microsoft": "Login with Microsoft",
     "email-placeholder": "address@provider.com",
     "Password": "Password",
-    "Register": "Register"
+    "Register": "Register",
+    "err1": "Invalid Credentials",
+    "err2": "Wrong Password",
+    "err3": "Login Exception Raised"
   },
   "Signup Page": {
     "title": "Register for Internship",
@@ -68,7 +71,11 @@
     "Register": "Register",
     "Loginbtn": "Login",
     "success": "Registration Successful",
-    "GoToLogin": "Go to Login"
+    "GoToLogin": "Go to Login",
+    "err1": "Password is required",
+    "err2": "Password and Confirm Password do not match",
+    "err3": "Email already exists",
+    "err4": "Registration Error"
   },
   "sidenav": {
     "home": "Home",
