@@ -66,7 +66,9 @@
     "confpass": "Confirm Password",
     "microsoft": "Register with Microsoft",
     "Register": "Register",
-    "Loginbtn": "Login"
+    "Loginbtn": "Login",
+    "success": "Registration Successful",
+    "GoToLogin": "Go to Login"
   },
   "sidenav": {
     "home": "Home",

@@ -3,7 +3,6 @@ import { useTranslations } from "next-intl";
 import { useRouter, useSearchParams } from "next/navigation";
 import AuthConnect from "@/auth";
 import Modal from "../../globalComponents/modal";
-import { useTranslations } from "next-intl";
 
 export const CoordinatorEvaluation = ({ formToggle, stdid }) => {
   const t = useTranslations("reportview");
@@ -65,21 +64,25 @@ export const CoordinatorEvaluation = ({ formToggle, stdid }) => {
             <form>
               <div class=" max-[300px]:w-screen px-1 font-medium grid grid-cols-6 lg:grid-cols-10  text-black  lg:mx-4 py-1 text-xs lg:text-lg rounded">
                 <div class=" col-span-2  lg:col-span-6 pl-1 dark:text-white font-medium">
-                {t("EvaluationCriteria")}
+                  {t("EvaluationCriteria")}
                 </div>
                 <div class="   dark:text-white flex justify-center text-black">
-                {t("Poor")}
+                  {t("Poor")}
                 </div>
-                <div class=" flex justify-center dark:text-white">{t("Fair")} </div>
-                <div class="dark:text-white flex justify-center">{t("Good")}</div>
+                <div class=" flex justify-center dark:text-white">
+                  {t("Fair")}{" "}
+                </div>
+                <div class="dark:text-white flex justify-center">
+                  {t("Good")}
+                </div>
                 <div class="  dark:text-white flex justify-center">
-                {t("Excellent")}
+                  {t("Excellent")}
                 </div>
               </div>
 
               <div class=" grid grid-cols-6 lg:grid-cols-10 px-1   font-medium lg:mx-4 py-1 text-xs lg:text-lg rounded ">
                 <div class="col-span-2  lg:col-span-6 pl-1 dark:text-white">
-                {t("QualityOfReport")}
+                  {t("Q1")}
                 </div>
                 <div class="flex justify-center">
                   <input
@@ -117,7 +120,7 @@ export const CoordinatorEvaluation = ({ formToggle, stdid }) => {
 
               <div class=" grid grid-cols-6 lg:grid-cols-10 font-medium px-1 lg:mx-4 py-1 text-xs lg:text-lg rounded">
                 <div class=" col-span-2  lg:col-span-6 pl-1 dark:text-white">
-                {t("q2")}
+                  {t("q2")}
                 </div>
                 <div class="flex justify-center">
                   <input
@@ -154,7 +157,7 @@ export const CoordinatorEvaluation = ({ formToggle, stdid }) => {
               </div>
               <div class=" grid grid-cols-6 lg:grid-cols-10 font-medium px-1 lg:mx-4 py-1 text-xs lg:text-lg rounded">
                 <div class="col-span-2  lg:col-span-6 pl-1 dark:text-white">
-                {t("q3")}
+                  {t("q3")}
                 </div>
                 <div class="flex justify-center">
                   <input
@@ -191,7 +194,7 @@ export const CoordinatorEvaluation = ({ formToggle, stdid }) => {
               </div>
               <div class=" grid grid-cols-6 lg:grid-cols-10  px-1 font-medium  lg:mx-4 py-1 text-xs lg:text-lg rounded ">
                 <div class="col-span-2  lg:col-span-6 pl-1 dark:text-white">
-                {t("q4")}
+                  {t("q4")}
                 </div>
                 <div class="flex justify-center">
                   <input
@@ -228,7 +231,7 @@ export const CoordinatorEvaluation = ({ formToggle, stdid }) => {
               </div>
               <div class=" grid grid-cols-6 lg:grid-cols-10 px-1 font-medium lg:mx-4 py-1 text-xs lg:text-lg rounded">
                 <div class="col-span-2  lg:col-span-6 pl-1 dark:text-white  ">
-                {t("OverEvalResult")}
+                  {t("OverEvalResult")}
                 </div>
                 <div class=" dark:text-white col-span-2 pl-5 text-xs lg:text-base ">
                   <input

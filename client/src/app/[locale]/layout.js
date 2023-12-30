@@ -1,4 +1,3 @@
-// import "react-calendar/dist/Calendar.css";
 import { NextIntlClientProvider } from "next-intl";
 import { notFound } from "next/navigation";
 import "./globals.css";
