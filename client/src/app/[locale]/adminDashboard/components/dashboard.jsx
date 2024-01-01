@@ -25,6 +25,7 @@ export const Dashboard = ({ user }) => {
   const [assigned, setAssigned] = useState(false);
   const [loading, setLoading] = useState(false);
   const [changeinList, setChangeinList] = useState(false);
+  const [msg, setMsg] = useState("");
 
   // get students id
   useEffect(() => {
@@ -87,11 +88,15 @@ export const Dashboard = ({ user }) => {
         setAdminAdded(true);
       }
     } catch (error) {
+      setLoading(false);
       if (error.response) {
-        setLoading(false);
-        setMsg(error.response.data.msg);
+        if (error.response.data.msg === "1") {
+          setMsg(t("err1"));
+        }
+        if (error.response.data.msg === "2") {
+          setMsg(t("err2"));
+        }
       }
-      alert("Application Error");
     }
   };
 
@@ -112,14 +117,17 @@ export const Dashboard = ({ user }) => {
     } catch (error) {
       setLoading(false);
       if (error.response) {
-        setMsg(error.response.data.msg);
+        if (error.response.data.msg === "1") {
+          setMsg(t("err3"));
+        }
+        if (error.response.data.msg === "2") {
+          setMsg(t("err2"));
+        }
       }
-      alert("Application Error");
     }
   };
 
   // assign student
-
   const AssignStudent = async () => {
     setLoading(true);
     try {
@@ -143,9 +151,8 @@ export const Dashboard = ({ user }) => {
     } catch (error) {
       setLoading(false);
       if (error.response) {
-        setMsg(error.response.data.msg);
+        setMsg(t("err2"));
       }
-      alert("Application Error");
     }
   };
 
@@ -169,7 +176,6 @@ export const Dashboard = ({ user }) => {
     return <Loading />;
   }
 
-  //
   return (
     <main className="w-full h-fit">
       <div className="m-4 mb-20 md:mb-4">
@@ -503,6 +509,21 @@ export const Dashboard = ({ user }) => {
             </div>
             <button
               onClick={() => setAssigned(false)}
+              className="bg-blue text-white px-3 py-1 mt-2"
+            >
+              {t("Close")}
+            </button>
+          </div>
+        </Modal>
+      )}
+      {msg && (
+        <Modal onClose={() => setMsg(false)}>
+          <div className="flex flex-col justify-center items-center">
+            <div className="font-bold">
+              <p>{msg}</p>
+            </div>
+            <button
+              onClick={() => setMsg(false)}
               className="bg-blue text-white px-3 py-1 mt-2"
             >
               {t("Close")}

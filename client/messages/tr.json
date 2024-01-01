@@ -306,6 +306,7 @@
     "submitform": "Göndermek istediğinizden emin misiniz?"
   },
   "upConForm": {
+    "conform": "Onay Formu",
     "sign": "Lütfen formu imzalayın ve buraya yükleyin",
     "Upload": "İmzalı Onay Formunu Yükle"
   },
@@ -427,7 +428,10 @@
     "LastName": "Soy isim",
     "DepartmentSupervisor": "Departman Sorumlusu",
     "SupervisorAssigned": "Bölüm Sorumlusu Atandı!",
-    "report": "Rapor yazmak"
+    "report": "Rapor yazmak",
+    "err1": "Yönetici Kullanıcı Zaten Var",
+    "err2": "Dahili sunucu hatası",
+    "err3": "Departman Sorumlusu Zaten Var"
   },
   "companyDashboard": {
     "welcome": "Hoş geldin",

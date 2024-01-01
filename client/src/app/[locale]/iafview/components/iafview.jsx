@@ -265,9 +265,7 @@ export const IafView = () => {
         <Modal onClose={() => setConfirm(false)}>
           <div className="flex flex-col justify-center items-center">
             <div className="font-bold">
-              <p>
-              {t("confirmIA")}
-              </p>
+              <p>{t("confirmIA")}</p>
             </div>
             <div className="flex justify-between mt-2 w-10/12">
               <button
@@ -305,9 +303,7 @@ export const IafView = () => {
         <Modal onClose={() => setReject(false)}>
           <div className="flex flex-col justify-center items-center">
             <div className="font-bold">
-              <p>
-              {t("rejectIA")}
-              </p>
+              <p>{t("rejectIA")}</p>
             </div>
             <div className="flex justify-between mt-2 w-10/12">
               <button

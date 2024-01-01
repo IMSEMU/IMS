@@ -213,7 +213,7 @@
     "photo": "photo",
     "fillAllMsg": "Please fill in all required fields",
     "upimg": "Upload an Image",
-    "back": "back",
+    "back": "Back",
     "Reject": "Reject",
     "Confirm": "Confirm",
     "confirmIA": "Are you sure you want to confirm this Internship Application?",
@@ -307,6 +307,7 @@
     "submitform": "Are you sure you want to submit?"
   },
   "upConForm": {
+    "conform": "Confirmation Form",
     "sign": "Please sign the form and upload it here",
     "Upload": "Upload Signed Confirmation Form"
   },
@@ -427,7 +428,10 @@
     "FirstName": "First Name",
     "LastName": "Last Name",
     "DepartmentSupervisor": "Department Supervisor",
-    "SupervisorAssigned": "Department Supervisor Assigned!"
+    "SupervisorAssigned": "Department Supervisor Assigned!",
+    "err1": "Admin User Already Exists",
+    "err2": "Internal server error",
+    "err3": "Department Supervisor Already Exists"
   },
   "companyDashboard": {
     "welcome": "Welcome",
