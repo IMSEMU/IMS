@@ -73,7 +73,7 @@ export const AddLogData = ({
   }
 
   return (
-    <div className="w-full from-left">
+    <div className="w-full ">
       <div className={"hidden lg:block w-full mb-3"}>
         <p
           className={
@@ -82,6 +82,7 @@ export const AddLogData = ({
         >
           {t("title")}
         </p>
+        
       </div>
       <div className="flex gap-3 justify-center py-2 items-center">
         <div className="flex flex-wrap gap-3 justify-center items-center">

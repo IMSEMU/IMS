@@ -6,6 +6,7 @@ import { CompletedInternships } from "./completedInternships";
 import { InternshipPositions } from "../internshipPositions/component/internshipPositions";
 import { HomeFooter } from "./homeFooter";
 import { LoggedInNavbar } from "../globalComponents/loggedinNavbar";
+import { MobileNav } from "../globalComponents/mobileNav";
 
 export default function HomePage() {
   const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
@@ -21,6 +22,7 @@ export default function HomePage() {
       <CompletedInternships />
       <InternshipPositions />
       <HomeFooter />
+      <MobileNav />
     </main>
   );
 }

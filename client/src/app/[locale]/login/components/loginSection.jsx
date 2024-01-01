@@ -90,7 +90,7 @@ export default function LoginSection() {
       </Link>
 
       <div className="absolute flex top-4 rounded right-1 md:right-7">
-        <LanguageToggle />
+        
         <DarkModeButton />
       </div>
 
@@ -111,6 +111,10 @@ export default function LoginSection() {
           {/* <AnimatePresence> */}
           {login ? (
             <div className="from-left w-full md:w-1/2 px-8 md:px-6 my-1 md:my-4">
+              <div className="w-full inline-flex justify-end">
+              <LanguageToggle />
+              </div>
+
               <div className="flex justify-center items-center my-2">
                 <Image
                   width={90}

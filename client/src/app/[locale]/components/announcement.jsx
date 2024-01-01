@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { FaExclamationTriangle } from "react-icons/fa";
+import { FaExclamationTriangle, FaTimes } from "react-icons/fa";
 import { TfiAnnouncement } from "react-icons/tfi";
 import { AnnouncementSkeleton } from "../skeletonLoader";
 import AuthConnect from "@/auth";
@@ -41,7 +41,7 @@ export const Announcement = () => {
         <div className={"flex text-black dark:text-white justify-center"}>
           <p
             className={
-              "text-sm md:text-md xl:text-xl 2xl:text-2xl inline-flex text-center border-yellow border-x-[0.4rem] md:border-x-8 px-2"
+              "text-sm md:text-md xl:text-xl 2xl:text-2xl inline-flex font-semibold text-center border-yellow border-x-[0.4rem] md:border-x-8 px-2"
             }
           >
             {t("title")}
@@ -75,14 +75,14 @@ export const Announcement = () => {
                         setClose(true);
                       }}
                       className={
-                        "w-full md:w-[23rem] flex justify-between items-center rounded my-1.5 mx-1.5 bg-white dark:bg-dark_2"
+                        "w-[90%]  hover:border-l-8 hover:border-l-yellow duration-300 border-[transparent] flex justify-between items-center rounded mb-2 mx-1.5 drop-shadow-lg bg-white dark:bg-dark_2"
                       }
                     >
-                      <div className={"text-xs sm:text-sm md:text-md p-3"}>
+                      <div className={"text-xs sm:text-sm md:text-md p-2 w-full"}>
                         {/* Announcement time */}
                         <em
                           className={
-                            "rounded bg-yellow text-black m-1 px-1.5 py-1"
+                            "rounded bg-yellow font-semibold text-black  px-1.5 py-1"
                           }
                         >
                           {announcement.updatedAt.split("T")[0]}
@@ -91,7 +91,7 @@ export const Announcement = () => {
                         {/* Subject of announcement */}
                         <h1
                           className={
-                            "text-black dark:text-white text-sm md:text-md lg:text-lg xl:text-xl font-semibold py-1 m-1"
+                            "text-black w-full] truncate capitalize dark:text-white text-sm md:text-md xl:text-lg font-semibold my-1.5 "
                           }
                         >
                           {announcement.title}
@@ -108,7 +108,7 @@ export const Announcement = () => {
           {/* Announcement Display */}
           <div
             className={
-              "text-xs sm:text-sm md:text-md xl:text-xl overflow-y-auto relative hidden md:block bg-white dark:bg-background_shade_2 md:w-1/2 m-2 rounded sm:h-[31.5rem]"
+              "text-xs w-full sm:text-sm md:text-md xl:text-xl overflow-y-auto relative hidden md:block bg-white dark:bg-background_shade_2 md:w-1/2 m-2 rounded sm:h-[31.5rem]"
             }
           >
             {/* Display the contents of selected card */}
@@ -124,17 +124,21 @@ export const Announcement = () => {
                 </div>
               ) : (
                 selectedCard && (
-                  <div className={"relative"}>
+                  <div className={"relative w-full"}>
                     <div
                       className={
                         "sticky top-0 p-3 bg-white dark:bg-background_shade_2"
                       }
                     >
-                      <div className={"font-bold text-center"}>
-                        <h2>{selectedCard.title}</h2>
+                      <div className={"font-bold text-center w-full"}>
+                        <h2 className="w-[80%]">{selectedCard.title}</h2>
                       </div>
                     </div>
-                    <p className={"p-3"}>{selectedCard.content}</p>
+                    <div className={"p-3 -w-full flex h-fit"}>
+                      <p className="w-full break-words h-fit font-medium">
+                      {selectedCard.content}
+                      </p>
+                    </div>
                   </div>
                 )
               )}
@@ -142,16 +146,19 @@ export const Announcement = () => {
           </div>
           {/*open in mobile view */}
           <div
+                            onClick={() => {
+                              setClose(false);
+                            }}
             className={
               close
-                ? "z-[60] bg-[rgba(0,0,0,0.85)] text-black dark:text-white top-0 md:hidden flex items-center fixed min-h-screen min-w-screen"
+                ? "z-[60] bg-[rgba(0,0,0,0.85)] text-black dark:text-white top-0 left-0 md:hidden flex items-center fixed min-h-screen w-screen"
                 : "hidden"
             }
           >
-            <div className={"flex items-center"}>
+            <div className={"flex justify-center items-center w-full"}>
               <div
                 className={
-                  "w-[85%] from-bottom  rounded h-[25rem]  mx-auto p-4 bg-white dark:bg-dark_2"
+                  "min-w-[80%] w-full from-bottom  rounded h-[25rem] mx-auto  p-2 bg-white dark:bg-dark_2"
                 }
               >
                 {/* close modal */}
@@ -161,17 +168,17 @@ export const Announcement = () => {
                   }}
                   className={"flex justify-end items-center p-2"}
                 >
-                  x
+                  <FaTimes className="text-xl dark:text-yellow" />
                 </div>
                 {selectedCard && (
-                  <div className={" z-50"}>
+                  <div className={"w-full z-50"}>
                     <div className={" p-3 "}>
-                      <div className={"font-bold text-center"}>
+                      <div className={"min-w-[90%] capitalize truncate text-lg font-bold text-center dark:text-yellow"}>
                         <h2>{selectedCard.title}</h2>
                       </div>
                     </div>
-                    <div className="overflow-y-auto">
-                      <p className={"p-3"}>{selectedCard.content}</p>
+                    <div className="overflow-y-auto min-w-[90%] dark:text-white">
+                      <div className={"p-3 w-full font-medium break-words"}>{selectedCard.content}</div>
                     </div>
                   </div>
                 )}

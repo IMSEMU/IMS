@@ -153,7 +153,7 @@ export const TopNav = ({ user }) => {
           {/* Notification Dropdown */}
 
           {notificationDrop && (
-            <div className=" from-top overflow-hidden absolute right-4 top-16 w-[20rem] h-fit max-h-[30rem] border dark:border-none rounded bg-white dark:bg-dark_3 text-black">
+            <div className=" from-top overflow-hidden absolute right-4 top-20 md:top-16 w-[16rem] md:w-[18rem] h-fit max-h-[30rem] border border-background_shade_2 dark:border-dark_4 rounded bg-white dark:bg-dark_3 text-black">
               {/* clear all notifications */}
               <div className=" py-3 px-2 flex justify-between">
                 <div
@@ -166,8 +166,9 @@ export const TopNav = ({ user }) => {
               </div>
 
               {/* notifications */}
-              <div className="max-h-[20rem]  overflow-y-scroll">
+              <div className="max-h-[20rem] min-h-[5rem]  overflow-y-scroll">
                 {notifications.map((notification, index) => (
+                  index === 0 ? <div>no Notification</div> :
                   <div key={index} className="m-2">
                     <Link
                       href={""}
@@ -203,13 +204,13 @@ export const TopNav = ({ user }) => {
           {profileDrop && (
             <div
               className={
-                "from-top  absolute right-4 top-16 w-[18rem] h-fit border dark:border-none rounded bg-white dark:bg-dark_3 text-black dark:text-white"
+                "from-top  absolute right-4 top-20 md:top-16 w-[16rem] md:w-[18rem] h-fit border border-background_shade_2 dark:border-dark_3 rounded bg-white dark:bg-dark_2 text-black dark:text-white"
               }
             >
               {/*image and name*/}
               <div
                 className={
-                  "flex justify-start items-center p-3 gap-3 border-b border-dark_3 dark:border-white"
+                  "flex justify-start items-center p-1.5 md:p-3 gap-3 border-b border-dark_3 dark:border-white"
                 }
               >
                 <div
@@ -230,14 +231,14 @@ export const TopNav = ({ user }) => {
                 <div className={"flex truncate flex-wrap w-full"}>
                   <p
                     className={
-                      "truncate text-sm sm:text-md md:text-lg font-semibold"
+                      "truncate text-sm sm:text-md md:text-lg font-semibold w-full capitalize"
                     }
                   >
                     {user.firstname} {user.lastname}
                   </p>
                   <p
                     className={
-                      "truncate text-sm sm:text-md text-blue dark:text-yellow cursor-pointer"
+                      "truncate text-sm sm:text-md text-blue dark:text-blue cursor-pointer"
                     }
                   >
                     {user.email}

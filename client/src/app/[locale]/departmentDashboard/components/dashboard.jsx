@@ -15,6 +15,7 @@ import countryList from "react-select-country-list";
 import { DisplayInternshipPositions } from "./displayIntPos";
 import CalendarComponent from "../../internDashboard/components/calendar";
 import { GiPencil } from "react-icons/gi";
+import { FaDownload } from "react-icons/fa6";
 
 export const Dashboard = ({ user }) => {
   const t = useTranslations("dashDep");
@@ -357,7 +358,7 @@ export const Dashboard = ({ user }) => {
       <div className="m-4 mb-20 md:mb-4">
         <div
           className={
-            "text-md lg:text-xl xl:text-2xl py-1 md:py-2 w-full max-w-[1300px] xl:mx-auto mx-2 font-bold"
+            "text-black dark:text-white text-md lg:text-xl xl:text-2xl py-1 md:py-2 w-full max-w-[1300px] xl:mx-auto mx-2 font-bold"
           }
         >
           <p>
@@ -365,23 +366,26 @@ export const Dashboard = ({ user }) => {
           </p>
         </div>
 
-        <div className="grid grid-cols-3 gap-4">
-          <div className="grid grid-cols-6 col-span-3 lg:col-span-2  justify-between items-center  gap-4 w-full max-w-[1300px] self-center px-4 sm:px-10 lg:px-0">
+        <div className="grid grid-cols-3 gap-4  max-w-[1300px] self-center m-auto">
+          <div className="grid grid-cols-6 col-span-3 lg:col-span-2  justify-between items-center  gap-4 w-full self-center px-4 sm:px-10 lg:px-0">
             {/* display card */}
-            <div className="relative col-span-6 md:col-span-3">
-              {/* Add button */}
+            <div className="relative  col-span-6 md:col-span-3">
+
+
+              {/* Calendar */}
+              <div className="flex items-center justify-center w-full mt-7 relative">
+                              {/* edit button */}
+              <div className="w-full absolute top-[-1.3rem] flex justify-center">
               <button
-                className="absolute top-0 right-0 px-2 py-1 bg-blue text-white inline-flex rounded items-center justify-center gap-1"
+                className=" px-2 py-1 bg-blue text-white inline-flex rounded items-center justify-center gap-1"
                 onClick={() => {
                   setEditDueDates(true);
                 }}
               >
-                <BiPencil className="text-white text-xl" />
-                <div>{t("editDue")}</div>
+                <BiPencil className="text-white text-md md:text-xl" />
+                <div className=" text-sm md:text-md">{t("editDue")}</div>
               </button>
-
-              {/* Calendar */}
-              <div className="flex items-center justify-center w-[340px] mt-7">
+              </div>
                 <CalendarComponent eventsList={dueDates} />
               </div>
             </div>
@@ -390,7 +394,7 @@ export const Dashboard = ({ user }) => {
               {/*Announcement Card*/}
               <div
                 className={
-                  "bg-background_shade  col-span-6 md:col-span-3 lg:col-span-2 h-[19rem] rounded"
+                  "bg-background_shade dark:bg-dark_2  col-span-6 md:col-span-3 lg:col-span-2 h-[19rem] rounded"
                 }
               >
                 {/*section Name and button*/}
@@ -435,7 +439,7 @@ export const Dashboard = ({ user }) => {
             <div className=" col-span-6 md:col-span-3">
               <div
                 className={
-                  "bg-background_shade  col-span-6 md:col-span-3 lg:col-span-2 h-[19rem] rounded"
+                  "bg-background_shade dark:bg-dark_2 col-span-6 md:col-span-3 lg:col-span-2 h-[19rem] rounded"
                 }
               >
                 {/*section Name and button*/}
@@ -474,8 +478,8 @@ export const Dashboard = ({ user }) => {
           </div>
 
           {/* Submitted Forms */}
-          <div className=" col-span-3 lg:col-span-1 grid grid-rows-2">
-            <div className=" row-span-2 bg-background_shade rounded">
+          <div className=" col-span-3 lg:col-span-1 grid grid-rows-2 px-4 sm:px-10 lg:px-0">
+            <div className=" row-span-2 bg-background_shade dark:bg-dark_2 rounded">
               {/*section Name and button*/}
               <div className="capitalize p-3 items-center">
                 <p
@@ -596,6 +600,7 @@ export const Dashboard = ({ user }) => {
           </div>
         </div>
       </div>
+      {/* add announcements modal */}
       {showAddAnnouncements && (
         <Modal onClose={() => setShowAddAnnouncements(false)}>
           <div className="flex flex-col justify-center items-center">
@@ -609,7 +614,7 @@ export const Dashboard = ({ user }) => {
                   {t("addAnn")}
                 </p>
               </div>
-              <div className="flex gap-3 justify-center py-2 items-center">
+              <div className="flex gap-3 justify-center py-2 items-center text-sm md:text-md">
                 <div className="flex flex-wrap gap-3 justify-center items-center">
                   {/* Department input section */}
                   <div className="w-[90%]">
@@ -617,7 +622,7 @@ export const Dashboard = ({ user }) => {
                       placeholder={t("Title")}
                       type="text"
                       id=""
-                      className="rounded p-3 outline-none w-full border border-dark_4 dark:border-none dark:bg-background_shade_2 text-dark_2 placeholder:text-dark_2"
+                      className="rounded p-3 outline-none w-full border border-dark_4 dark:border-none dark:bg-dark_4 font-semibold text-dark_2 placeholder:text-dark_2"
                       onChange={(e) => setAnnouncementTitle(e.target.value)}
                     />
                   </div>
@@ -626,7 +631,7 @@ export const Dashboard = ({ user }) => {
                     <textarea
                       placeholder={t("AnnouncementContent")}
                       id=""
-                      className=" resize-none rounded p-3 outline-none w-full border border-dark_4 dark:border-none h-[10rem] dark:bg-background_shade_2 text-dark_2 placeholder:text-dark_2"
+                      className=" resize-none rounded p-3 outline-none w-full border border-dark_4 dark:border-none h-[10rem] dark:bg-dark_4 font-semibold text-dark_2 placeholder:text-dark_2"
                       onChange={(e) => setAnnouncementContent(e.target.value)}
                     />
                   </div>
@@ -647,26 +652,29 @@ export const Dashboard = ({ user }) => {
           </div>
         </Modal>
       )}
+      {/* success message */}
       {announcementAdded && (
         <Modal onClose={() => setAnnouncementAdded(false)}>
           <div className="flex flex-col justify-center items-center">
-            <div className="font-bold">
+            <div className="font-bold  text-sm md:text-md text-black dark:text-white">
               <p>{t("addAnnMsg")}</p>
             </div>
             <button
               onClick={() => setAnnouncementAdded(false)}
-              className="bg-blue text-white px-3 py-1 mt-2"
+              className="bg-blue text-white px-3 py-1 rounded mt-2"
             >
               {t("Close")}
             </button>
           </div>
         </Modal>
       )}
+
+      {/* add internship modal */}
       {showAddIntPosition && (
         <Modal onClose={() => setShowAddIntPosition(false)}>
-          <div className="flex flex-col justify-center items-center">
+          <div className="flex flex-col justify-center items-center text-sm font-semibold">
             <div>
-              <div className={"hidden lg:block w-full mb-3"}>
+              <div className={"w-full mb-3"}>
                 <p
                   className={
                     " font-bold m-3 text-black dark:text-white text-sm md:text-md lg:text-lg  inline-flex text-center  border-yellow border-x-[0.4rem] md:border-x-[0.3rem] px-2"
@@ -794,7 +802,7 @@ export const Dashboard = ({ user }) => {
                     )}
                   </div>
                   <div className="w-[90%]">
-                    <span className="pt-2">{t("addCL")}:</span>
+                    <span className="pt-2 text-black dark:text-white">{t("addCL")}:</span>
                     <CldUploadWidget
                       uploadPreset="p5tgbjfx"
                       onSuccess={handleImageUploadSuccess}
@@ -835,12 +843,12 @@ export const Dashboard = ({ user }) => {
       {intPosAdded && (
         <Modal onClose={() => setIntPosAdded(false)}>
           <div className="flex flex-col justify-center items-center">
-            <div className="font-bold">
+            <div className="font-bold text-sm md:text-md text-black dark:text-white">
               <p>{t("addIPMsg")}</p>
             </div>
             <button
               onClick={() => setIntPosAdded(false)}
-              className="bg-blue text-white px-3 py-1 mt-2"
+              className="bg-blue text-white rounded px-3 py-1 mt-2"
             >
               {t("Close")}
             </button>
@@ -848,10 +856,11 @@ export const Dashboard = ({ user }) => {
         </Modal>
       )}
       {editDueDates && (
+        // edit due dates modal
         <Modal onClose={() => setEditDueDates(false)}>
           <div className="flex flex-col justify-center items-center">
             <div>
-              <div className={"hidden lg:block w-full mb-3"}>
+              <div className={" w-full mb-3"}>
                 <p
                   className={
                     " font-bold m-3 text-black dark:text-white text-sm md:text-md lg:text-lg  inline-flex text-center  border-yellow border-x-[0.4rem] md:border-x-[0.3rem] px-2"
@@ -860,10 +869,11 @@ export const Dashboard = ({ user }) => {
                   {t("editDue")}
                 </p>
               </div>
-              <div className="flex gap-3 justify-center py-2 items-center">
+            {/* due date forms */}
+              <div className="flex gap-3 justify-center py-2 items-center text-sm md:text-md :text-lg font-semibold text-black dark:text-white">
                 <div className="flex flex-wrap gap-3 justify-center items-center">
-                  <div className="w-[90%] flex">
-                    <p className="w-[80%]">{t("iaForm")}</p>
+                  <div className="w-[80%] lg:w-[60%]  flex">
+                    {/* <p className="w-[80%]">{t("iaForm")}</p> */}
                     <DateInput
                       placeholder={
                         iafText
@@ -876,8 +886,8 @@ export const Dashboard = ({ user }) => {
                       className="rounded p-3 outline-none w-full border border-dark_4 dark:border-none dark:bg-background_shade_2 text-dark_2 placeholder:text-dark_2"
                     />
                   </div>
-                  <div className="w-[90%] flex">
-                    <p className="w-[80%]">{t("icForm")}</p>
+                  <div className="w-[80%] lg:w-[60%]  flex">
+                    {/* <p className="w-[80%]">{t("icForm")}</p> */}
                     <DateInput
                       placeholder={
                         conFormText
@@ -890,8 +900,8 @@ export const Dashboard = ({ user }) => {
                       className="rounded p-3 outline-none w-full border border-dark_4 dark:border-none dark:bg-background_shade_2 text-dark_2 placeholder:text-dark_2"
                     />
                   </div>
-                  <div className="w-[90%] flex">
-                    <p className="w-[80%]">{t("siForm")}</p>
+                  <div className="w-[80%] lg:w-[60%]  flex">
+                    {/* <p className="w-[80%]">{t("siForm")}</p> */}
                     <DateInput
                       placeholder={
                         sifText
@@ -904,8 +914,8 @@ export const Dashboard = ({ user }) => {
                       className="rounded p-3 outline-none w-full border border-dark_4 dark:border-none dark:bg-background_shade_2 text-dark_2 placeholder:text-dark_2"
                     />
                   </div>
-                  <div className="w-[90%] flex">
-                    <p className="w-[80%]">{t("Logbook")}</p>
+                  <div className="w-[80%] lg:w-[60%]  flex">
+                    {/* <p className="w-[80%]">{t("Logbook")}</p> */}
                     <DateInput
                       placeholder={
                         logbookText ? logbookText.split("T")[0] : "Logbook"
@@ -916,8 +926,8 @@ export const Dashboard = ({ user }) => {
                       className="rounded p-3 outline-none w-full border border-dark_4 dark:border-none dark:bg-background_shade_2 text-dark_2 placeholder:text-dark_2"
                     />
                   </div>
-                  <div className="w-[90%] flex">
-                    <p className="w-[80%]">{t("cteForm")}</p>
+                  <div className="w-[80%] lg:w-[60%]  flex">
+                    {/* <p className="w-[80%]">{t("cteForm")}</p> */}
                     <DateInput
                       placeholder={
                         compEvalText
@@ -930,8 +940,8 @@ export const Dashboard = ({ user }) => {
                       className="rounded p-3 outline-none w-full border border-dark_4 dark:border-none dark:bg-background_shade_2 text-dark_2 placeholder:text-dark_2"
                     />
                   </div>
-                  <div className="w-[90%] flex">
-                    <p className="w-[80%]">{t("Report")}</p>
+                  <div className="w-[80%] lg:w-[60%]  flex">
+                    {/* <p className="w-[80%]">{t("Report")}</p> */}
                     <DateInput
                       placeholder={
                         reportText ? reportText.split("T")[0] : "Report"
@@ -949,7 +959,7 @@ export const Dashboard = ({ user }) => {
                       }
                       onClick={EditDueDates}
                     >
-                      <GiPencil className="text-xl text-yellow" />
+                      <FaDownload className="md:text-xl text-white" />
                       <div>{t("Save")}</div>
                     </button>
                   </div>
@@ -967,7 +977,7 @@ export const Dashboard = ({ user }) => {
             </div>
             <button
               onClick={() => setEdited(false)}
-              className="bg-blue text-white px-3 py-1 mt-2"
+              className="bg-blue text-white rounded px-3 py-1 mt-2"
             >
               {t("Close")}
             </button>

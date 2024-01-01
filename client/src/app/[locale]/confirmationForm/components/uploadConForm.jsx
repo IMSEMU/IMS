@@ -7,7 +7,7 @@ const UploadConForm = ({ handleDocUploadSuccess }) => {
 
   return (
     <main>
-      <div className="from-left bg-white dark:bg-dark_2 p-5 rounded shadow-xl dark:border-none border border-background_shade_2 w-[40rem] lg:w-[40rem] h-fit pb-10">
+      <div className="from-left bg-white dark:bg-dark_2 p-5 rounded shadow-xl dark:border-none border border-background_shade_2 mx-2 md:mx-auto w-full md:w-[30rem] lg:w-[40rem] h-fit pb-10">
         <div className="w-full">
           <h2
             className={

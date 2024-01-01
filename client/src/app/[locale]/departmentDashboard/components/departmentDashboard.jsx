@@ -38,7 +38,7 @@ export const DepartmentDashboardPage = () => {
     return null; // Prevent rendering the dashboard until token is fetched
   }
   return (
-    <main className={"p-0 m-0 bg-white dark:bg-dark_2"}>
+    <main className={"p-0 m-0 bg-white dark:bg-dark_1"}>
       {/*Sidenav and body*/}
       <div className={"flex flex-nowrap"}>
         <PcSideNav user={user} />

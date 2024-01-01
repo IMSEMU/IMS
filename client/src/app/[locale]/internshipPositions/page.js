@@ -2,6 +2,7 @@ import { HomeFooter } from "../components/homeFooter";
 import { InternshipCards } from "./component/internships";
 import { Suspense } from "react";
 import Loading from "../globalComponents/loading";
+import { MobileNav } from "../globalComponents/mobileNav";
 
 export const metadata = {
   title: "Available Internships | I.M.S.",
@@ -14,6 +15,7 @@ export default function InternshipPositions() {
           <InternshipCards />
           <HomeFooter />
         </div>
+        <MobileNav />
       </main>
     </Suspense>
   );

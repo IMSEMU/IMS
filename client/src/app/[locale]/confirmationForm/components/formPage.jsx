@@ -40,9 +40,11 @@ export const ConfirmationForm = () => {
 
   return (
     <main className="bg-white dark:bg-dark_1 h-screen">
-      <div className={"flex flex-nowrap"}>
+      <div className={" dark:bg-dark_3 flex  "}>
+
         <PcSideNav user={user} />
-        <div className={"h-full w-full"}>
+        
+        <div className={" dark:bg-dark_3 h-full w-full  overflow-hidden"}>
           <TopNav user={user} />
           <ProtectedRoute>
             <ConForm />

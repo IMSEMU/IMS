@@ -130,7 +130,7 @@ export const LogbookPage = () => {
           <TopNav user={user} />
           <ProtectedRoute>
             <section className=" bg-white dark:bg-dark_1 flex items-center justify-center w-full pt-5">
-              <div className="bg-white dark:bg-dark_2 p-3.5 flex rounded shadow-xl dark:border-none border border-background_shade_2 w-[90%] md:w-[70%] lg:w-[50rem] h-[10%] mb-20 md:mb-4 lg:mb-2 md:h-[32rem]">
+              <div className="relative bg-white dark:bg-dark_2 p-3.5 flex rounded shadow-xl dark:border-none border border-background_shade_2 w-[90%] md:w-[70%] lg:w-[50rem] h-[10%] mb-20 md:mb-4 lg:mb-2 md:h-[32rem]">
                 {/* LOgbook Add section */}
                 <div className="hidden lg:block lg:w-1/2">
                   <div className=" flex items-center h-full">
@@ -158,7 +158,8 @@ export const LogbookPage = () => {
                 </div>
 
                 {/* Logbook Display section */}
-                <div className=" w-full lg:w-1/2 bg-background_shade dark:bg-dark_3 rounded overflow-x-auto">
+                <div className="w-full h-full lg:w-1/2">
+                <div className=" w-full h-[90%] bg-background_shade dark:bg-dark_3 rounded overflow-x-auto">
                   <div className="hidden lg:block">
                     <LogbookDisplay
                       logbookEntries={logbookEntries}
@@ -185,7 +186,7 @@ export const LogbookPage = () => {
                       </p>
                       <button
                         onClick={() => setMobileLogAdd(!mobileLogAdd)}
-                        className="px-2 py-1 bg-blue rounded text-white"
+                        className="px-2 py-1 bg-blue rounded text-white flex justify-between"
                       >
                         {mobileLogAdd
                           ? edit
@@ -227,9 +228,10 @@ export const LogbookPage = () => {
                       />
                     )}
                   </div>
+
                 </div>
-              </div>
-              <div className="mt-4">
+                                                  {/* submit button */}
+                                                  <div className="my-2 w-full flex justify-end">
                 {logbookEntries.length == student.duration ? (
                   <button
                     className="bg-blue text-white py-2 px-4 rounded"
@@ -244,6 +246,9 @@ export const LogbookPage = () => {
                     {t("Submit")}
                   </button>
                 )}
+              </div>
+</div>
+
               </div>
             </section>
           </ProtectedRoute>

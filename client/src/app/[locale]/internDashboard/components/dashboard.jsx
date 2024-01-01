@@ -120,10 +120,10 @@ export const Dashboard = ({ user }) => {
   }
 
   return (
-    <main className={"m-5 bg-white dark:bg-dark_2 "}>
+    <main className={"m-5 bg-white dark:bg-dark_1 "}>
       <div
         className={
-          "text-md lg:text-xl xl:text-2xl py-1 md:py-2 w-full max-w-[1300px] xl:mx-auto mx-2 font-bold"
+          "text-md dark:text-white lg:text-xl xl:text-2xl pb-3 md:py-2 w-full max-w-[1300px] xl:mx-auto mx-2 font-bold"
         }
       >
         <p className="capitalize">
@@ -134,13 +134,13 @@ export const Dashboard = ({ user }) => {
       {/*  section 1*/}
       <div
         className={
-          "grid grid-cols-6  justify-between items-center  gap-4 w-full max-w-[1300px] self-center px-4 sm:px-10 lg:px-0"
+          "grid grid-cols-6  justify-between items-center  gap-4 w-full max-w-[1300px] xl:mx-auto mx-2 self-center px-4 sm:px-10 lg:px-0"
         }
       >
         {/*total days*/}
         <div
           className={
-            "min-h-[12rem] lg:h-[12rem] xl:h-[14rem] flex flex-wrap items-center gap-2 content-center justify-around col-span-6 md:col-span-3 lg:col-span-2 bg-white shadow-lg border border-background_shade_2 rounded"
+            "min-h-[12rem] lg:h-[12rem] xl:h-[14rem] flex flex-wrap items-center gap-2 content-center justify-around col-span-6 md:col-span-3 lg:col-span-2 dark:bg-dark_2 dark:border-none bg-white shadow-lg border border-background_shade_2 rounded"
           }
         >
           <div className="flex justify-end w-full gap- items-center mx-10 my-2">
@@ -153,7 +153,7 @@ export const Dashboard = ({ user }) => {
           <div className="flex w-full items-center justify-center ">
             <div className={"p-2 flex items-center w-1/4"}>
               <span
-                className={"text-4xl rounded p-4 my-1 bg-dark_3 text-white"}
+                className={"text-4xl rounded p-4 my-1 dark:bg-yellow_2 dark:text-black bg-dark_3 text-white"}
               >
                 <HiMiniCalendarDays />
               </span>
@@ -161,7 +161,7 @@ export const Dashboard = ({ user }) => {
 
             <div
               className={
-                "flex flex-wrap justify-center text-center items-center gap-2 text-md xl:text-lg p-2"
+                "flex flex-wrap justify-center text-center items-center gap-2 text-md xl:text-lg p-2 dark:text-white text-black"
               }
             >
               <div className="w-full text-4xl font-bold">
@@ -175,7 +175,7 @@ export const Dashboard = ({ user }) => {
         {/*Announcements*/}
         <div
           className={
-            "bg-background_shade  col-span-6 md:col-span-3 lg:col-span-2 h-[19rem] rounded"
+            "bg-background_shade dark:bg-dark_2  col-span-6 md:col-span-3 lg:col-span-2 h-[19rem] rounded"
           }
         >
           {/*section Name*/}
@@ -202,36 +202,36 @@ export const Dashboard = ({ user }) => {
                 announcements.map((announcement) => (
                   <div
                     key={announcement.announcementid}
-                    className="cursor-pointer mx-1 py-2 my-1 bg-white drop-shadow-md border-background_shade_2 hover:bg-blue hover:text-white border text-black dark:bg-dark_4 dark:text-black w-full flex items-center justify-between rounded"
+                    className="hover:border-l-8 hover:border-l-yellow duration-300 cursor-pointer mx-1 py-2 md:py-2 my-1 bg-white drop-shadow-md border-background_shade_2 text-black dark:bg-dark_4 dark:text-black min-w-full flex items-center justify-between rounded"
                     onClick={() => {
                       DisplayAnnouncement(announcement);
                     }}
                   >
-                    <div className="ml-2  flex flex-wrap gap-1 w-fit">
-                      <div className="p-3 text-white bg-blue text-xl rounded">
+                    <div className="ml-2  flex  gap-1 w-fit">
+                      <div className="p-2  text-yellow bg-dark_2 text-xl rounded">
                         <BsMegaphoneFill />
                       </div>
                     </div>
 
                     <div
                       className={
-                        "truncate flex flex-wrap justify-start items-center gap-1 pl-3"
+                        "truncate flex flex-wrap justify-start items-center gap-0 md:gap-1 pl-2 w-[80%]"
                       }
                     >
-                      <p className={"font-semibold justify-start w-[40%]"}>
+                      <p className={"font-semibold justify-start truncate  text-sm lg:text-md md:w-full"}>
                         {announcement.title}
                       </p>
 
-                      <span className={"truncate text-sm lg:text-md"}>
+                      <span className={"truncate text-xs lg:text-md"}>
                         {announcement.content}
                       </span>
                     </div>
                     <div
                       className={
-                        "flex items-center justify-center text-sm pr-2"
+                        "flex items-center justify-center font-medium text-xs md:text-sm"
                       }
                     >
-                      <span>{announcement.createdAt.split("T")[0]}</span>
+                      <p>{announcement.createdAt.split("T")[0]}</p>
                     </div>
                   </div>
                 ))
@@ -251,10 +251,10 @@ export const Dashboard = ({ user }) => {
         {/*logbook Card*/}
         <div
           className={
-            "bg-background_shade col-span-6 md:col-span-3 lg:col-span-2 h-[19rem] rounded"
+            "bg-background_shade dark:bg-dark_2 col-span-6 md:col-span-3 lg:col-span-2 h-[19rem] rounded"
           }
         >
-          {/*section Name and Buton*/}
+         
 
           {(student.iafConfirmed &&
             !student.logComplete &&
@@ -324,7 +324,7 @@ export const Dashboard = ({ user }) => {
         {/*TODO Card*/}
         <div
           className={
-            "bg-background_shade col-span-6 md:col-span-3 lg:col-span-2 h-[19rem] rounded"
+            "bg-background_shade dark:bg-dark_2 col-span-6 md:col-span-3 lg:col-span-2 h-[19rem] rounded"
           }
         >
           {/*section Name*/}
@@ -367,7 +367,7 @@ export const Dashboard = ({ user }) => {
               ) : (
                 <div
                   className={
-                    "my-2 flex justify-center items-center p-2.5 w-full   text-black/25 disabled"
+                    "my-2 flex justify-center items-center p-2.5 w-full   text-black/25 dark:text-dark_4 disabled"
                   }
                 >
                   <div
@@ -409,7 +409,7 @@ export const Dashboard = ({ user }) => {
               ) : (
                 <div
                   className={
-                    "flex justify-center items-center p-2.5 w-full gap-2 text-black/25 disabled"
+                    "flex justify-center items-center p-2.5 w-full gap-2 text-black/25 dark:text-dark_4 disabled"
                   }
                 >
                   <div
@@ -457,7 +457,7 @@ export const Dashboard = ({ user }) => {
               ) : (
                 <div
                   className={
-                    "flex justify-center items-center p-2.5 w-full gap-2 text-black/25 disabled"
+                    "flex justify-center items-center p-2.5 w-full gap-2 text-black/25 dark:text-dark_4 disabled"
                   }
                 >
                   <span className={"text-center font-bold text-md w-full "}>
@@ -493,7 +493,7 @@ export const Dashboard = ({ user }) => {
               ) : (
                 <div
                   className={
-                    "flex justify-center items-center p-2.5 w-full gap-2 text-black/25 disabled"
+                    "flex justify-center items-center p-2.5 w-full gap-2 text-black/25 dark:text-dark_4 disabled"
                   }
                 >
                   <span className={"text-center font-bold text-md w-full "}>
@@ -511,7 +511,7 @@ export const Dashboard = ({ user }) => {
         {/*Upcoming events Card*/}
         <div
           className={
-            "bg-background_shade col-span-6 md:col-span-3 lg:col-span-2 h-[19rem] rounded"
+            "bg-background_shade dark:bg-dark_2 col-span-6 md:col-span-3 lg:col-span-2 h-[19rem] rounded"
           }
         >
           {/*section Name*/}
@@ -541,7 +541,7 @@ export const Dashboard = ({ user }) => {
                     className="mx-1 py-2 my-1 bg-white drop-shadow-md border-background_shade_2 border text-black dark:bg-dark_4 dark:text-black w-full flex items-center rounded"
                   >
                     <div className="ml-2  flex flex-wrap gap-1 w-fit">
-                      <div className="p-3 text-white bg-blue text-xl rounded">
+                      <div className="p-2 text-yellow bg-dark_2  text-xl rounded">
                         <FaWpforms />
                       </div>
                     </div>
@@ -549,7 +549,7 @@ export const Dashboard = ({ user }) => {
                     <div
                       className={"justify-start items-center gap-1 pl-3 pr-2"}
                     >
-                      <p className={"font-semibold justify-start"}>
+                      <p className={"font-semibold justify-start text-xs md:text-sm"}>
                         {duedate.name === "Internship Application Form"
                           ? t("iafdue")
                           : duedate.name === "Internship Confirmation Form"
@@ -565,7 +565,7 @@ export const Dashboard = ({ user }) => {
                           : ""}
                       </p>
 
-                      <span className={"text-sm lg:text-md"}>
+                      <span className={"text-xs sm:text-sm"}>
                         {duedate.date.split("T")[0]}
                       </span>
                     </div>
@@ -578,22 +578,22 @@ export const Dashboard = ({ user }) => {
       </div>
       {selectedAnnouncement && (
         <Modal onClose={() => setSelectedAnnouncement(null)}>
-          <div className="flex flex-col justify-center items-center">
-            <div>
-              <div className={"hidden lg:block w-full mb-3"}>
+          <div className="flex flex-col justify-center items-center w-full">
+            <div className="w-full">
+              <div className={"block w-full mb-3 truncate"}>
                 <p
                   className={
-                    " font-bold m-3 text-black dark:text-white text-sm md:text-md lg:text-lg  inline-flex text-center  border-yellow border-x-[0.4rem] md:border-x-[0.3rem] px-2"
+                    "max-w-[80%] w-fit truncate font-bold m-3 text-black dark:text-white text-sm md:text-md lg:text-lg  inline-flex text-center  border-yellow border-x-[0.4rem] md:border-x-[0.3rem] px-2"
                   }
                 >
                   {selectedAnnouncement.title}
                 </p>
               </div>
-              <div className="flex gap-3 justify-center py-2 items-center">
-                <div className="flex flex-wrap gap-3 justify-center items-center">
+              <div className="flex gap-3 justify-center py-1.5 items-center w-full">
+                <div className="flex flex-wrap gap-3 justify-center items-center w-full">
                   {/*  description section */}
-                  <div className="w-[90%]">
-                    <p className="rounded p-3 outline-none w-full border border-dark_4 dark:bg-background_shade_2 text-dark_2">
+                  <div className="w-[90%] overflow-y-auto h-[10rem] rounded border border-dark_4">
+                    <p className="rounded p-1 outline-none w-full  text-xs md:text-sm lg:text-lg break-words h-fit text-dark_2 dark:text-white">
                       {selectedAnnouncement.content}
                     </p>
                   </div>

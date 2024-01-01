@@ -16,7 +16,7 @@ const CalendarComponent = ({ eventsList }) => {
   return (
     <Calendar
       tileClassName={tileClassName}
-      className="react-calendar"
+      className="react-calendar dark:bg-dark_4 dark:border-none border-background_shade_2 border"
       locale={t("locale")}
     />
   );

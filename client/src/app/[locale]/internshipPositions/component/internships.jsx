@@ -121,7 +121,7 @@ export const InternshipCards = () => {
                   <div
                     key={index}
                     className={
-                      "bg-white dark:bg-dark_2 drop-shadow-md text-xs sm:text-sm md:text-md lg:text-lg text-black dark:text-white w-[22rem] mx-1.5 my-1 rounded h-fit hover:scale-110 transition-transform duration-300 ease-in-out"
+                      "bg-white dark:bg-dark_2 drop-shadow-md text-xs sm:text-sm md:text-md lg:text-lg text-black dark:text-white w-[22rem] mx-1.5 my-1 rounded h-fit hover:-translate-y-3 transition-transform duration-300 ease-in-out"
                     }
                     onClick={() => ShowPosition(card)}
                   >
@@ -195,67 +195,67 @@ export const InternshipCards = () => {
           </div>
           {openIntPosition && (
             <Modal onClose={() => setOpenIntPosition(null)}>
-              <div className="flex gap-3 justify-center py-2 items-center">
-                <div className="flex flex-wrap gap-2 justify-center items-center">
-                  <div className="w-[90%] justify-center text-center">
-                    {openIntPosition.photo && (
-                      <Image
-                        src={openIntPosition.photo}
-                        width={1000}
-                        height={1000}
-                        alt=""
-                        className=" mx-auto h-[10rem] w-[10rem] justify-center text-center"
-                        onClick={openFullScreen}
-                      />
-                    )}
-                  </div>
-                  {/* Department input section */}
-                  <div className="w-[90%]">
-                    <p className="rounded p-3 outline-none w-full  dark:border-none dark:bg-background_shade_2 text-dark_2">
-                    {t("CompanyName")} {openIntPosition.compname}
-                    </p>
-                  </div>
-                  <div className="w-[90%]">
-                    <p className="rounded p-3 outline-none w-full  dark:border-none dark:bg-background_shade_2 text-dark_2">
-                    {t("PositionAvailable")}: {openIntPosition.position}
-                    </p>
-                  </div>
-                  <div className="w-[44%]">
-                    <p className="rounded p-3 outline-none w-full  dark:border-none dark:bg-background_shade_2 text-dark_2">
-                    {t("City")}: {openIntPosition.city}
-                    </p>
-                  </div>
-                  <div className="w-[44%]">
-                    <p className="rounded p-3 outline-none w-full  dark:border-none dark:bg-background_shade_2 text-dark_2">
-                    {t("Country")}: {openIntPosition.country}
-                    </p>
-                  </div>
+            <div className="flex gap-3 justify-center py-2 items-center w-full">
+              <div className="flex flex-wrap gap-2 justify-center items-center w-full  text-sm md:text-md">
+                <div className="w-full justify-center text-center">
+                  {openIntPosition.photo && (
+                    <Image
+                      src={openIntPosition.photo}
+                      width={1000}
+                      height={1000}
+                      alt=""
+                      className=" mx-auto h-[10rem] w-[10rem] justify-center text-center"
+                      onClick={openFullScreen}
+                    />
+                  )}
+                </div>
+                {/* Department input section */}
+                <div className="w-[90%]">
+                  <p className="rounded p-2 outline-none w-full  border border-dark_3  break-words   text-sm md:text-md font-medium text-dark_1 dark:text-white">
+                  {t("CompanyName")} {openIntPosition.compname}
+                  </p>
+                </div>
+                <div className="w-[90%]">
+                  <p className="rounded p-3 outline-none w-full  border-dark_3 border text-sm md:text-md font-medium text-dark_1 dark:text-white">
+                  {t("PositionAvailable")}: {openIntPosition.position}
+                  </p>
+                </div>
+                <div className="w-[44%]">
+                  <p className="rounded p-3 outline-none w-full border-dark_3 border  text-sm md:text-md font-medium text-dark_1 dark:text-white">
+                  {t("City")}: {openIntPosition.city}
+                  </p>
+                </div>
+                <div className="w-[44%]">
+                  <p className="rounded p-3 outline-none w-full  border-dark_3 border  text-sm md:text-md font-medium text-dark_1 dark:text-white">
+                  {t("Country")}: {openIntPosition.country}
+                  </p>
+                </div>
 
-                  {/*  description section */}
-                  <div className="w-[90%]">
-                    <p className="rounded p-3 outline-none w-full  dark:border-none  dark:bg-background_shade_2 text-dark_2">
-                    {t("Description")}: {openIntPosition.desc}
-                    </p>
-                  </div>
+                {/*  description section */}
+                <div className="w-[90%]">
+                  <p className="rounded p-3 outline-none w-full border-dark_3  border break-words  text-sm md:text-md font-medium text-dark_1 dark:text-white">
+                  {t("Description")}: {openIntPosition.desc}
+                  </p>
+                </div>
 
-                  <div className="w-[90%]">
-                    <p className="rounded p-3 outline-none w-full  dark:border-none dark:bg-background_shade_2 text-dark_2">
-                    {t("Requirments")}: {openIntPosition.requirements}
-                    </p>
-                  </div>
-                  <div className="w-[90%]">
-                    <p className="rounded p-3 outline-none w-full  dark:border-none dark:bg-background_shade_2 text-dark_2">
-                    {t("ACloseOn")}{" "}
-                      {openIntPosition.applyby.split("T")[0]}
-                    </p>
-                  </div>
-                  <div className="w-[90%]">
-                    <p className="rounded p-3 outline-none w-full  dark:border-none dark:bg-background_shade_2 text-dark_2">
-                    {t("Contact")}: {openIntPosition.contact}
-                    </p>
-                  </div>
+                <div className="w-[90%]">
+                  <p className="rounded p-3 outline-none w-full border-dark_3 border break-words  text-sm md:text-md font-medium text-dark_1 dark:text-white">
+                  {t("Requirments")}: {openIntPosition.requirements}
+                  </p>
+                </div>
+                <div className="w-[90%]">
+                  <p className="rounded p-3 outline-none w-full border-dark_3 border  text-sm md:text-md font-medium text-dark_1 dark:text-white">
+                  {t("ACloseOn")}{" : "}
+                    {openIntPosition.applyby.split("T")[0]}
+                  </p>
+                </div>
+                <div className="w-[90%]">
+                  <p className="rounded p-3 outline-none w-full border-dark_3 border  text-sm md:text-md font-medium text-dark_1 dark:text-white">
+                  {t("Contact")}: {openIntPosition.contact}
+                  </p>
                 </div>
               </div>
+            </div>
             </Modal>
           )}
           {fullScreen && (

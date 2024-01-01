@@ -12,9 +12,17 @@ import {
 export const MobileNav = () => {
   let pathname = usePathname();
   console.log(pathname);
-
-  if (pathname.includes("/internDashboard")) {
-    pathname = "/Dashboard";
+  let path = "";
+// conditions
+  if (pathname === "/internDashboard") {
+    path = "/internDashboard";
+  }else if (pathname === "/departmentDashboard") {
+    path = "/departmentDashboard";
+  }else if (pathname === "/companyDashboard") {
+    path = "/companyDashboard";
+  }
+   else if (pathname === "/adminDashboard") {
+    pathname === "/companyDashboard"
   }
   console.log(pathname);
 
@@ -33,7 +41,7 @@ export const MobileNav = () => {
           className={"flex justify-center items-center my-0.5  py-0.5 gap-2"}
         >
           <div className={" px-3 text-my_dark"}>
-            <Link title={""} href={"/internDashboard"}>
+            <Link title={"Home"} href={"/"}>
               <div
                 className={`${
                   pathname === "/" && "border-b-2 mb-3 border-yellow"
@@ -45,10 +53,10 @@ export const MobileNav = () => {
           </div>
 
           <div className={" px-3 text-my_dark"}>
-            <Link title={""} href={"/internDashboard"}>
+            <Link title={""} href={""}>
               <div
                 className={`${
-                  pathname === "/internDashboard" &&
+                  path === "/internDashboard" &&
                   "border-b-2 mb-3 border-yellow"
                 } inline-flex justify-center py-2 items-center gap-2 `}
               >

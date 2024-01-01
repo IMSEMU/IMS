@@ -90,31 +90,31 @@ export const LogbookDisplay = ({
   }
 
   return (
-    <div className="m-4 rounded h-fit from-left">
+    <div className="m-4 rounded h-fit from-bottom">
       {logbookEntries.length === 0 ? (
         <div className=" font-semibold text-lg text-center text-white">
           <Empty />
         </div>
       ) : (
         logbookEntries.map((entry, index) => (
-          <div key={entry.logid} className=" flex justify-center flex-wrap">
+          <div key={entry.logid} className=" flex justify-center flex-wrap overflow-hidden">
             {/* Render each logbook entry */}
-            <div className="my-2 mx-1 py-2 bg-blue text-white dark:bg-dark_4 dark:text-black w-full max-w-[30rem] flex items-center justify-between rounded">
-              <div className="ml-3  flex flex-wrap gap-1 w-[5rem]">
-                <p className="font-semibold">
+            <div className="mb-2 mx-1 py-1.5 bg-white text-black drop-shadow-lg hover:border-l-8 hover:border-l-yellow duration-300 border-[transparent] dark:bg-dark_4 dark:text-black w-full max-w-[30rem] flex items-center justify-between rounded">
+              <div className="ml-2  flex flex-wrap gap-1 w-[5rem]">
+                <p className="font-semibold text-sm md:text-md">
                   {t("day")} {entry.day}
                 </p>
-                <p className=" bg-yellow_2 rounded text-sm font-medium text-white px-1 py-0.5">
+                <p className=" bg-yellow text-black rounded text-xs  smtext-sm md:text-md font-semibold px-1 py-0.5">
                   {formatDate(entry.date)}
                 </p>
               </div>
 
-              <div className="flex flex-wrap  truncate w-40 items-center pl-5">
+              <div className="flex flex-wrap  truncate w-40 items-center pl-1">
                 <div>
-                  <span className="font-semibold text-lg text-center">
+                  <span className=" w-[80%] truncate font-semibold text-sm text-center">
                     {entry.department}
                   </span>
-                  <p className="text-m text-justify">{entry.description}</p>
+                  <p className="w-[80%] truncate  text-xs md:text-sm text-justify">{entry.description}</p>
                 </div>
               </div>
 
@@ -125,10 +125,10 @@ export const LogbookDisplay = ({
                 />
 
                 {hideOptions[index] && (
-                  <div className="from-left absolute text-white -left-10 -top-[1.4rem] h-fit rounded w-[5rem] bg-dark_3">
+                  <div className="from-left absolute text-white -left-[3.3rem] -top-[1.12rem] h-fit rounded w-[5rem] bg-dark_2">
                     <div className="relative">
                       <div
-                        className="m-0.5  p-1 rounded flex text-sm font-medium items-center cursor-pointer gap-0.5  hover:bg-background_shade"
+                        className="m-0.5  pb-0.5 rounded flex text-sm font-medium items-center cursor-pointer gap-0.5  hover:bg-background_shade"
                         onClick={() => DeleteLog(entry.logid)}
                       >
                         <GiTrashCan className="text-xl text-yellow" />
@@ -136,7 +136,7 @@ export const LogbookDisplay = ({
                       </div>
 
                       <div
-                        className="m-0.5  p-1 rounded flex text-sm font-medium items-center cursor-pointer gap-0.5  hover:bg-background_shade"
+                        className="m-0.5  p-0.5 rounded flex text-sm font-medium items-center cursor-pointer gap-0.5  hover:bg-background_shade"
                         onClick={(e) => {
                           e.stopPropagation();
                           setEdit(entry);
@@ -153,7 +153,7 @@ export const LogbookDisplay = ({
                         onClick={() => {
                           closeOptions();
                         }}
-                        className="absolute p-[0.1rem] cursor-pointer text-lg top-[1.3rem] bg-dark_3 rounded -left-6"
+                        className="absolute p-[0.1rem] cursor-pointer text-lg top-[1rem] bg-dark_2 rounded -left-6"
                       >
                         <BiChevronsRight className="text-yellow" />
                       </span>

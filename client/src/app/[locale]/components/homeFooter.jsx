@@ -29,7 +29,7 @@ export const HomeFooter = () => {
       >
         <div
           className={
-            "px-3 py-6 w-full max-w-[70.75rem] mx-auto flex-col md:flex-row flex justify-evenly gap-6"
+            " px-3 py-6 w-full max-w-[70.75rem] mx-auto flex-col md:flex-row flex justify-evenly gap-6"
           }
         >
           {/*sitemap*/}
@@ -86,7 +86,7 @@ export const HomeFooter = () => {
 
           {/*sitemap*/}
           <div
-            className={"flex-col flex justify-center items-center text-center"}
+            className={"flex-col flex justify-center items-center text-center  mb-[5rem] md:mb-0"}
           >
             {/*<p className={"my-2 md:my-1 font-bold"}>Contact</p>*/}
             <Image

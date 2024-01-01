@@ -4,8 +4,8 @@ export const AnnouncementSkeleton = () => {
     <>
       <main className="">
         <div className="mt-1  w-full  flex items-center justify-center">
-          <div className="w-full max-w-[80%] sm:max-w-[70%] sm:w-[70%] md:max-w-full md:w-[40%] bg-white dark:bg-dark_2 h-20 flex justify-between items-center rounded my-2 mx-4 ">
-            <div className="p-4">
+          <div className="w-full  sm:w-[70%] md:max-w-full md:w-full bg-white dark:bg-dark_2 h-20 flex justify-between items-center rounded my-2 mx-4 ">
+            <div className="p-4 w-fit">
               <em className="skeleton-loader rounded block bg-background_shade_2 h-6 w-20 text-black m-1 px-1.5 py-1"></em>
               <h1 className="skeleton-loader block rounded bg-background_shade_2 h-3 w-48 font-semibold text-lg py-2 mt-4 m-1"></h1>
             </div>
