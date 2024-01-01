@@ -12,6 +12,7 @@ import jwtDecode from "jwt-decode";
 import { EditLog } from "./editLog";
 import { useTranslations } from "next-intl";
 import Loading from "../../globalComponents/loading";
+import Modal from "../../globalComponents/modal";
 
 export const LogbookPage = () => {
   const t = useTranslations("logbook");
@@ -23,6 +24,8 @@ export const LogbookPage = () => {
   const [student, setStudent] = useState(null);
   const [error, setError] = useState(null);
   const [edit, setEdit] = useState(null);
+  const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const getToken = async () => {
@@ -97,11 +100,13 @@ export const LogbookPage = () => {
   };
 
   const submitLogbook = async () => {
+    setLoading(true);
     try {
       const response = await AuthConnect.post("/submitlog", {});
-      console.log(response);
-      alert("Logbook Submitted");
-      router.push("/internDashboard");
+      if (response) {
+        setLoading(false);
+        setSubmitted(true);
+      }
     } catch (error) {
       console.error("Error:", error);
       if (error.response) {
@@ -113,12 +118,19 @@ export const LogbookPage = () => {
       }
     }
   };
+  const push = () => {
+    router.push("/internDashboard");
+  };
 
   if (!student) {
     return <Loading />; // Prevent rendering the dashboard until token is fetched
   }
   if (!user) {
     return <Loading />; // Prevent rendering the dashboard until token is fetched
+  }
+
+  if (loading) {
+    return <Loading />;
   }
 
   return (
@@ -250,6 +262,21 @@ export const LogbookPage = () => {
         </div>
         <MobileNav />
       </div>
+      {submitted && (
+        <Modal onClose={() => push()}>
+          <div className="flex flex-col justify-center items-center">
+            <div className="font-bold">
+              <p>{t("submitted")}</p>
+            </div>
+            <button
+              className="bg-blue text-white px-3 py-1 mt-2 justify-start rounded"
+              onClick={() => push()}
+            >
+              {t("Close")}
+            </button>
+          </div>
+        </Modal>
+      )}
     </main>
   );
 };

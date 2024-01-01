@@ -23,6 +23,7 @@ export const DisplayAnnouncement = ({ announcements, updateAnnouncements }) => {
   const [edited, setEdited] = useState(false);
   const [deleteAnnouncement, setDeleteAnnouncement] = useState(false);
   const [deleted, setDeleted] = useState(false);
+  const [msg, setMsg] = useState("");
 
   const toggleOptions = (index) => {
     setHideOptions((prevHideOptions) => {
@@ -87,10 +88,14 @@ export const DisplayAnnouncement = ({ announcements, updateAnnouncements }) => {
         setEdited(true);
       }
     } catch (error) {
-      // if (error.response) {
-      //   setMsg(error.response.data.msg);
-      // }
-      alert("Application Error");
+      if (error.response) {
+        if (error.response.data.msg === "1") {
+          setMsg(t("err1"));
+        }
+        if (error.response.data.msg === "2") {
+          setMsg(t("err2"));
+        }
+      }
     }
   };
 
@@ -111,10 +116,14 @@ export const DisplayAnnouncement = ({ announcements, updateAnnouncements }) => {
         setDeleted(true);
       }
     } catch (error) {
-      // if (error.response) {
-      //   setMsg(error.response.data.msg);
-      // }
-      alert("Application Error");
+      if (error.response) {
+        if (error.response.data.msg === "1") {
+          setMsg(t("err1"));
+        }
+        if (error.response.data.msg === "2") {
+          setMsg(t("err2"));
+        }
+      }
     }
   };
 
@@ -264,7 +273,7 @@ export const DisplayAnnouncement = ({ announcements, updateAnnouncements }) => {
                     " font-bold m-3 text-black dark:text-white text-sm md:text-md lg:text-lg  inline-flex text-center  border-yellow border-x-[0.4rem] md:border-x-[0.3rem] px-2"
                   }
                 >
-                 {t("EditAnnouncement")}
+                  {t("EditAnnouncement")}
                 </p>
               </div>
               <div className="flex gap-3 justify-center py-2 items-center">
@@ -324,7 +333,7 @@ export const DisplayAnnouncement = ({ announcements, updateAnnouncements }) => {
         <Modal onClose={() => setDeleteAnnouncement(false)}>
           <div className="flex flex-col justify-center items-center">
             <div className="font-bold">
-              <p>{t("delAnnMsg")}</p>
+              <p>{t("delAnn")}</p>
             </div>
             <div className="flex justify-between mt-2 w-10/12">
               <button
@@ -351,6 +360,21 @@ export const DisplayAnnouncement = ({ announcements, updateAnnouncements }) => {
             </div>
             <button
               onClick={() => setDeleted(false)}
+              className="bg-blue text-white px-3 py-1 mt-2"
+            >
+              {t("Close")}
+            </button>
+          </div>
+        </Modal>
+      )}
+      {msg && (
+        <Modal onClose={() => setMsg("")}>
+          <div className="flex flex-col justify-center items-center">
+            <div className="font-bold">
+              <p>{msg}</p>
+            </div>
+            <button
+              onClick={() => setMsg("")}
               className="bg-blue text-white px-3 py-1 mt-2"
             >
               {t("Close")}

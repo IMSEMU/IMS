@@ -158,7 +158,9 @@
     "delIP": "Bu Staj Pozisyonunu silmek istediğinizden emin misiniz?",
     "delIPMsg": "Staj Pozisyonu Başarıyla Silindi!",
     "Announcements": "Duyurular",
-    "IP": "Staj Pozisyonları"
+    "IP": "Staj Pozisyonları",
+    "err1": "Yetkisiz",
+    "err2": "Dahili sunucu hatası"
   },
   "logbook": {
     "title": "Günlük Kayıt Defteri",
@@ -185,7 +187,8 @@
     "error3": "Geçersiz Gün. Gün Staj Süresinden Fazla Olamaz.",
     "generic": "Hoop! Birşeyler yanlış gitti.",
     "save": "Kaydetmek",
-    "logbook": "Seyir defteri"
+    "logbook": "Seyir defteri",
+    "submitted": "Kayıt Defteri Başarıyla Gönderildi"
   },
   "iaf": {
     "title": "Staj Başvuru Formu",
@@ -222,7 +225,10 @@
     "Close": "Kapalı",
     "rejectIA": "Bu Staj Başvurusunu reddetmek istediğinizden emin misiniz?",
     "IARejected": "Staj Başvurusu Reddedildi",
-    "submitform": "Göndermek istediğinizden emin misiniz?"
+    "submitform": "Göndermek istediğinizden emin misiniz?",
+    "IASubmitted": "Başvuru Başarıyla Gönderildi!",
+    "err1": "Yetkisiz",
+    "err2": "Dahili sunucu hatası"
   },
   "LocaleSwitcher": {
     "label": "TR"

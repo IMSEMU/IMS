@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 import { Report } from "./components/formPage";
+import Loading from "../globalComponents/loading";
 
 export const metadata = {
   title: "Report | I.M.S.",

@@ -236,9 +236,13 @@ export const AppForm = ({ user }) => {
     } catch (error) {
       setLoading(false);
       if (error.response) {
-        setMsg(error.response.data.msg);
+        if (error.response.data.msg === "1") {
+          setMsg(t("err1"));
+        }
+        if (error.response.data.msg === "2") {
+          setMsg(t("err2"));
+        }
       }
-      alert("Application Error"); // You can add a generic error message here
     }
   };
 
@@ -648,7 +652,7 @@ export const AppForm = ({ user }) => {
               onClick={() => setHasValidationError(false)}
               className="bg-blue text-white px-3 py-1 mt-2"
             >
-              Close
+              {t("Close")}
             </button>
           </div>
         </Modal>
@@ -657,13 +661,28 @@ export const AppForm = ({ user }) => {
         <Modal onClose={() => push()}>
           <div className="flex flex-col justify-center items-center">
             <div className="font-bold">
-              <p>Application Submitted Successfully!</p>
+              <p>{t("IASubmitted")}</p>
             </div>
             <button
               onClick={() => push()}
               className="bg-blue text-white px-3 py-1 mt-2"
             >
-              Close
+              {t("Close")}
+            </button>
+          </div>
+        </Modal>
+      )}
+      {msg && (
+        <Modal onClose={() => setMsg("")}>
+          <div className="flex flex-col justify-center items-center">
+            <div className="font-bold">
+              <p>{msg}</p>
+            </div>
+            <button
+              onClick={() => setMsg("")}
+              className="bg-blue text-white px-3 py-1 mt-2"
+            >
+              {t("Close")}
             </button>
           </div>
         </Modal>

@@ -158,7 +158,9 @@
     "delIP": "Are you sure you want to delete this Internship Position?",
     "delIPMsg": "Internship Position Deleted Successfully!",
     "Announcements": "Announcements",
-    "IP": "Internship Positions"
+    "IP": "Internship Positions",
+    "err1": "Unauthorized",
+    "err2": "Internal server error"
   },
   "logbook": {
     "title": "Daily Logbook",
@@ -186,7 +188,8 @@
     "error3": "Invalid Day. Day cannot be more than Internship Duration.",
     "generic": "Oops!! Something went wrong.",
     "save": "Save",
-    "logbook": "Logbook"
+    "logbook": "Logbook",
+    "submitted": "Logbook Submitted Successfully"
   },
   "iaf": {
     "title": "Internship Application Form",
@@ -223,7 +226,10 @@
     "Close": "Close",
     "rejectIA": "Are you sure you want to reject this Internship Application?",
     "IARejected": "Internship Application Rejected",
-    "submitform": "Are you sure you want to submit?"
+    "submitform": "Are you sure you want to submit?",
+    "IASubmitted": "Application Submitted Successfully!",
+    "err1": "Unauthorized",
+    "err2": "Internal server error"
   },
   "LocaleSwitcher": {
     "label": "EN"
