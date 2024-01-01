@@ -138,40 +138,6 @@ export const LogbookDisplay = ({
                           <p className="">{t("Delete")}</p>
                         </div>
 
-                      <div
-                        className="m-0.5  p-0.5 rounded flex text-sm font-medium items-center cursor-pointer gap-0.5  hover:bg-background_shade"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setEdit(entry);
-                          closeOptions();
-                          if (mobileLogAdd) {
-                            setMobileLogAdd(!mobileLogAdd);
-                          }
-                        }}
-                      >
-                        <GiPencil className="text-xl text-yellow" />
-                        <p>{t("edit")}</p>
-                      </div>
-                      <span
-                        onClick={() => {
-                          closeOptions();
-                        }}
-                        className="absolute p-[0.1rem] cursor-pointer text-lg top-[1rem] bg-dark_2 rounded -left-6"
-                      >
-                        <BiChevronsRight className="text-yellow" />
-                      </span>
-=======
-                  {hideOptions[index] && (
-                    <div className="from-left absolute text-white -left-10 -top-[1.4rem] h-fit rounded w-[5rem] bg-dark_3">
-                      <div className="relative">
-                        <div
-                          className="m-0.5  p-1 rounded flex text-sm font-medium items-center cursor-pointer gap-0.5  hover:bg-background_shade"
-                          onClick={() => DeleteLog(entry.logid)}
-                        >
-                          <GiTrashCan className="text-xl text-yellow" />
-                          <p className="">{t("Delete")}</p>
-                        </div>
-
                         <div
                           className="m-0.5  p-1 rounded flex text-sm font-medium items-center cursor-pointer gap-0.5  hover:bg-background_shade"
                           onClick={(e) => {
@@ -195,7 +161,6 @@ export const LogbookDisplay = ({
                           <BiChevronsRight className="text-yellow" />
                         </span>
                       </div>
->>>>>>> refs/remotes/origin/main
                     </div>
                   )}
                 </div>

@@ -218,7 +218,7 @@ export const SignupSection = ({ loginToogle }) => {
         ) : (
           <FailedToast errorMssg={msg} setErrorMssg={setMsg} />
         )}
-        {success && (
+{success && (
           <Modal onClick={() => loginToogle()}>
             <div className="flex flex-col justify-center items-center">
               <div className="font-bold">
