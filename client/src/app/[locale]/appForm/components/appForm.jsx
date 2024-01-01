@@ -118,8 +118,8 @@ export const AppForm = ({ user }) => {
       supfname === "" ||
       suplname === "" ||
       supemail === "" ||
-      position === "" ||
-      imageSrc === ""
+      position === ""
+      // imageSrc === ""
     ) {
       setHasValidationError(true);
       return;
@@ -236,9 +236,13 @@ export const AppForm = ({ user }) => {
     } catch (error) {
       setLoading(false);
       if (error.response) {
-        setMsg(error.response.data.msg);
+        if (error.response.data.msg === "1") {
+          setMsg(t("err1"));
+        }
+        if (error.response.data.msg === "2") {
+          setMsg(t("err2"));
+        }
       }
-      alert("Application Error"); // You can add a generic error message here
     }
   };
 
@@ -275,7 +279,7 @@ export const AppForm = ({ user }) => {
                   src={imageSrc || "/avatar.png"}
                   width={1000}
                   height={1000}
-                  alt=""
+                  alt="Uploaded Image"
                   priority
                   className="h-[7rem] w-[7rem] rounded-2xl"
                 />
@@ -309,8 +313,6 @@ export const AppForm = ({ user }) => {
                   <div className="mt-2 md:mt-4 relative flex space-x-2">
                     <input
                       type={"text"}
-                      name=""
-                      id=""
                       placeholder={t("phone")}
                       className="input w-full text-dark_2 dark:text-yellow placeholder:text-dark_2 dark:placeholder:text-yellow bg-white dark:bg-dark_2 px-4 py-2.5 border-b-dark_2 dark:border-b-yellow  border-x-0 border-t-0 mt-1 border-2  focus:outline-none"
                       value={stdphoneno}
@@ -322,8 +324,6 @@ export const AppForm = ({ user }) => {
                   <div className="mt-2 md:mt-4 relative flex space-x-2">
                     <input
                       type={"text"}
-                      name=""
-                      id=""
                       placeholder={t("address")}
                       className="input w-full text-dark_2 dark:text-yellow placeholder:text-dark_2 dark:placeholder:text-yellow bg-white dark:bg-dark_2 px-4 py-2.5 border-b-dark_2 dark:border-b-yellow  border-x-0 border-t-0 mt-1 border-2  focus:outline-none"
                       value={stdaddress}
@@ -347,7 +347,7 @@ export const AppForm = ({ user }) => {
                             className="bg-blue py-2 px-3.5 rounded text-white"
                             onClick={handleOnClick}
                           >
-                           {t("upimg")}
+                            {t("upimg")}
                           </button>
                         );
                       }}
@@ -413,8 +413,6 @@ export const AppForm = ({ user }) => {
                   <div className="mt-2 md:mt-4 relative flex space-x-2">
                     <input
                       type={"text"}
-                      name=""
-                      id=""
                       placeholder={t("work")}
                       className="input w-full text-dark_2 dark:text-yellow placeholder:text-dark_2 dark:placeholder:text-yellow bg-white dark:bg-dark_2 px-4 py-2.5 border-b-dark_2 dark:border-b-yellow  border-x-0 border-t-0 mt-1 border-2  focus:outline-none"
                       value={fields}
@@ -426,8 +424,6 @@ export const AppForm = ({ user }) => {
                   <div className="mt-2 md:mt-4 relative flex space-x-2">
                     <input
                       type={"text"}
-                      name=""
-                      id=""
                       placeholder={t("website")}
                       className="input w-full text-dark_2 dark:text-yellow placeholder:text-dark_2 dark:placeholder:text-yellow bg-white dark:bg-dark_2 px-4 py-2.5 border-b-dark_2 dark:border-b-yellow  border-x-0 border-t-0 mt-1 border-2  focus:outline-none"
                       value={website}
@@ -442,8 +438,6 @@ export const AppForm = ({ user }) => {
                   <div className="mt-2 md:mt-4 relative flex space-x-2">
                     <input
                       type={"email"}
-                      name=""
-                      id=""
                       placeholder={t("orgemail")}
                       className="input w-full text-dark_2 dark:text-yellow placeholder:text-dark_2 dark:placeholder:text-yellow bg-white dark:bg-dark_2 px-4 py-2.5 border-b-dark_2 dark:border-b-yellow  border-x-0 border-t-0 mt-1 border-2  focus:outline-none"
                       value={compemail}
@@ -458,8 +452,6 @@ export const AppForm = ({ user }) => {
                   <div className="mt-2 md:mt-4 relative flex space-x-2">
                     <input
                       type={"text"}
-                      name=""
-                      id=""
                       placeholder={t("address")}
                       className="input w-full text-dark_2 dark:text-yellow placeholder:text-dark_2 dark:placeholder:text-yellow bg-white dark:bg-dark_2 px-4 py-2.5 border-b-dark_2 dark:border-b-yellow  border-x-0 border-t-0 mt-1 border-2  focus:outline-none"
                       value={compaddress}
@@ -475,8 +467,6 @@ export const AppForm = ({ user }) => {
                     <div className="w-1/2">
                       <input
                         type={"text"}
-                        name=""
-                        id=""
                         placeholder={t("city")}
                         className="input w-full text-dark_2 dark:text-yellow placeholder:text-dark_2 dark:placeholder:text-yellow bg-white dark:bg-dark_2 px-4 py-2.5 border-b-dark_2 dark:border-b-yellow  border-x-0 border-t-0 mt-1 border-2  focus:outline-none"
                         value={compcity}
@@ -536,8 +526,6 @@ export const AppForm = ({ user }) => {
                     <div className="w-1/2">
                       <input
                         type={"text"}
-                        name=""
-                        id=""
                         placeholder={t("phone")}
                         className="input w-full text-dark_2 dark:text-yellow placeholder:text-dark_2 dark:placeholder:text-yellow bg-white dark:bg-dark_2 px-4 py-2.5 border-b-dark_2 dark:border-b-yellow  border-x-0 border-t-0 mt-1 border-2  focus:outline-none"
                         value={compphone}
@@ -551,8 +539,6 @@ export const AppForm = ({ user }) => {
                     <div className="w-1/2">
                       <input
                         type={"text"}
-                        name=""
-                        id=""
                         placeholder={t("fax")}
                         className="input w-full text-dark_2 dark:text-yellow placeholder:text-dark_2 dark:placeholder:text-yellow bg-white dark:bg-dark_2 px-4 py-2.5 border-b-dark_2 dark:border-b-yellow  border-x-0 border-t-0 mt-1 border-2  focus:outline-none"
                         value={compfax}
@@ -569,8 +555,6 @@ export const AppForm = ({ user }) => {
                     <div className="w-full">
                       <textarea
                         type={"text"}
-                        name=""
-                        id=""
                         placeholder={t("desc")}
                         className="input w-full text-dark_2 dark:text-yellow placeholder:text-dark_2 dark:placeholder:text-yellow bg-white dark:bg-dark_2 px-4 py-2.5 border-b-dark_2 dark:border-b-yellow rounded mt-1 border-2  focus:outline-none h-[8rem]"
                         value={workdesc}
@@ -595,8 +579,6 @@ export const AppForm = ({ user }) => {
                     <div className="w-1/2">
                       <input
                         type={"text"}
-                        name=""
-                        id=""
                         placeholder={t("fname")}
                         className="input w-full text-dark_2 dark:text-yellow placeholder:text-dark_2 dark:placeholder:text-yellow bg-white dark:bg-dark_2 px-4 py-2.5 border-b-dark_2 dark:border-b-yellow  border-x-0 border-t-0 mt-1 border-2  focus:outline-none"
                         value={supfname}
@@ -607,8 +589,6 @@ export const AppForm = ({ user }) => {
                     <div className="w-1/2">
                       <input
                         type={"text"}
-                        name=""
-                        id=""
                         placeholder={t("lname")}
                         className="input w-full text-dark_2 dark:text-yellow placeholder:text-dark_2 dark:placeholder:text-yellow bg-white dark:bg-dark_2 px-4 py-2.5 border-b-dark_2 dark:border-b-yellow  border-x-0 border-t-0 mt-1 border-2  focus:outline-none"
                         value={suplname}
@@ -622,8 +602,6 @@ export const AppForm = ({ user }) => {
                     <div className="w-1/2">
                       <input
                         type={"text"}
-                        name=""
-                        id=""
                         placeholder={t("email")}
                         className="input w-full text-dark_2 dark:text-yellow placeholder:text-dark_2 dark:placeholder:text-yellow bg-white dark:bg-dark_2 px-4 py-2.5 border-b-dark_2 dark:border-b-yellow  border-x-0 border-t-0 mt-1 border-2  focus:outline-none"
                         value={supemail}
@@ -634,8 +612,6 @@ export const AppForm = ({ user }) => {
                     <div className="w-1/2">
                       <input
                         type={"text"}
-                        name=""
-                        id=""
                         placeholder={t("pos")}
                         className="input w-full text-dark_2 dark:text-yellow placeholder:text-dark_2 dark:placeholder:text-yellow bg-white dark:bg-dark_2 px-4 py-2.5 border-b-dark_2 dark:border-b-yellow  border-x-0 border-t-0 mt-1 border-2  focus:outline-none"
                         value={position}
@@ -676,7 +652,7 @@ export const AppForm = ({ user }) => {
               onClick={() => setHasValidationError(false)}
               className="bg-blue text-white px-3 py-1 mt-2"
             >
-              Close
+              {t("Close")}
             </button>
           </div>
         </Modal>
@@ -685,13 +661,28 @@ export const AppForm = ({ user }) => {
         <Modal onClose={() => push()}>
           <div className="flex flex-col justify-center items-center">
             <div className="font-bold">
-              <p>Application Submitted Successfully!</p>
+              <p>{t("IASubmitted")}</p>
             </div>
             <button
               onClick={() => push()}
               className="bg-blue text-white px-3 py-1 mt-2"
             >
-              Close
+              {t("Close")}
+            </button>
+          </div>
+        </Modal>
+      )}
+      {msg && (
+        <Modal onClose={() => setMsg("")}>
+          <div className="flex flex-col justify-center items-center">
+            <div className="font-bold">
+              <p>{msg}</p>
+            </div>
+            <button
+              onClick={() => setMsg("")}
+              className="bg-blue text-white px-3 py-1 mt-2"
+            >
+              {t("Close")}
             </button>
           </div>
         </Modal>

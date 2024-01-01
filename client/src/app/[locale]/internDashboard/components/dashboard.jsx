@@ -470,7 +470,7 @@ export const Dashboard = ({ user }) => {
               )}
 
               {/* Write Report */}
-              {student.logComplete && !student.reportComplete ? (
+              {student.compEvalConfirmed && !student.reportComplete ? (
                 <div
                   className={
                     " p-2 rounded w-full   gap-2 bg-white drop-shadow-md border-background_shade_2 dark:bg-dark_2 text-black hover:bg-blue hover:text-white"

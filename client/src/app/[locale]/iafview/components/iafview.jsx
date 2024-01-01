@@ -16,7 +16,6 @@ export const IafView = () => {
   const [reject, setReject] = useState(false);
   const [rejected, setRejected] = useState(false);
   const [msg, setMsg] = useState("");
-
   const [loading, setLoading] = useState(false);
 
   const stdid = searchParams.get("stdid");
@@ -47,9 +46,13 @@ export const IafView = () => {
     } catch (error) {
       setLoading(false);
       if (error.response) {
-        setMsg(error.response.data.msg);
+        if (error.response.data.msg === "1") {
+          setMsg(t("err1"));
+        }
+        if (error.response.data.msg === "2") {
+          setMsg(t("err2"));
+        }
       }
-      alert("Application Error"); // You can add a generic error message here
     }
   };
 
@@ -69,10 +72,13 @@ export const IafView = () => {
       }
     } catch (error) {
       if (error.response) {
-        setLoading(false);
-        setMsg(error.response.data.msg);
+        if (error.response.data.msg === "1") {
+          setMsg(t("err1"));
+        }
+        if (error.response.data.msg === "2") {
+          setMsg(t("err2"));
+        }
       }
-      alert("Application Error"); // You can add a generic error message here
     }
   };
 
@@ -265,9 +271,7 @@ export const IafView = () => {
         <Modal onClose={() => setConfirm(false)}>
           <div className="flex flex-col justify-center items-center">
             <div className="font-bold">
-              <p>
-              {t("confirmIA")}
-              </p>
+              <p>{t("confirmIA")}</p>
             </div>
             <div className="flex justify-between mt-2 w-10/12">
               <button
@@ -305,9 +309,7 @@ export const IafView = () => {
         <Modal onClose={() => setReject(false)}>
           <div className="flex flex-col justify-center items-center">
             <div className="font-bold">
-              <p>
-              {t("rejectIA")}
-              </p>
+              <p>{t("rejectIA")}</p>
             </div>
             <div className="flex justify-between mt-2 w-10/12">
               <button
@@ -335,6 +337,21 @@ export const IafView = () => {
             <button
               className="bg-blue text-white px-3 py-1 mt-2 justify-start rounded"
               onClick={() => push()}
+            >
+              {t("Close")}
+            </button>
+          </div>
+        </Modal>
+      )}
+      {msg && (
+        <Modal onClose={() => setMsg("")}>
+          <div className="flex flex-col justify-center items-center">
+            <div className="font-bold">
+              <p>{msg}</p>
+            </div>
+            <button
+              onClick={() => setMsg("")}
+              className="bg-blue text-white px-3 py-1 mt-2"
             >
               {t("Close")}
             </button>

@@ -90,6 +90,14 @@ export const Dashboard = ({ user }) => {
     setSelectedAnnouncement(announcement);
   };
 
+  const capitalizeFirstLetter = (word) => {
+    if (typeof word !== "string" || word.length === 0) {
+      return word;
+    }
+
+    return word.charAt(0).toUpperCase() + word.slice(1);
+  };
+
   return (
     <main className="w-full">
       <div className="m-4 mb-20 md:mb-4">
@@ -99,7 +107,7 @@ export const Dashboard = ({ user }) => {
           }
         >
           <p>
-            {t("welcome")} {user.firstname}
+            {t("welcome")} {capitalizeFirstLetter(user.firstname)}
           </p>
         </div>
 

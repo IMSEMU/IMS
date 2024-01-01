@@ -54,7 +54,10 @@
     "microsoft": "Login with Microsoft",
     "email-placeholder": "address@provider.com",
     "Password": "Password",
-    "Register": "Register"
+    "Register": "Register",
+    "err1": "Invalid Credentials",
+    "err2": "Wrong Password",
+    "err3": "Login Exception Raised"
   },
   "Signup Page": {
     "title": "Register for Internship",
@@ -66,7 +69,13 @@
     "confpass": "Confirm Password",
     "microsoft": "Register with Microsoft",
     "Register": "Register",
-    "Loginbtn": "Login"
+    "Loginbtn": "Login",
+    "success": "Registration Successful",
+    "GoToLogin": "Go to Login",
+    "err1": "Password is required",
+    "err2": "Password and Confirm Password do not match",
+    "err3": "Email already exists",
+    "err4": "Registration Error"
   },
   "sidenav": {
     "home": "Home",
@@ -149,7 +158,9 @@
     "delIP": "Are you sure you want to delete this Internship Position?",
     "delIPMsg": "Internship Position Deleted Successfully!",
     "Announcements": "Announcements",
-    "IP": "Internship Positions"
+    "IP": "Internship Positions",
+    "err1": "Unauthorized",
+    "err2": "Internal server error"
   },
   "logbook": {
     "title": "Daily Logbook",
@@ -177,7 +188,8 @@
     "error3": "Invalid Day. Day cannot be more than Internship Duration.",
     "generic": "Oops!! Something went wrong.",
     "save": "Save",
-    "logbook": "Logbook"
+    "logbook": "Logbook",
+    "submitted": "Logbook Submitted Successfully"
   },
   "iaf": {
     "title": "Internship Application Form",
@@ -204,7 +216,7 @@
     "photo": "photo",
     "fillAllMsg": "Please fill in all required fields",
     "upimg": "Upload an Image",
-    "back": "back",
+    "back": "Back",
     "Reject": "Reject",
     "Confirm": "Confirm",
     "confirmIA": "Are you sure you want to confirm this Internship Application?",
@@ -214,7 +226,10 @@
     "Close": "Close",
     "rejectIA": "Are you sure you want to reject this Internship Application?",
     "IARejected": "Internship Application Rejected",
-    "submitform": "Are you sure you want to submit?"
+    "submitform": "Are you sure you want to submit?",
+    "IASubmitted": "Application Submitted Successfully!",
+    "err1": "Unauthorized",
+    "err2": "Internal server error"
   },
   "LocaleSwitcher": {
     "label": "EN"
@@ -298,6 +313,7 @@
     "submitform": "Are you sure you want to submit?"
   },
   "upConForm": {
+    "conform": "Confirmation Form",
     "sign": "Please sign the form and upload it here",
     "Upload": "Upload Signed Confirmation Form"
   },
@@ -418,7 +434,10 @@
     "FirstName": "First Name",
     "LastName": "Last Name",
     "DepartmentSupervisor": "Department Supervisor",
-    "SupervisorAssigned": "Department Supervisor Assigned!"
+    "SupervisorAssigned": "Department Supervisor Assigned!",
+    "err1": "Admin User Already Exists",
+    "err2": "Internal server error",
+    "err3": "Department Supervisor Already Exists"
   },
   "companyDashboard": {
     "welcome": "Welcome",

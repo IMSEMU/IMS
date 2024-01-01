@@ -5,6 +5,11 @@ import { useRouter } from "next/navigation";
 import AuthConnect from "@/auth";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
+import {
+  FailedToast,
+  SuccessToast,
+} from "../../globalComponents/toastNotifications";
+import Modal from "../../globalComponents/modal";
 
 export const SignupSection = ({ loginToogle }) => {
   const t = useTranslations("Signup Page");
@@ -15,10 +20,13 @@ export const SignupSection = ({ loginToogle }) => {
   const [password, setPassword] = useState("");
   const [confPassword, setConfPassword] = useState("");
   const [msg, setMsg] = useState("");
-  const [showModal, setShowModal] = useState(false);
+  const [toastStatus, setToastStatus] = useState();
+  const [success, setSuccess] = useState(false);
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   const signupnewuser = async (e) => {
+    setLoading(true);
     try {
       const response = await AuthConnect.post("/register", {
         stdid: stdid,
@@ -28,16 +36,28 @@ export const SignupSection = ({ loginToogle }) => {
         password: password,
         confPassword: confPassword,
       });
-      console.log(response);
+
       if (response) {
-        alert("Registration Successful");
-        router.push("/login");
+        setSuccess(true);
+        setToastStatus(true);
       }
     } catch (error) {
       if (error.response) {
-        setMsg(error.response.data.msg);
+        if (error.response.data.msg === "1") {
+          setMsg(t("err1"));
+        }
+        if (error.response.data.msg === "2") {
+          setMsg(t("err2"));
+        }
+        if (error.response.data.msg === "3") {
+          setMsg(t("err3"));
+        }
+        if (error.response.data.msg === "4") {
+          setMsg(t("err4"));
+        }
       }
-      alert("Registration Unsuccessful"); // You can add a generic error message here
+      setLoading(false);
+      setToastStatus(false);
     }
   };
 
@@ -156,10 +176,10 @@ export const SignupSection = ({ loginToogle }) => {
 
             <div
               className={
-                "flex flex-wrap flex-row-reverse md:flex-row  justify-between my-2 text-center"
+                "flex flex-wrap flex-row-reverse md:flex-row  justify-between my-2 text-center w-full"
               }
             >
-              <button
+              {/* <button
                 type="submit"
                 className="flex justify-center items-center gap-3 w-full md:w-fit text-black dark:text-white border border-background_shade_2 dark:border-0 hover:bg-background_shade_2 hover:ease-in-out hover:duration-300  bg-white dark:bg-dark_3  font-normal rounded px-3 py-2 mt-5"
               >
@@ -170,11 +190,11 @@ export const SignupSection = ({ loginToogle }) => {
                   height={20}
                 />
                 <span>{t("microsoft")}</span>
-              </button>
+              </button> */}
 
               <button
                 type="button"
-                className="flex items-center justify-center gap-2 w-full md:w-fit  bg-blue hover:bg-blue-400 focus:bg-blue-400 text-white font-semibold rounded px-3 py-2 mt-5"
+                className="flex items-center justify-center gap-2 w-full md:w-fit  bg-blue hover:bg-blue-400 focus:bg-blue-400 text-white font-semibold rounded px-3 py-2 mt-5 ml-auto "
                 onClick={signupnewuser}
               >
                 <span>{t("Register")}</span>
@@ -185,7 +205,7 @@ export const SignupSection = ({ loginToogle }) => {
           <div className={"flex justify-center my-3 text-"}>
             <button
               onClick={() => loginToogle()}
-              className="flex items-center gap-2 w-fit md:w-full justify-center  bg-blue text-white font-semibold rounded px-3 py-2 "
+              className="flex items-center gap-2 w-fit md:w-full justify-center  bg-blue text-white font-semibold rounded px-3 py-2 hover:scale-105  duration-300 ease-in-out"
             >
               <span className={"flex items-center gap-1"}>
                 <VscSignIn /> {t("Loginbtn")}
@@ -193,6 +213,26 @@ export const SignupSection = ({ loginToogle }) => {
             </button>
           </div>
         </div>
+        {toastStatus ? (
+          <SuccessToast errorMssg={msg} setErrorMssg={setMsg} />
+        ) : (
+          <FailedToast errorMssg={msg} setErrorMssg={setMsg} />
+        )}
+        {success && (
+          <Modal onClick={() => loginToogle()}>
+            <div className="flex flex-col justify-center items-center">
+              <div className="font-bold">
+                <p>{t("success")}</p>
+              </div>
+              <button
+                onClick={() => loginToogle()}
+                className="bg-blue text-white px-3 py-1 mt-2"
+              >
+                {t("GoToLogin")}
+              </button>
+            </div>
+          </Modal>
+        )}
       </main>
     </>
   );

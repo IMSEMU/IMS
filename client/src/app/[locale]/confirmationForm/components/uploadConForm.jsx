@@ -3,7 +3,7 @@ import { useTranslations } from "next-intl";
 import { CldUploadWidget } from "next-cloudinary";
 
 const UploadConForm = ({ handleDocUploadSuccess }) => {
-  const t = useTranslations("sif");
+  const t = useTranslations("upConForm");
 
   return (
     <main>
@@ -19,7 +19,7 @@ const UploadConForm = ({ handleDocUploadSuccess }) => {
         </div>
         <div className="w-full">
           <div className="mt-2 md:mt-4 relative flex space-x-2">
-            <span className="pt-2">Confirmation Form: </span>
+            <span className="pt-2">{t("conform")}</span>
             <CldUploadWidget
               uploadPreset="p5tgbjfx"
               onSuccess={handleDocUploadSuccess}

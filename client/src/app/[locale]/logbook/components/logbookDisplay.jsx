@@ -7,6 +7,7 @@ import { Empty } from "antd";
 import { useTranslations, useFormatter } from "next-intl";
 import AuthConnect from "@/auth";
 import Loading from "../../globalComponents/loading";
+import { useRouter, usePathname } from "next/navigation";
 
 export const LogbookDisplay = ({
   logbookEntries,
@@ -18,6 +19,7 @@ export const LogbookDisplay = ({
 }) => {
   const t = useTranslations("logbook");
   const format = useFormatter();
+  const pathName = usePathname();
   const [selectedItem, setSelectedItem] = useState(null);
   const [loading, setLoading] = useState(null);
 
@@ -118,22 +120,23 @@ export const LogbookDisplay = ({
                 </div>
               </div>
 
-              <div className="relative mr-3">
-                <FaEllipsisV
-                  className=" cursor-pointer"
-                  onClick={() => toggleOptions(index)}
-                />
+              {(pathName === "/logbook" || pathName === "/tr/logbook") && (
+                <div className="relative mr-3">
+                  <FaEllipsisV
+                    className=" cursor-pointer"
+                    onClick={() => toggleOptions(index)}
+                  />
 
-                {hideOptions[index] && (
-                  <div className="from-left absolute text-white -left-[3.3rem] -top-[1.12rem] h-fit rounded w-[5rem] bg-dark_2">
-                    <div className="relative">
-                      <div
-                        className="m-0.5  pb-0.5 rounded flex text-sm font-medium items-center cursor-pointer gap-0.5  hover:bg-background_shade"
-                        onClick={() => DeleteLog(entry.logid)}
-                      >
-                        <GiTrashCan className="text-xl text-yellow" />
-                        <p className="">{t("Delete")}</p>
-                      </div>
+                  {hideOptions[index] && (
+                    <div className="from-left absolute text-white -left-10 -top-[1.4rem] h-fit rounded w-[5rem] bg-dark_3">
+                      <div className="relative">
+                        <div
+                          className="m-0.5  p-1 rounded flex text-sm font-medium items-center cursor-pointer gap-0.5  hover:bg-background_shade"
+                          onClick={() => DeleteLog(entry.logid)}
+                        >
+                          <GiTrashCan className="text-xl text-yellow" />
+                          <p className="">{t("Delete")}</p>
+                        </div>
 
                       <div
                         className="m-0.5  p-0.5 rounded flex text-sm font-medium items-center cursor-pointer gap-0.5  hover:bg-background_shade"
@@ -157,10 +160,46 @@ export const LogbookDisplay = ({
                       >
                         <BiChevronsRight className="text-yellow" />
                       </span>
+=======
+                  {hideOptions[index] && (
+                    <div className="from-left absolute text-white -left-10 -top-[1.4rem] h-fit rounded w-[5rem] bg-dark_3">
+                      <div className="relative">
+                        <div
+                          className="m-0.5  p-1 rounded flex text-sm font-medium items-center cursor-pointer gap-0.5  hover:bg-background_shade"
+                          onClick={() => DeleteLog(entry.logid)}
+                        >
+                          <GiTrashCan className="text-xl text-yellow" />
+                          <p className="">{t("Delete")}</p>
+                        </div>
+
+                        <div
+                          className="m-0.5  p-1 rounded flex text-sm font-medium items-center cursor-pointer gap-0.5  hover:bg-background_shade"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setEdit(entry);
+                            closeOptions();
+                            if (mobileLogAdd) {
+                              setMobileLogAdd(!mobileLogAdd);
+                            }
+                          }}
+                        >
+                          <GiPencil className="text-xl text-yellow" />
+                          <p>{t("edit")}</p>
+                        </div>
+                        <span
+                          onClick={() => {
+                            closeOptions();
+                          }}
+                          className="absolute p-[0.1rem] cursor-pointer text-lg top-[1.3rem] bg-dark_3 rounded -left-6"
+                        >
+                          <BiChevronsRight className="text-yellow" />
+                        </span>
+                      </div>
+>>>>>>> refs/remotes/origin/main
                     </div>
-                  </div>
-                )}
-              </div>
+                  )}
+                </div>
+              )}
             </div>
           </div>
         ))

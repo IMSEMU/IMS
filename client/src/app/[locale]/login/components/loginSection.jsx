@@ -74,7 +74,15 @@ export default function LoginSection() {
     } catch (error) {
       console.error("Error:", error);
       if (error.response) {
-        setMsg(error.response.data.msg);
+        if (error.response.data.msg === "1") {
+          setMsg(t("err1"));
+        }
+        if (error.response.data.msg === "2") {
+          setMsg(t("err2"));
+        }
+        if (error.response.data.msg === "3") {
+          setMsg(t("err3"));
+        }
       }
       setLoading(false);
       setToastStatus(false);
@@ -164,25 +172,12 @@ export default function LoginSection() {
 
                 <div
                   className={
-                    "flex flex-wrap flex-row-reverse md:flex-row md:flex-nowrap justify-between my-3 text-center"
+                    "flex flex-wrap flex-row-reverse md:flex-row md:flex-nowrap justify-between my-3 text-center w-full"
                   }
                 >
                   <button
                     type="submit"
-                    className="flex justify-center items-center gap-3 w-full md:w-fit text-black dark:text-white border border-background_shade_2 dark:border-0 hover:bg-background_shade_2 hover:ease-in-out hover:duration-300  bg-white dark:bg-dark_3  font-normal rounded px-3 py-2 mt-5"
-                  >
-                    <Image
-                      src={"/microsoft-icon.svg"}
-                      alt={"."}
-                      width={20}
-                      height={20}
-                    />
-                    <span>{t("microsoft")}</span>
-                  </button>
-
-                  <button
-                    type="submit"
-                    className="flex items-center gap-2 w-fit  bg-blue hover:bg-blue-400 focus:bg-blue-400 text-white font-semibold rounded px-3 py-2 mt-5"
+                    className="flex items-center gap-2 w-fit  bg-blue hover:bg-blue-400 focus:bg-blue-400 text-white font-semibold rounded px-3 py-2 mt-5 ml-auto hover:scale-105  duration-300 ease-in-out"
                   >
                     <span>{t("Loginbtn")}</span>
                   </button>
@@ -200,7 +195,7 @@ export default function LoginSection() {
               <div className={"flex justify-end mt-8"}>
                 <button
                   onClick={() => loginToogle()}
-                  className="flex items-center gap-2 w-fit bg-blue text-white font-semibold rounded px-3 py-2 "
+                  className="flex items-center gap-2 w-fit bg-blue text-white font-semibold rounded px-3 py-2 hover:scale-105  duration-300 ease-in-out"
                 >
                   <span className={"flex items-center gap-1"}>
                     <BiPencil /> {t("Register")}
