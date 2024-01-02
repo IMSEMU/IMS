@@ -8,7 +8,7 @@ export const metadata = {
 export default function Bookmarks() {
   return (
     <Suspense fallback={<Loading />}>
-      <main className={"bg-white dark:bg-dark_2 min-h-full"}>
+      <main className={"bg-white dark:bg-dark_1 min-h-screen"}>
         <div className={""}>
           <BookmarksPage />
         </div>
