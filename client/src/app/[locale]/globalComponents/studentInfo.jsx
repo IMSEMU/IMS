@@ -7,7 +7,7 @@ import { BiX } from "react-icons/bi";
 import { useTranslations } from "next-intl";
 
 export const StudentInformation = ({ students, usage }) => {
-  const t = useTranslations("Stdinfo");
+  const t = useTranslations("stdinfo");
   const [openStudent, setOpenStudent] = useState(false);
   const [stdInfoSearch, setStdInfoSearch] = useState(false);
   const [selectedStudent, setSelectedStudent] = useState(null);
