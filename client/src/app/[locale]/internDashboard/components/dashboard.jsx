@@ -473,7 +473,7 @@ export const Dashboard = ({ user }) => {
               {student.compEvalConfirmed && !student.reportComplete ? (
                 <div
                   className={
-                    " p-2 rounded w-full   gap-2 bg-white drop-shadow-md border-background_shade_2 dark:bg-dark_2 text-black hover:bg-blue hover:text-white"
+                    " p-2 rounded w-full  gap-2 bg-white drop-shadow-md border-background_shade_2 dark:bg-dark_2 text-black hover:border-l-8 hover:border-l-yellow duration-300 hover:border-[transparent]"
                   }
                 >
                   <Link
