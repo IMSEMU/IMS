@@ -5,6 +5,8 @@ This is the frontend for Group 1's IMS Project. The frontend is at https://githu
 First, run the development server:
 
 ```bash
+cd client
+
 npm run dev
 
 json-server --watch data/db.json --port 8000
