@@ -67,8 +67,8 @@ export const AddPost = ({ photo, updatePosts, setHasNewPost, user }) => {
   }
 
   return (
-    <section className="p-2 bg-white dark:bg-dark_1 items-center justify-center px-4 sm:px-12 md:px-20 mx-auto ">
-      <div className="w-[40rem] lg:w-[40rem] mx-auto flex flex-wrap rounded bg-white drop-shadow-md border-background_shade_2 border dark:bg-dark_2">
+    <section className="p-2 mt-16 bg-white dark:bg-dark_1 items-center justify-center px-4 sm:px-12 md:px-20 mx-auto ">
+      <div className="w-full lg:w-[40rem] mx-auto flex flex-wrap rounded bg-white drop-shadow-md border-background_shade_2 border dark:bg-dark_2">
         {/* first */}
         <div className="flex justify-start gap-2 mx-4  mt-3 pb-3 border-b-background_shade_2 border-b w-full">
           {/* image */}
@@ -81,12 +81,12 @@ export const AddPost = ({ photo, updatePosts, setHasNewPost, user }) => {
           />
 
           {/* text display */}
-          <div className="cursor-pointer bg-background_shade border border-background_shade_2 flex items-center rounded-md w-full ">
+          <div className="cursor-pointer capitalize bg-background_shade border border-background_shade_2 flex items-center rounded-md w-full ">
             <textarea
               placeholder={
                 t("newPost") + " " + capitalizeFirstLetter(user.firstname) + "?"
               }
-              className="p-2 w-full h-full outline-none text-xs sm:text-base text-black font-semi-bold dark:bg-dark_3  dark:text-white "
+              className="p-1 md:p-2 w-full h-full outline-none text-xs sm:text-base text-black font-semi-bold dark:bg-dark_3  dark:text-white "
               value={text}
               onChange={(e) => setText(e.target.value)}
             />
@@ -116,7 +116,7 @@ export const AddPost = ({ photo, updatePosts, setHasNewPost, user }) => {
               }
               return (
                 <button onClick={handleOnClick}>
-                  <div className="text-4xl cursor-pointer text-yellow">
+                  <div className=" text-3xl lg:text-4xl cursor-pointer text-yellow">
                     <IoMdPhotos />
                   </div>
                 </button>
@@ -126,7 +126,7 @@ export const AddPost = ({ photo, updatePosts, setHasNewPost, user }) => {
 
           {/* post button */}
           <button
-            className="px-4 cursor-pointer py-1.5 font-normal bg-blue text-white rounded "
+            className="px-4 text-sm  cursor-pointer py-1.5 font-normal bg-blue text-white rounded "
             onClick={addPost}
           >
             {t("post")}

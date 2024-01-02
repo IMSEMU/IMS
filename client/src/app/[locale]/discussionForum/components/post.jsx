@@ -212,7 +212,7 @@ export const Posts = ({ posts, photo, setHasNewPost, user }) => {
   }
 
   return (
-    <section className="p-2 bg-white dark:bg-dark_1 items-center justify-center px-4 sm:px-12 md:px-20 mx-auto">
+    <section className="p-2 bg-white w-full dark:bg-dark_1 items-center justify-center  px-4 sm:px-12 md:px-20 mx-auto">
       {posts.length === 0 ? (
         <div className=" font-semibold text-lg text-center text-white">
           <Empty />
@@ -220,11 +220,11 @@ export const Posts = ({ posts, photo, setHasNewPost, user }) => {
       ) : (
         posts.map((feed, index) => (
           <div
-            className="w-[40rem] lg:w-[40rem] mx-auto dark:bg-dark_2 mb-5 rounded bg-white drop-shadow-md border-background_shade_2 border relative overflow-hidden"
+            className=" w-full lg:w-[40rem] mx-auto dark:bg-dark_2 mb-4 rounded bg-white drop-shadow-md border-background_shade_2 border relative overflow-hidden"
             key={feed.post.postid}
           >
             <div className="justify-between w-full flex">
-              <div className="p-4 flex justify-start items-center gap-3">
+              <div className="p-2 pb-1 flex justify-start items-center gap-3">
                 {/* user profile */}
                 <Image
                   height={100}
@@ -241,7 +241,7 @@ export const Posts = ({ posts, photo, setHasNewPost, user }) => {
                   </p>
                 </div>
               </div>
-              <div className="justify-end flex p-4 gap-5">
+              <div className="justify-end flex p-2 pb-1 items-center gap-5">
                 {feed.isBookmarkedByUser ? (
                   <div onClick={() => DeleteBookmark(feed.post.postid)}>
                     <FaBookmark className="cursor-pointer text-xl text-yellow hover:scale-110  duration-300 ease-in-out" />
@@ -254,13 +254,13 @@ export const Posts = ({ posts, photo, setHasNewPost, user }) => {
 
                 {user.email === feed.postauthor.email && (
                   <div onClick={() => DeletePost(feed.post.postid)}>
-                    <GiTrashCan className="cursor-pointer text-xl text-red hover:scale-110  duration-300 ease-in-out" />
+                    <GiTrashCan className="cursor-pointer text-2xl text-red hover:scale-110  duration-300 ease-in-out" />
                   </div>
                 )}
               </div>
             </div>
             <div className="my-2 px-3 flex justify-start w-full dark:text-white">
-              <p className="w-full">{feed.post.text}</p>
+              <p className="w-full break-words">{feed.post.text}</p>
             </div>
 
             {/* post image */}
@@ -278,7 +278,7 @@ export const Posts = ({ posts, photo, setHasNewPost, user }) => {
 
             {/* like and comments section */}
             <div className="justify-between flex">
-              <div className="flex justify-start md:gap-1.5 px-3 py-2 text-2xl md:text-3xl">
+              <div className="flex justify-start md:gap-1.5 px-3 py-1.5 text-2xl md:text-3xl">
                 <div className="cursor-pointer flex  items-center justify-center flex-wrap w-fit">
                   {feed.isLikedByUser ? (
                     <div className="text-red">
@@ -313,9 +313,10 @@ export const Posts = ({ posts, photo, setHasNewPost, user }) => {
                   </p>
                 </div>
               </div>
-              <div className="justify-end text-xs dark:text-white px-3 pt-10">
-                {feed.post.createdAt.split("T")[0]}{" "}
+              <div className="justify-end flex text-xs items-center dark:text-white px-3 ">
+               <div className=""> {feed.post.createdAt.split("T")[0]}{" "}
                 {feed.post.createdAt.split("T")[1].split(".")[0]}
+                </div>
               </div>
             </div>
             {commentsState[feed.post.postid] && (
