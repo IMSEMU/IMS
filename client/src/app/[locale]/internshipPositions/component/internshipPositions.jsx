@@ -166,7 +166,7 @@ export const InternshipPositions = () => {
                       width={1000}
                       height={1000}
                       alt=""
-                      className=" mx-auto h-[10rem] w-[10rem] justify-center text-center"
+                      className=" mx-auto h-[10rem] w-[10rem] justify-center rounded text-center"
                       onClick={openFullScreen}
                     />
                   )}
@@ -231,7 +231,7 @@ export const InternshipPositions = () => {
                 width={500}
                 height={500}
                 alt=""
-                className="mx-auto max-h-full max-w-full"
+                className="mx-auto rounded max-h-full max-w-full"
               />
               <button
                 className="absolute top-7 right-2 text-white text-xl hover:text-red"

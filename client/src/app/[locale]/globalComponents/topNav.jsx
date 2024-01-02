@@ -89,12 +89,19 @@ export const TopNav = ({ user }) => {
     setNotificationDrop(!notificationDrop);
     profileDrop === true ? setProfileDrop(false) : profileDrop;
   };
+  // const hidden = () => {
+  //   if (notificationDrop === true || profileDrop === true){
+  //   setNotificationDrop(false) ;
+  //    setProfileDrop(false);
+  //   }
+  // }
   if (isLoading) {
     // Render a loading indicator or nothing while data is being fetched
     return null;
   }
   return (
     <main
+    // onClick={hidden}
       className={
         "remove-highlight border-b border-b-background_shade z-50 mx-0 bg-white dark:bg-dark_2 sticky w-full  top-0"
       }
@@ -168,24 +175,24 @@ export const TopNav = ({ user }) => {
               {/* notifications */}
               <div className="max-h-[20rem] min-h-[5rem]  overflow-y-scroll">
                 {notifications.map((notification, index) => (
-                  index === 0 ? <div>no Notification</div> :
+                  
                   <div key={index} className="m-2">
                     <Link
                       href={""}
-                      className="p-2 flex items-center justify-between gap-4 bg-background_shade_2 dark:bg-dark_4 rounded"
+                      className="p-2 flex items-center justify-between gap-1 bg-background_shade_2 dark:bg-dark_4 rounded"
                     >
                       <div className="p-1.5 text-2xl text-yellow bg-dark_2 rounded">
                         <HiAnnotation />
                       </div>
 
-                      <div className="">
-                        <p className="font-medium">{notification.message}</p>
+                      <div className="font-semibold flex text-xs">
+                        <p className="">{notification.message}</p>
                       </div>
 
                       <div className=" w-fit">
                         <div className="flex bg-yellow rounded">
-                          <div className="flex py-0.5 px-1 gap-0.5">
-                            <LuClock2 />
+                          <div className="flex justify-center py-0.5 px-1 gap-0.5">
+                            {/* <LuClock2 /> */}
                             <p className="text-xs font-medium ">
                               {notification.notifdate.slice(0, 10)}
                             </p>

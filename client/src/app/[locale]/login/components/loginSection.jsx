@@ -197,7 +197,7 @@ export default function LoginSection() {
                   onClick={() => loginToogle()}
                   className="flex items-center gap-2 w-fit bg-blue text-white font-semibold rounded px-3 py-2 hover:scale-105  duration-300 ease-in-out"
                 >
-                  <span className={"flex items-center gap-1"}>
+                  <span className={"flex items-center gap-1 "}>
                     <BiPencil /> {t("Register")}
                   </span>
                 </button>

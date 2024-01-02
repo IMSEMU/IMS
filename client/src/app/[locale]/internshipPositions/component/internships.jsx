@@ -204,7 +204,7 @@ export const InternshipCards = () => {
                       width={1000}
                       height={1000}
                       alt=""
-                      className=" mx-auto h-[10rem] w-[10rem] justify-center text-center"
+                      className=" mx-auto h-[10rem] rounded w-[10rem] justify-center text-center"
                       onClick={openFullScreen}
                     />
                   )}
@@ -272,7 +272,7 @@ export const InternshipCards = () => {
                   className="mx-auto max-h-full max-w-full"
                 />
                 <button
-                  className="absolute top-7 right-2 text-white text-xl hover:text-red"
+                  className="absolute top-7 right-2 rounded text-white text-xl hover:text-red"
                   onClick={closeFullScreen}
                 >
                   {t("Close")}

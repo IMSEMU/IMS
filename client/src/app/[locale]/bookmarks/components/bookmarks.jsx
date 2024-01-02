@@ -109,11 +109,11 @@ export const BookmarksPage = () => {
   }
 
   return (
-    <main className={"p-0 m-0 bg-white dark:bg-dark_2"}>
+    <main className={"p-0 m-0 min-h-full bg-white dark:bg-dark_1"}>
       {/*Sidenav and body*/}
-      <div className={"flex flex-nowrap"}>
+      <div className={"flex flex-nowrap h-full"}>
         <PcSideNav user={user} />
-        <div className={"h-full w-full"}>
+        <div className={"h-full w-full mb-12 md:mb-0 overflow-y"}>
           <TopNav user={user} />
           <ProtectedRoute>
             <Posts

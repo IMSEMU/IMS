@@ -134,11 +134,11 @@ export const LogbookPage = () => {
   }
 
   return (
-    <main className={"p-0 m-0 bg-white dark:bg-dark_2"}>
+    <main className={"p-0 m-0 bg-white dark:bg-dark_1 h-full w-full"}>
       {/*Sidenav and body*/}
       <div className={"flex flex-nowrap"}>
         <PcSideNav user={user} />
-        <div className={"h-full w-full"}>
+        <div className={"h-screen w-full"}>
           <TopNav user={user} />
           <ProtectedRoute>
             <section className=" bg-white dark:bg-dark_1 flex items-center justify-center w-full pt-5">
@@ -254,9 +254,7 @@ export const LogbookPage = () => {
                     {t("Submit")}
                   </button>
                 ) : (
-                  <button className="bg-background_shade text-white py-2 px-4 rounded">
-                    {t("Submit")}
-                  </button>
+                  <></>
                 )}
               </div>
 </div>
@@ -270,7 +268,7 @@ export const LogbookPage = () => {
       {submitted && (
         <Modal onClose={() => push()}>
           <div className="flex flex-col justify-center items-center">
-            <div className="font-bold">
+            <div className="font-bold dark:text-white">
               <p>{t("submitted")}</p>
             </div>
             <button

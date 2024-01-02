@@ -212,7 +212,7 @@ export const Posts = ({ posts, photo, setHasNewPost, user }) => {
   }
 
   return (
-    <section className="p-2 bg-white dark:bg-dark_1 items-center justify-center px-4 sm:px-12 md:px-20 mx-auto">
+    <section className="p-2 bg-white w-full dark:bg-dark_1 items-center justify-center  px-4 sm:px-12 md:px-20 mx-auto">
       {posts.length === 0 ? (
         <div className=" font-semibold text-lg text-center text-white">
           <Empty />
@@ -220,11 +220,11 @@ export const Posts = ({ posts, photo, setHasNewPost, user }) => {
       ) : (
         posts.map((feed, index) => (
           <div
-            className="w-[40rem] lg:w-[40rem] mx-auto mb-5 rounded bg-white drop-shadow-md border-background_shade_2 border relative overflow-hidden"
+            className=" w-full lg:w-[40rem] mx-auto dark:bg-dark_2 mb-4 rounded bg-white drop-shadow-md border-background_shade_2 border relative overflow-hidden"
             key={feed.post.postid}
           >
             <div className="justify-between w-full flex">
-              <div className="p-4 flex justify-start items-center gap-3">
+              <div className="p-2 pb-1 flex justify-start items-center gap-3">
                 {/* user profile */}
                 <Image
                   height={100}
@@ -236,31 +236,31 @@ export const Posts = ({ posts, photo, setHasNewPost, user }) => {
 
                 {/* username and id */}
                 <div className="flex  flex-wrap align-center">
-                  <p className=" font-bold md:text-lg capitalize">
+                  <p className=" font-bold md:text-lg capitalize dark:text-white">
                     {feed.postauthor.firstname} {feed.postauthor.lastname}
                   </p>
                 </div>
               </div>
-              <div className="justify-end flex p-4 gap-5">
+              <div className="justify-end flex p-2 pb-1 items-center gap-5">
                 {feed.isBookmarkedByUser ? (
                   <div onClick={() => DeleteBookmark(feed.post.postid)}>
                     <FaBookmark className="cursor-pointer text-xl text-yellow hover:scale-110  duration-300 ease-in-out" />
                   </div>
                 ) : (
                   <div onClick={() => BookmarkPost(feed.post.postid)}>
-                    <FaBookmark className="cursor-pointer text-xl text-black/25 hover:scale-110  duration-300 ease-in-out" />
+                    <FaBookmark className="cursor-pointer text-xl dark:text-white text-black/25 hover:scale-110  duration-300 ease-in-out" />
                   </div>
                 )}
 
                 {user.email === feed.postauthor.email && (
                   <div onClick={() => DeletePost(feed.post.postid)}>
-                    <GiTrashCan className="cursor-pointer text-xl text-red hover:scale-110  duration-300 ease-in-out" />
+                    <GiTrashCan className="cursor-pointer text-2xl text-red hover:scale-110  duration-300 ease-in-out" />
                   </div>
                 )}
               </div>
             </div>
-            <div className="my-2 px-3 flex justify-start w-full">
-              <p className="w-full">{feed.post.text}</p>
+            <div className="my-2 px-3 flex justify-start w-full dark:text-white">
+              <p className="w-full break-words">{feed.post.text}</p>
             </div>
 
             {/* post image */}
@@ -278,8 +278,8 @@ export const Posts = ({ posts, photo, setHasNewPost, user }) => {
 
             {/* like and comments section */}
             <div className="justify-between flex">
-              <div className="flex justify-start md:gap-1.5 px-3 py-2 text-2xl md:text-3xl">
-                <div className="cursor-pointer flex items-center justify-center flex-wrap w-fit">
+              <div className="flex justify-start md:gap-1.5 px-3 py-1.5 text-2xl md:text-3xl">
+                <div className="cursor-pointer flex  items-center justify-center flex-wrap w-fit">
                   {feed.isLikedByUser ? (
                     <div className="text-red">
                       <FaHeart
@@ -290,22 +290,22 @@ export const Posts = ({ posts, photo, setHasNewPost, user }) => {
                   ) : (
                     <div className="text-black/25">
                       <FaHeart
-                        className="hover:scale-110  duration-300 ease-in-out"
+                        className="hover:scale-110 dark:text-white duration-300 ease-in-out"
                         onClick={() => LikePost(feed.post.postid)}
                       />
                     </div>
                   )}
-                  <p className="text-xs sm:text-sm w-full text-black justify-center text-center">
+                  <p className="text-xs sm:text-sm w-full dark:text-white text-black justify-center text-center">
                     {feed.post.likesCount}{" "}
                     {feed.post.likesCount === 1 ? t("like") : t("likes")}
                   </p>
                 </div>
                 <div
                   onClick={() => toggleComments(feed.post.postid)}
-                  className="cursor-pointer flex items-center justify-center flex-wrap w-fit"
+                  className="cursor-pointer dark:text-white flex items-center justify-center flex-wrap w-fit"
                 >
                   <FaCommentDots />
-                  <p className="text-xs sm:text-sm w-full justify-center text-center">
+                  <p className="text-xs sm:text-sm dark:text-white w-full justify-center text-center">
                     {feed.post.commentsCount}{" "}
                     {feed.post.commentsCount === 1
                       ? t("comment")
@@ -313,21 +313,22 @@ export const Posts = ({ posts, photo, setHasNewPost, user }) => {
                   </p>
                 </div>
               </div>
-              <div className="justify-end text-xs px-3 pt-10">
-                {feed.post.createdAt.split("T")[0]}{" "}
+              <div className="justify-end flex text-xs items-center dark:text-white px-3 ">
+               <div className=""> {feed.post.createdAt.split("T")[0]}{" "}
                 {feed.post.createdAt.split("T")[1].split(".")[0]}
+                </div>
               </div>
             </div>
             {commentsState[feed.post.postid] && (
-              <div className="from-top">
+              <div className="from-top ">
                 <div className="max-h-[20rem]  m-1 flex justify-center">
-                  <div className="overflow-y-auto w-[35rem]">
+                  <div className="overflow-y-auto w-[35rem] ">
                     {/* user comment */}
                     {feed.comments.length > 0 &&
                       feed.comments.map((cmnt, index) => (
                         <div
                           key={cmnt.comment.commentid}
-                          className="flex flex-wrap w-full items-center px-3 pt-3 border-background_shade_2 border-b-2 pb-2"
+                          className="flex flex-wrap w-full dark:text-white items-center px-3 pt-3 border-background_shade_2 border-b-2 pb-2"
                         >
                           {/* name and pic */}
                           <div className="justify-between w-full flex">
@@ -365,7 +366,7 @@ export const Posts = ({ posts, photo, setHasNewPost, user }) => {
                           </div>
 
                           {/* comment message */}
-                          <div className="w-full flex justify-between items-center h-fit ml-[2.5rem]">
+                          <div className="w-full flex justify-between  items-center h-fit ml-[2.5rem]">
                             <div className="mt-2 h-fit justify-start">
                               {cmnt.comment.text}
                             </div>
@@ -395,16 +396,16 @@ export const Posts = ({ posts, photo, setHasNewPost, user }) => {
                 </div>
 
                 {/* add a comment */}
-                <div className="rounded bg-white drop-shadow-md border-background_shade_2 border">
+                <div className="rounded bg-white dark:bg-dark_2 drop-shadow-md border-background_shade_2 border">
                   <div className="p-2 flex justify-center mx-auto">
                     <div className="inline-flex justify-between items-center gap-4 p-2 w-full">
                       {/* comment section */}
-                      <div className="flex gap-2 w-full">
+                      <div className="flex gap-2  w-full">
                         {/* comment input */}
                         <div className="border-2 border-background_shade_2 rounded w-full">
                           <textarea
                             placeholder={t("newComment")}
-                            className="p-2 w-full h-full outline-none text-xs sm:text-base text-black font-semi-bold"
+                            className="p-2 w-full h-full outline-none dark:text-white dark:bg-dark_3 text-xs sm:text-base text-black font-semi-bold"
                             value={text}
                             onChange={(e) => setText(e.target.value)}
                           />
