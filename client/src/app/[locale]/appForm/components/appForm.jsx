@@ -257,7 +257,7 @@ export const AppForm = ({ user }) => {
   return (
     <main>
       <div className="my-1 flex justify-center items-center font-bold pt-5">
-        <div className="border-x-[0.4rem] text-2xl border-yellow">
+        <div className="border-x-[0.4rem] text-2xl border-yellow dark:text-white">
           <p className="px-2">{t("title")}</p>
         </div>
       </div>
@@ -289,20 +289,20 @@ export const AppForm = ({ user }) => {
               <form>
                 <div className="mx-4 lg:mx-16">
                   <div className="mt-2 md:mt-4 relative flex space-x-2">
-                    <div className="w-1/2">
+                    <div className="w-1/2 dark:text-yellow">
                       <span>
                         {t("name")}: {user.firstname} {user.lastname}{" "}
                       </span>
                     </div>
 
-                    <div className="w-1/2">
+                    <div className="w-1/2 dark:text-yellow">
                       <span>
                         {t("stdid")}: {student.stdid}{" "}
                       </span>
                     </div>
                   </div>
 
-                  <div className="mt-2 md:mt-4 relative flex space-x-2">
+                  <div className="mt-2 md:mt-4 relative flex space-x-2 dark:text-yellow">
                     <div>
                       <span>
                         {t("email")}: {user.email}{" "}
@@ -332,7 +332,7 @@ export const AppForm = ({ user }) => {
                     />
                   </div>
                   <div className="mt-2 md:mt-4 relative flex space-x-2">
-                    <span className="pt-2">{t("photo")}: </span>
+                    <span className="pt-2 dark:text-yellow">{t("photo")}: </span>
                     <CldUploadWidget
                       uploadPreset="p5tgbjfx"
                       onSuccess={handleImageUploadSuccess}

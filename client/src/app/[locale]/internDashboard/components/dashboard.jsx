@@ -292,7 +292,7 @@ export const Dashboard = ({ user }) => {
           ) : (
             <div>
               <div
-                className={"justify-between flex items-center mx-3 mt-3 mb-2"}
+                className={"justify-between flex items-center  mx-3 mt-3 mb-2"}
               >
                 <p
                   className={
@@ -304,7 +304,7 @@ export const Dashboard = ({ user }) => {
                 <Link
                   href={""}
                   className={
-                    "px-2 py-1 bg-background_shade text-white rounded inline-flex items-center justify-center gap-1"
+                    "px-2 py-1 bg-background_shade dark:text-white text-white rounded inline-flex items-center justify-center gap-1"
                   }
                 >
                   <BiPlus className={"text-white text-xl"} />
@@ -313,7 +313,7 @@ export const Dashboard = ({ user }) => {
               </div>
 
               {student.logComplete && (
-                <div className={"h-[15rem] overflow-y-auto"}>
+                <div className={"h-[15rem] overflow-y-auto  "}>
                   <LogbookDisplay logbookEntries={logbookEntries} />
                 </div>
               )}
@@ -347,7 +347,7 @@ export const Dashboard = ({ user }) => {
               {!student.filled_iaf ? (
                 <div
                   className={
-                    " p-2 rounded w-full  gap-2 bg-white drop-shadow-md border-background_shade_2 dark:bg-dark_2 text-black hover:bg-blue hover:text-white "
+                    " p-2 rounded w-full  gap-2 bg-white drop-shadow-md border-background_shade_2 dark:bg-dark_3 text-black hover:bg-blue hover:text-white "
                   }
                 >
                   <Link
@@ -356,7 +356,7 @@ export const Dashboard = ({ user }) => {
                       "flex items-center justify-center py-1.5 gap-2 px-1"
                     }
                   >
-                    <span className={"text-center font-bold text-md w-full "}>
+                    <span className={"text-center font-bold text-md w-full dark:text-white "}>
                       {t("iaf")}
                     </span>
                     <div className="text-xl ">
@@ -372,7 +372,7 @@ export const Dashboard = ({ user }) => {
                 >
                   <div
                     className={
-                      "text-center font-bold text-md w-full flex justify-center gap-2"
+                      "text-center font-bold text-md w-full flex  justify-center gap-2"
                     }
                   >
                     <p>{t("iaf")}</p>
@@ -389,7 +389,7 @@ export const Dashboard = ({ user }) => {
               (country === "Turkey" || country === "North Cyprus (KKTC)") ? (
                 <div
                   className={
-                    " p-2 rounded w-full   gap-2 bg-white drop-shadow-md border-background_shade_2 dark:bg-dark_2 text-black hover:bg-blue hover:text-white"
+                    " p-2 rounded w-full   gap-2 bg-white drop-shadow-md border-background_shade_2 dark:bg-dark_3 text-black hover:bg-blue hover:text-white"
                   }
                 >
                   <Link
@@ -398,7 +398,7 @@ export const Dashboard = ({ user }) => {
                       "flex items-center justify-center py-1.5 gap-2 px-1"
                     }
                   >
-                    <span className={"text-center font-bold text-md w-full "}>
+                    <span className={"text-center font-bold text-md w-full dark:text-white"}>
                       {t("sif")}
                     </span>
                     <div className="text-xl ">
@@ -436,7 +436,7 @@ export const Dashboard = ({ user }) => {
                 (country === "Turkey" || country === "North Cyprus (KKTC)")) ? (
                 <div
                   className={
-                    " p-2 rounded w-full   gap-2 bg-white drop-shadow-md border-background_shade_2 dark:bg-dark_2 text-black hover:bg-blue hover:text-white"
+                    " p-2 rounded w-full   gap-2 bg-white drop-shadow-md border-background_shade_2 dark:bg-dark_3 text-black hover:bg-blue hover:text-white"
                   }
                 >
                   <Link
@@ -445,7 +445,7 @@ export const Dashboard = ({ user }) => {
                       "flex items-center justify-center py-1.5 gap-2 px-1"
                     }
                   >
-                    <span className={"text-center font-bold text-md w-full "}>
+                    <span className={"text-center font-bold text-md w-full dark:text-white "}>
                       {t("filllg")}
                     </span>
 
@@ -473,7 +473,7 @@ export const Dashboard = ({ user }) => {
               {student.compEvalConfirmed && !student.reportComplete ? (
                 <div
                   className={
-                    " p-2 rounded w-full  gap-2 bg-white drop-shadow-md border-background_shade_2 dark:bg-dark_2 text-black hover:border-l-8 hover:border-l-yellow duration-300 hover:border-[transparent]"
+                    " p-2 rounded w-full  gap-2 bg-white drop-shadow-md border-background_shade_2 dark:bg-dark_3 text-black hover:border-l-8 hover:border-l-yellow duration-300 hover:border-[transparent]"
                   }
                 >
                   <Link
@@ -482,7 +482,7 @@ export const Dashboard = ({ user }) => {
                       "flex items-center justify-center py-1.5 gap-2 px-1"
                     }
                   >
-                    <span className={"text-center font-bold text-md w-full "}>
+                    <span className={"text-center font-bold text-md w-full dark:text-white "}>
                       {t("report")}
                     </span>
                     <div className="text-xl ">
