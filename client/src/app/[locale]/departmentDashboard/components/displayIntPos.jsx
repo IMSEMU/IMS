@@ -201,7 +201,7 @@ export const DisplayInternshipPositions = ({
                       width={1000}
                       height={1000}
                       alt=""
-                      className=" h-[3rem] w-fit rounded"
+                      className="w-[4rem] h-[3rem]  rounded"
                     />
                   ) : (
                     <Image

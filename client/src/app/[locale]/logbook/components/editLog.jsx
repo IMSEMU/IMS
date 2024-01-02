@@ -185,7 +185,7 @@ export const EditLog = ({
       {/* Error Modal */}
       {showErrorModal && (
         <Modal onClose={() => setShowErrorModal(false)}>
-          <div className="flex flex-col justify-center items-center">
+          <div className="flex flex-col justify-center items-center dark:text-white">
             <div className="font-bold">{error}</div>
             <button
               onClick={() => setShowErrorModal(false)}

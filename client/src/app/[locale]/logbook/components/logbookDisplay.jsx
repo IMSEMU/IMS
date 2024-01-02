@@ -101,7 +101,7 @@ export const LogbookDisplay = ({
         logbookEntries.map((entry, index) => (
           <div key={entry.logid} className=" flex justify-center flex-wrap overflow-hidden">
             {/* Render each logbook entry */}
-            <div className="mb-2 mx-1 py-1.5 bg-white text-black drop-shadow-lg hover:border-l-8 hover:border-l-yellow duration-300 border-[transparent] dark:bg-dark_4 dark:text-black w-full max-w-[30rem] flex items-center justify-between rounded">
+            <div className="mb-2 mx-1 gap-1.5 py-1.5 bg-white text-black drop-shadow-lg hover:border-l-8 hover:border-l-yellow duration-300 border-[transparent] dark:bg-dark_4 dark:text-black min-w-full flex items-center justify-between rounded">
               <div className="ml-2  flex flex-wrap gap-1 w-[5rem]">
                 <p className="font-semibold text-sm md:text-md">
                   {t("day")} {entry.day}
@@ -111,12 +111,14 @@ export const LogbookDisplay = ({
                 </p>
               </div>
 
-              <div className="flex flex-wrap  truncate w-40 items-center pl-1">
+              <div className="flex flex-wrap truncate w-full items-center pr-2">
                 <div>
-                  <span className=" w-[80%] truncate font-semibold text-sm text-center">
+                  <span className=" w-[90%] truncate font-semibold text-sm text-center">
                     {entry.department}
                   </span>
-                  <p className="w-[80%] truncate  text-xs md:text-sm text-justify">{entry.description}</p>
+                  <div className="max-w-[90%] truncate  text-xs md:text-sm text-justify">
+                    <p className="truncate">{entry.description}</p>
+                  </div>
                 </div>
               </div>
 

@@ -134,11 +134,11 @@ export const LogbookPage = () => {
   }
 
   return (
-    <main className={"p-0 m-0 bg-white dark:bg-dark_2"}>
+    <main className={"p-0 m-0 bg-white dark:bg-dark_1 h-full w-full"}>
       {/*Sidenav and body*/}
       <div className={"flex flex-nowrap"}>
         <PcSideNav user={user} />
-        <div className={"h-full w-full"}>
+        <div className={"h-screen w-full"}>
           <TopNav user={user} />
           <ProtectedRoute>
             <section className=" bg-white dark:bg-dark_1 flex items-center justify-center w-full pt-5">

@@ -8,7 +8,7 @@ export const metadata = {
 const Logbook = () => {
   return (
     <Suspense fallback={<Loading />}>
-      <main className=" min-w-screen min-h-screen ">
+      <main className=" min-w-screen min-h-screen dark:bg-dark_1">
         <LogbookPage />
       </main>
     </Suspense>
