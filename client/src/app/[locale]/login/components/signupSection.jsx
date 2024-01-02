@@ -179,19 +179,6 @@ export const SignupSection = ({ loginToogle }) => {
                 "flex flex-wrap flex-row-reverse md:flex-row  justify-between my-2 text-center w-full"
               }
             >
-              {/* <button
-                type="submit"
-                className="flex justify-center items-center gap-3 w-full md:w-fit text-black dark:text-white border border-background_shade_2 dark:border-0 hover:bg-background_shade_2 hover:ease-in-out hover:duration-300  bg-white dark:bg-dark_3  font-normal rounded px-3 py-2 mt-5"
-              >
-                <Image
-                  src={"/microsoft-icon.svg"}
-                  alt={"."}
-                  width={20}
-                  height={20}
-                />
-                <span>{t("microsoft")}</span>
-              </button> */}
-
               <button
                 type="button"
                 className="flex items-center justify-center gap-2 w-full md:w-fit  bg-blue hover:bg-blue-400 focus:bg-blue-400 text-white font-semibold rounded px-3 py-2 mt-5 ml-auto "

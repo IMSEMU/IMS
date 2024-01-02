@@ -422,16 +422,6 @@ export const Dashboard = ({ user }) => {
                   {t("Email")}: {assignStudent.stduser.email}
                 </p>
               </div>
-              <div className="w-[90%]">
-                <p className="rounded p-3 outline-none w-full  dark:border-none dark:bg-background_shade_2 text-dark_2">
-                  {t("Faculty")}: {assignStudent.student.faculty}
-                </p>
-              </div>
-              <div className="w-[90%]">
-                <p className="rounded p-3 outline-none w-full  dark:border-none dark:bg-background_shade_2 text-dark_2">
-                  {t("Department")}: {assignStudent.student.dept}
-                </p>
-              </div>
               <div className="w-[44%]">
                 <p className="rounded p-3 outline-none w-full  dark:border-none dark:bg-background_shade_2 text-dark_2">
                   {t("AssignSupervisor")}:

@@ -1,4 +1,4 @@
-"use client";
+// "use client";
 import { useState, useEffect } from "react";
 import { BiChevronsRight } from "react-icons/bi";
 import { FaEllipsisV, FaTimes } from "react-icons/fa";
@@ -99,7 +99,10 @@ export const LogbookDisplay = ({
         </div>
       ) : (
         logbookEntries.map((entry, index) => (
-          <div key={entry.logid} className=" flex justify-center flex-wrap overflow-hidden">
+          <div
+            key={entry.logid}
+            className=" flex justify-center flex-wrap overflow-hidden"
+          >
             {/* Render each logbook entry */}
             <div className="mb-2 mx-1 py-1.5 bg-white text-black drop-shadow-lg hover:border-l-8 hover:border-l-yellow duration-300 border-[transparent] dark:bg-dark_4 dark:text-black w-full max-w-[30rem] flex items-center justify-between rounded">
               <div className="ml-2  flex flex-wrap gap-1 w-[5rem]">
@@ -116,7 +119,9 @@ export const LogbookDisplay = ({
                   <span className=" w-[80%] truncate font-semibold text-sm text-center">
                     {entry.department}
                   </span>
-                  <p className="w-[80%] truncate  text-xs md:text-sm text-justify">{entry.description}</p>
+                  <p className="w-[80%] truncate  text-xs md:text-sm text-justify">
+                    {entry.description}
+                  </p>
                 </div>
               </div>
 
@@ -127,40 +132,6 @@ export const LogbookDisplay = ({
                     onClick={() => toggleOptions(index)}
                   />
 
-                  {hideOptions[index] && (
-                    <div className="from-left absolute text-white -left-10 -top-[1.4rem] h-fit rounded w-[5rem] bg-dark_3">
-                      <div className="relative">
-                        <div
-                          className="m-0.5  p-1 rounded flex text-sm font-medium items-center cursor-pointer gap-0.5  hover:bg-background_shade"
-                          onClick={() => DeleteLog(entry.logid)}
-                        >
-                          <GiTrashCan className="text-xl text-yellow" />
-                          <p className="">{t("Delete")}</p>
-                        </div>
-
-                      <div
-                        className="m-0.5  p-0.5 rounded flex text-sm font-medium items-center cursor-pointer gap-0.5  hover:bg-background_shade"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setEdit(entry);
-                          closeOptions();
-                          if (mobileLogAdd) {
-                            setMobileLogAdd(!mobileLogAdd);
-                          }
-                        }}
-                      >
-                        <GiPencil className="text-xl text-yellow" />
-                        <p>{t("edit")}</p>
-                      </div>
-                      <span
-                        onClick={() => {
-                          closeOptions();
-                        }}
-                        className="absolute p-[0.1rem] cursor-pointer text-lg top-[1rem] bg-dark_2 rounded -left-6"
-                      >
-                        <BiChevronsRight className="text-yellow" />
-                      </span>
-=======
                   {hideOptions[index] && (
                     <div className="from-left absolute text-white -left-10 -top-[1.4rem] h-fit rounded w-[5rem] bg-dark_3">
                       <div className="relative">
@@ -195,7 +166,6 @@ export const LogbookDisplay = ({
                           <BiChevronsRight className="text-yellow" />
                         </span>
                       </div>
->>>>>>> refs/remotes/origin/main
                     </div>
                   )}
                 </div>
