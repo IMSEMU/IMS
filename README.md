@@ -7,6 +7,8 @@ First, run the development server:
 ```bash
 cd client
 
+npm i
+
 npm run dev
 
 json-server --watch data/db.json --port 8000
