@@ -254,9 +254,7 @@ export const LogbookPage = () => {
                     {t("Submit")}
                   </button>
                 ) : (
-                  <button className="bg-background_shade text-white py-2 px-4 rounded">
-                    {t("Submit")}
-                  </button>
+                  <></>
                 )}
               </div>
 </div>
@@ -270,7 +268,7 @@ export const LogbookPage = () => {
       {submitted && (
         <Modal onClose={() => push()}>
           <div className="flex flex-col justify-center items-center">
-            <div className="font-bold">
+            <div className="font-bold dark:text-white">
               <p>{t("submitted")}</p>
             </div>
             <button
